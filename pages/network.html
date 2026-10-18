@@ -49,6 +49,7 @@
                     <li><a href="#vpn">VPN</a></li>
                     <li><a href="#proxy">Proxy</a></li>
                     <li><a href="#firewall">Firewall</a></li>
+                    <li><a href="#defense-in-depth">Defense in Depth</a></li>
                     <li><a href="#tor">TOR</a></li>
                     <li><a href="#commands">Network Commands</a></li>
                 </ul>
@@ -1368,13 +1369,163 @@ Reverse Proxy :  Client -&gt; Internet -&gt; [Proxy] -&gt; Servers    (hides the
                         <li><b>Next-Generation Firewall (NGFW) :</b> Combines stateful inspection with deep packet inspection, application awareness, intrusion prevention (IPS), and user identity.</li>
                         <li><b>Web Application Firewall (WAF) :</b> Protects web applications at the HTTP level from attacks like SQL injection and XSS.</li>
                     </ul>
+
+                    <h5>Inbound vs Outbound Traffic :</h5>
+                    <p>Firewall rules are written per direction. The direction is decided by <b>who starts the connection</b>, not by which way an individual packet travels.</p>
+                    <ul class="justify">
+                        <li><b>Inbound (Ingress) :</b> Connections started <i>from outside</i> toward your network or host, e.g. an internet user opening your website, or someone trying to SSH into your server.</li>
+                        <li><b>Outbound (Egress) :</b> Connections started <i>from inside</i> going out, e.g. your laptop browsing a website, a server downloading updates, or an app calling an external API.</li>
+                        <li><b>Return Traffic :</b> Replies to an outbound request travel back inward, but a stateful firewall recognizes them as part of an existing connection and allows them automatically. You do not need an inbound rule for websites you browse.</li>
+                    </ul>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Inbound (Ingress)</th>
+                                    <th>Outbound (Egress)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center">
+                                <tr>
+                                    <td>Started by</td>
+                                    <td>an external host</td>
+                                    <td>an internal host</td>
+                                </tr>
+                                <tr>
+                                    <td>Example</td>
+                                    <td>visitor requests your web server on port 443</td>
+                                    <td>your PC requests a website on port 443</td>
+                                </tr>
+                                <tr>
+                                    <td>Usual default policy</td>
+                                    <td>deny all, allow only needed services</td>
+                                    <td>allow (home) / restrict to needed ports (servers, enterprise)</td>
+                                </tr>
+                                <tr>
+                                    <td>Main risk</td>
+                                    <td>unauthorized access, scanning, exploits</td>
+                                    <td>malware calling home, data exfiltration</td>
+                                </tr>
+                                <tr>
+                                    <td>Behind NAT</td>
+                                    <td>needs port forwarding (DNAT) to reach a private host</td>
+                                    <td>works automatically (source NAT)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="code-box code-box-color"><code>Outbound : Laptop 192.168.1.20:51515  -&gt;  Router (NAT)  -&gt;  203.0.113.10:443    allowed, connection tracked
+           203.0.113.10:443 reply      -&gt;  matches tracked connection          -&gt;  allowed back in
+Inbound  : Internet host               -&gt;  your public IP:22 (new, unsolicited) -&gt;  dropped unless a rule allows it</code></div>
+                    <h6>Filtering Best Practices -</h6>
+                    <ul class="justify">
+                        <li><b>Default Deny Inbound :</b> Block everything, then open only the ports a service actually needs (e.g. 443 on a web server), ideally only from known source IPs.</li>
+                        <li><b>Egress Filtering :</b> On servers and corporate networks, allow outbound traffic only to required destinations and ports (DNS, HTTPS, update servers). This limits malware command-and-control and data exfiltration if a host is compromised.</li>
+                        <li><b>Anti-Spoofing (Ingress Filtering) :</b> Drop packets arriving from the internet that claim an internal or private source IP (e.g. <code>10.0.0.0/8</code>), since they must be forged.</li>
+                        <li><b>Log Both Directions :</b> Unexpected outbound connections are often the first sign of a compromised machine.</li>
+                    </ul>
+
                     <h6>Example: Host Firewall Rules (Linux UFW) -</h6>
                     <div class="code-box code-box-color"><code>sudo ufw default deny incoming     # block all inbound traffic by default
 sudo ufw default allow outgoing    # allow all outbound traffic
-sudo ufw allow 22/tcp              # allow SSH
-sudo ufw allow 443/tcp             # allow HTTPS
+sudo ufw allow 22/tcp              # allow inbound SSH
+sudo ufw allow 443/tcp             # allow inbound HTTPS
 sudo ufw enable
-sudo ufw status verbose</code></div>
+sudo ufw status verbose
+
+# Stricter egress for a server: deny outbound, then allow only what is needed
+sudo ufw default deny outgoing
+sudo ufw allow out 53              # DNS
+sudo ufw allow out 443/tcp         # HTTPS (updates, APIs)</code></div>
+                </div>
+            </div>
+
+            <div class="sections" id="defense-in-depth">
+                <h4 class="heading">Defense in Depth</h4>
+                <div class="content">
+                    <p>Defense in Depth (DiD) is a security strategy that protects a network with <b>multiple independent layers</b> of controls, so that if one layer fails or is bypassed, the next one still stops or slows the attacker. The idea comes from military strategy: no single wall is trusted to hold. It assumes that any one control can fail, and that a breach is always possible.</p>
+                    <h6>Security Layers -</h6>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Layer</th>
+                                    <th>Example Controls</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Policies, Procedures &amp; People</td>
+                                    <td>security policies, awareness training, incident response plans</td>
+                                </tr>
+                                <tr>
+                                    <td>Physical</td>
+                                    <td>locked server rooms, badge access, CCTV</td>
+                                </tr>
+                                <tr>
+                                    <td>Perimeter</td>
+                                    <td>edge firewall, DDoS protection, VPN gateway, email filtering</td>
+                                </tr>
+                                <tr>
+                                    <td>Internal Network</td>
+                                    <td>segmentation (VLANs, subnets), internal firewalls, IDS/IPS, NAC</td>
+                                </tr>
+                                <tr>
+                                    <td>Host / Endpoint</td>
+                                    <td>host firewall, antivirus/EDR, patching, hardening</td>
+                                </tr>
+                                <tr>
+                                    <td>Application</td>
+                                    <td>WAF, secure coding, authentication and MFA, input validation</td>
+                                </tr>
+                                <tr>
+                                    <td>Data</td>
+                                    <td>encryption at rest and in transit (TLS), access control, backups, DLP</td>
+                                </tr>
+                                <tr>
+                                    <td>Monitoring (across all layers)</td>
+                                    <td>logging, SIEM, alerting, regular audits</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h5>Layered Network Design :</h5>
+                    <p>A common DiD network places public-facing servers in a <b>DMZ</b> (Demilitarized Zone, also called a screened subnet). The DMZ is a separate network segment between the internet and the internal LAN, so a compromised public server still cannot reach internal systems directly.</p>
+                    <div class="code-box code-box-color"><code>Internet
+   |
+[ Edge Firewall + DDoS protection ]      only 80/443 allowed inbound
+   |
+  DMZ   : web server, reverse proxy, mail relay
+   |
+[ Internal Firewall ]                    DMZ may reach only the app servers it needs
+   |
+Internal LAN : VLAN 10 Users | VLAN 20 App servers | VLAN 99 Management
+   |
+Data tier    : databases, reachable only from the app servers</code></div>
+
+                    <h6>Key Principles -</h6>
+                    <ul class="justify">
+                        <li><b>Least Privilege :</b> Every user, device, and service gets only the access it needs.</li>
+                        <li><b>Segmentation :</b> Split the network into zones (DMZ, users, servers, management) with firewall rules between them, limiting how far an attacker can move. Micro-segmentation applies the same idea down to individual workloads.</li>
+                        <li><b>Default Deny :</b> Block traffic unless it is explicitly allowed, both inbound and outbound (see <a href="#firewall">Firewall</a>).</li>
+                        <li><b>Diversity of Controls :</b> Different kinds of controls (or vendors) at different layers, so one bypass technique does not defeat them all.</li>
+                        <li><b>Visibility :</b> Log and monitor at every layer; a layer that does not alert only delays an attacker without anyone noticing.</li>
+                        <li><b>Redundancy :</b> No single point of failure for critical controls.</li>
+                    </ul>
+
+                    <h6>Example: Layers Stopping One Attack -</h6>
+                    <ul class="justify">
+                        <li><b>1. Email Filter :</b> blocks most malicious attachments before they reach users.</li>
+                        <li><b>2. Awareness Training :</b> the user recognizes and reports a message that slipped through.</li>
+                        <li><b>3. Endpoint Protection :</b> EDR blocks the payload if the file is opened anyway.</li>
+                        <li><b>4. Segmentation :</b> even if one PC is compromised, it cannot reach the database VLAN.</li>
+                        <li><b>5. Egress Filtering :</b> the compromised PC cannot connect to unknown external servers.</li>
+                        <li><b>6. Monitoring :</b> the blocked outbound attempt raises a SIEM alert, and the SOC isolates the PC.</li>
+                    </ul>
+
+                    <div class="block-quote"><b>Defense in Depth vs Zero Trust :</b> They work together. DiD adds many layers of protection; Zero Trust removes implicit trust inside the network by verifying every user, device, and request, so being "inside the perimeter" grants nothing by itself.</div>
                 </div>
             </div>
 
