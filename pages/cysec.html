@@ -37,6 +37,9 @@
                     <li><a href="#digital-sign">Digital Signature</a></li>
                     <li><a href="#pki">Public Key Infrastructure</a></li>
                     <li><a href="#secops">Security Operations</a></li>
+                    <li><a href="#red-team">Security Testing &amp; Red Teaming</a></li>
+                    <li><a href="#kill-chain">Cyber Kill Chain</a></li>
+                    <li><a href="#mitre">MITRE ATT&amp;CK</a></li>
                     <li><a href="#attacks">Attacks</a></li>
                     <li><a href="#vulns">Vulnerabilities</a></li>
                 </ul>
@@ -581,8 +584,8 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
                     <p>Intrusion Detection Systems (IDS) are security tools designed to detect unauthorized access or anomalies in a network or system. IDS monitors and analyzes network traffic, system activity, and user behavior to identify potential security breaches, such as cyberattacks or data theft, and alerts administrators to take action. IDS automate the inspection of logs and real-time system events to detect intrusion attempts and system failures.</p>
                     <h6>Type of IDS -</h6>
                     <ul class="justify">
-                        <li><b>Network-based IDS (NIDS) :</b> HIDs monitor activity on individual devices or hosts (servers, computers). It is installed on the host device, where it monitors file integrity, system calls, and application logs. It detects internal threats and activities like unauthorized access to files and malicious changes to system configurations.</li>
-                        <li><b>Host-based IDS (HIDS) :</b> NIDs monitor network traffic for suspicious activity. It is placed at strategic points within the network (e.g., between the internal network and the internet). It detects external attacks like denial-of-service (DoS) and port scanning.</li>
+                        <li><b>Network-based IDS (NIDS) :</b> NIDS monitor network traffic for suspicious activity. It is placed at strategic points within the network (e.g., between the internal network and the internet). It detects external attacks like denial-of-service (DoS) and port scanning.</li>
+                        <li><b>Host-based IDS (HIDS) :</b> HIDS monitor activity on individual devices or hosts (servers, computers). It is installed on the host device, where it monitors file integrity, system calls, and application logs. It detects internal threats and activities like unauthorized access to files and malicious changes to system configurations.</li>
                     </ul>
 
                     <h5>Intrusion Prevention Systems :</h5>
@@ -604,6 +607,270 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
 
                     <h5>Honeypots :</h5>
                     <p>A honeypot is a security resource or system set up to attract and deceive attackers, making it appear as though it's a vulnerable or valuable target. The purpose of a honeypot is not to serve a legitimate function but to lure cybercriminals into interacting with it so that their actions can be monitored and analyzed. This helps cybersecurity professionals gather intelligence on attackers' tactics, techniques, and procedures (TTPs), as well as distract attackers from real, critical systems.</p>
+                </div>
+            </div>
+
+            <div class="sections" id="red-team">
+                <h4 class="heading">Security Testing &amp; Red Teaming</h4>
+                <div class="content">
+                    <p>Security testing evaluates how well an organization can resist, detect, and respond to attacks. It is performed by authorized professionals under an agreed scope and rules of engagement, so the findings strengthen defenses rather than cause harm.</p>
+                    <h5>Security Teams :</h5>
+                    <ul class="justify">
+                        <li><b>Red Team :</b> Plays the attacker. Emulates real-world adversaries to test defenses from an attacker's perspective.</li>
+                        <li><b>Blue Team :</b> Plays the defender. The SOC, incident responders, and engineers who monitor, detect, and respond to threats.</li>
+                        <li><b>Purple Team :</b> Not a separate team but a collaborative exercise where red and blue work together, sharing findings in real time so detections improve as attacks are run.</li>
+                        <li><b>White Team :</b> The referees who define scope, set rules of engagement, and oversee the exercise.</li>
+                    </ul>
+                    <h5>Red Teaming :</h5>
+                    <p>Red Teaming is a simulated cyberattack performed by ethical hackers to assess an organization's security from an adversary's perspective. An independent red team emulates real-world threat actors to evaluate the effectiveness, readiness, and resilience of the organization's people, processes, and technology.</p>
+                    <ul class="justify">
+                        <li>The objective is not only to find vulnerabilities, but also to test detection and response capabilities, identify gaps across people, processes, and technology, and measure true attack preparedness.</li>
+                        <li>Unlike traditional penetration testing, which focuses mainly on technical flaws, red teaming evaluates the organization's overall security posture in a realistic, goal-driven attack scenario (e.g., "reach the customer database without being detected").</li>
+                        <li>Engagements are often <b>objective-based</b> and may run for weeks, favouring stealth and persistence over breadth.</li>
+                    </ul>
+                    <h6>Types of Security Assessments -</h6>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Assessment</th>
+                                    <th>Focus</th>
+                                    <th>Scope</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Vulnerability Assessment</td>
+                                    <td>find and list known weaknesses (often automated scanning)</td>
+                                    <td>broad, not exploited</td>
+                                </tr>
+                                <tr>
+                                    <td>Penetration Testing</td>
+                                    <td>exploit weaknesses to prove impact</td>
+                                    <td>defined systems, time-boxed</td>
+                                </tr>
+                                <tr>
+                                    <td>Red Teaming</td>
+                                    <td>emulate a real adversary; test detection &amp; response</td>
+                                    <td>goal-based, stealthy, whole org</td>
+                                </tr>
+                                <tr>
+                                    <td>Bug Bounty</td>
+                                    <td>crowd-sourced researchers report flaws for a reward</td>
+                                    <td>ongoing, public program</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h6>Rules of Engagement -</h6>
+                    <ul class="justify">
+                        <li><b>Authorization :</b> written permission defining what may be tested; testing without it is illegal.</li>
+                        <li><b>Scope :</b> the in-scope and out-of-scope systems, times, and techniques.</li>
+                        <li><b>Methodologies :</b> common references include MITRE ATT&amp;CK, the Cyber Kill Chain, PTES, OSSTMM, and the OWASP Testing Guide for web apps.</li>
+                    </ul>
+                    <div class="block-quote">Red teaming maps directly onto the two frameworks below: the <a href="#kill-chain">Cyber Kill Chain</a> describes the stages of an attack, and <a href="#mitre">MITRE ATT&amp;CK</a> catalogues the specific techniques used at each stage.</div>
+                </div>
+            </div>
+
+            <div class="sections" id="kill-chain">
+                <h4 class="heading">Cyber Kill Chain</h4>
+                <div class="content">
+                    <p>The Cyber Kill Chain, developed by Lockheed Martin, is a security framework that outlines the seven stages of a cyberattack, from initial preparation to final impact. It helps organizations understand attacker behaviour, detect threats early, and disrupt an attack at any stage, since breaking any single link stops the chain.</p>
+                    <h6>Why It Exists -</h6>
+                    <ul class="justify">
+                        <li>Provides a clear, step-by-step model of how attacks progress.</li>
+                        <li>Helps defenders detect attackers early and decide where to interrupt (&quot;kill&quot;) the attack.</li>
+                        <li>Improves SOC monitoring and incident response, and gives a common high-level vocabulary for attack stages.</li>
+                    </ul>
+                    <h6>The 7 Stages -</h6>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Stage</th>
+                                    <th>What Happens</th>
+                                    <th>Defender's Goal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Reconnaissance</td>
+                                    <td>gather info on the target (port scans, OSINT, employee emails)</td>
+                                    <td>detect scanning, reduce public exposure</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Weaponization</td>
+                                    <td>build the payload (malicious document, trojan, exploit)</td>
+                                    <td>threat intel on tooling</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Delivery</td>
+                                    <td>send the payload (phishing email, malicious USB, drive-by link)</td>
+                                    <td>email filtering, web proxy, awareness</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Exploitation</td>
+                                    <td>payload executes via a vulnerability or user action</td>
+                                    <td>patching, disable macros, EDR</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Installation</td>
+                                    <td>malware installs for persistent access (backdoor, implant)</td>
+                                    <td>AV/EDR, application control</td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>Command &amp; Control (C2)</td>
+                                    <td>infected host beacons back to the attacker</td>
+                                    <td>detect/block C2 traffic, DNS monitoring</td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>Actions on Objectives</td>
+                                    <td>the goal: data theft, ransomware, sabotage, lateral movement</td>
+                                    <td>DLP, segmentation, backups</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h6>Example Flow -</h6>
+                    <div class="code-box code-box-color"><code>Reconnaissance    -> collect employee emails
+Weaponization     -> build a macro-enabled Excel file
+Delivery          -> send it in a phishing email
+Exploitation      -> user opens the file and enables macros
+Installation      -> malware installs a backdoor
+C2                -> backdoor connects to the attacker's server
+Actions           -> sensitive data is exfiltrated</code></div>
+                    <h6>How It Is Used -</h6>
+                    <ul class="justify">
+                        <li><b>Threat Detection :</b> SOC teams map alerts to stages (Delivery -&gt; suspicious emails, C2 -&gt; beaconing traffic).</li>
+                        <li><b>Incident Response :</b> identify which stage the attacker is in and contain accordingly.</li>
+                        <li><b>Threat Hunting :</b> look for patterns along the chain, such as scanning (Recon) or execution (Exploitation).</li>
+                        <li><b>Security Architecture :</b> place controls to interrupt each stage (email filtering, AV/EDR, segmentation).</li>
+                    </ul>
+                    <div class="block-quote"><b>In simple words :</b> a step-by-step map of how an attack unfolds. Break any step, and you break the attack.</div>
+                </div>
+            </div>
+
+            <div class="sections" id="mitre">
+                <h4 class="heading">MITRE ATT&amp;CK</h4>
+                <div class="content">
+                    <p>MITRE ATT&amp;CK (Adversarial Tactics, Techniques &amp; Common Knowledge) is a globally adopted framework that documents how real-world attackers behave. It provides a standardized, evidence-based way to describe attacker actions across the entire attack lifecycle, giving red teams, blue teams, and tools a shared vocabulary.</p>
+                    <h6>Why It Exists -</h6>
+                    <ul class="justify">
+                        <li>Before ATT&amp;CK, the industry lacked a common language for attacker behaviour.</li>
+                        <li>Red teams can simulate realistic attacks; blue teams / SOCs can build better detection and response.</li>
+                        <li>Security tools can map and validate their coverage, and organizations can find visibility and control gaps.</li>
+                    </ul>
+                    <h6>Structure -</h6>
+                    <ul class="justify">
+                        <li><b>Tactics (the "why") :</b> the attacker's goal or stage. These form the columns of the matrix.</li>
+                        <li><b>Techniques (the "how") :</b> how a goal is achieved. Each tactic contains many techniques.</li>
+                        <li><b>Sub-techniques :</b> more specific variations of a technique.</li>
+                    </ul>
+                    <div class="code-box code-box-color"><code>Tactic        : Credential Access          (the goal)
+  Technique   : T1003  OS Credential Dumping   (the method)
+    Sub-tech  : T1003.001  LSASS Memory        (the specific variation)</code></div>
+                    <h6>The 14 Enterprise Tactics -</h6>
+                    <ul class="justify">
+                        <li>1. Reconnaissance &nbsp; 2. Resource Development &nbsp; 3. Initial Access &nbsp; 4. Execution &nbsp; 5. Persistence &nbsp; 6. Privilege Escalation &nbsp; 7. Defense Evasion</li>
+                        <li>8. Credential Access &nbsp; 9. Discovery &nbsp; 10. Lateral Movement &nbsp; 11. Collection &nbsp; 12. Command &amp; Control &nbsp; 13. Exfiltration &nbsp; 14. Impact</li>
+                    </ul>
+                    <h6>Example Techniques -</h6>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Technique</th>
+                                    <th>Tactic</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>T1566</code></td>
+                                    <td>Phishing</td>
+                                    <td>Initial Access</td>
+                                </tr>
+                                <tr>
+                                    <td><code>T1059</code></td>
+                                    <td>Command &amp; Scripting Interpreter (e.g. .001 PowerShell)</td>
+                                    <td>Execution</td>
+                                </tr>
+                                <tr>
+                                    <td><code>T1003</code></td>
+                                    <td>OS Credential Dumping (e.g. .001 LSASS Memory)</td>
+                                    <td>Credential Access</td>
+                                </tr>
+                                <tr>
+                                    <td><code>T1021</code></td>
+                                    <td>Remote Services (e.g. .002 SMB / Admin Shares)</td>
+                                    <td>Lateral Movement</td>
+                                </tr>
+                                <tr>
+                                    <td><code>T1041</code></td>
+                                    <td>Exfiltration Over C2 Channel</td>
+                                    <td>Exfiltration</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h6>Matrices -</h6>
+                    <ul class="justify">
+                        <li><b>Enterprise :</b> Windows, Linux, macOS, Cloud, SaaS, Office 365, Containers.</li>
+                        <li><b>Mobile :</b> Android, iOS.</li>
+                        <li><b>ICS :</b> Industrial Control Systems / SCADA.</li>
+                    </ul>
+                    <h6>How It Is Used -</h6>
+                    <ul class="justify">
+                        <li><b>Red Teaming :</b> build realistic, chained attack scenarios to exercise defenses.</li>
+                        <li><b>Blue Team / SOC :</b> create detection logic, prioritize telemetry, and map coverage gaps against SIEMs (Splunk, Sentinel, QRadar, Elastic).</li>
+                        <li><b>Threat Intelligence :</b> map known threat groups (e.g. APT29, FIN7, Lazarus) to the techniques they favour.</li>
+                        <li><b>Product Evaluation :</b> EDR/XDR tools are assessed against ATT&amp;CK techniques (MITRE Engenuity evaluations).</li>
+                    </ul>
+                    <h6>Example Attack Chain (mapped) -</h6>
+                    <div class="code-box code-box-color"><code>Initial Access       -> T1566.001  Spear-phishing Email
+Execution            -> T1059.001  PowerShell
+Privilege Escalation -> T1068      Exploitation for Privilege Escalation
+Credential Access    -> T1003.001  LSASS Memory
+Lateral Movement     -> T1021.002  SMB / Remote Services
+Exfiltration         -> T1041      Exfiltration Over C2 Channel</code></div>
+                    <h6>Kill Chain vs ATT&amp;CK -</h6>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Cyber Kill Chain</th>
+                                    <th>MITRE ATT&amp;CK</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center">
+                                <tr>
+                                    <td>Model</td>
+                                    <td>linear, 7 stages</td>
+                                    <td>matrix of tactics &amp; techniques</td>
+                                </tr>
+                                <tr>
+                                    <td>Detail</td>
+                                    <td>high-level</td>
+                                    <td>very detailed (100s of techniques)</td>
+                                </tr>
+                                <tr>
+                                    <td>Best for</td>
+                                    <td>explaining attack flow</td>
+                                    <td>detection engineering &amp; mapping</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="block-quote"><b>In simple words :</b> a detailed map of hacker behaviour, describing what attackers do and how they do it at every stage of an attack.</div>
                 </div>
             </div>
 
