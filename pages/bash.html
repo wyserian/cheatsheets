@@ -1,0 +1,1918 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Bash Shell Cheatsheet</title>
+
+        <!-- Bootstrap CDN -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="../assets/css/style.css">
+    </head>
+
+    <body data-theme="dark">
+        <div class="container">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <a href="/Cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
+                <div class="button"><i class="bi bi-circle-half"></i></div>
+            </div>
+
+            <h3 class="title">Bash Shell</h3>
+
+            <div class="section-list">
+                <ul>
+                    <li><a href="#shell">Shell &amp; Bash</a></li>
+                    <li><a href="#interactive">Interactive Shell</a></li>
+                    <li><a href="#bash-scripts">Bash Scripts</a></li>
+                    <li><a href="#variables">Variables</a></li>
+                    <li><a href="#quoting">Quoting</a></li>
+                    <li><a href="#strings">Strings</a></li>
+                    <li><a href="#arrays">Arrays</a></li>
+                    <li><a href="#input">Input</a></li>
+                    <li><a href="#output">Output</a></li>
+                    <li><a href="#operators">Operators</a></li>
+                    <li><a href="#arithmetic">Arithmetic</a></li>
+                    <li><a href="#escape-sequence">Escape Sequence</a></li>
+                    <li><a href="#parameter-expansion">Parameter Expansion</a></li>
+                    <li><a href="#command-substitution">Command Substitution</a></li>
+                    <li><a href="#decision">Decision Making</a></li>
+                    <li><a href="#loops">Loops</a></li>
+                    <li><a href="#functions">Functions</a></li>
+                    <li><a href="#command-line-arguments">Command Line Arguments</a></li>
+                    <li><a href="#redirection">Redirection</a></li>
+                    <li><a href="#piping">Piping</a></li>
+                    <li><a href="#job-control">Job Control</a></li>
+                    <li><a href="#bash-aliases">Bash Aliases</a></li>
+                    <li><a href="#brace-expansion">Brace Expansion</a></li>
+                    <li><a href="#globbing">Globbing</a></li>
+                    <li><a href="#eval">Eval</a></li>
+                    <li><a href="#error-handling">Exit Codes &amp; Error Handling</a></li>
+                    <li><a href="#debugging">Debugging</a></li>
+                </ul>
+            </div>
+
+            <div class="sections" id="shell">
+                <h4 class="heading">Shell &amp; Bash</h4>
+                <div class="content">
+                    <p>A <b>shell</b> is a program that takes commands from the user and asks the operating system's kernel to run them. It is both an interactive command interpreter and a scripting language. <b>Bash</b> (Bourne Again SHell) is the GNU project's shell, written by Brian Fox in 1989 as a free replacement for the original Bourne shell (<code>sh</code>). It is the default shell on most Linux distributions and is also available on macOS and Windows (Git Bash, WSL).</p>
+                    <pre class="code-box code-box-color"><code>User  --&gt;  Terminal  --&gt;  Shell (Bash)  --&gt;  Kernel  --&gt;  Hardware</code></pre>
+                    <ul class="justify">
+                        <li><b>Terminal (Emulator) :</b> The window that displays text and sends your keystrokes, e.g. GNOME Terminal, Konsole, Windows Terminal.</li>
+                        <li><b>Shell :</b> The program running inside the terminal that interprets what you type.</li>
+                        <li><b>Console :</b> Historically the physical terminal attached to a machine; today often used to mean any text interface.</li>
+                    </ul>
+                    <h6>Types of Shells -</h6>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Shell</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>sh</code></td>
+                                    <td>Bourne shell (1979), the original UNIX shell. Today <code>/bin/sh</code> is a POSIX-compatible shell (often dash or bash).</td>
+                                </tr>
+                                <tr>
+                                    <td><code>bash</code></td>
+                                    <td>Bourne Again Shell. Default on most Linux distros; adds arrays, <code>[[ ]]</code>, history and more on top of <code>sh</code>.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>dash</code></td>
+                                    <td>Small, fast POSIX shell. Used as <code>/bin/sh</code> on Debian and Ubuntu for running system scripts.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>zsh</code></td>
+                                    <td>Z shell. Bash-compatible with richer completion and themes (Oh My Zsh). Default on macOS since Catalina.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>fish</code></td>
+                                    <td>Friendly interactive shell with autosuggestions out of the box. Not POSIX-compatible.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>ksh</code></td>
+                                    <td>KornShell. Common on commercial UNIX systems (AIX, Solaris).</td>
+                                </tr>
+                                <tr>
+                                    <td><code>csh</code> / <code>tcsh</code></td>
+                                    <td>C shell, with C-like syntax. Used on some BSD systems.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <pre class="code-box"><code>echo $SHELL          # your default login shell
+echo $0              # the shell running right now
+echo $BASH_VERSION   # Bash version
+cat /etc/shells      # shells installed on the system
+chsh -s /bin/zsh     # change your default shell</code></pre>
+                    <h6>Types of Shell Sessions -</h6>
+                    <ul class="justify">
+                        <li><b>Interactive Shell :</b> Reads commands typed by a user at a prompt.</li>
+                        <li><b>Non-Interactive Shell :</b> Runs a script; no prompt, no user input.</li>
+                        <li><b>Login Shell :</b> The first shell after logging in (console, SSH). Reads <code>/etc/profile</code>, then <code>~/.bash_profile</code> (or <code>~/.profile</code>).</li>
+                        <li><b>Non-Login Shell :</b> A shell opened from an existing session, such as a new terminal tab. Reads <code>~/.bashrc</code>.</li>
+                    </ul>
+                    <h6>Startup Files -</h6>
+                    <ul class="justify">
+                        <li><b><code>~/.bashrc</code> :</b> Aliases, functions, prompt, and shell options for interactive shells. Most customization goes here.</li>
+                        <li><b><code>~/.bash_profile</code> / <code>~/.profile</code> :</b> Environment variables for login shells. Usually also sources <code>~/.bashrc</code>.</li>
+                        <li><b><code>~/.bash_history</code> :</b> Saved command history.</li>
+                        <li><b><code>~/.bash_logout</code> :</b> Runs when a login shell exits.</li>
+                    </ul>
+                    <pre class="code-box"><code>source ~/.bashrc     # reload after editing (same as: . ~/.bashrc)</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="interactive">
+                <h4 class="heading">Interactive Shell</h4>
+                <div class="content">
+                    <h5>&bull; History :</h5>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Commands</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>history</code></td>
+                                    <td>show shell history</td>
+                                </tr>
+                                <tr>
+                                    <td><code>history [x]</code></td>
+                                    <td>show last x commands from history</td>
+                                </tr>
+                                <tr>
+                                    <td><code>!!</code></td>
+                                    <td>run previous command (e.g. <code>sudo !!</code>)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>!$</code></td>
+                                    <td>last argument of previous command</td>
+                                </tr>
+                                <tr>
+                                    <td><code>![x]</code></td>
+                                    <td>run command number x from history</td>
+                                </tr>
+                                <tr>
+                                    <td><code>!-[x]</code></td>
+                                    <td>run the xth previous command</td>
+                                </tr>
+                                <tr>
+                                    <td><code>![text]</code></td>
+                                    <td>run the most recent command starting with text</td>
+                                </tr>
+                                <tr>
+                                    <td><code>^old^new</code></td>
+                                    <td>rerun previous command replacing old with new</td>
+                                </tr>
+                                <tr>
+                                    <td><code>history -c</code></td>
+                                    <td>clear history of current session</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h5>&bull; Keyboard Shortcuts :</h5>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Shortcut</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>Tab</code></td>
+                                    <td>auto-complete commands, files and paths (press twice to list options)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>Ctrl + C</code></td>
+                                    <td>interrupt (stop) the running command</td>
+                                </tr>
+                                <tr>
+                                    <td><code>Ctrl + Z</code></td>
+                                    <td>suspend the running command (resume with <code>fg</code> or <code>bg</code>)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>Ctrl + D</code></td>
+                                    <td>end of input (EOF); exits the shell on an empty line</td>
+                                </tr>
+                                <tr>
+                                    <td><code>Ctrl + L</code></td>
+                                    <td>clear the screen</td>
+                                </tr>
+                                <tr>
+                                    <td><code>Ctrl + R</code></td>
+                                    <td>reverse search through history</td>
+                                </tr>
+                                <tr>
+                                    <td><code>Ctrl + A</code> / <code>Ctrl + E</code></td>
+                                    <td>move cursor to start / end of line</td>
+                                </tr>
+                                <tr>
+                                    <td><code>Ctrl + U</code> / <code>Ctrl + K</code></td>
+                                    <td>delete from cursor to start / end of line</td>
+                                </tr>
+                                <tr>
+                                    <td><code>Ctrl + W</code></td>
+                                    <td>delete the word before the cursor</td>
+                                </tr>
+                                <tr>
+                                    <td><code>Alt + .</code></td>
+                                    <td>insert last argument of previous command</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h5>&bull; Shell Builtins :</h5>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Commands</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>type [command]</code></td>
+                                    <td>show whether a command is a builtin, alias, function or file</td>
+                                </tr>
+                                <tr>
+                                    <td><code>help [builtin]</code></td>
+                                    <td>help for Bash builtins (e.g. <code>help read</code>)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>exit</code></td>
+                                    <td>exit shell</td>
+                                </tr>
+                                <tr>
+                                    <td><code>exit [x]</code></td>
+                                    <td>exit shell with exit status x</td>
+                                </tr>
+                                <tr>
+                                    <td><code>source [file]</code></td>
+                                    <td>run a file in the current shell (variables and functions stay defined)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>cd</code>, <code>pwd</code>, <code>echo</code>, <code>read</code>, <code>export</code></td>
+                                    <td>common builtins, run inside the shell itself without starting a new process</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sections" id="bash-scripts">
+                <h4 class="heading">Bash Scripts</h4>
+                <div class="content">
+                    <p>A Bash script is a plain text file that contains a series of commands that are executed in sequence. Scripts usually have a <code>.sh</code> extension (for example: <code>script.sh</code>). The first line is the shebang (<code>#!</code>), which tells the system which interpreter should run the script.</p>
+                    <ul class="justify">
+                        <li><code>#!/bin/bash</code> : run with Bash.</li>
+                        <li><code>#!/usr/bin/env bash</code> : find Bash on the user's <code>PATH</code>; more portable across systems.</li>
+                        <li><code>#!/bin/sh</code> : run with a POSIX shell; avoid Bash-only features like arrays and <code>[[ ]]</code>.</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>#!/bin/bash
+
+mkdir Docs
+cp doc1.txt Docs/
+rm doc1.txt
+clear</code></pre>
+                    <h5>&bull; Executing Scripts :</h5>
+                    <pre class="code-box"><code>chmod +x [script]    # give execute permission (needed for ./ only)
+./[script]           # run using the shebang interpreter
+bash [script]        # run with bash explicitly (no execute permission needed)
+sh [script]          # run with the POSIX shell
+source [script]      # run inside the current shell</code></pre>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>chmod +x script.sh
+./script.sh
+bash script.sh</code></pre>
+                    <h5>&bull; Script Template :</h5>
+                    <pre class="code-box code-box-color"><code>#!/usr/bin/env bash
+set -euo pipefail            # exit on error, unset variable, or failed pipe
+
+# Usage: ./backup.sh &lt;source-dir&gt;
+src="${1:?Usage: $0 &lt;source-dir&gt;}"
+dest="/tmp/backup-$(date +%F).tar.gz"
+
+main() {
+    echo "Backing up $src to $dest"
+    tar -czf "$dest" "$src"
+    echo "Done"
+}
+
+main "$@"</code></pre>
+                    <h6>Comments -</h6>
+                    <pre class="code-box"><code># single line comment
+
+: '
+multi-line comment
+(a string passed to the no-op command ":")
+'</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="variables">
+                <h4 class="heading">Variables</h4>
+                <div class="content">
+                    <p>Variables are untyped strings by default. There must be <b>no spaces</b> around <code>=</code>. Names can contain letters, digits and underscores, and cannot start with a digit.</p>
+                    <h6>Declaring :</h6>
+                    <pre class="code-box"><code>greet="Hello World"
+num=17
+greet = "Hello"      # wrong: runs a command named "greet"</code></pre>
+                    <h6>Access :</h6>
+                    <pre class="code-box"><code>echo $greet
+echo "Number is ${num}"
+echo "${num}th place"    # braces separate the name from following text</code></pre>
+                    <h6>Read-Only Variable :</h6>
+                    <pre class="code-box"><code>readonly COUNT=1</code></pre>
+                    <h6>Declare Integer :</h6>
+                    <pre class="code-box"><code>declare -i num=10
+num=num+5            # arithmetic is applied: num is 15</code></pre>
+                    <h6>Remove Variable :</h6>
+                    <pre class="code-box"><code>unset num</code></pre>
+                    <h5>&bull; Environment Variables :</h5>
+                    <p>Normal variables exist only in the current shell. <code>export</code> makes a variable an environment variable, so child processes and scripts started from the shell can see it.</p>
+                    <pre class="code-box"><code>export API_URL="https://api.example.com"
+export PATH="$PATH:$HOME/bin"     # add a folder to PATH
+env                               # list environment variables
+printenv HOME                     # print one variable
+API_KEY=abc ./script.sh           # set a variable for one command only</code></pre>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Variable</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>$HOME</code></td>
+                                    <td>home directory of current user</td>
+                                </tr>
+                                <tr>
+                                    <td><code>$USER</code></td>
+                                    <td>current username</td>
+                                </tr>
+                                <tr>
+                                    <td><code>$PATH</code></td>
+                                    <td>colon-separated list of directories searched for commands</td>
+                                </tr>
+                                <tr>
+                                    <td><code>$PWD</code> / <code>$OLDPWD</code></td>
+                                    <td>current / previous working directory</td>
+                                </tr>
+                                <tr>
+                                    <td><code>$SHELL</code></td>
+                                    <td>path of the default login shell</td>
+                                </tr>
+                                <tr>
+                                    <td><code>$HOSTNAME</code></td>
+                                    <td>name of the machine</td>
+                                </tr>
+                                <tr>
+                                    <td><code>$PS1</code></td>
+                                    <td>format of the shell prompt</td>
+                                </tr>
+                                <tr>
+                                    <td><code>$RANDOM</code></td>
+                                    <td>random integer between 0 and 32767</td>
+                                </tr>
+                                <tr>
+                                    <td><code>$SECONDS</code></td>
+                                    <td>seconds since the shell (or script) started</td>
+                                </tr>
+                                <tr>
+                                    <td><code>$IFS</code></td>
+                                    <td>Internal Field Separator used for word splitting (default: space, tab, newline)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sections" id="quoting">
+                <h4 class="heading">Quoting</h4>
+                <div class="content">
+                    <p>Quoting controls which special characters Bash interprets. Unquoted variables are split on spaces and expanded as wildcards, which is a common source of bugs.</p>
+                    <ul class="justify">
+                        <li><b>Double Quotes <code>"..."</code> :</b> Expands variables, <code>$( )</code> and <code>\</code> escapes, but prevents word splitting and globbing.</li>
+                        <li><b>Single Quotes <code>'...'</code> :</b> Everything is literal; nothing is expanded.</li>
+                        <li><b>Backslash <code>\</code> :</b> Escapes the next single character.</li>
+                        <li><b>ANSI-C Quotes <code>$'...'</code> :</b> Interprets escapes like <code>\n</code> and <code>\t</code>.</li>
+                    </ul>
+                    <pre class="code-box code-box-color"><code>name="World"
+echo "Hello $name"       # Hello World
+echo 'Hello $name'       # Hello $name
+echo "Price: \$5"        # Price: $5
+echo $'Line1\nLine2'     # two lines
+
+file="my report.txt"
+cat $file                # wrong: cat sees two files "my" and "report.txt"
+cat "$file"              # right</code></pre>
+                    <div class="block-quote"><b>Rule of thumb :</b> Always double-quote variable expansions (<code>"$var"</code>, <code>"$@"</code>) unless you specifically want word splitting.</div>
+                </div>
+            </div>
+
+            <div class="sections" id="strings">
+                <h4 class="heading">Strings</h4>
+                <div class="content">
+                    <h6>Declaring :</h6>
+                    <pre class="code-box"><code>greet="Hello World"</code></pre>
+                    <h6>Access :</h6>
+                    <pre class="code-box"><code>echo "$greet"</code></pre>
+                    <h6>Concatenation :</h6>
+                    <pre class="code-box"><code>first="Hello"; second="World"
+echo "$first $second"
+first+=" there"          # append</code></pre>
+                    <h6>Length of string :</h6>
+                    <pre class="code-box"><code>echo ${#greet}           # 11</code></pre>
+                    <h6>Substring :</h6>
+                    <pre class="code-box"><code>echo ${greet:0:5}        # Hello   (offset 0, length 5)
+echo ${greet:6}          # World   (from offset 6)
+echo ${greet: -5}        # World   (last 5 chars; space before - is required)</code></pre>
+                    <h6>String Replace :</h6>
+                    <pre class="code-box code-box-color"><code>greet="Hello World World"
+echo ${greet/World/Universe}     # replace first match:  Hello Universe World
+echo ${greet//World/Universe}    # replace all matches:  Hello Universe Universe</code></pre>
+                    <h6>Remove Prefix / Suffix :</h6>
+                    <pre class="code-box code-box-color"><code>file="archive.tar.gz"
+echo ${file#*.}          # tar.gz    (remove shortest match from start)
+echo ${file##*.}         # gz        (remove longest match from start)
+echo ${file%.*}          # archive.tar  (remove shortest match from end)
+echo ${file%%.*}         # archive   (remove longest match from end)
+
+path="/home/user/docs/notes.txt"
+echo ${path##*/}         # notes.txt  (like basename)
+echo ${path%/*}          # /home/user/docs  (like dirname)</code></pre>
+                    <h6>Change Case :</h6>
+                    <pre class="code-box"><code>name="hello World"
+echo ${name^^}           # HELLO WORLD
+echo ${name,,}           # hello world
+echo ${name^}            # Hello World (first character)</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="arrays">
+                <h4 class="heading">Arrays</h4>
+                <div class="content">
+                    <h6>Declaring Indexed Array :</h6>
+                    <pre class="code-box"><code>fruits=("apple" "mango" "banana" "orange")
+declare -a fruits=("apple" "mango")      # explicit form</code></pre>
+                    <h6>Declaring Associative Array :</h6>
+                    <p>Key-value arrays (Bash 4+) must be declared with <code>declare -A</code>. Elements are separated by spaces, not commas.</p>
+                    <pre class="code-box"><code>declare -A capital=(["India"]="New Delhi" ["Nepal"]="Kathmandu" ["Bhutan"]="Thimphu")
+
+declare -A india
+india["capital"]="New Delhi"</code></pre>
+                    <h6>Indexing :</h6>
+                    <pre class="code-box"><code>fruits[0]="grapes"</code></pre>
+                    <h6>Access Element :</h6>
+                    <pre class="code-box"><code>echo ${fruits[0]}
+echo ${fruits[-1]}       # last element
+echo ${capital["India"]}</code></pre>
+                    <h6>Print All Elements :</h6>
+                    <pre class="code-box"><code>echo "${fruits[@]}"</code></pre>
+                    <h6>Print Keys / Indexes :</h6>
+                    <pre class="code-box"><code>echo "${!capital[@]}"     # India Nepal Bhutan (order not guaranteed)
+echo "${!fruits[@]}"      # 0 1 2 3</code></pre>
+                    <h6>Length of Array :</h6>
+                    <pre class="code-box"><code>echo ${#fruits[@]}</code></pre>
+                    <h6>Append, Slice &amp; Remove :</h6>
+                    <pre class="code-box"><code>fruits+=("kiwi")             # append
+echo "${fruits[@]:1:2}"      # slice: 2 elements starting at index 1
+unset 'fruits[1]'            # remove one element
+unset fruits                 # delete the whole array</code></pre>
+                    <h6>Input :</h6>
+                    <pre class="code-box"><code>read -a fruits</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="input">
+                <h4 class="heading">Input</h4>
+                <div class="content">
+                    <h6>Input (STDIN) :</h6>
+                    <pre class="code-box"><code>read [var]
+read -r [var]        # recommended: -r keeps backslashes literal</code></pre>
+                    <h6>Prompt Input :</h6>
+                    <pre class="code-box"><code>read -p "Username : " [var]</code></pre>
+                    <h6>Secure Prompt Input :</h6>
+                    <pre class="code-box"><code>read -sp "Password : " [var]     # -s hides what is typed</code></pre>
+                    <h6>Input NChar :</h6>
+                    <pre class="code-box"><code>read -n [x] [var]                # stop after x characters</code></pre>
+                    <h6>Input with Timeout :</h6>
+                    <pre class="code-box"><code>read -t 5 -p "Continue? " answer || echo "Timed out"</code></pre>
+                    <h6>Array Input :</h6>
+                    <pre class="code-box"><code>read -a [array]</code></pre>
+                    <h6>Split Input into Variables :</h6>
+                    <pre class="code-box code-box-color"><code>read -r first last &lt;&lt;&lt; "Linus Torvalds"
+echo "$last"                     # Torvalds
+
+IFS=: read -r user _ uid _ &lt;&lt;&lt; "root:x:0:0"
+echo "$user has UID $uid"        # root has UID 0</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="output">
+                <h4 class="heading">Output</h4>
+                <div class="content">
+                    <h6>Print (STDOUT) :</h6>
+                    <p>The <code>echo</code> prints output followed by a new line character.</p>
+                    <pre class="code-box"><code>echo "Hello World"
+
+msg="Hello World"
+echo "$msg"
+echo "Hii, ${msg}"
+echo -n "No newline"</code></pre>
+                    <h6>Enable Backslash Escapes :</h6>
+                    <pre class="code-box"><code>echo -e "\n Hello World"</code></pre>
+                    <h6>Special Char in Output :</h6>
+                    <pre class="code-box"><code>echo '$Hello World'</code></pre>
+                    <h6>Formatted Print (STDOUT) :</h6>
+                    <p>The <code>printf</code> prints output in the specified format; it does not append an implied newline. It behaves the same on every system, so prefer it over <code>echo -e</code> in scripts.</p>
+                    <pre class="code-box"><code>printf "\n%s\n\n" "Hello World"
+printf "%-10s %5d\n" "Apples" 42      # left-align text in 10 chars, number in 5
+printf "%.2f\n" 3.14159               # 3.14
+printf "%05d\n" 42                    # 00042</code></pre>
+                    <p>Format specifiers: <code>%s</code> string, <code>%d</code> integer, <code>%f</code> float, <code>%x</code> hex, <code>%%</code> literal percent.</p>
+                </div>
+            </div>
+
+            <div class="sections" id="operators">
+                <h4 class="heading">Operators</h4>
+                <div class="content">
+                    <h5>&bull; Arithmetic Operator :</h5>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Operator</th>
+                                    <th>Operation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>+</code></td>
+                                    <td>addition</td>
+                                </tr>
+                                <tr>
+                                    <td><code>-</code></td>
+                                    <td>subtraction</td>
+                                </tr>
+                                <tr>
+                                    <td><code>*</code></td>
+                                    <td>multiplication</td>
+                                </tr>
+                                <tr>
+                                    <td><code>/</code></td>
+                                    <td>integer division</td>
+                                </tr>
+                                <tr>
+                                    <td><code>%</code></td>
+                                    <td>modulus</td>
+                                </tr>
+                                <tr>
+                                    <td><code>**</code></td>
+                                    <td>exponent</td>
+                                </tr>
+                                <tr>
+                                    <td><code>++</code></td>
+                                    <td>increment</td>
+                                </tr>
+                                <tr>
+                                    <td><code>--</code></td>
+                                    <td>decrement</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p><b>Note :</b> Arithmetic must be inside double parentheses: <code>count=$((count+1))</code>. See <a href="#arithmetic">Arithmetic</a>.</p>
+
+                    <h5>&bull; Logical Operator :</h5>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Operator</th>
+                                    <th>Operation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>! [expr]</code></td>
+                                    <td>not</td>
+                                </tr>
+                                <tr>
+                                    <td><code>[ expr ] || [ expr ]</code> or <code>[[ expr || expr ]]</code></td>
+                                    <td>or</td>
+                                </tr>
+                                <tr>
+                                    <td><code>[ expr ] &amp;&amp; [ expr ]</code> or <code>[[ expr &amp;&amp; expr ]]</code></td>
+                                    <td>and</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>The older <code>-o</code> (or) and <code>-a</code> (and) inside <code>[ ]</code> still work but are deprecated because they are ambiguous.</p>
+
+                    <h5>&bull; Relational Operator :</h5>
+                    <p>(Numerical Comparison)</p>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Operator</th>
+                                    <th>Operation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>[expr] -eq [expr]</code></td>
+                                    <td>equal</td>
+                                </tr>
+                                <tr>
+                                    <td><code>[expr] -ne [expr]</code></td>
+                                    <td>not equal</td>
+                                </tr>
+                                <tr>
+                                    <td><code>[expr] -gt [expr]</code></td>
+                                    <td>greater than</td>
+                                </tr>
+                                <tr>
+                                    <td><code>[expr] -lt [expr]</code></td>
+                                    <td>less than</td>
+                                </tr>
+                                <tr>
+                                    <td><code>[expr] -ge [expr]</code></td>
+                                    <td>greater than or equal</td>
+                                </tr>
+                                <tr>
+                                    <td><code>[expr] -le [expr]</code></td>
+                                    <td>less than or equal</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>if [ 80 -gt 40 ]
+then
+    echo "Greater"
+fi
+
+if (( 80 &gt; 40 )); then echo "Greater"; fi    # arithmetic form</code></pre>
+
+                    <h5>&bull; Relational Operator :</h5>
+                    <p>(String Comparison)</p>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Operator</th>
+                                    <th>Operation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>[string] = [string]</code></td>
+                                    <td>equal</td>
+                                </tr>
+                                <tr>
+                                    <td><code>[string] != [string]</code></td>
+                                    <td>not equal</td>
+                                </tr>
+                                <tr>
+                                    <td><code>[string] == [pattern]</code></td>
+                                    <td>equal; inside <code>[[ ]]</code> the right side can be a wildcard pattern</td>
+                                </tr>
+                                <tr>
+                                    <td><code>[string] =~ [regex]</code></td>
+                                    <td>regex match (only inside <code>[[ ]]</code>); groups are saved in <code>BASH_REMATCH</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>-n [string]</code></td>
+                                    <td>true if length of string is nonzero</td>
+                                </tr>
+                                <tr>
+                                    <td><code>-z [string]</code></td>
+                                    <td>true if length of string is zero</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>if [ "Hello" = "Hi" ]
+then
+    echo "Matched"
+else
+    echo "Not Matched"
+fi
+
+file="report.pdf"
+[[ $file == *.pdf ]] &amp;&amp; echo "PDF file"
+[[ "2026-10-19" =~ ^([0-9]{4})- ]] &amp;&amp; echo "Year: ${BASH_REMATCH[1]}"</code></pre>
+
+                    <h5>&bull; Lexicographic Comparison :</h5>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Operator</th>
+                                    <th>Operation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>[[ [string] &gt; [string] ]]</code></td>
+                                    <td>true if left string sorts after right string</td>
+                                </tr>
+                                <tr>
+                                    <td><code>[[ [string] &lt; [string] ]]</code></td>
+                                    <td>true if left string sorts before right string</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>Inside single brackets <code>[ ]</code>, <code>&gt;</code> and <code>&lt;</code> are redirections and must be escaped as <code>\&gt;</code> and <code>\&lt;</code>.</p>
+
+                    <h5>&bull; File Testing Operator :</h5>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Operator</th>
+                                    <th>Operation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>-e [file]</code></td>
+                                    <td>true if file exists</td>
+                                </tr>
+                                <tr>
+                                    <td><code>-f [file]</code></td>
+                                    <td>true if file exists and is regular file</td>
+                                </tr>
+                                <tr>
+                                    <td><code>-d [file]</code></td>
+                                    <td>true if file exists and is directory</td>
+                                </tr>
+                                <tr>
+                                    <td><code>-L [file]</code></td>
+                                    <td>true if file exists and is symbolic link</td>
+                                </tr>
+                                <tr>
+                                    <td><code>-c [file]</code></td>
+                                    <td>true if file exists and is character device</td>
+                                </tr>
+                                <tr>
+                                    <td><code>-b [file]</code></td>
+                                    <td>true if file exists and is block device</td>
+                                </tr>
+                                <tr>
+                                    <td><code>-r [file]</code></td>
+                                    <td>true if file exists and read permission is granted</td>
+                                </tr>
+                                <tr>
+                                    <td><code>-w [file]</code></td>
+                                    <td>true if file exists and write permission is granted</td>
+                                </tr>
+                                <tr>
+                                    <td><code>-x [file]</code></td>
+                                    <td>true if file exists and execute permission is granted</td>
+                                </tr>
+                                <tr>
+                                    <td><code>-s [file]</code></td>
+                                    <td>true if size of file is greater than zero</td>
+                                </tr>
+                                <tr>
+                                    <td><code>[file1] -nt [file2]</code></td>
+                                    <td>true if file1 is newer than file2 (<code>-ot</code> for older)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>if [ -f text.txt ]
+then
+    echo "text.txt exists and it is regular file."
+fi</code></pre>
+                    <h5>&bull; Test Syntax :</h5>
+                    <ul class="justify">
+                        <li><b><code>[ ]</code> (test) :</b> POSIX, works in every shell. Quote variables, and give spaces between the brackets, operands and operator.</li>
+                        <li><b><code>[[ ]]</code> :</b> Bash keyword with safer parsing: no word splitting, supports <code>&amp;&amp;</code>, <code>||</code>, <code>==</code> patterns and <code>=~</code> regex. Preferred in Bash scripts.</li>
+                        <li><b><code>(( ))</code> :</b> Arithmetic evaluation with C-style operators (<code>&gt;</code>, <code>&lt;=</code>, <code>==</code>); true when the result is non-zero.</li>
+                        <li><b>Grouping :</b> Use <code>\( \)</code> inside <code>[ ]</code>, or plain <code>( )</code> inside <code>[[ ]]</code>.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="arithmetic">
+                <h4 class="heading">Arithmetic</h4>
+                <div class="content">
+                    <p>Bash only does integer arithmetic. Use <code>$(( ))</code> for calculations, <code>(( ))</code> for conditions and updates, and <code>bc</code> or <code>awk</code> for decimals.</p>
+                    <pre class="code-box code-box-color"><code>a=10; b=3
+echo $(( a + b ))        # 13   ($ inside is optional)
+echo $(( a / b ))        # 3    (integer division)
+echo $(( a % b ))        # 1
+echo $(( 2 ** 10 ))      # 1024
+(( a++ ))                # increment in place
+(( a &gt; b )) &amp;&amp; echo "a is bigger"
+let "c = a * b"          # older alternative
+echo "scale=2; 10 / 3" | bc     # 3.33  (decimals with bc)</code></pre>
+                    <h5>&bull; Expr :</h5>
+                    <p>Expr is an external command that evaluates an expression and prints the result. It is the old way to do math in shell scripts; prefer <code>$(( ))</code> in new code. Special characters like <code>*</code> and <code>&lt;</code> must be escaped.</p>
+                    <h6>Syntax :</h6>
+                    <pre class="code-box"><code>expr [OPTION] [EXPRESSION]</code></pre>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code># Example 1:
+expr 1 + 2
+expr 5 - 3
+expr 2 \* 3
+expr 8 / 2
+
+# Example 2:
+read x
+read y
+sum=$(expr $x + $y)
+echo "Sum = $sum"
+
+# Example 3: comparing numbers with '=' (prints 1 if true, 0 if false)
+res=$(expr $x = $y)
+echo $res
+
+# Example 4: prints 1 when x &lt; y
+res=$(expr $x \&lt; $y)
+echo $res
+
+# Example 5: length of string (GNU expr)
+x="Hello World"
+echo $(expr length "$x")         # 11
+
+# Example 6: extract substring: 3 characters starting at position 2
+x="Hello World"
+sub=$(expr substr "$x" 2 3)
+echo $sub                        # ell
+
+# Example 7: position of first character found from a set
+x="Hello World"
+c=$(expr index "$x" "o")
+echo $c                          # 5</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="escape-sequence">
+                <h4 class="heading">Escape Sequence</h4>
+                <div class="content">
+                    <p>Interpreted by <code>echo -e</code>, <code>printf</code> and <code>$'...'</code> strings.</p>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Escape</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>\\</code></td>
+                                    <td>backslash</td>
+                                </tr>
+                                <tr>
+                                    <td><code>\a</code></td>
+                                    <td>alert (BEL)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>\b</code></td>
+                                    <td>backspace</td>
+                                </tr>
+                                <tr>
+                                    <td><code>\c</code></td>
+                                    <td>suppress further output, including the trailing newline (<code>echo -e</code>)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>\e</code></td>
+                                    <td>escape character, used for colors, e.g. <code>echo -e "\e[31mRed\e[0m"</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>\f</code></td>
+                                    <td>form feed</td>
+                                </tr>
+                                <tr>
+                                    <td><code>\n</code></td>
+                                    <td>new line</td>
+                                </tr>
+                                <tr>
+                                    <td><code>\r</code></td>
+                                    <td>carriage return</td>
+                                </tr>
+                                <tr>
+                                    <td><code>\t</code></td>
+                                    <td>horizontal tab</td>
+                                </tr>
+                                <tr>
+                                    <td><code>\v</code></td>
+                                    <td>vertical tab</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sections" id="parameter-expansion">
+                <h4 class="heading">Parameter Expansion</h4>
+                <div class="content">
+                    <p>Default values and checks for variables that may be unset or empty. String operations like <code>${var#prefix}</code> are listed under <a href="#strings">Strings</a>.</p>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Var</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>${x}</code></td>
+                                    <td>substitute value of variable x</td>
+                                </tr>
+                                <tr>
+                                    <td><code>${x:-y}</code></td>
+                                    <td>if x is unset or empty, use y instead (x does not change)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>${x:=y}</code></td>
+                                    <td>if x is unset or empty, set x to y and use it</td>
+                                </tr>
+                                <tr>
+                                    <td><code>${x:+y}</code></td>
+                                    <td>if x is set and not empty, use y; otherwise use nothing (x does not change)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>${x:?msg}</code></td>
+                                    <td>if x is unset or empty, print msg to standard error and exit the script</td>
+                                </tr>
+                                <tr>
+                                    <td><code>${!x}</code></td>
+                                    <td>indirect expansion: value of the variable whose name is stored in x</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>port="${PORT:-8080}"                 # use $PORT, or 8080 if not set
+: "${LOG_DIR:=/var/log/myapp}"       # set a default once
+db="${DB_HOST:?DB_HOST is required}" # fail fast if missing</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="command-substitution">
+                <h4 class="heading">Command Substitution</h4>
+                <div class="content">
+                    <p>Command substitution replaces a command with its output. The backquote form is old-style; the <code>$( )</code> form is recommended because it is easier to read and can be nested.</p>
+                    <h5>&bull; Dollar Sign &amp; Parenthesis :</h5>
+                    <h6>Syntax :</h6>
+                    <pre class="code-box"><code>$([command])</code></pre>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code># Example 1:
+echo "Today is $(date)"
+
+# Example 2: nesting
+echo "Script folder: $(basename "$(pwd)")"
+
+# Example 3: store output in a variable
+count=$(ls | wc -l)
+echo "Files: $count"</code></pre>
+                    <h5>&bull; Back-Quote :</h5>
+                    <h6>Syntax :</h6>
+                    <pre class="code-box"><code>`[command]`</code></pre>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>DATE=`date`
+echo "Date is $DATE"
+
+USERS=`who | wc -l`
+echo "Logged in users are $USERS"</code></pre>
+                    <h5>&bull; Process Substitution :</h5>
+                    <p><code>&lt;( )</code> makes a command's output look like a file, for commands that need file names.</p>
+                    <pre class="code-box code-box-color"><code>diff &lt;(sort a.txt) &lt;(sort b.txt)</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="decision">
+                <h4 class="heading">Decision Making</h4>
+                <div class="content">
+                    <h5>&bull; If Statement :</h5>
+                    <h6>Syntax :</h6>
+                    <pre class="code-box"><code>if [ condition ]
+then
+    #Statement
+fi
+
+# with OR
+if [ condition ] || [ condition ]
+then
+    #Statement
+fi
+
+# with AND
+if [ condition ] &amp;&amp; [ condition ]
+then
+    #Statement
+fi</code></pre>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>x="Y"
+if [ "$x" = "y" ] || [ "$x" = "Y" ]
+then
+    echo "YES"
+fi</code></pre>
+
+                    <h5>&bull; If-Else Statement :</h5>
+                    <h6>Syntax :</h6>
+                    <pre class="code-box"><code>if [ condition ]
+then
+    #Statement
+else
+    #Statement
+fi</code></pre>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>name="admin"
+if [ "$name" = "admin" ]; then
+    echo "Hello BOSS"
+else
+    echo "Who Are You?"
+fi</code></pre>
+
+                    <h5>&bull; Elif Statements :</h5>
+                    <h6>Syntax :</h6>
+                    <pre class="code-box"><code>if [ condition ]
+then
+    #Statement
+elif [ condition ]
+then
+    #Statement
+else
+    #Statement
+fi</code></pre>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code># Example 1:
+x=10
+y=20
+if [ $x -lt $y ]
+then
+    echo "X is less than Y"
+elif [ $x -gt $y ]
+then
+    echo "X is greater than Y"
+else
+    echo "X is equal to Y"
+fi
+
+# Example 2:
+a=3
+b=3
+c=3
+if [ $a -eq $b ] &amp;&amp; [ $a -eq $c ]
+then
+    echo "Equilateral"
+elif [ $a -eq $b ] || [ $b -eq $c ] || [ $a -eq $c ]
+then
+    echo "Isosceles"
+else
+    echo "Scalene"
+fi</code></pre>
+
+                    <h5>&bull; Short-Circuit (One-Line) :</h5>
+                    <pre class="code-box code-box-color"><code>[ -d logs ] || mkdir logs          # create only if missing
+command -v git &gt;/dev/null &amp;&amp; echo "git is installed"</code></pre>
+
+                    <h5>&bull; Switch Statement :</h5>
+                    <h6>Syntax :</h6>
+                    <pre class="code-box"><code>case [var] in
+pattern-1)
+    #Statement
+    ;;
+pattern-2|pattern-3)
+    #Statement
+    ;;
+*)
+    #Default Statement
+    ;;
+esac</code></pre>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>drink="tea"
+case $drink in
+tea|coffee|water)
+    echo "Go to canteen"
+    ;;
+orange|apple)
+    echo "Go to fruit market"
+    ;;
+none)
+    echo "Okay"
+    ;;
+*)
+    echo "ERROR: Invalid Selection"
+    ;;
+esac</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="loops">
+                <h4 class="heading">Loops</h4>
+                <div class="content">
+                    <h5>&bull; While Loop :</h5>
+                    <h6>Syntax :</h6>
+                    <pre class="code-box"><code>while [ condition ]
+do
+    #Statement
+done</code></pre>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code># Example 1: print "Hello World" 5 times
+count=0
+while [ $count -lt 5 ]
+do
+    echo "Hello World"
+    count=$((count+1))
+done
+
+# OR
+count=0
+while (( count &lt; 5 ))
+do
+    echo "Hello World"
+    ((count++))
+done
+
+# Example 2: read a file line by line (safest form)
+while IFS= read -r line
+do
+    echo "$line"
+done &lt; file.txt
+
+# Example 3: infinite loop
+while true
+do
+    echo "Infinite Loop..."
+done
+
+# Example 4: infinite loop (":" always succeeds)
+while :
+do
+    echo "Infinite Loop..."
+done
+
+# Example 5: factorial - pass number as command argument
+counter=$1
+factorial=1
+while [ $counter -gt 0 ]
+do
+    factorial=$(( factorial * counter ))
+    counter=$(( counter - 1 ))
+done
+echo $factorial</code></pre>
+
+                    <h5>&bull; For Loop :</h5>
+                    <h6>Syntax :</h6>
+                    <pre class="code-box"><code>for [var] in [list]
+do
+    #Statement
+done</code></pre>
+                    <h6>2nd Syntax (C-style) :</h6>
+                    <pre class="code-box"><code>for (( init; condition; update ))
+do
+    #Statement
+done</code></pre>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code># Example 1: input array &amp; print
+read -a array
+count=1
+for i in "${array[@]}"
+do
+    echo "Element $count : $i"
+    ((count++))
+done
+
+# Example 2:
+for i in 1 2 3 4 5
+do
+    echo $i
+done
+
+# Example 3:
+for i in {1..25}
+do
+    echo $i
+done
+
+# Example 4: increment by 2 from 0 to 10
+for i in {0..10..2}
+do
+    echo $i
+done
+
+# OR using seq - increment by 2 from 0 to 10
+for i in $(seq 0 2 10)
+do
+    echo $i
+done
+
+# Example 5:
+for (( i=1; i&lt;=5; i++ ))
+do
+    echo $i
+done
+
+# Example 6: infinite loop
+for (( ; ; ))
+do
+    echo "Infinite Loop..."
+done
+
+# Example 7: create 10 copies of test.txt
+for i in $(seq 1 10)
+do
+    cp test.txt "test_${i}.txt"
+done
+
+# OR single line format
+for i in {1..10}; do cp test.txt "test_${i}.txt"; done
+
+# Example 8: loop over files (no ls needed)
+for file in *.log; do
+    echo "Processing $file"
+done
+
+# Example 9: iterating associative array
+for key in "${!capital[@]}"; do
+    echo "$key : ${capital[$key]}"
+done</code></pre>
+
+                    <h5>&bull; Until Loop :</h5>
+                    <p>Executes until the condition becomes true (runs while it is false).</p>
+                    <h6>Syntax :</h6>
+                    <pre class="code-box"><code>until [ condition ]
+do
+    #Statement
+done</code></pre>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>count=5
+until [ $count -le 0 ]
+do
+    echo "count = $count"
+    count=$((count-1))
+    sleep 1
+done</code></pre>
+
+                    <h5>&bull; Select Loop :</h5>
+                    <p>Builds a numbered menu and reads the user's choice.</p>
+                    <h6>Syntax :</h6>
+                    <pre class="code-box"><code>select [var] in [list]
+do
+    #Statements
+done</code></pre>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>select drink in tea coffee water orange apple none
+do
+    case $drink in
+    tea|coffee|water)
+        echo "Go to canteen"
+        ;;
+    orange|apple)
+        echo "Go to fruit market"
+        ;;
+    none)
+        break
+        ;;
+    *)
+        echo "ERROR: Invalid Selection"
+        ;;
+    esac
+done</code></pre>
+
+                    <h5>&bull; Loop Controls :</h5>
+                    <h6>1. Break Statement -</h6>
+                    <pre class="code-box"><code>a=1
+while [ $a -lt 10 ]
+do
+    echo $a
+    if [ $a -eq 5 ]
+    then
+        break
+    fi
+    a=$((a + 1))
+done</code></pre>
+                    <h6>2. Continue Statement -</h6>
+                    <pre class="code-box"><code>for num in 1 2 3 4 5 6 7
+do
+    if (( num % 2 == 0 ))
+    then
+        echo "Even"
+        continue
+    fi
+    echo $num
+done</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="functions">
+                <h4 class="heading">Functions</h4>
+                <div class="content">
+                    <h6>Syntax :</h6>
+                    <pre class="code-box"><code>name() {
+    #Statements
+}
+
+# alternative Bash syntax
+function name {
+    #Statements
+}</code></pre>
+                    <h6>Calling Function :</h6>
+                    <pre class="code-box code-box-color"><code>greet() {
+    echo "Hello World"
+}
+
+greet</code></pre>
+                    <h6>Function with Parameter :</h6>
+                    <p>Arguments are accessed with <code>$1</code>, <code>$2</code>, ..., <code>$@</code>, just like script arguments.</p>
+                    <pre class="code-box code-box-color"><code>greet() {
+    echo "Hello $1"
+}
+
+greet World</code></pre>
+                    <h6>Call within statement :</h6>
+                    <pre class="code-box code-box-color"><code>capital() {
+    echo "$1" | tr 'a-z' 'A-Z'
+}
+
+name="admin"
+echo "Capital: $(capital "$name")"</code></pre>
+                    <h6>Return Values :</h6>
+                    <p><code>return</code> only sets an exit status (0-255), not data. To return data, <code>echo</code> it and capture it with <code>$( )</code>.</p>
+                    <pre class="code-box code-box-color"><code>is_even() {
+    (( $1 % 2 == 0 ))        # exit status of the last command is returned
+}
+
+add() {
+    echo $(( $1 + $2 ))
+}
+
+is_even 4 &amp;&amp; echo "4 is even"
+sum=$(add 3 5)
+echo "Sum = $sum"</code></pre>
+                    <h6>Local Variables :</h6>
+                    <p>Local variables are defined within a function and have local scope. They are only accessible within the function where they are defined, not outside of it. They are declared with the <code>local</code> keyword. Variables without <code>local</code> are global.</p>
+                    <pre class="code-box code-box-color"><code>swap() {
+    local t=$a
+    a=$b
+    b=$t
+}
+
+a=3
+b=7
+printf "a = %s, b = %s\n" "$a" "$b"
+swap
+printf "a = %s, b = %s\n" "$a" "$b"</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="command-line-arguments">
+                <h4 class="heading">Command Line Arguments</h4>
+                <div class="content">
+                    <p>Also called positional parameters or special parameters.</p>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Arguments</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>$0</code></td>
+                                    <td>name (path) of the script</td>
+                                </tr>
+                                <tr>
+                                    <td><code>basename $0</code></td>
+                                    <td>filename of script without leading path</td>
+                                </tr>
+                                <tr>
+                                    <td><code>$1</code> ... <code>$9</code>, <code>${10}</code></td>
+                                    <td>arguments passed to script/function (braces needed from 10 onward)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>$#</code></td>
+                                    <td>total number of arguments passed</td>
+                                </tr>
+                                <tr>
+                                    <td><code>"$@"</code></td>
+                                    <td>all arguments as separate words; use this to pass arguments on safely</td>
+                                </tr>
+                                <tr>
+                                    <td><code>"$*"</code></td>
+                                    <td>all arguments joined into a single string</td>
+                                </tr>
+                                <tr>
+                                    <td><code>$?</code></td>
+                                    <td>exit status of last command (0 for success, non-zero for failure)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>$$</code></td>
+                                    <td>PID of current shell</td>
+                                </tr>
+                                <tr>
+                                    <td><code>$!</code></td>
+                                    <td>PID of last background process</td>
+                                </tr>
+                                <tr>
+                                    <td><code>$_</code></td>
+                                    <td>last argument of the previous command</td>
+                                </tr>
+                                <tr>
+                                    <td><code>$-</code></td>
+                                    <td>current shell option flags</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code># ./args.sh apple banana "green grape"
+echo "Script: $0"
+echo "Count: $#"           # 3
+for arg in "$@"; do
+    echo "- $arg"          # prints "green grape" as one item
+done
+
+shift                      # drop $1; $2 becomes $1
+echo "First now: $1"       # banana</code></pre>
+                    <h5>&bull; Parsing Options with getopts :</h5>
+                    <pre class="code-box code-box-color"><code># ./deploy.sh -v -e prod
+verbose=false
+env="dev"
+while getopts "ve:h" opt; do
+    case $opt in
+        v) verbose=true ;;
+        e) env="$OPTARG" ;;      # option that takes a value (e:)
+        h) echo "Usage: $0 [-v] [-e env]"; exit 0 ;;
+        *) exit 1 ;;
+    esac
+done
+shift $((OPTIND - 1))           # remaining non-option arguments
+echo "env=$env verbose=$verbose"</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="redirection">
+                <h4 class="heading">Redirection</h4>
+                <div class="content">
+                    <p>Every process starts with three standard streams, identified by file descriptors.</p>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>File Descriptor</th>
+                                    <th>Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>STDIN (standard input)</td>
+                                    <td><code>0</code></td>
+                                </tr>
+                                <tr>
+                                    <td>STDOUT (standard output)</td>
+                                    <td><code>1</code></td>
+                                </tr>
+                                <tr>
+                                    <td>STDERR (standard error)</td>
+                                    <td><code>2</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h5>&bull; Output Redirection :</h5>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Commands</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>[command] &gt; [file]</code></td>
+                                    <td>redirect STDOUT to file (overwrite)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>[command] 1&gt; [file]</code></td>
+                                    <td>redirect STDOUT to file (1 is the default descriptor)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>[command] &gt;&gt; [file]</code></td>
+                                    <td>redirect and append STDOUT to file</td>
+                                </tr>
+                                <tr>
+                                    <td><code>[command] 2&gt; [file]</code></td>
+                                    <td>redirect STDERR (standard error) to file</td>
+                                </tr>
+                                <tr>
+                                    <td><code>[command] &amp;&gt; [file]</code></td>
+                                    <td>redirect STDOUT and STDERR to file</td>
+                                </tr>
+                                <tr>
+                                    <td><code>[command] &gt; [file] 2&gt;&amp;1</code></td>
+                                    <td>redirect STDOUT and STDERR to file (POSIX form; order matters)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>[command] &gt; /dev/null</code></td>
+                                    <td>redirect STDOUT to null (discard STDOUT)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>[command] &amp;&gt; /dev/null</code></td>
+                                    <td>discard STDOUT and STDERR</td>
+                                </tr>
+                                <tr>
+                                    <td><code>&gt; [file]</code></td>
+                                    <td>create empty file (or empty an existing one)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>cat &gt; [file]</code></td>
+                                    <td>type text into a file (Ctrl + D to finish)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h5>&bull; Input Redirection :</h5>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Commands</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>[command] &lt; [file]</code></td>
+                                    <td>read STDIN from a file</td>
+                                </tr>
+                                <tr>
+                                    <td><code>[command] &lt;&lt;&lt; "[text]"</code></td>
+                                    <td>here-string: pass a string as STDIN</td>
+                                </tr>
+                                <tr>
+                                    <td><code>[command] &lt;&lt; EOF</code></td>
+                                    <td>here-document: pass multiple lines as STDIN until the line <code>EOF</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>wc -l &lt; access.log                 # count lines from a file
+tr 'a-z' 'A-Z' &lt;&lt;&lt; "hello"          # HELLO
+
+cat &lt;&lt; EOF &gt; config.ini              # write a multi-line file
+[server]
+host=$HOSTNAME
+port=8080
+EOF
+
+cat &lt;&lt; 'EOF'                        # quoted 'EOF': no variable expansion
+Price is $5
+EOF</code></pre>
+                    <h5>&bull; Custom File Descriptor :</h5>
+                    <p>Define your own file descriptor (3 to 9) and redirect to it.</p>
+                    <ol>
+                        <li>Open file descriptor x for reading and writing a file : <code>exec x&lt;&gt; [file]</code></li>
+                        <li>Redirect to it : <code>[command] &gt;&amp;x</code></li>
+                        <li>Close file descriptor x : <code>exec x&gt;&amp;-</code></li>
+                    </ol>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>$ exec 3&lt;&gt; log.txt
+$ echo "Hello" &gt;&amp;3     # output is redirected to log.txt
+$ cat log.txt
+Hello
+
+$ exec 3&gt;&amp;-</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="piping">
+                <h4 class="heading">Piping</h4>
+                <div class="content">
+                    <p>Pipelines or pipes (<code>|</code>) connect the STDOUT of one command to the STDIN of the next. Each command in a pipeline runs at the same time, in its own process.</p>
+                    <h6>Syntax :</h6>
+                    <pre class="code-box"><code>[command] | [command]
+[command] |&amp; [command]     # pipe STDOUT and STDERR</code></pre>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code># Output 1 page at time:
+ls -lR | less
+
+# Display 10 newest files:
+ls -t | head -10
+
+# Print lines with word "Hello" in file.txt:
+grep Hello file.txt
+
+# Sort names of files containing the word "index":
+grep -l index * | sort
+
+# Save output to a file AND show it on screen:
+ls -l | tee listing.txt
+
+# Turn input lines into arguments for another command:
+find . -name "*.tmp" | xargs rm</code></pre>
+                    <ul class="justify">
+                        <li><b>Exit Status :</b> By default a pipeline's exit status is that of the <i>last</i> command. With <code>set -o pipefail</code>, it fails if any command fails.</li>
+                        <li><b>PIPESTATUS :</b> The array <code>${PIPESTATUS[@]}</code> holds the exit status of every command in the last pipeline.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="job-control">
+                <h4 class="heading">Job Control</h4>
+                <div class="content">
+                    <p>Bash can run commands in the background and move them between background and foreground.</p>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Commands</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>[command] &amp;</code></td>
+                                    <td>run command in the background</td>
+                                </tr>
+                                <tr>
+                                    <td><code>jobs</code></td>
+                                    <td>list background and stopped jobs</td>
+                                </tr>
+                                <tr>
+                                    <td><code>Ctrl + Z</code></td>
+                                    <td>suspend the foreground job</td>
+                                </tr>
+                                <tr>
+                                    <td><code>bg %[n]</code></td>
+                                    <td>resume job n in the background</td>
+                                </tr>
+                                <tr>
+                                    <td><code>fg %[n]</code></td>
+                                    <td>bring job n to the foreground</td>
+                                </tr>
+                                <tr>
+                                    <td><code>kill %[n]</code></td>
+                                    <td>terminate job n</td>
+                                </tr>
+                                <tr>
+                                    <td><code>wait</code></td>
+                                    <td>wait for all background jobs to finish</td>
+                                </tr>
+                                <tr>
+                                    <td><code>nohup [command] &amp;</code></td>
+                                    <td>keep running after the terminal closes (output goes to <code>nohup.out</code>)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>disown %[n]</code></td>
+                                    <td>detach a running job from the shell</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code># run two downloads in parallel, then continue
+curl -sO https://example.com/a.zip &amp;
+curl -sO https://example.com/b.zip &amp;
+wait
+echo "Both downloads finished"</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="bash-aliases">
+                <h4 class="heading">Bash Aliases</h4>
+                <div class="content">
+                    <p>An alias is a short name that is replaced by a longer command. Aliases cannot take arguments in the middle of the command; use a function for that.</p>
+                    <h6>Syntax :</h6>
+                    <pre class="code-box"><code>alias name='[command]'
+alias                  # list all aliases
+unalias name           # remove an alias
+\ls                    # run the original command, bypassing an alias</code></pre>
+                    <p>Save aliases in the file <code>~/.bashrc</code> so they load in every new shell, then reload it with -</p>
+                    <pre class="code-box"><code>source ~/.bashrc</code></pre>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>alias ll='ls -alF'
+alias gs='git status'
+alias update='sudo apt update &amp;&amp; sudo apt upgrade'
+
+# needs an argument, so use a function instead of an alias:
+cpp() { g++ "$1" -o /tmp/a.out &amp;&amp; /tmp/a.out; }</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="brace-expansion">
+                <h4 class="heading">Brace Expansion</h4>
+                <div class="content">
+                    <p>Generates lists of strings before the command runs. It happens before variable expansion, so <code>{1..$n}</code> does not work; use <code>seq</code> or a C-style loop instead.</p>
+                    <ul>
+                        <li><code>echo {1,2,3}</code> : 1 2 3</li>
+                        <li><code>echo {1..5}</code> : 1 2 3 4 5</li>
+                        <li><code>echo {5..1}</code> : 5 4 3 2 1</li>
+                        <li><code>echo {1..-3}</code> : 1 0 -1 -2 -3</li>
+                        <li><code>echo {1..10..2}</code> : 1 3 5 7 9</li>
+                        <li><code>echo {01..05}</code> : 01 02 03 04 05</li>
+                        <li><code>echo {A..E}</code> : A B C D E</li>
+                        <li><code>echo {A..H..2}</code> : A C E G</li>
+                        <li><code>echo a{2..5}b</code> : a2b a3b a4b a5b</li>
+                        <li><code>echo {code1,code2,code3}.c</code> : code1.c code2.c code3.c</li>
+                        <li><code>echo code{.c,.cpp,.py,.sh}</code> : code.c code.cpp code.py code.sh</li>
+                        <li><code>mkdir -p project/{src,tests,docs}</code> : creates three folders at once</li>
+                        <li><code>cp config.yml{,.bak}</code> : copies config.yml to config.yml.bak</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="globbing">
+                <h4 class="heading">Globbing</h4>
+                <div class="content">
+                    <p>Globbing (wildcards) is how Bash matches file names. It is <b>not</b> the same as regular expressions: in a glob, <code>*</code> means "any characters", while in regex it means "repeat the previous item". For regex with <code>grep</code>, see the Linux cheatsheet.</p>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Pattern</th>
+                                    <th>Matches</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>*</code></td>
+                                    <td>any number of characters (including none)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>?</code></td>
+                                    <td>exactly one character</td>
+                                </tr>
+                                <tr>
+                                    <td><code>[abc]</code></td>
+                                    <td>one character from the set</td>
+                                </tr>
+                                <tr>
+                                    <td><code>[a-z]</code></td>
+                                    <td>one character from the range</td>
+                                </tr>
+                                <tr>
+                                    <td><code>[!abc]</code> or <code>[^abc]</code></td>
+                                    <td>one character not in the set</td>
+                                </tr>
+                                <tr>
+                                    <td><code>**</code></td>
+                                    <td>any files and folders recursively (needs <code>shopt -s globstar</code>)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h6>Ex :</h6>
+                    <ul>
+                        <li><code>ls file[1-9]</code> : files named file1 to file9</li>
+                        <li><code>ls *[0-9]*</code> : files whose names contain a digit (file1.txt test2.sh note5.pdf)</li>
+                        <li><code>ls test.*</code> : files named "test" with any extension (test.txt test.pdf)</li>
+                        <li><code>ls ab*</code> : files starting with "ab" (ab.txt abcd abort.sh)</li>
+                        <li><code>ls *.{pdf,doc,exe}</code> : files ending with .pdf, .doc or .exe</li>
+                        <li><code>ls a[a-d]b</code> : aab abb acb adb</li>
+                        <li><code>ls test_[!3]</code> : test_1 test_2 test_4 (any single character except 3)</li>
+                        <li><code>ls ???.txt</code> : files with exactly three characters before .txt</li>
+                    </ul>
+                    <h6>Glob Options (shopt) -</h6>
+                    <ul class="justify">
+                        <li><code>shopt -s nullglob</code> : a pattern with no matches expands to nothing instead of itself.</li>
+                        <li><code>shopt -s dotglob</code> : <code>*</code> also matches hidden files.</li>
+                        <li><code>shopt -s globstar</code> : enables <code>**</code>, e.g. <code>ls **/*.js</code>.</li>
+                        <li><code>shopt -s extglob</code> : extended patterns such as <code>!(*.log)</code> (everything except .log files).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="eval">
+                <h4 class="heading">Eval</h4>
+                <div class="content">
+                    <p>Eval joins its arguments into one string and runs it as a command. It is powerful but dangerous with untrusted input, because any text in the variable is executed as code.</p>
+                    <h6>Syntax :</h6>
+                    <pre class="code-box"><code>eval [arg...]</code></pre>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>list="ls | more"
+eval $list           # the | is treated as a real pipe
+
+$list                # without eval: ls gets "|" and "more" as file names</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="error-handling">
+                <h4 class="heading">Exit Codes &amp; Error Handling</h4>
+                <div class="content">
+                    <p>Every command returns an exit status: <code>0</code> means success and anything from <code>1</code> to <code>255</code> means failure. <code>if</code>, <code>&amp;&amp;</code> and <code>||</code> all work on exit statuses.</p>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Code</th>
+                                    <th>Meaning</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>0</code></td>
+                                    <td>success</td>
+                                </tr>
+                                <tr>
+                                    <td><code>1</code></td>
+                                    <td>general error</td>
+                                </tr>
+                                <tr>
+                                    <td><code>2</code></td>
+                                    <td>misuse of a shell builtin (e.g. wrong syntax)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>126</code></td>
+                                    <td>command found but not executable (permission problem)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>127</code></td>
+                                    <td>command not found</td>
+                                </tr>
+                                <tr>
+                                    <td><code>128 + n</code></td>
+                                    <td>killed by signal n (e.g. <code>130</code> = Ctrl + C, <code>137</code> = <code>kill -9</code>)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h5>&bull; Strict Mode :</h5>
+                    <pre class="code-box code-box-color"><code>set -e            # exit immediately if a command fails
+set -u            # treat unset variables as an error
+set -o pipefail   # a pipeline fails if any command in it fails
+set -euo pipefail # all three together (common at the top of scripts)</code></pre>
+                    <h5>&bull; Handling Errors :</h5>
+                    <pre class="code-box code-box-color"><code>cd /some/dir || { echo "Cannot cd" &gt;&amp;2; exit 1; }
+
+if ! grep -q "ERROR" app.log; then
+    echo "No errors found"
+fi
+
+die() { echo "Error: $*" &gt;&amp;2; exit 1; }
+[ -f config.ini ] || die "config.ini missing"</code></pre>
+                    <h5>&bull; Trap :</h5>
+                    <p><code>trap</code> runs a command when the script exits or receives a signal, which is ideal for cleanup.</p>
+                    <pre class="code-box code-box-color"><code>tmp=$(mktemp)
+trap 'rm -f "$tmp"' EXIT                    # always delete the temp file
+trap 'echo "Interrupted"; exit 130' INT     # handle Ctrl + C
+trap 'echo "Failed at line $LINENO"' ERR    # report the failing line</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="debugging">
+                <h4 class="heading">Debugging</h4>
+                <div class="content">
+                    <pre class="code-box"><code>bash -n script.sh      # check syntax without running
+bash -x script.sh      # print each command (with expanded values) before running it
+bash -v script.sh      # print each line as it is read
+
+set -x                 # turn tracing on inside a script
+set +x                 # turn it off again
+PS4='+ ${LINENO}: '    # show line numbers in -x output</code></pre>
+                    <ul class="justify">
+                        <li><b>ShellCheck :</b> A static analysis tool (<code>shellcheck script.sh</code>) that finds bugs such as missing quotes, unused variables and wrong test syntax. Strongly recommended for every script.</li>
+                        <li><b>Print Debug Info to STDERR :</b> <code>echo "debug: $var" &gt;&amp;2</code> keeps debug messages out of the script's real output.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <nav>
+                <a href="/Cheatsheets"><i class="bi bi-arrow-left-square-fill"></i></a>
+                <a href="#" ><i class="bi bi-arrow-up-square-fill"></i></a>
+            </nav>
+        </div>
+
+        <!-- JavaScript -->
+        <script src="../assets/js/script.js"></script>
+    </body>
+</html>
