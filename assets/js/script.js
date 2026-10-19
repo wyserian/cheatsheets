@@ -93,7 +93,12 @@
             });
         });
 
-        block.appendChild(btn);
+        // Wrap the block so the button stays put when the code scrolls sideways
+        var wrap = document.createElement('div');
+        wrap.className = 'code-wrap';
+        block.parentNode.insertBefore(wrap, block);
+        wrap.appendChild(block);
+        wrap.appendChild(btn);
     });
 })();
 
