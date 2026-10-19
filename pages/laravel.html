@@ -5,21 +5,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>Laravel Cheatsheet</title>
+        <script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('cheatsheet-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'))}catch(e){}</script>
 
         <!-- Bootstrap CDN -->  
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
         <!-- CSS -->
-        <link rel="stylesheet" href="../assets/css/style.css">
+        <link rel="stylesheet" href="../assets/css/style.css?v=11">
     </head>
 
-    <body data-theme="dark">
+    <body>
         <div class="container">
                         <!-- Top Bar -->
             <div class="top-bar">
-                <a href="/Cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
-                <div class="button"><i class="bi bi-circle-half"></i></div>
+                <a href="/cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
+                <button class="theme-toggle" type="button" aria-label="Toggle theme"><i class="bi bi-sun" aria-hidden="true"></i></button>
             </div>
 
             <h3 class="title">Laravel</h3>
@@ -127,7 +128,7 @@
                         <li><b><code>/view</code> :</b> It is a route</li>
                         <li><b><code>/17</code> :</b> It is a routing parameter.</li>
                     </ul>
-                    <h5>Route Methods :</h5>
+                    <h5>Route Methods</h5>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -180,25 +181,25 @@
                 <div class="content">
                     <p>Blade is the simple yet powerful templating engine that is included with Laravel. All Blade templates are compiled into plain PHP code and cached until they are modified, meaning Blade adds essentially zero overhead to the application. Blade template files use the <code>.blade.php</code> file extension and are typically stored in the <code>resources/views</code> directory.</p>
 
-                    <h5>Blade Directives :</h5>
+                    <h5>Blade Directives</h5>
                     <p>In addition to template inheritance and displaying data, Blade also provides convenient shortcuts for common PHP control structures, such as conditional statements and loops called blade directives.</p>
                     <ul>
                         <li>
-                            <h6>Displaying Data :</h6>
+                            <h6>Displaying Data</h6>
                             <pre class="code-box code-box-color"><code>{{ "Time : " . $time }}
 
     {{!! "&lt;h1&gt;I'm Dev&lt;/h1&gt;" !!}}</code></pre>
                         </li>
                         <li>
-                            <h6>Comment :</h6>
+                            <h6>Comment</h6>
                             <pre class="code-box code-box-color"><code>{{-- This is comment --}}</code></pre>
                         </li>
                         <li>
-                            <h6>Raw PHP :</h6>
+                            <h6>Raw PHP</h6>
                             <pre class="code-box code-box-color"><code>@php strtoupper("abcd") @endphp</code></pre>
                         </li>
                         <li>
-                            <h6>Control Structure :</h6>
+                            <h6>Control Structure</h6>
                             <pre class="code-box code-box-color"><code>@if ($age = 18)
         $permission = "Complete"
     @elseif ($age < 18)
@@ -208,7 +209,7 @@
     @endif</code></pre>
                         </li>
                         <li>
-                            <h6>Switch Stamement :</h6>
+                            <h6>Switch Stamement</h6>
                             <pre class="code-box code-box-color"><code>@switch($val)
         @case(1)
             // Case 1
@@ -221,7 +222,7 @@
     @endswitch</code></pre>
                         </li>
                         <li>
-                            <h6>Loops :</h6>
+                            <h6>Loops</h6>
                             <pre class="code-box code-box-color"><code>{{-- For Loop --}}
     @for ($i = 0; $i < 10; $i++)
         Current value is {{ $i }}
@@ -245,7 +246,7 @@
     @endforelse</code></pre>
                         </li>
                         <li>
-                            <h6>Loop Control :</h6>
+                            <h6>Loop Control</h6>
                             <pre class="code-box code-box-color"><code>@foreach ($users as $user)
         @if ($user->type == 1)
             @continue
@@ -259,7 +260,7 @@
     @endforeach</code></pre>
                         </li>
                         <li>
-                            <h6>Loop Variables :</h6>
+                            <h6>Loop Variables</h6>
                             <div class="table-responsive">
                                 <table class="table table-sm table-bordered table-striped">
                                     <thead>
@@ -314,20 +315,20 @@
                             </div>
                         </li>
                         <li>
-                            <h6>Empty :</h6>
+                            <h6>Empty</h6>
                             <pre class="code-box code-box-color"><code>@empty($string)
         // Variable, array or collection is Empty
     @endempty</code></pre>
                         </li>
                         <li>
-                            <h6>Isset :</h6>
+                            <h6>Isset</h6>
                             <pre class="code-box code-box-color"><code>@isset($records)
         // Variable or array key is Set and is Not Null
     @endisset</code></pre>
                         </li>
                     </ul>
 
-                    <h5>Passing Data Route to View :</h5>
+                    <h5>Passing Data Route to View</h5>
                     <h6>Route - <code>web.php</code>
                     </code></h6>
                     <pre class="code-box code-box-color"><code>Route::get('/users', function(){
@@ -344,18 +345,18 @@
                 <h4 class="heading">Composer</h4>
                 <div class="content">
                     <p>Composer is a tool for dependency management in PHP. It allows you to declare the libraries your project depends on, and it will manage (install or update) them for you. Composer is not a package manager; it is a dependency manager.</p>
-                    <h5>Composer Commands :</h5>
+                    <h5>Composer Commands</h5>
                     <ul>
                         <li>
-                            <h6>Create Laravel Project :</h6>
+                            <h6>Create Laravel Project</h6>
                             <div class="code-box"><code>composer create-project laravel/laravel [Project-Name]</code></div>
                         </li>
                         <li>
-                            <h6>Install Dependency :</h6>
+                            <h6>Install Dependency</h6>
                             <div class="code-box"><code>composer install</code></div>
                         </li>
                         <li>
-                            <h6>Update Dependency :</h6>
+                            <h6>Update Dependency</h6>
                             <div class="code-box"><code>composer update</code></div>
                         </li>
                     </ul>
@@ -366,50 +367,50 @@
                 <h4 class="heading">Artisan</h4>
                 <div class="content">
                     <p>Artisan is the command-line interface included with Laravel. Artisan exists at the root of your application as the artisan script and provides a number of helpful commands that can assist in building the application.</p>
-                    <h5>Artisan Commands :</h5>
+                    <h5>Artisan Commands</h5>
                     <ul>
                         <li>
-                            <h6>Run Project :</h6>
+                            <h6>Run Project</h6>
                             <div class="code-box"><code>php artisan serve</code></div>
                         </li>
                         <li>
-                            <h6>Create Controller :</h6>
+                            <h6>Create Controller</h6>
                             <div class="code-box"><code>php artisan make:controller [Controller-Name]</code></div>
                         </li>
                         <li>
-                            <h6>Create Resource Controller :</h6>
+                            <h6>Create Resource Controller</h6>
                             <div class="code-box"><code>php artisan make:controller [Resource-Controller] --resource</code></div>
                         </li>
                         <li>
-                            <h6>Create Component :</h6>
+                            <h6>Create Component</h6>
                             <div class="code-box"><code>php artisan make:component [input]</code></div>
                         </li>
                         <li>
-                            <h6>Create ORM Model :</h6>
+                            <h6>Create ORM Model</h6>
                             <div class="code-box"><code>php artisan make:model [Model]</code></div>
                         </li>
                         <li>
-                            <h6>Create Migration Table :</h6>
+                            <h6>Create Migration Table</h6>
                             <div class="code-box"><code>php artisan make:migration [create-user-table]</code></div>
                         </li>
                         <li>
-                            <h6>Run Migrations :</h6>
+                            <h6>Run Migrations</h6>
                             <div class="code-box"><code>php artisan migrate</code></div>
                         </li>
                         <li>
-                            <h6>Rollback Migrations :</h6>
+                            <h6>Rollback Migrations</h6>
                             <div class="code-box"><code>php artisan migrate:rollback</code></div>
                         </li>
                         <li>
-                            <h6>Reset Migrations :</h6>
+                            <h6>Reset Migrations</h6>
                             <div class="code-box"><code>php artisan migrate:reset</code></div>
                         </li>
                         <li>
-                            <h6>Refresh Migrations :</h6>
+                            <h6>Refresh Migrations</h6>
                             <div class="code-box"><code>php artisan migrate:refresh</code></div>
                         </li>
                         <li>
-                            <h6>Create Import/Export Model :</h6>
+                            <h6>Create Import/Export Model</h6>
                             <pre class="code-box"><code>php artisan make:import [ModelImport] --model=[Model]
 
     php artisan make:export [ModelExport] --model=[Model]</code></pre>
@@ -423,7 +424,7 @@
                 <div class="content">
                     <p>Laravel provides two main approaches for interacting with databases: the query builder and the ORM (Object-Relational Mapping) called Eloquent. The configuration for Laravel's database services is located in the application's <code>config/database.php</code> configuration file.</p>
 
-                    <h5>&bull; Query Builder :</h5>
+                    <h5>Query Builder</h5>
                     <p>Laravel Query Builder is a fluent interface for building and running database queries in Laravel without having to write raw SQL statements.</p>
                     <pre class="code-box"><code>$users = DB::table('users')->select('name', 'email')->get();
 
@@ -434,9 +435,9 @@ DB::table('users')->insert([
     'email' => 'john@example.com',
 ]);</code></pre>
 
-                    <h5>&bull; Eloquent ORM :</h5>
+                    <h5>Eloquent ORM</h5>
                     <p>Laravel's Eloquent ORM is an ActiveRecord implementation for working with databases in PHP. It allows you to interact with your database tables using PHP objects. Each database table has a corresponding "model" that is used to interact with that table.</p>
-                    <h6>User's Model -</h6>
+                    <h6>User's Model</h6>
                     <pre class="code-box"><code>&lt;?php
 namespace App\Models;
 
@@ -456,7 +457,7 @@ class User extends Model
         'status',
     ];
 }</code></pre>
-                    <h6>User's Controller -</h6>
+                    <h6>User's Controller</h6>
                     <pre class="code-box"><code>$users = User::where('id', $id)->get()->toArray();
 
 $result = User::create([
@@ -472,12 +473,12 @@ $user->delete();</code></pre>
 
             <!-- Navigation Buttons -->
             <nav>
-                <a href="/Cheatsheets"><i class="bi bi-arrow-left-square-fill"></i></a>
-                <a href="#" ><i class="bi bi-arrow-up-square-fill"></i></a>
+                <a href="/cheatsheets" aria-label="All cheatsheets"><i class="bi bi-grid-3x3-gap-fill" aria-hidden="true"></i></a>
+                <a href="#" aria-label="Back to top"><i class="bi bi-arrow-up" aria-hidden="true"></i></a>
             </nav>
         </div>
 
         <!-- JavaScript -->
-        <script src="../assets/js/script.js"></script>
+        <script src="../assets/js/script.js?v=8"></script>
     </body>
 </html>

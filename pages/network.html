@@ -5,21 +5,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>Networking Cheatsheet</title>
+        <script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('cheatsheet-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'))}catch(e){}</script>
 
         <!-- Bootstrap CDN -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
         <!-- CSS -->
-        <link rel="stylesheet" href="../assets/css/style.css">
+        <link rel="stylesheet" href="../assets/css/style.css?v=11">
     </head>
 
-    <body data-theme="dark">
+    <body>
         <div class="container">
                         <!-- Top Bar -->
             <div class="top-bar">
-                <a href="/Cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
-                <div class="button"><i class="bi bi-circle-half"></i></div>
+                <a href="/cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
+                <button class="theme-toggle" type="button" aria-label="Toggle theme"><i class="bi bi-sun" aria-hidden="true"></i></button>
             </div>
 
             <h3 class="title">Networking</h3>
@@ -59,7 +60,7 @@
                 <h4 class="heading">Network</h4>
                 <div class="content">
                     <p>A network is a system of interconnected devices (such as computers, servers, routers, and other hardware) that communicate and share resources using established protocols over wired or wireless connections.</p>
-                    <h6>Types of Networks -</h6>
+                    <h6>Types of Networks</h6>
                     <ul class="justify">
                         <li><b>Local Area Network :</b> Covers a small area like an office or home.</li>
                         <li><b>Wide Area Network :</b> Spans large geographical areas, like the internet.</li>
@@ -68,27 +69,27 @@
                         <li><b>Wireless LAN (WLAN) :</b> A LAN where devices connect over Wi-Fi instead of cables.</li>
                     </ul>
 
-                    <h5>Network Segment :</h5>
+                    <h5>Network Segment</h5>
                     <p>A network segment is a subdivision of a computer network where all devices share the same communication medium and can directly communicate without passing through a router or other layer-3 device. It is typically bounded by networking equipment such as switches, routers, or firewalls, and includes a group of computers or devices connected through a shared medium like an Ethernet switch or Wi-Fi access point. Network segmentation helps organize and control traffic within a network, improving performance and enhancing security.</p>
 
-                    <h5>Subnet :</h5>
+                    <h5>Subnet</h5>
                     <p>A subnet (short for subnetwork) is a logically defined smaller network within a larger IP network, created to organize, manage, and secure network traffic more efficiently. It consists of a range of IP addresses grouped together using a subnet mask, allowing devices within the subnet to communicate directly without routing traffic externally. While a network segment typically refers to a physical grouping of devices on the same medium (like an Ethernet switch), a subnet represents a logical grouping that may span one or more network segments, all configured to use the same router for communication beyond the subnet.   
                          
                     </p>
 
-                    <h5>Internet :</h5>
+                    <h5>Internet</h5>
                     <p>The internet is a global public network of interconnected computers and devices that use standardized communication protocols to exchange data and information. For effective communication and organization on a network, devices need to have clear identification and be recognizable by others, which typically occurs through unique identifiers assigned to each device, such as IP addresses or MAC addresses. These identifiers enable devices to send and receive data, facilitating communication and maintaining order within the network.</p>
 
-                    <h5>Intranet :</h5>
+                    <h5>Intranet</h5>
                     <p>An intranet is a private network used within an organization to facilitate communication, share information, and enable collaboration among employees. It operates like the internet but is confined to a specific group or organization, and access is restricted to authorized users only. Key features of an intranet include internal communication, file sharing and storage, collaboration, security, and centralized resources.</p>
 
-                    <h5>Extranet :</h5>
+                    <h5>Extranet</h5>
                     <p>An extranet is a private network that allows controlled access to external users, typically business partners, vendors, or customers, while maintaining a level of security. It extends a company's internal network (intranet) to authorized users outside the organization. Through an extranet, businesses can securely share information and collaborate with external parties while keeping the main network protected from unauthorized access. It typically involves the use of secure connections, such as virtual private networks (VPNs), to ensure the safety of the data being exchanged.</p>
 
-                    <h5>VLAN (Virtual LAN) :</h5>
+                    <h5>VLAN (Virtual LAN)</h5>
                     <p>A VLAN splits one physical switch (or a set of switches) into multiple isolated logical networks. Devices in different VLANs cannot talk to each other directly, even when plugged into the same switch, unless traffic passes through a router or Layer 3 switch. Frames are tagged with a VLAN ID using the IEEE 802.1Q standard. Example: employees on VLAN 10, guests on VLAN 20, and IP cameras on VLAN 30, all sharing the same switches.</p>
 
-                    <h5>Network Topologies :</h5>
+                    <h5>Network Topologies</h5>
                     <p>A topology is the arrangement in which nodes are connected in a network.</p>
                     <ul class="justify">
                         <li><b>Bus :</b> All devices share a single backbone cable. Cheap and simple, but one cable fault brings down the whole network.</li>
@@ -99,13 +100,13 @@
                         <li><b>Hybrid :</b> A combination of two or more topologies.</li>
                     </ul>
 
-                    <h5>Network Architectures :</h5>
+                    <h5>Network Architectures</h5>
                     <ul class="justify">
                         <li><b>Client-Server :</b> Clients request services from central servers (web, email, databases). Easier to secure and manage centrally.</li>
                         <li><b>Peer-to-Peer (P2P) :</b> Every node acts as both client and server and shares resources directly with others. Example: <a href="#torrent">BitTorrent</a>.</li>
                     </ul>
 
-                    <h5>Performance Terms :</h5>
+                    <h5>Performance Terms</h5>
                     <ul class="justify">
                         <li><b>Bandwidth :</b> The maximum amount of data a link can carry per second, e.g. a 100 Mbps connection.</li>
                         <li><b>Throughput :</b> The amount of data actually transferred per second, always less than or equal to the bandwidth.</li>
@@ -122,7 +123,7 @@
                     <p>A node in a network is a point where data can be received, sent, created, or stored. It needs identification like an IP address for access and can be any device that processes and shares information with other nodes.</p>
                     <ul>
                         <li>
-                            <h6>Repeater :</h6>
+                            <h6>Repeater</h6>
                             <ul class="justify">
                                 <li>The repeater regenerates the signal over the same network as the signal becomes weak or corrupted when sent over a long distance.</li>
                                 <li>Layer 1 device - Physical layer</li>
@@ -132,7 +133,7 @@
                             </ul>
                         </li>
                         <li>
-                            <h6>Hub :</h6>
+                            <h6>Hub</h6>
                             <ul class="justify">
                                 <li>Hubs are essentially multi-port repeaters used to setup LANs.</li>
                                 <li>Layer 1 device - Physical layer</li>
@@ -143,7 +144,7 @@
                             </ul>
                         </li>
                         <li>
-                            <h6>Bridge :</h6>
+                            <h6>Bridge</h6>
                             <ul class="justify">
                                 <li>Repeater + Functionality of Reading MAC Address, Used for Interconnecting Two LANs on the Same Protocol.</li>
                                 <li>Layer 2 device - Data link layer</li>
@@ -155,7 +156,7 @@
                             </ul>
                         </li>
                         <li>
-                            <h6>Switch :</h6>
+                            <h6>Switch</h6>
                             <ul class="justify">
                                 <li>Used to connect devices together on a network to establish a LAN (switching is deciding the best route for data transmission).</li>
                                 <li>Layer 2 device - Data link layer</li>
@@ -167,7 +168,7 @@
                             </ul>
                         </li>
                         <li>
-                            <h6>Router :</h6>
+                            <h6>Router</h6>
                             <ul class="justify">
                                 <li>Use to connect two or more different LANs using different protocols (forwarding data packets between computer networks).</li>
                                 <li>Layer 3 device - Network layer</li>
@@ -179,7 +180,7 @@
                             </ul>
                         </li>
                         <li>
-                            <h6>Modem :</h6>
+                            <h6>Modem</h6>
                             <ul class="justify">
                                 <li>Modulator-demodulator: converts digital data into signals suited to the ISP's line (DSL, cable, fiber, cellular) and back again.</li>
                                 <li>Layer 1 device - Physical layer</li>
@@ -187,7 +188,7 @@
                             </ul>
                         </li>
                         <li>
-                            <h6>Wireless Access Point (WAP) :</h6>
+                            <h6>Wireless Access Point (WAP)</h6>
                             <ul class="justify">
                                 <li>Lets Wi-Fi devices join a wired network, bridging wireless and Ethernet traffic.</li>
                                 <li>Layer 2 device - Data link layer</li>
@@ -207,7 +208,7 @@
                         <li>In a home network, the router provided by the ISP acts as the gateway between the local network and the internet.</li>
                         <li>The gateway address is configured on every device on the network, usually assigned automatically through DHCP.</li>
                     </ul>
-                    <h6>Types of Gateways -</h6>
+                    <h6>Types of Gateways</h6>
                     <ul class="justify">
                         <li><b>Default Gateway :</b> The node a device sends traffic to when the destination is outside its own subnet. It is usually the local router's IP address, such as <code>192.168.1.1</code>. If a device cannot reach the internet but can reach local devices, a wrong default gateway is a common cause.</li>
                         <li><b>Network / Protocol Gateway :</b> Connects networks that use different protocols by translating between them, for example connecting a legacy industrial network to a modern IP network.</li>
@@ -230,7 +231,7 @@
                         <li>MAC addresses can be faked or spoofed in a process known as spoofing. This spoofing occurs when a networked device pretends to identify another using its MAC address.</li>
                         <li>The Network Interface Card (NIC) Card’s manufacturer provides the MAC address.</li>
                     </ul>
-                    <h6>Address Resolution Protocol (ARP) :</h6>
+                    <h6>Address Resolution Protocol (ARP)</h6>
                     <p>Address Resolution Protocol (ARP) is a protocol used to map IP addresses to MAC addresses on a local network. This is necessary because while IP addresses are used for routing packets across networks, MAC addresses are needed to deliver the packets to the correct device within a local network.</p>
                     <div class="code-box code-box-color"><code>Request (broadcast) : Who has 192.168.1.1? Tell 192.168.1.20
 Reply   (unicast)   : 192.168.1.1 is at 00:1A:2B:3C:4D:5E</code></div>
@@ -249,19 +250,19 @@ Reply   (unicast)   : 192.168.1.1 is at 00:1A:2B:3C:4D:5E</code></div>
                         <li>A device's IP address can be changed, but two devices cannot have the same IP address within the same network.</li>
                         <li>The Internet Assigned Numbers Authority (IANA) manages the global pool of unique IP addresses and delegates them to Regional Internet Registries (RIRs), which distribute them to organizations in their regions. Internet Service Providers (ISPs) obtain IP addresses from RIRs and assign them to customers like businesses and home users.</li>
                     </ul>
-                    <h6>Type of IP Address -</h6>
+                    <h6>Type of IP Address</h6>
                     <ul class="justify">
                         <li><b>IPv4 :</b> Internet Protocol Version 4 (IPv4) is a 32-bit address and written as four decimal numbers separated by dots. The first octet of 127 is reserved for a computer's loopback address. Usually, the address <code>127.0.0.1</code> is used. The loopback address provides mechanisms for self-diagnosis and troubleshooting at the machine level. (e.g., <code>192.168.1.1</code>)</li>
                         <li><b>IPv6 :</b>  Internet Protocol Version 6 (IPv6) is a 128-bit address and written as eight groups of hexadecimal numbers (of 4 digits) separated by colons. <code>::1</code> is the local loopback address in IPv6. (e.g., <code>2001:0db8:85a3:0000:0000:8a2e:0370:7334</code>). It can be shortened by dropping leading zeros and replacing one run of all-zero groups with <code>::</code>, giving <code>2001:db8:85a3::8a2e:370:7334</code>.</li>
                     </ul>
-                    <h6>Categories of IP Address -</h6>
+                    <h6>Categories of IP Address</h6>
                     <ul class="justify">
                         <li><b>Public :</b> A public address is used to identify the device on the Internet. It is globally unique and assigned by the ISP.</li>
                         <li><b>Private :</b> A private address is used to identify a device amongst other devices on a local network. Private ranges are not routable on the internet and are reused by every home and office network; devices reach the internet through NAT (Network Address Translation), which maps private addresses to the router's public IP.</li>
                         <li><b>Static :</b> Manually configured and never changes. Used for servers, printers, and routers.</li>
                         <li><b>Dynamic :</b> Assigned automatically by a DHCP server for a lease period. Used for laptops and phones.</li>
                     </ul>
-                    <h6>Private IPv4 Ranges -</h6>
+                    <h6>Private IPv4 Ranges</h6>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -290,14 +291,14 @@ Reply   (unicast)   : 192.168.1.1 is at 00:1A:2B:3C:4D:5E</code></div>
                             </tbody>
                         </table>
                     </div>
-                    <h6>Special IPv4 Addresses -</h6>
+                    <h6>Special IPv4 Addresses</h6>
                     <ul class="justify">
                         <li><b><code>127.0.0.0/8</code> :</b> Loopback; traffic never leaves the machine.</li>
                         <li><b><code>0.0.0.0</code> :</b> "Any address". A server bound to <code>0.0.0.0</code> listens on all interfaces; <code>0.0.0.0/0</code> is the default route.</li>
                         <li><b><code>255.255.255.255</code> :</b> Broadcast to every host on the local network.</li>
                         <li><b><code>169.254.0.0/16</code> :</b> Link-local (APIPA). A device assigns itself one of these when it cannot reach a DHCP server, which usually signals a DHCP problem.</li>
                     </ul>
-                    <h6>IPv4 Classes (Legacy) -</h6>
+                    <h6>IPv4 Classes (Legacy)</h6>
                     <p>The original classful system, replaced by CIDR in 1993, but still common in exams and documentation.</p>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
@@ -343,7 +344,7 @@ Reply   (unicast)   : 192.168.1.1 is at 00:1A:2B:3C:4D:5E</code></div>
                             </tbody>
                         </table>
                     </div>
-                    <h5>Subnetting &amp; CIDR :</h5>
+                    <h5>Subnetting &amp; CIDR</h5>
                     <p>A subnet mask splits an IP address into a network part and a host part. CIDR (Classless Inter-Domain Routing) notation writes the mask as the number of network bits after a slash. Usable hosts per subnet = 2<sup>(32 - prefix)</sup> - 2, because the first address (network) and last address (broadcast) cannot be assigned to hosts.</p>
                     <div class="code-box code-box-color"><code>IP Address      : 192.168.1.130/26
 Subnet Mask     : 255.255.255.192    (26 network bits, 6 host bits)
@@ -369,7 +370,7 @@ Usable Hosts    : 192.168.1.129 - 192.168.1.190   (2^6 - 2 = 62 hosts)
                         <li>Port numbers are assigned and managed by the Internet Assigned Numbers Authority (IANA).</li>
                         <li>Port numbers range from 0 to 65535.</li>
                     </ul>
-                    <h6>Port Ranges -</h6>
+                    <h6>Port Ranges</h6>
                     <ul class="justify">
                         <li><b>Well-Known Ports (0 - 1023) :</b> Reserved for common services such as SSH (22), HTTP (80), and HTTPS (443). Binding to them usually requires admin/root privileges.</li>
                         <li><b>Registered Ports (1024 - 49151) :</b> Assigned to specific applications, such as MySQL (3306) and RDP (3389).</li>
@@ -399,7 +400,7 @@ Usable Hosts    : 192.168.1.129 - 192.168.1.190   (2^6 - 2 = 62 hosts)
                         </li>
                         <li>
                             <p><b>DNS Records :</b> DNS records are entries in a DNS database that map a domain name to specific data. These records provide information about how the internet should route traffic for a domain, such as how to find a website, where to send emails, and more. Each DNS record has a specific type and serves a unique purpose. DNS records ensure that DNS queries are directed to the correct server based on the domain name.</p>
-                            <h6>Record Types -</h6>
+                            <h6>Record Types</h6>
                             <ul>
                                 <li>Address Record (<code>A</code>) : Maps a domain to an IPv4 address.</li>
                                 <li>IPv6 Address Record (<code>AAAA</code>) : Maps a domain to an IPv6 address.</li>
@@ -413,7 +414,7 @@ Usable Hosts    : 192.168.1.129 - 192.168.1.190   (2^6 - 2 = 62 hosts)
                             </ul>
                         </li>
                     </ul>
-                    <h6>DNS Resolution Flow -</h6>
+                    <h6>DNS Resolution Flow</h6>
                     <div class="code-box code-box-color"><code>Browser cache -&gt; OS cache / hosts file -&gt; Recursive Resolver (ISP, 8.8.8.8, 1.1.1.1)
 
 Resolver -&gt; Root Server          : "Where is .com?"           -&gt; .com TLD server
@@ -435,7 +436,7 @@ Resolver -&gt; Browser              : 203.0.113.10  (cached for the record's TTL
                 <h4 class="heading">URL</h4>
                 <div class="content">
                     <p>A URL (or Uniform Resource Locator) is predominantly an instruction on how to access a resource on the internet.</p>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <div class="code-box code-box-color"><code>http://user:password@example.com:80/view?id=1#task2</code></div>
                     <ul class="justify">
                         <li><b>Scheme (<code>http</code>) :</b> This instructs on what protocol to use for accessing the resource such as HTTP, HTTPS, FTP.</li>
@@ -446,7 +447,7 @@ Resolver -&gt; Browser              : 203.0.113.10  (cached for the record's TTL
                         <li><b>Query String (<code>?id=1</code>) :</b> Extra bits of information that can be sent to the requested path.</li>
                         <li><b>Fragment (<code>#task2</code>) :</b> This is a reference to a location on the actual page requested.</li>
                     </ul>
-                    <h6>URI vs URL vs URN -</h6>
+                    <h6>URI vs URL vs URN</h6>
                     <ul class="justify">
                         <li><b>URI (Uniform Resource Identifier) :</b> Any string that identifies a resource. URL and URN are both types of URI.</li>
                         <li><b>URL (Uniform Resource Locator) :</b> Identifies a resource by <i>where</i> it is and <i>how</i> to access it, e.g. <code>https://example.com/docs</code>.</li>
@@ -461,7 +462,7 @@ Resolver -&gt; Browser              : 203.0.113.10  (cached for the record's TTL
                 <div class="content">
                     <p>The World Wide Web (WWW, or simply "the Web") is a system of interlinked documents and resources, such as web pages, images, and videos, that are identified by URLs, transferred using HTTP/HTTPS, and viewed in web browsers. It was invented by Tim Berners-Lee at CERN in 1989, and the first website went live in 1991. Web standards are developed by the World Wide Web Consortium (W3C) and WHATWG.</p>
                     <div class="block-quote"><b>Internet vs Web :</b> The Internet is the global network of connected devices (the infrastructure). The Web is one service that runs on top of the Internet, alongside others like email, FTP, SSH, and online gaming.</div>
-                    <h6>Building Blocks of the Web -</h6>
+                    <h6>Building Blocks of the Web</h6>
                     <ul class="justify">
                         <li><b>HTML :</b> The markup language that structures web pages; CSS styles them and JavaScript makes them interactive.</li>
                         <li><b>URL :</b> The unique address of every resource on the Web (see <a href="#url">URL</a>).</li>
@@ -470,7 +471,7 @@ Resolver -&gt; Browser              : 203.0.113.10  (cached for the record's TTL
                         <li><b>Web Browser :</b> The client software that requests, renders, and displays web pages (Chrome, Firefox, Safari, Edge).</li>
                         <li><b>Web Server :</b> Stores and serves the resources (see <a href="#web-server">Web Server</a>).</li>
                     </ul>
-                    <h6>Internet vs WWW -</h6>
+                    <h6>Internet vs WWW</h6>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -514,7 +515,7 @@ Resolver -&gt; Browser              : 203.0.113.10  (cached for the record's TTL
                             </tbody>
                         </table>
                     </div>
-                    <h6>What Happens When You Type a URL -</h6>
+                    <h6>What Happens When You Type a URL</h6>
                     <div class="code-box code-box-color"><code>1. Browser parses the URL        https://www.example.com/about
 2. DNS lookup                    www.example.com -&gt; 203.0.113.10
 3. TCP handshake                 SYN -&gt; SYN-ACK -&gt; ACK   (port 443)
@@ -523,15 +524,15 @@ Resolver -&gt; Browser              : 203.0.113.10  (cached for the record's TTL
 6. Server processes the request  web server -&gt; app server -&gt; database
 7. HTTP response                 200 OK + HTML
 8. Browser renders the page      parse HTML, fetch CSS / JS / images, paint the screen</code></div>
-                    <h6>The "www" in a Domain -</h6>
+                    <h6>The "www" in a Domain</h6>
                     <p>The <code>www</code> in <code>www.example.com</code> is just a subdomain, a naming convention from the early Web that marked the host serving web pages. It is not required: <code>example.com</code> and <code>www.example.com</code> are separate DNS names that usually point to the same site, with one redirecting to the other (301) so there is a single canonical address. A <code>www</code> subdomain can use a <code>CNAME</code> record (for example, pointing to a CDN), which the root domain cannot.</p>
-                    <h6>Evolution of the Web -</h6>
+                    <h6>Evolution of the Web</h6>
                     <ul class="justify">
                         <li><b>Web 1.0 (Static Web) :</b> Early 1990s to early 2000s. Read-only static HTML pages; few creators, many readers.</li>
                         <li><b>Web 2.0 (Social Web) :</b> Mid-2000s onward. Interactive web apps, social media, and user-generated content (read-write).</li>
                         <li><b>Web 3.0 / Web3 :</b> Used for two ideas: the Semantic Web (machine-readable, linked data) and the decentralized Web built on blockchains, where users own their data and assets (read-write-own).</li>
                     </ul>
-                    <h6>Layers of the Web -</h6>
+                    <h6>Layers of the Web</h6>
                     <ul class="justify">
                         <li><b>Surface Web :</b> Public pages indexed by search engines, such as news sites, blogs, and online stores. Only a small fraction of all web content.</li>
                         <li><b>Deep Web :</b> Content not indexed by search engines: anything behind a login, paywall, or private database, such as email inboxes and bank dashboards. Mostly ordinary and legal.</li>
@@ -546,35 +547,35 @@ Resolver -&gt; Browser              : 203.0.113.10  (cached for the record's TTL
                     <p>The Open Systems Interconnection (OSI) model is a reference model from the International Organization for Standardization (ISO) that provides a common basis for the coordination of standards development for the purpose of systems interconnection. In the OSI reference model, the communications between systems are split into seven different abstraction layers that computer systems use to communicate over a network. The modern Internet is not based on OSI but on the simpler TCP/IP model.</p>
                     <ul>
                         <li>
-                            <h6>Application Layer :</h6>
+                            <h6>Application Layer</h6>
                             <p>The application layer is used by end-user software such as web browsers and email clients. It provides protocols that allow software to send and receive information and present meaningful data to users. A few examples of application layer protocols are HTTP, FTP, POP, SMTP, and DNS.</p>
                         </li>
                         <li>
-                            <h6>Presentation Layer :</h6>
+                            <h6>Presentation Layer</h6>
                             <p>The presentation layer prepares data for the application layer. It defines how two devices should encode, encrypt, and compress data so it is received correctly on the other end. The presentation layer takes any data transmitted by the application layer and prepares it for transmission over the session layer.</p>
                         </li>
                         <li>
-                            <h6>Session Layer :</h6>
+                            <h6>Session Layer</h6>
                             <p>The session layer creates communication channels, called sessions, between devices. It is responsible for opening sessions, ensuring they remain open and functional while data is being transferred, and closing them when communication ends.</p>
                         </li>
                         <li>
-                            <h6>Transport Layer :</h6>
+                            <h6>Transport Layer</h6>
                             <p>The transport layer takes data transferred in the session layer and breaks it into “segments” on the transmitting end. It is responsible for reassembling the segments on the receiving end, turning it back into data that can be used by the session layer.</p>
                         </li>
                         <li>
-                            <h6>Network Layer :</h6>
+                            <h6>Network Layer</h6>
                             <p>The network layer has two main functions. One is breaking up segments into network packets, and reassembling the packets on the receiving end. The other is routing packets by discovering the best path across a physical network. The network layer uses network addresses (typically Internet Protocol addresses) to route packets to a destination node.</p>
                         </li>
                         <li>
-                            <h6>Data Link Layer :</h6>
+                            <h6>Data Link Layer</h6>
                             <p>The data link layer establishes and terminates a connection between two physically-connected nodes on a network. It breaks up packets into frames and sends them from source to destination.</p>
                         </li>
                         <li>
-                            <h6>Physical Layer :</h6>
+                            <h6>Physical Layer</h6>
                             <p>The physical layer is responsible for the physical cable or wireless connection between network nodes. It defines the connector, the electrical cable or wireless technology connecting the devices, and is responsible for the transmission of the raw data.</p>
                         </li>
                     </ul>
-                    <h6>OSI Layers at a Glance -</h6>
+                    <h6>OSI Layers at a Glance</h6>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -650,23 +651,23 @@ Resolver -&gt; Browser              : 203.0.113.10  (cached for the record's TTL
                     <p>The Internet protocol suite, commonly known as TCP/IP, is a framework for organizing the set of communication protocols used in the Internet and similar computer networks according to functional criteria. The foundational protocols in the suite are the Transmission Control Protocol (TCP), the User Datagram Protocol (UDP), and the Internet Protocol (IP). The Internet protocol suite provides end-to-end data communication specifying how data should be packetized, addressed, transmitted, routed, and received. This functionality is organized into four abstraction layers, which classify all related protocols according to each protocol's scope of networking.</p>
                     <ul>
                         <li>
-                            <h6>Application Layer :</h6>
+                            <h6>Application Layer</h6>
                             <p>The application layer is the top layer and provides applications with standardized data exchange. Its protocols include HTTP, FTP, POP3, SMTP, DNS, DHCP and SNMP. At the application layer, the payload is the actual application data.</p>
                         </li>
                         <li>
-                            <h6>Transport Layer :</h6>
+                            <h6>Transport Layer</h6>
                             <p>The transport layer is responsible for maintaining end-to-end communications across the network. TCP handles communications between hosts and provides flow control, multiplexing and reliability. The transport protocols include TCP and UDP.</p>
                         </li>
                         <li>
-                            <h6>Internet Layer :</h6>
+                            <h6>Internet Layer</h6>
                             <p>The internet layer, also called the network layer, deals with packets and connects independent networks to transport the packets across network boundaries. The network layer protocols are IP and Internet Control Message Protocol (ICMP), which are used for error reporting.</p>
                         </li>
                         <li>
-                            <h6>Network Access Layer :</h6>
+                            <h6>Network Access Layer</h6>
                             <p>The network Access layer, also known as the network interface layer or data link layer, consists of protocols that operate only on a link -- the network component that interconnects nodes or hosts in the network. The protocols in this lowest layer include Ethernet for local area networks and Address Resolution Protocol (ARP).</p>
                         </li>
                     </ul>
-                    <h6>OSI vs TCP/IP Mapping -</h6>
+                    <h6>OSI vs TCP/IP Mapping</h6>
                     <div class="code-box code-box-color"><code>OSI Model               TCP/IP Model
 7. Application   \
 6. Presentation   &gt;---&gt;  Application
@@ -685,72 +686,72 @@ Resolver -&gt; Browser              : 203.0.113.10  (cached for the record's TTL
                     There are numerous protocols at different layers of the networking stack, such as -</p>
                     <ul>
                         <li>
-                            <h6>Internet Protocol (IP) :</h6>
+                            <h6>Internet Protocol (IP)</h6>
                             <p>Fundamental protocol responsible for addressing and routing packets of data so they can travel across networks and reach their intended destinations.</p>
                         </li>
                         <li>
-                            <h6>Internet Control Message Protocol (ICMP) :</h6>
+                            <h6>Internet Control Message Protocol (ICMP)</h6>
                             <p>A network layer protocol used to send error messages and diagnostic information, such as "destination unreachable" or "time exceeded". The <code>ping</code> and <code>traceroute</code> tools are built on ICMP.</p>
                         </li>
                         <li>
-                            <h6>Transmission Control Protocol (TCP) :</h6>
+                            <h6>Transmission Control Protocol (TCP)</h6>
                             <p>TCP is a protocol that operates at a higher level than IP and is responsible for establishing and maintaining connections between devices, ensuring reliable and ordered delivery of data. If data is lost or corrupted during transmission, TCP detects this and retransmits the lost or corrupted packets. TCP is connection-oriented, meaning a connection is established and maintained until the application programs at each end have finished exchanging messages. This connection's establishment and termination involve a handshake process. TCP is used in web browsers (in HTTP), email, file transfer, and instant/realtime messaging.</p>
                         </li>
                         <li>
-                            <h6>User Datagram Protocol (UDP) :</h6>
+                            <h6>User Datagram Protocol (UDP)</h6>
                             <p>UDP is a connectionless protocol, which means it doesn't establish a connection before sending data and doesn't guarantee delivery of packets or the order of packets. Each UDP packet is independent of the others. UDP offers lower latency compared to TCP due to its connectionless nature, no handshake, minimal overhead, and no retransmissions. It is often used for time-sensitive applications where speed is prioritized over reliability. UDP is commonly used in VoIP applications, video streaming, online gaming, DNS, and DHCP.</p>
                         </li>
                         <li>
-                            <h6>Hypertext Transfer Protocol (HTTP) :</h6>
+                            <h6>Hypertext Transfer Protocol (HTTP)</h6>
                             <p>The HTTP (Hypertext Transfer Protocol) is an application layer protocol used for transferring hypermedia documents, such as HTML files, on the World Wide Web. It is the foundation of data communication on the web, and HTTP uses a client-server model, where clients initiate requests and servers respond with the requested resources. HTTP operates over TCP/IP, which ensures reliable delivery of data packets over networks. The protocol is stateless, meaning each request from a client is independent and not dependent on previous requests.</p>
                         </li>
                         <li>
-                            <h6>Hypertext Transfer Protocol Secure (HTTPS) :</h6>
+                            <h6>Hypertext Transfer Protocol Secure (HTTPS)</h6>
                             <p>HTTPS (Hypertext Transfer Protocol Secure) is an extension of HTTP used for secure communication over a computer network, particularly the internet. It encrypts the data sent and received between a user's browser and the website server, ensuring that the information remains confidential and protected from interception or tampering by unauthorized parties. HTTPS uses SSL/TLS (Secure Sockets Layer/Transport Layer Security) protocols to establish an encrypted connection between the client and the server.</p>
                         </li>
                         <li>
-                            <h6>Simple Mail Transfer Protocol (SMTP) :</h6>
+                            <h6>Simple Mail Transfer Protocol (SMTP)</h6>
                             <p>SMTP, or Simple Mail Transfer Protocol, is a communication protocol used for transmitting electronic mail (email) between computers over a network. It defines how email messages should be formatted and transmitted.</p>
                         </li>
                         <li>
-                            <h6>POP3 &amp; IMAP :</h6>
+                            <h6>POP3 &amp; IMAP</h6>
                             <p>Protocols for retrieving email from a mail server (SMTP only sends). POP3 (Post Office Protocol) downloads messages to one device and usually deletes them from the server. IMAP (Internet Message Access Protocol) keeps mail on the server and syncs it across all devices, which is why most modern clients use IMAP.</p>
                         </li>
                         <li>
-                            <h6>File Transfer Protocol (FTP) :</h6>
+                            <h6>File Transfer Protocol (FTP)</h6>
                             <p>FTP, or File Transfer Protocol, is a standard network protocol used for transferring files between a client and a server on a computer network. It specifies how files should be transferred and accessed.</p>
                         </li>
                         <li>
-                            <h6>Secure Shell Protocol (SSH) :</h6>
+                            <h6>Secure Shell Protocol (SSH)</h6>
                             <p>SSH, or Secure Shell, is a cryptographic network protocol used to securely access and manage remote servers or systems over an unsecured network. It provides a secure channel over which users can perform various tasks, such as logging into remote machines, executing commands, transferring files, managing network services, and tunneling or port forwarding.</p>
                         </li>
                         <li>
-                            <h6>Telnet :</h6>
+                            <h6>Telnet</h6>
                             <p>An old protocol for remote command-line access that sends everything, including passwords, in plain text. It has been replaced by SSH and should not be used over untrusted networks.</p>
                         </li>
                         <li>
-                            <h6>Simple Network Management Protocol (SNMP) :</h6>
+                            <h6>Simple Network Management Protocol (SNMP)</h6>
                             <p>Used to monitor and manage network devices such as routers, switches, and printers, by reading metrics like bandwidth usage, uptime, and errors. SNMPv3 adds authentication and encryption; older versions rely on plain-text "community strings".</p>
                         </li>
                         <li>
-                            <h6>Dynamic Host Configuration Protocol (DHCP) :</h6>
+                            <h6>Dynamic Host Configuration Protocol (DHCP)</h6>
                             <p>It is a network management protocol used to automatically assign IP addresses and other network configuration information to devices on a network. DHCP eliminates the need for manual configuration of network settings.</p>
                         </li>
                         <li>
-                            <h6>Network Time Protocol (NTP) :</h6>
+                            <h6>Network Time Protocol (NTP)</h6>
                             <p>NTP is a protocol used to synchronize the clocks of computers and other devices over a network. It ensures that systems maintain accurate time by synchronizing with a reference time source, typically an atomic clock or GPS time.</p>
                         </li>
                         <li>
-                            <h6>Ethernet :</h6>
+                            <h6>Ethernet</h6>
                             <p>Ethernet is a family of protocols that specify how devices on the same network segment format and transmit data over a physical medium. It is the standard way to connect devices in a wired network using cables and switches.</p>
                         </li>
                         <li>
-                            <h6>BitTorrent :</h6>
+                            <h6>BitTorrent</h6>
                             <p>BitTorrent is a peer-to-peer (P2P) file-sharing protocol that allows users to distribute files efficiently across the internet. Instead of downloading a file from a single source, BitTorrent splits the file into smaller pieces and downloads them simultaneously from multiple sources (peers).</p>
                         </li>
                     </ul>
 
-                    <h6>TCP vs UDP -</h6>
+                    <h6>TCP vs UDP</h6>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -800,7 +801,7 @@ Resolver -&gt; Browser              : 203.0.113.10  (cached for the record's TTL
                         </table>
                     </div>
 
-                    <h6>Common Port for Protocols :</h6>
+                    <h6>Common Port for Protocols</h6>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -956,7 +957,7 @@ Resolver -&gt; Browser              : 203.0.113.10  (cached for the record's TTL
                 <h4 class="heading">BitTorrent</h4>
                 <div class="content">
                     <p>BitTorrent is a peer-to-peer (P2P) file-sharing protocol used for distributing large amounts of data over the internet. Instead of downloading a file from a single server, BitTorrent breaks the file into smaller pieces and distributes them across a network of computers (peers) that share parts of the file. These peers download and upload pieces of the file to each other, enabling faster and more efficient transfers. It is used to efficiently share large files, reduce server load, enable faster downloads, and improve scalability and fault tolerance.</p>
-                    <h6>Key Concepts :</h6>
+                    <h6>Key Concepts</h6>
                     <ul class="justify">
                         <li><b>Peers :</b> The individual computers or devices connected to the BitTorrent network that share files with one another.</li>
                         <li><b>Seeders :</b> Peers that have the complete file and share it with others.</li>
@@ -974,7 +975,7 @@ Resolver -&gt; Browser              : 203.0.113.10  (cached for the record's TTL
                 <div class="content">
                     <p>The HTTP (Hypertext Transfer Protocol) is an application layer protocol used for transferring hypermedia documents, such as HTML files, on the World Wide Web.</p>
 
-                    <h5>HTTP Request &amp; Response :</h5>
+                    <h5>HTTP Request &amp; Response</h5>
                     <div class="code-box code-box-color"><code>GET /about HTTP/1.1                       &lt;- method, path, version
 Host: www.example.com                     &lt;- headers
 User-Agent: Mozilla/5.0
@@ -986,7 +987,7 @@ Content-Length: 1256
 
 &lt;!DOCTYPE html&gt; ...                      &lt;- body</code></div>
 
-                    <h5>HTTP Versions :</h5>
+                    <h5>HTTP Versions</h5>
                     <ul class="justify">
                         <li><b>HTTP/1.0 (1996) :</b> A new TCP connection for every request.</li>
                         <li><b>HTTP/1.1 (1997) :</b> Persistent (keep-alive) connections and the <code>Host</code> header for virtual hosting. Requests on one connection are handled one at a time (head-of-line blocking). Still widely used.</li>
@@ -994,7 +995,7 @@ Content-Length: 1256
                         <li><b>HTTP/3 (2022) :</b> Runs over QUIC (on UDP) instead of TCP. Faster connection setup with built-in TLS 1.3, no TCP head-of-line blocking, and connections that survive network changes (Wi-Fi to mobile data).</li>
                     </ul>
 
-                    <h5>HTTP Methods :</h5>
+                    <h5>HTTP Methods</h5>
                     <p>HTTP methods are a way for the client to show their intended action when making an HTTP request.</p>
                     <ul class="justify">
                         <li><b>GET Request :</b> This is used for getting information from a web server.</li>
@@ -1007,7 +1008,7 @@ Content-Length: 1256
                     </ul>
                     <p><b>Safe &amp; Idempotent :</b> GET, HEAD, and OPTIONS are <i>safe</i> (they do not change data). GET, PUT, DELETE, HEAD, and OPTIONS are <i>idempotent</i> (sending the same request repeatedly has the same effect as sending it once). POST is neither, which is why browsers warn before resubmitting a form.</p>
 
-                    <h5>HTTP Status Code :</h5>
+                    <h5>HTTP Status Code</h5>
                     <p>HTTP status codes are responses provided by a server to indicate the outcome of a client's request to access a particular resource.</p>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
@@ -1042,7 +1043,7 @@ Content-Length: 1256
                         </table>
                     </div>
 
-                    <h6>Common Status Codes :</h6>
+                    <h6>Common Status Codes</h6>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -1140,11 +1141,11 @@ Content-Length: 1256
                         </table>
                     </div>
 
-                    <h5>HTTP Headers :</h5>
+                    <h5>HTTP Headers</h5>
                     <p>Headers are additional bits of data that are sent to the web server when making requests. Although no headers are strictly required when making an HTTP request, if they are not sent, it is difficult to view a website properly.</p>
                     <ul>
                         <li>
-                            <h6>Common Request Headers :</h6>
+                            <h6>Common Request Headers</h6>
                             <ul class="justify">
                                 <li><b>Host :</b> Some web servers host multiple websites, so by providing the host headers, the client instructs the server which one is required; otherwise, it receives the default website for the server.</li>
                                 <li><b>User-Agent :</b> This is the browser software and its version number, which tells the web server which browser is being used, helping it format the website properly for that specific browser. Additionally, some elements of HTML, JavaScript, and CSS are only supported in certain browser versions.</li>
@@ -1155,7 +1156,7 @@ Content-Length: 1256
                             </ul>
                         </li>
                         <li>
-                            <h6>Common Response Headers :</h6>
+                            <h6>Common Response Headers</h6>
                             <ul class="justify">
                                 <li><b>Set-Cookie :</b> Information to store as cookie, which gets sent back to the web server on each request.</li>
                                 <li><b>Cache-Control :</b> How long should it take to store the content of the response in the browser's cache before it requests it again.</li>
@@ -1166,7 +1167,7 @@ Content-Length: 1256
                         </li>
                     </ul>
 
-                    <h5>Cookies :</h5>
+                    <h5>Cookies</h5>
                     <p>A cookie is a small piece of data that is stored on a user's computer by a web browser. Cookies are set by the "Set-Cookie" header received from a web server. Cookies are used for session management, tracking and analytics, advertising, etc.</p>
                     <div class="code-box code-box-color"><code>Set-Cookie: session=abc123; Max-Age=3600; Path=/; Secure; HttpOnly; SameSite=Lax</code></div>
                     <ul class="justify">
@@ -1197,13 +1198,13 @@ Content-Length: 1256
                 <h4 class="heading">Load Balancer</h4>
                 <div class="content">
                     <p>A load balancer is a device or software that distributes incoming network traffic across multiple backend servers so that no single server becomes a bottleneck or a single point of failure. It sits between clients and the server pool, forwards each request to a healthy server, and removes servers from rotation when health checks fail. This improves availability, scalability, and performance. Examples: NGINX, HAProxy, AWS Elastic Load Balancer, Cloudflare Load Balancing.</p>
-                    <h6>Types of Load Balancers -</h6>
+                    <h6>Types of Load Balancers</h6>
                     <ul class="justify">
                         <li><b>Layer 4 (Transport Level) :</b> Balances traffic based on IP address and TCP/UDP port without looking at the content. It is very fast and protocol-agnostic. Example: AWS Network Load Balancer.</li>
                         <li><b>Layer 7 (Application Level) :</b> Understands HTTP and can route based on the URL path, hostname, headers, or cookies. This enables smarter routing, such as sending <code>/api</code> traffic to one server group and <code>/images</code> to another. Example: AWS Application Load Balancer, NGINX.</li>
                         <li><b>Hardware vs Software :</b> Hardware load balancers are dedicated appliances (F5, Citrix ADC), while software load balancers run on standard servers or as cloud services.</li>
                     </ul>
-                    <h6>Load Balancing Algorithms -</h6>
+                    <h6>Load Balancing Algorithms</h6>
                     <ul class="justify">
                         <li><b>Round Robin :</b> Requests are distributed to servers one after another in order. Simple and effective when servers are equal.</li>
                         <li><b>Weighted Round Robin :</b> Like round robin, but stronger servers receive proportionally more requests.</li>
@@ -1227,7 +1228,7 @@ Content-Length: 1256
                         <li><b>Reverse Proxy Model :</b> A CDN works as a large distributed reverse proxy. The domain's DNS points at the CDN, all traffic enters through it, and the CDN forwards only what it cannot serve from cache to the origin.</li>
                         <li><b>Security Role :</b> Because all traffic passes through it, a CDN commonly provides TLS termination, DDoS protection, a web application firewall (WAF), and bot filtering at the edge.</li>
                     </ul>
-                    <h6>Edge Network &amp; Edge Computing -</h6>
+                    <h6>Edge Network &amp; Edge Computing</h6>
                     <ul class="justify">
                         <li><b>Edge Network :</b> The layer of servers closest to end users (the CDN's PoPs). "The edge" simply means computing that happens near the user rather than in a central data center.</li>
                         <li><b>Edge Computing / Edge Functions :</b> Modern CDNs can run code at their edge locations, not just serve cached files. This is used for redirects, A/B testing, authentication checks, and personalization with very low latency. Examples: Cloudflare Workers, AWS Lambda@Edge, Vercel Edge Functions.</li>
@@ -1269,8 +1270,8 @@ Content-Length: 1256
                 <h4 class="heading">Handshake</h4>
                 <div class="content">
                     <p>Handshake is a process of establishing communication between two devices or systems to ensure they are ready to exchange data. It involves the exchange of control messages to agree on connection parameters, protocols, or synchronization details.</p>
-                    <h6>Types of Handshakes -</h6>
-                    <h5>TCP Handshake (Three-Way Handshake) :</h5>
+                    <h6>Types of Handshakes</h6>
+                    <h5>TCP Handshake (Three-Way Handshake)</h5>
                     <p>The TCP handshake, or three-way handshake, is a process used in the TCP Protocol to establish a reliable connection between a client and a server before data is transmitted. It ensures both parties are synchronized and ready for communication.</p>
                     <ul class="justify">
                         <li>SYN (Synchronize) : The client sends a SYN message to the server, requesting to establish a connection and specifying an initial sequence number.</li>
@@ -1282,11 +1283,11 @@ Content-Length: 1256
   | &lt;--- SYN-ACK (seq=y, ack=x+1) ------- |
   | ---- ACK (ack=y+1) ----------------&gt; |
   |        connection established        |</code></div>
-                    <h5>TCP Connection Termination (Four-Way Handshake) :</h5>
+                    <h5>TCP Connection Termination (Four-Way Handshake)</h5>
                     <p>Closing a TCP connection takes four steps because each side closes its direction independently: the client sends FIN, the server ACKs it, the server sends its own FIN when done, and the client ACKs that. The side that closed first then waits briefly in the <code>TIME_WAIT</code> state to catch delayed packets.</p>
-                    <h5>TLS/SSL Handshake :</h5>
+                    <h5>TLS/SSL Handshake</h5>
                     <p>The TLS/SSL handshake is a process used to establish a secure, encrypted connection between a client (e.g., a web browser) and a server (e.g., a website). This handshake is a crucial part of the TLS (Transport Layer Security) or SSL (Secure Sockets Layer) protocols, which protect data in transit over a network.</p>
-                    <h6>TLS 1.3 Handshake (Simplified) -</h6>
+                    <h6>TLS 1.3 Handshake (Simplified)</h6>
                     <ul class="justify">
                         <li><b>Client Hello :</b> The client sends the TLS versions and cipher suites it supports, a random value, and its key share (a temporary public key).</li>
                         <li><b>Server Hello :</b> The server picks the version and cipher suite and sends its own key share. Both sides can now compute the same session key (ECDHE key exchange) without ever sending it.</li>
@@ -1306,13 +1307,13 @@ Content-Length: 1256
                         <li>VPNs are commonly used in organizations to improve network security and enable remote access to network resources.</li>
                         <li>VPN is used for secure connections, privacy and anonymity (masking IP addresses), access, and bypassing censorship and restrictions.</li>
                     </ul>
-                    <h6>Types of VPN -</h6>
+                    <h6>Types of VPN</h6>
                     <ul class="justify">
                         <li><b>Remote Access VPN :</b> Individual users connect securely to a company network from anywhere, such as employees working from home.</li>
                         <li><b>Site-to-Site VPN :</b> Permanently connects two whole networks over the internet, such as a branch office and headquarters, usually configured between routers or firewalls.</li>
                         <li><b>Consumer VPN :</b> Commercial services that route a user's traffic through the provider's servers for privacy or to appear in another country.</li>
                     </ul>
-                    <h6>VPN Protocols -</h6>
+                    <h6>VPN Protocols</h6>
                     <ul class="justify">
                         <li><b>IPsec :</b> A suite that secures traffic at the network layer, often paired with IKEv2. The standard for site-to-site VPNs.</li>
                         <li><b>OpenVPN :</b> Open-source and widely supported, built on TLS, runs over UDP or TCP.</li>
@@ -1331,7 +1332,7 @@ Content-Length: 1256
                         <li>Proxies typically do not encrypt data between the client and the proxy server, so data transmitted beyond the proxy server may be vulnerable to interception.</li>
                         <li>An example of proxies are content delivery networks (CDNs), which use reverse proxies to distribute content closer to users, reducing latency and improving performance.</li>
                     </ul>
-                    <h6>Types of Proxy -</h6>
+                    <h6>Types of Proxy</h6>
                     <ul class="justify">
                         <li><b>Forward Proxy :</b> Sits in front of clients and makes requests on their behalf, so servers see the proxy's IP. Used for content filtering, caching, and anonymity, such as a corporate web proxy.</li>
                         <li><b>Reverse Proxy :</b> Sits in front of servers and receives requests on their behalf, so clients never talk to the backend directly. Used for load balancing, TLS termination, caching, and protection. Examples: NGINX, Cloudflare.</li>
@@ -1341,7 +1342,7 @@ Content-Length: 1256
                     <div class="code-box code-box-color"><code>Forward Proxy :  Client -&gt; [Proxy] -&gt; Internet -&gt; Server     (hides the client)
 Reverse Proxy :  Client -&gt; Internet -&gt; [Proxy] -&gt; Servers    (hides the servers)</code></div>
                     <div class="block-quote"><b>Proxy vs VPN :</b> A proxy forwards traffic for a specific application and usually does not encrypt it. A VPN encrypts all traffic from the device at the network level.</div>
-                    <h5>Proxy Chain :</h5>
+                    <h5>Proxy Chain</h5>
                     <ul class="justify">
                         <li>A proxy chain refers to a series of proxy servers or proxies that are linked together to route network traffic through multiple nodes in order to conceal the origin of the traffic or to bypass restrictions.</li>
                         <li>Each proxy in the chain forwards requests to the next, creating a chain of proxies through which data passes before reaching its destination.</li>
@@ -1356,12 +1357,12 @@ Reverse Proxy :  Client -&gt; Internet -&gt; [Proxy] -&gt; Servers    (hides the
                 <div class="content">
                     <p>A firewall is a network security system that monitors and controls incoming and outgoing network traffic based on predetermined security rules. It acts as a barrier between a trusted internal network and untrusted external networks, such as the internet. These rules can be configured to permit or deny traffic based on factors such as IP address, port number, protocol, or specific applications. Firewalls can be hardware devices, software programs, or a combination of both. Firewalls use a variety of techniques to control and monitor network traffic, including packet filtering, stateful inspection, and application-level filtering. It blocks unauthorized access and filters out malicious traffic.</p>
 
-                    <h6>Types of firewall -</h6>
+                    <h6>Types of firewall</h6>
                     <ul class="justify">
                         <li><b>Network Firewall :</b> A network firewall is a device that protects an entire network from unauthorized access and attacks. Network firewalls can be hardware or software based and are typically installed at the perimeter of a network to block unauthorized access from the internet.</li>
                         <li><b>Host-based Firewall :</b> A host-based firewall is a firewall that protects an individual computer from unauthorized access and attacks. Host-based firewalls are typically software-based and are installed on individual computers to control access to network resources and block unauthorized traffic.</li>
                     </ul>
-                    <h6>Firewall Techniques -</h6>
+                    <h6>Firewall Techniques</h6>
                     <ul class="justify">
                         <li><b>Packet Filtering (Stateless) :</b> Checks each packet's source and destination IP, port, and protocol against rules, independently of other packets. Fast, but has no context.</li>
                         <li><b>Stateful Inspection :</b> Tracks active connections and only allows packets that belong to a legitimate, established connection.</li>
@@ -1370,7 +1371,7 @@ Reverse Proxy :  Client -&gt; Internet -&gt; [Proxy] -&gt; Servers    (hides the
                         <li><b>Web Application Firewall (WAF) :</b> Protects web applications at the HTTP level from attacks like SQL injection and XSS.</li>
                     </ul>
 
-                    <h5>Inbound vs Outbound Traffic :</h5>
+                    <h5>Inbound vs Outbound Traffic</h5>
                     <p>Firewall rules are written per direction. The direction is decided by <b>who starts the connection</b>, not by which way an individual packet travels.</p>
                     <ul class="justify">
                         <li><b>Inbound (Ingress) :</b> Connections started <i>from outside</i> toward your network or host, e.g. an internet user opening your website, or someone trying to SSH into your server.</li>
@@ -1418,7 +1419,7 @@ Reverse Proxy :  Client -&gt; Internet -&gt; [Proxy] -&gt; Servers    (hides the
                     <div class="code-box code-box-color"><code>Outbound : Laptop 192.168.1.20:51515  -&gt;  Router (NAT)  -&gt;  203.0.113.10:443    allowed, connection tracked
            203.0.113.10:443 reply      -&gt;  matches tracked connection          -&gt;  allowed back in
 Inbound  : Internet host               -&gt;  your public IP:22 (new, unsolicited) -&gt;  dropped unless a rule allows it</code></div>
-                    <h6>Filtering Best Practices -</h6>
+                    <h6>Filtering Best Practices</h6>
                     <ul class="justify">
                         <li><b>Default Deny Inbound :</b> Block everything, then open only the ports a service actually needs (e.g. 443 on a web server), ideally only from known source IPs.</li>
                         <li><b>Egress Filtering :</b> On servers and corporate networks, allow outbound traffic only to required destinations and ports (DNS, HTTPS, update servers). This limits malware command-and-control and data exfiltration if a host is compromised.</li>
@@ -1426,7 +1427,7 @@ Inbound  : Internet host               -&gt;  your public IP:22 (new, unsolicite
                         <li><b>Log Both Directions :</b> Unexpected outbound connections are often the first sign of a compromised machine.</li>
                     </ul>
 
-                    <h6>Example: Host Firewall Rules (Linux UFW) -</h6>
+                    <h6>Example: Host Firewall Rules (Linux UFW)</h6>
                     <div class="code-box code-box-color"><code>sudo ufw default deny incoming     # block all inbound traffic by default
 sudo ufw default allow outgoing    # allow all outbound traffic
 sudo ufw allow 22/tcp              # allow inbound SSH
@@ -1445,7 +1446,7 @@ sudo ufw allow out 443/tcp         # HTTPS (updates, APIs)</code></div>
                 <h4 class="heading">Defense in Depth</h4>
                 <div class="content">
                     <p>Defense in Depth (DiD) is a security strategy that protects a network with <b>multiple independent layers</b> of controls, so that if one layer fails or is bypassed, the next one still stops or slows the attacker. The idea comes from military strategy: no single wall is trusted to hold. It assumes that any one control can fail, and that a breach is always possible.</p>
-                    <h6>Security Layers -</h6>
+                    <h6>Security Layers</h6>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -1491,7 +1492,7 @@ sudo ufw allow out 443/tcp         # HTTPS (updates, APIs)</code></div>
                         </table>
                     </div>
 
-                    <h5>Layered Network Design :</h5>
+                    <h5>Layered Network Design</h5>
                     <p>A common DiD network places public-facing servers in a <b>DMZ</b> (Demilitarized Zone, also called a screened subnet). The DMZ is a separate network segment between the internet and the internal LAN, so a compromised public server still cannot reach internal systems directly.</p>
                     <div class="code-box code-box-color"><code>Internet
    |
@@ -1505,7 +1506,7 @@ Internal LAN : VLAN 10 Users | VLAN 20 App servers | VLAN 99 Management
    |
 Data tier    : databases, reachable only from the app servers</code></div>
 
-                    <h6>Key Principles -</h6>
+                    <h6>Key Principles</h6>
                     <ul class="justify">
                         <li><b>Least Privilege :</b> Every user, device, and service gets only the access it needs.</li>
                         <li><b>Segmentation :</b> Split the network into zones (DMZ, users, servers, management) with firewall rules between them, limiting how far an attacker can move. Micro-segmentation applies the same idea down to individual workloads.</li>
@@ -1515,15 +1516,15 @@ Data tier    : databases, reachable only from the app servers</code></div>
                         <li><b>Redundancy :</b> No single point of failure for critical controls.</li>
                     </ul>
 
-                    <h6>Example: Layers Stopping One Attack -</h6>
-                    <ul class="justify">
-                        <li><b>1. Email Filter :</b> blocks most malicious attachments before they reach users.</li>
-                        <li><b>2. Awareness Training :</b> the user recognizes and reports a message that slipped through.</li>
-                        <li><b>3. Endpoint Protection :</b> EDR blocks the payload if the file is opened anyway.</li>
-                        <li><b>4. Segmentation :</b> even if one PC is compromised, it cannot reach the database VLAN.</li>
-                        <li><b>5. Egress Filtering :</b> the compromised PC cannot connect to unknown external servers.</li>
-                        <li><b>6. Monitoring :</b> the blocked outbound attempt raises a SIEM alert, and the SOC isolates the PC.</li>
-                    </ul>
+                    <h6>Example: Layers Stopping One Attack</h6>
+                    <ol class="justify">
+                        <li><b>Email Filter :</b> blocks most malicious attachments before they reach users.</li>
+                        <li><b>Awareness Training :</b> the user recognizes and reports a message that slipped through.</li>
+                        <li><b>Endpoint Protection :</b> EDR blocks the payload if the file is opened anyway.</li>
+                        <li><b>Segmentation :</b> even if one PC is compromised, it cannot reach the database VLAN.</li>
+                        <li><b>Egress Filtering :</b> the compromised PC cannot connect to unknown external servers.</li>
+                        <li><b>Monitoring :</b> the blocked outbound attempt raises a SIEM alert, and the SOC isolates the PC.</li>
+                    </ol>
 
                     <div class="block-quote"><b>Defense in Depth vs Zero Trust :</b> They work together. DiD adds many layers of protection; Zero Trust removes implicit trust inside the network by verifying every user, device, and request, so being "inside the perimeter" grants nothing by itself.</div>
                 </div>
@@ -1538,7 +1539,7 @@ Data tier    : databases, reachable only from the app servers</code></div>
                         <li>It works by encrypting data in multiple layers, similar to the layers of an onion, and then routing it through a network of servers (nodes) to ensure that the origin, destination, and contents of the communication are hidden from potential eavesdroppers.</li>
                         <li>This process helps to obscure users' IP addresses, making it difficult for anyone to track their online activities or locate them.</li>
                     </ul>
-                    <h5>Dark Web :</h5>
+                    <h5>Dark Web</h5>
                     <p>The dark web is a part of the deep web (the portion of the internet not indexed by search engines) that is intentionally hidden and requires special tools, such as TOR, to access. Websites on the dark web have ".onion" domains, which are only accessible via the Tor browser. These sites are typically not indexed by search engines, providing a higher level of anonymity and privacy. The dark web is known for hosting both legal and illegal content. However, it is also used by individuals seeking privacy, engaging in political activism, practicing journalism, or escaping censorship in authoritarian regimes.</p>
                 </div>
             </div>
@@ -1577,12 +1578,12 @@ curl -v https://example.com      # verbose: TLS handshake, request, and response
 
             <!-- Navigation Buttons -->
             <nav>
-                <a href="/Cheatsheets"><i class="bi bi-arrow-left-square-fill"></i></a>
-                <a href="#" ><i class="bi bi-arrow-up-square-fill"></i></a>
+                <a href="/cheatsheets" aria-label="All cheatsheets"><i class="bi bi-grid-3x3-gap-fill" aria-hidden="true"></i></a>
+                <a href="#" aria-label="Back to top"><i class="bi bi-arrow-up" aria-hidden="true"></i></a>
             </nav>
         </div>
 
         <!-- JavaScript -->
-        <script src="../assets/js/script.js"></script>
+        <script src="../assets/js/script.js?v=8"></script>
     </body>
 </html>

@@ -5,21 +5,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>Markdown Cheatsheet</title>
+        <script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('cheatsheet-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'))}catch(e){}</script>
 
         <!-- Bootstrap CDN -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
         <!-- CSS -->
-        <link rel="stylesheet" href="../assets/css/style.css">
+        <link rel="stylesheet" href="../assets/css/style.css?v=11">
     </head>
 
-    <body data-theme="dark">
+    <body>
         <div class="container">
                         <!-- Top Bar -->
             <div class="top-bar">
-                <a href="/Cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
-                <div class="button"><i class="bi bi-circle-half"></i></div>
+                <a href="/cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
+                <button class="theme-toggle" type="button" aria-label="Toggle theme"><i class="bi bi-sun" aria-hidden="true"></i></button>
             </div>
 
             <h3 class="title">Markdown</h3>
@@ -28,7 +29,7 @@
                 <ul>
                     <li><a href="#heading">Heading</a></li>
                     <li><a href="#text-format">Text Formatting</a></li>
-                    <li><a href="#lists">Lists</a></li>
+                    <li><a href="#list">Lists</a></li>
                     <li><a href="#links">Links</a></li>
                     <li><a href="#table">Tables</a></li>
                     <li><a href="#images">Images</a></li>
@@ -73,7 +74,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <h6>Heading ID :</h6>
+                    <h6>Heading ID</h6>
                     <pre class="code-box"><code>### Title {#title-1}
 
 This is [title](https://example.com/#title-1).</code></pre>
@@ -124,11 +125,11 @@ This is [title](https://example.com/#title-1).</code></pre>
             <div class="sections" id="list">
                 <h4 class="heading">Lists</h4>
                 <div class="content">
-                    <h5>&bull; Ordered List :</h5>
+                    <h5>Ordered List</h5>
                     <pre class="code-box"><code>1. Item
 2. Item
 3. Item</code></pre>
-                    <h5>&bull; Unordered List :</h5>
+                    <h5>Unordered List</h5>
                     <pre class="code-box"><code>- Item
 - Item
 - Item</code></pre>
@@ -139,7 +140,7 @@ This is [title](https://example.com/#title-1).</code></pre>
                 <h4 class="heading">Links</h4>
                 <div class="content">
                     <div class="code-box"><code>[Example](http://www.example.com/)</code></div>
-                    <h6>Link with title :</h6>
+                    <h6>Link with title</h6>
                     <div class="code-box"><code>[Example](http://www.example.com/ "Example")</code></div>
                 </div>
             </div>
@@ -152,7 +153,7 @@ This is [title](https://example.com/#title-1).</code></pre>
 | Apple  | 100  | 25    |
 | Orange | 80   | 50    |
 | Mango  | 200  | 100   |</code></pre>
-                    <h6>Aligning Column :</h6>
+                    <h6>Aligning Column</h6>
                     <p>Add a colon (<code>:</code>) to the beginning, end, or both to align the columns left, right, and center, respectively.</p>
                     <pre class="code-box"><code>| Item    |  Cost  |  Stock |
 | :------ | :----: | -----: |
@@ -166,7 +167,7 @@ This is [title](https://example.com/#title-1).</code></pre>
                 <h4 class="heading">Images</h4>
                 <div class="content">
                     <div class="code-box"><code>![Example Image](http://www.example.com/example.png)</code></div>
-                    <h6>Image with title :</h6>
+                    <h6>Image with title</h6>
                     <div class="code-box"><code>![Example Image](http://www.example.com/example.png "Example Image")</code></div>
                 </div>
             </div>
@@ -191,7 +192,7 @@ print($num1 + $num2);
 
 > This is also
 > Blockquote.</code></pre>
-                    <h6>Nested Blockquote :</h6>
+                    <h6>Nested Blockquote</h6>
                     <pre class="code-box"><code>> This is blockquote.
 
 > > This is nested blockquote.</code></pre>
@@ -234,12 +235,12 @@ print($num1 + $num2);
             
             <!-- Navigation Buttons -->
             <nav>
-                <a href="/Cheatsheets"><i class="bi bi-arrow-left-square-fill"></i></a>
-                <a href="#" ><i class="bi bi-arrow-up-square-fill"></i></a>
+                <a href="/cheatsheets" aria-label="All cheatsheets"><i class="bi bi-grid-3x3-gap-fill" aria-hidden="true"></i></a>
+                <a href="#" aria-label="Back to top"><i class="bi bi-arrow-up" aria-hidden="true"></i></a>
             </nav>
         </div>
 
         <!-- JavaScript -->
-        <script src="../assets/js/script.js"></script>
+        <script src="../assets/js/script.js?v=8"></script>
     </body>
 </html>

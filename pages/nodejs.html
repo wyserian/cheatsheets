@@ -5,21 +5,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>Node.js Cheatsheet</title>
+        <script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('cheatsheet-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'))}catch(e){}</script>
 
         <!-- Bootstrap CDN -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
         <!-- CSS -->
-        <link rel="stylesheet" href="../assets/css/style.css">
+        <link rel="stylesheet" href="../assets/css/style.css?v=11">
     </head>
 
-    <body data-theme="dark">
+    <body>
         <div class="container">
             <!-- Top Bar -->
             <div class="top-bar">
-                <a href="/Cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
-                <div class="button"><i class="bi bi-circle-half"></i></div>
+                <a href="/cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
+                <button class="theme-toggle" type="button" aria-label="Toggle theme"><i class="bi bi-sun" aria-hidden="true"></i></button>
             </div>
 
             <h3 class="title">Node.js</h3>
@@ -46,7 +47,7 @@
                 <h4 class="heading">Node.js</h4>
                 <div class="content">
                     <p>Node.js is a runtime that lets JavaScript run outside the browser, on servers and the command line. Before Node, JavaScript could only run inside a web browser; Node took Google Chrome's V8 engine and wrapped it with APIs for files, networking, and the operating system, so the same language can now power backends, tools, and desktop apps. It was created by Ryan Dahl in 2009.</p>
-                    <h6>Key Features -</h6>
+                    <h6>Key Features</h6>
                     <ul class="justify">
                         <li><b>V8 Engine :</b> The core that compiles JavaScript straight to machine code, the same engine used in Chrome. Node adds a C++ layer (libuv) on top for I/O.</li>
                         <li><b>Single-Threaded :</b> Node runs your JavaScript on one main thread, unlike traditional servers that spawn a new thread per request.</li>
@@ -68,16 +69,16 @@ console.log("Node version:", process.version);</code></div>
                 <h4 class="heading">How Node Works</h4>
                 <div class="content">
                     <p>Node handles a request by moving it through a pipeline: it takes user input, processes it, reads or writes storage as needed, and sends output back, all without blocking the single thread. The slow parts (database, files) run in the background while the thread serves other requests.</p>
-                    <h6>Request to Response Flow -</h6>
-                    <ul class="justify">
-                        <li><b>1. Input :</b> A client (browser, mobile app) sends an HTTP request to the server, for example <code>POST /users</code> with a JSON body.</li>
-                        <li><b>2. Event Queue :</b> Node receives the request and places it on the event queue instead of handling it immediately.</li>
-                        <li><b>3. Event Loop :</b> The event loop picks up the request. Simple work runs on the main thread; slow I/O (database, file) is handed off to libuv's background thread pool.</li>
-                        <li><b>4. Processing :</b> Your code runs: routing decides which handler responds, middleware checks auth and validates the input, and business logic prepares the work.</li>
-                        <li><b>5. Store / Retrieve :</b> If data is needed, Node queries a database or reads a file asynchronously. The thread does not wait; it serves other requests until the result arrives.</li>
-                        <li><b>6. Callback :</b> When the I/O finishes, its callback (or resolved promise) is queued and the event loop resumes that request where it left off.</li>
-                        <li><b>7. Output :</b> The handler builds a response (usually JSON) and sends it back to the client, completing the cycle.</li>
-                    </ul>
+                    <h6>Request to Response Flow</h6>
+                    <ol class="justify">
+                        <li><b>Input :</b> A client (browser, mobile app) sends an HTTP request to the server, for example <code>POST /users</code> with a JSON body.</li>
+                        <li><b>Event Queue :</b> Node receives the request and places it on the event queue instead of handling it immediately.</li>
+                        <li><b>Event Loop :</b> The event loop picks up the request. Simple work runs on the main thread; slow I/O (database, file) is handed off to libuv's background thread pool.</li>
+                        <li><b>Processing :</b> Your code runs: routing decides which handler responds, middleware checks auth and validates the input, and business logic prepares the work.</li>
+                        <li><b>Store / Retrieve :</b> If data is needed, Node queries a database or reads a file asynchronously. The thread does not wait; it serves other requests until the result arrives.</li>
+                        <li><b>Callback :</b> When the I/O finishes, its callback (or resolved promise) is queued and the event loop resumes that request where it left off.</li>
+                        <li><b>Output :</b> The handler builds a response (usually JSON) and sends it back to the client, completing the cycle.</li>
+                    </ol>
                     <div class="code-box code-box-color"><code>Client Request
    -> Event Queue
       -> Event Loop  --(slow I/O)-->  Thread Pool (libuv)
@@ -116,16 +117,16 @@ load();</code></div>
                 <h4 class="heading">Node Commands</h4>
                 <div class="content">
                     <p>Node ships with the <code>node</code> CLI for running scripts and an interactive REPL for quick experiments.</p>
-                    <h6>Running Code -</h6>
+                    <h6>Running Code</h6>
                     <div class="code-box code-box-color"><code>node app.js            # run a script
 node                   # open the REPL (interactive shell)
 node --watch app.js    # auto-restart on file changes (Node 18+)
 node --version         # print installed version (also: node -v)
 node -e "console.log(2+2)"   # run inline code
 node --inspect app.js  # start with the debugger attached</code></div>
-                    <h6>REPL -</h6>
+                    <h6>REPL</h6>
                     <p>The REPL (Read-Eval-Print Loop) runs JavaScript line by line for testing snippets. Useful commands inside it: <code>.help</code>, <code>.exit</code> (or Ctrl+C twice), <code>.save file.js</code>, and <code>.load file.js</code>.</p>
-                    <h6>Environment &amp; Scripts -</h6>
+                    <h6>Environment &amp; Scripts</h6>
                     <div class="code-box code-box-color"><code>node index.js arg1 arg2      # args read via process.argv
 NODE_ENV=production node app.js   # set an env variable (Linux/macOS)
 npm run dev                  # run a package.json script
@@ -188,7 +189,7 @@ server.listen(3000, () => console.log("Running on port 3000"));</code></div>
                 <h4 class="heading">Globals &amp; Environment</h4>
                 <div class="content">
                     <p>Node provides global objects available everywhere without importing, and a standard way to read configuration from the environment.</p>
-                    <h6>Global Objects -</h6>
+                    <h6>Global Objects</h6>
                     <ul class="justify">
                         <li><b>global :</b> The top-level object, like <code>window</code> in the browser.</li>
                         <li><b>process :</b> The running Node process: <code>process.argv</code> (command-line arguments), <code>process.env</code> (environment variables), <code>process.exit()</code>, and <code>process.cwd()</code> (current directory).</li>
@@ -197,7 +198,7 @@ server.listen(3000, () => console.log("Running on port 3000"));</code></div>
                         <li><b>Buffer :</b> Handles raw binary data, used with files and network streams.</li>
                         <li><b>setTimeout / setInterval / setImmediate :</b> Schedule code to run later.</li>
                     </ul>
-                    <h6>Environment Variables -</h6>
+                    <h6>Environment Variables</h6>
                     <p>Secrets and config (database URLs, API keys, ports) are kept out of the code in environment variables, read through <code>process.env</code>. A <code>.env</code> file holds them locally and is loaded by the <code>dotenv</code> package (or Node's built-in <code>--env-file</code> flag). The <code>.env</code> file is never committed to Git.</p>
                     <div class="code-box code-box-color"><code># .env
 PORT=3000
@@ -206,7 +207,7 @@ DB_URL=postgres://localhost/mydb
 // app.js
 import "dotenv/config";
 const port = process.env.PORT || 3000;</code></div>
-                    <h6>Error Handling -</h6>
+                    <h6>Error Handling</h6>
                     <ul class="justify">
                         <li>Wrap <code>await</code> calls in <code>try / catch</code>, and use <code>.catch()</code> on promises.</li>
                         <li>In Express, pass errors to <code>next(err)</code> so a central error-handling middleware responds.</li>
@@ -253,26 +254,26 @@ const port = process.env.PORT || 3000;</code></div>
                         <li><b>pnpm :</b> The efficient modern choice. Stores each package version once on disk and links it into projects, saving huge amounts of space and installing very fast. Strict about dependency access.</li>
                         <li><b>Bun :</b> A package manager built into the Bun runtime, extremely fast, compatible with npm packages.</li>
                     </ul>
-                    <h6>Setup &amp; Info -</h6>
+                    <h6>Setup &amp; Info</h6>
                     <div class="code-box code-box-color"><code>npm init                    # create package.json (interactive)
 npm init -y                 # create it with defaults
 npm --version               # npm version (also: npm -v)
 npm list                    # list installed packages
 npm outdated                # show packages with newer versions</code></div>
-                    <h6>Installing -</h6>
+                    <h6>Installing</h6>
                     <div class="code-box code-box-color"><code>npm install                 # install everything in package.json
 npm install express         # add a dependency (also: npm i)
 npm install -D nodemon      # add a dev dependency (--save-dev)
 npm install -g nodemon      # install globally (system-wide)
 npm install express@4.18.2  # install a specific version
 npm ci                      # clean install from lock file (CI/CD)</code></div>
-                    <h6>Updating &amp; Removing -</h6>
+                    <h6>Updating &amp; Removing</h6>
                     <div class="code-box code-box-color"><code>npm update                  # update packages within allowed ranges
 npm update express          # update a single package
 npm uninstall express       # remove a package (also: npm remove)
 npm audit                   # scan dependencies for vulnerabilities
 npm audit fix               # auto-fix vulnerabilities where possible</code></div>
-                    <h6>Running Scripts -</h6>
+                    <h6>Running Scripts</h6>
                     <div class="code-box code-box-color"><code>npm start                   # runs the "start" script
 npm test                    # runs the "test" script
 npm run dev                 # runs the "dev" script
@@ -321,7 +322,7 @@ npx create-react-app app    # run a package without installing it</code></div>
                 <h4 class="heading">Frameworks</h4>
                 <div class="content">
                     <p>Node's core <code>http</code> module is low-level, so frameworks add routing, middleware, and structure on top of it. They fall into two broad groups: backend frameworks (build APIs and servers) and full-stack meta-frameworks (build entire websites, front and back).</p>
-                    <h6>Backend / API Frameworks -</h6>
+                    <h6>Backend / API Frameworks</h6>
                     <ul class="justify">
                         <li><b>Express :</b> The minimal, most popular framework. Small core plus middleware; you assemble what you need. Great default for REST APIs and a huge ecosystem.</li>
                         <li><b>NestJS :</b> An opinionated, structured framework using TypeScript, decorators, and dependency injection (Angular-style). Best for large, enterprise applications that need consistent architecture.</li>
@@ -329,7 +330,7 @@ npx create-react-app app    # run a package without installing it</code></div>
                         <li><b>Koa :</b> A lighter, more modern take on Express by the same team, built around async/await middleware.</li>
                         <li><b>Hapi :</b> Configuration-driven framework with strong built-in features for larger teams.</li>
                     </ul>
-                    <h6>Full-Stack Meta-Frameworks -</h6>
+                    <h6>Full-Stack Meta-Frameworks</h6>
                     <ul class="justify">
                         <li><b>Next.js :</b> React-based framework for full websites, with server-side rendering, static generation, and API routes. The most popular choice for production React apps.</li>
                         <li><b>Nuxt :</b> The equivalent of Next.js for Vue.</li>
@@ -354,7 +355,7 @@ app.listen(3000, () => console.log("API on port 3000"));</code></div>
                         <li><b>Deno :</b> Created by Node's original author to address its regrets. Secure by default (code must be granted file, network, and environment permissions), TypeScript built in, and web-standard APIs. Also uses V8.</li>
                         <li><b>Bun :</b> An all-in-one runtime built for speed, using Apple's JavaScriptCore engine instead of V8. Bundles a package manager, bundler, and test runner in one tool, and runs most Node packages.</li>
                     </ul>
-                    <h6>Node vs the Browser -</h6>
+                    <h6>Node vs the Browser</h6>
                     <ul class="justify">
                         <li>The browser has the <code>window</code>, <code>document</code>, and DOM; Node has <code>global</code>, <code>process</code>, and file-system access instead.</li>
                         <li>The browser sandboxes code away from the operating system; Node can read files, open network sockets, and run system commands.</li>
@@ -367,7 +368,7 @@ app.listen(3000, () => console.log("API on port 3000"));</code></div>
                 <h4 class="heading">Uses</h4>
                 <div class="content">
                     <p>Node shines wherever the work is mostly waiting on input and output (network, files, databases) rather than crunching numbers, and wherever using one language across the whole stack is an advantage.</p>
-                    <h6>Great Fit -</h6>
+                    <h6>Great Fit</h6>
                     <ul class="justify">
                         <li><b>REST &amp; GraphQL APIs :</b> The most common use, serving data to web and mobile clients.</li>
                         <li><b>Real-Time Apps :</b> Chat, live notifications, collaborative tools, and multiplayer games using WebSockets, where Node's event-driven model excels.</li>
@@ -376,7 +377,7 @@ app.listen(3000, () => console.log("API on port 3000"));</code></div>
                         <li><b>CLI Tools &amp; Build Tooling :</b> Most front-end tooling (Webpack, Vite, ESLint) runs on Node.</li>
                         <li><b>Full-Stack JavaScript :</b> Sharing types and logic between a React front end and a Node back end.</li>
                     </ul>
-                    <h6>Poor Fit -</h6>
+                    <h6>Poor Fit</h6>
                     <ul class="justify">
                         <li><b>CPU-Heavy Work :</b> Video encoding, complex image processing, or scientific computation would block the single thread. Languages like Go, Rust, or Python (with native libraries) suit these better, though Node can offload such work to worker threads.</li>
                     </ul>
@@ -385,12 +386,12 @@ app.listen(3000, () => console.log("API on port 3000"));</code></div>
 
             <!-- Navigation Buttons -->
             <nav>
-                <a href="/Cheatsheets"><i class="bi bi-arrow-left-square-fill"></i></a>
-                <a href="#" ><i class="bi bi-arrow-up-square-fill"></i></a>
+                <a href="/cheatsheets" aria-label="All cheatsheets"><i class="bi bi-grid-3x3-gap-fill" aria-hidden="true"></i></a>
+                <a href="#" aria-label="Back to top"><i class="bi bi-arrow-up" aria-hidden="true"></i></a>
             </nav>
         </div>
 
         <!-- JavaScript -->
-        <script src="../assets/js/script.js"></script>
+        <script src="../assets/js/script.js?v=8"></script>
     </body>
 </html>

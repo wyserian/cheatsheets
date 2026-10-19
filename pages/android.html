@@ -5,21 +5,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>Android Cheatsheet</title>
+        <script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('cheatsheet-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'))}catch(e){}</script>
 
         <!-- Bootstrap CDN -->  
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
         <!-- CSS -->
-        <link rel="stylesheet" href="../assets/css/style.css">
+        <link rel="stylesheet" href="../assets/css/style.css?v=11">
     </head>
 
-    <body data-theme="dark">
+    <body>
         <div class="container">
                         <!-- Top Bar -->
             <div class="top-bar">
-                <a href="/Cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
-                <div class="button"><i class="bi bi-circle-half"></i></div>
+                <a href="/cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
+                <button class="theme-toggle" type="button" aria-label="Toggle theme"><i class="bi bi-sun" aria-hidden="true"></i></button>
             </div>
 
             <h3 class="title">Android</h3>
@@ -27,13 +28,15 @@
             <div class="section-list">
                 <ul>
                     <li><a href="#android-overview">Android Overview</a></li>
-                    <li><a href="#android-architecture">Android Architecture & Layers</a></li>
+                    <li><a href="#app-dev">App Development &amp; APK</a></li>
+                    <li><a href="#android-architecture">System Architecture</a></li>
                     <li><a href="#application-components">Application Components</a></li>
+                    <li><a href="#data-storage">Data Storage &amp; Keystore</a></li>
                     <li><a href="#file-system-structure">File System Structure</a></li>
-                    <li><a href="#boot-process-low-level-components">Boot Process & Low-Level Components</a></li>
+                    <li><a href="#boot-process-low-level-components">Boot Process &amp; Low-Level</a></li>
                     <li><a href="#android-security-core">Android Security Core</a></li>
-                    <li><a href="#google-ecosystem">Google Services & Ecosystem</a></li>
-                    <li><a href="#system-images">System Images & ROMs</a></li>
+                    <li><a href="#google-ecosystem">Google Ecosystem</a></li>
+                    <li><a href="#system-images">System Images &amp; ROMs</a></li>
                     <li><a href="#root">Root</a></li>
                 </ul>
             </div>
@@ -46,6 +49,79 @@
                         <li>Designed for mobile devices (smartphones, tablets, TVs, wearables, IoT)</li>
                         <li>Provides middleware framework, runtime environment, application support</li>
                         <li>Development languages: Java, Kotlin, C/C++</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="app-dev">
+                <h4 class="heading">App Development &amp; APK</h4>
+                <div class="content">
+                    <h5>Languages &amp; Tooling</h5>
+                    <ul class="justify">
+                        <li><b>Kotlin :</b> Google's preferred language since 2019. <b>Java</b> is still supported; <b>C/C++</b> via the NDK for native/performance code.</li>
+                        <li><b>Android Studio :</b> the official IDE (built on IntelliJ), with the emulator, profiler, and layout editor.</li>
+                        <li><b>Gradle :</b> the build system; the Android Gradle Plugin (AGP) drives the build. <b>SDK</b> = libraries + build tools; <b>NDK</b> = native toolchain.</li>
+                        <li><b>Jetpack :</b> Google's recommended libraries (Compose for UI, Room, Navigation, WorkManager, DataStore).</li>
+                    </ul>
+                    <h5>Project Structure &amp; Resources</h5>
+                    <ul class="justify">
+                        <li><b><code>AndroidManifest.xml</code> :</b> declares the app's package, components, permissions, and hardware features.</li>
+                        <li><b><code>src/main/java</code> :</b> Kotlin/Java source code.</li>
+                        <li><b><code>res/</code> :</b> resources, referenced in code as <code>R.type.name</code> and compiled into the <code>R</code> class.
+                            <ul>
+                                <li><b><code>res/layout/</code> :</b> XML UI layouts.</li>
+                                <li><b><code>res/values/strings.xml</code> :</b> user-facing text (externalized for translation; <code>res/values-fr/</code> etc. for other languages).</li>
+                                <li><b><code>res/drawable/</code>, <code>res/mipmap/</code> :</b> images and app icons.</li>
+                            </ul>
+                        </li>
+                        <li><b><code>assets/</code> :</b> raw files bundled as-is. <b><code>build.gradle</code> :</b> dependencies and build config.</li>
+                    </ul>
+                    <h5>Build Process</h5>
+                    <div class="code-box code-box-color"><code>Kotlin / Java  --(kotlinc / javac)-->  .class
+   --(D8 / R8: dex + shrink + obfuscate)-->  classes.dex   (DEX bytecode for ART)
+res/  --(AAPT2)-->  compiled resources + resources.arsc
+   --(Gradle package)-->  unsigned APK
+   --(zipalign + apksigner)-->  signed APK  ->  install / Play</code></div>
+                    <ul class="justify">
+                        <li><b>APK (Android Package) :</b> the installable app file.</li>
+                        <li><b>AAB (Android App Bundle) :</b> the upload format for Google Play; Play generates per-device APKs from it.</li>
+                    </ul>
+                    <h5>APK Structure</h5>
+                    <p>An APK is a ZIP archive. Unzip it (or use <code>apktool</code>) to see:</p>
+                    <ul class="justify">
+                        <li><b><code>AndroidManifest.xml</code> :</b> the manifest, stored as binary XML.</li>
+                        <li><b><code>classes.dex</code> :</b> compiled app code as DEX bytecode (may be <code>classes2.dex</code>, ... for multidex).</li>
+                        <li><b><code>resources.arsc</code> :</b> compiled resources (strings, styles).</li>
+                        <li><b><code>res/</code> :</b> non-compiled resources (images, raw XML). <b><code>assets/</code> :</b> bundled files.</li>
+                        <li><b><code>lib/</code> :</b> native <code>.so</code> libraries per ABI (<code>arm64-v8a</code>, <code>x86_64</code>).</li>
+                        <li><b><code>META-INF/</code> :</b> the signature and manifest of file hashes.</li>
+                    </ul>
+                    <h5>App Signing</h5>
+                    <ul class="justify">
+                        <li>Every APK must be signed; Android uses the signature to verify updates come from the same developer (an update must be signed with the same key).</li>
+                        <li><b>Schemes :</b> v1 (JAR signing), v2 (whole-file, Android 7+), v3 (adds key rotation, Android 9+), v4 (incremental install, Android 11+).</li>
+                        <li><b>Play App Signing :</b> Google holds the final signing key; you upload with an upload key.</li>
+                    </ul>
+                    <h5>ADB (Android Debug Bridge)</h5>
+                    <p>The main command-line tool for talking to a device or emulator over USB or Wi-Fi.</p>
+                    <div class="code-box code-box-color"><code>adb devices                         # list connected devices
+adb install app.apk                 # install an APK
+adb uninstall com.example.app
+adb shell                           # open a shell on the device
+adb logcat                          # live system/app logs
+adb pull /sdcard/file.txt .         # copy from device
+adb push file.txt /sdcard/          # copy to device
+adb shell pm list packages          # list installed packages
+adb shell am start -n com.example/.MainActivity   # launch an activity
+adb shell dumpsys battery           # query a system service</code></div>
+                    <h5>Reverse-Engineering Tools</h5>
+                    <p>Used for debugging, security review, and malware analysis (only on apps you are authorized to inspect).</p>
+                    <ul class="justify">
+                        <li><b>aapt / aapt2 :</b> inspect an APK's manifest, permissions, and resources.</li>
+                        <li><b>apktool :</b> decode an APK to smali and readable resources, and rebuild it.</li>
+                        <li><b>jadx :</b> decompile DEX back to readable Java.</li>
+                        <li><b>apksigner / keytool :</b> sign and verify APKs and certificates.</li>
+                        <li><b>Frida / objection :</b> dynamic instrumentation for runtime analysis.</li>
                     </ul>
                 </div>
             </div>
@@ -98,13 +174,84 @@
             <div class="sections" id="application-components">
                 <h4 class="heading">Application Components</h4>
                 <div class="content">
+                    <p>The four core building blocks of an app. Each is declared in <b><code>AndroidManifest.xml</code></b>, and the system can start any of them. They are connected by <b>Intents</b>.</p>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Component</th>
+                                    <th>In one line</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Activity</td>
+                                    <td>a screen</td>
+                                </tr>
+                                <tr>
+                                    <td>Intent</td>
+                                    <td>a request (to do something)</td>
+                                </tr>
+                                <tr>
+                                    <td>Broadcast</td>
+                                    <td>an event message</td>
+                                </tr>
+                                <tr>
+                                    <td>Broadcast Receiver</td>
+                                    <td>an event handler</td>
+                                </tr>
+                                <tr>
+                                    <td>Service</td>
+                                    <td>background work</td>
+                                </tr>
+                                <tr>
+                                    <td>Content Provider</td>
+                                    <td>a data-sharing interface</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h5>Activity</h5>
                     <ul class="justify">
-                        <li>Declared in <b><code>AndroidManifest.xml</code></b></li>
-                        <li>Connected by Intents (messaging objects for data/actions)</li>
-                        <li><b>Activities:</b> Single screen with UI, manages user interaction</li>
-                        <li><b>Services:</b> Runs in background without UI (music player, push notifications)</li>
-                        <li><b>Broadcast Receivers:</b> Respond to system-wide messages/events (low battery notifications, incoming SMS, Wi-Fi)</li>
-                        <li><b>Content Providers:</b> Manage and share data between apps (contacts, calendar)</li>
+                        <li>A single screen with a UI. An app is usually several activities (e.g. a list screen and a detail screen).</li>
+                        <li><b>Lifecycle :</b> <code>onCreate</code> -&gt; <code>onStart</code> -&gt; <code>onResume</code> -&gt; (running) -&gt; <code>onPause</code> -&gt; <code>onStop</code> -&gt; <code>onDestroy</code> (and <code>onRestart</code> when returning). Save state in <code>onPause</code>/<code>onStop</code>, since the system can kill a backgrounded app.</li>
+                        <li>Modern apps often use a single activity with many <b>Fragments</b> or Jetpack Compose screens.</li>
+                    </ul>
+                    <h5>Intent</h5>
+                    <p>A messaging object used to request an action from a component: start an activity, start a service, or deliver a broadcast. It can carry data as <b>extras</b>.</p>
+                    <ul class="justify">
+                        <li><b>Explicit Intent :</b> names the exact target component. Used within your own app.</li>
+                        <li><b>Implicit Intent :</b> declares an action and lets the system pick a component that can handle it (e.g. open a URL, share text). Resolved against <b>intent filters</b> declared in the manifest.</li>
+                        <li><b>PendingIntent :</b> a token that lets another app (notifications, alarms) run an intent later as if it came from your app.</li>
+                    </ul>
+                    <div class="code-box code-box-color"><code>// Explicit: open a specific screen
+startActivity(Intent(this, DetailActivity::class.java).putExtra("id", 42))
+
+// Implicit: let any browser open a URL
+startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://example.com")))</code></div>
+                    <h5>Service</h5>
+                    <ul class="justify">
+                        <li>Runs work without a UI, e.g. playing music or syncing.</li>
+                        <li><b>Started service :</b> runs until it stops itself. <b>Bound service :</b> runs while components are bound to it (client-server).</li>
+                        <li><b>Foreground service :</b> shows a persistent notification (music, navigation); required for long-running work on modern Android.</li>
+                        <li>For deferrable background jobs, use <b>WorkManager</b> instead, because background execution is heavily restricted to save battery.</li>
+                    </ul>
+                    <h5>Broadcast Receiver</h5>
+                    <ul class="justify">
+                        <li>Responds to broadcast messages (events), from the system (battery low, connectivity change, boot completed) or from other apps.</li>
+                        <li><b>Manifest-declared :</b> can be triggered while the app is not running (limited for implicit broadcasts since Android 8). <b>Context-registered :</b> active only while the app runs.</li>
+                        <li>A <b>broadcast</b> is the event message; the <b>receiver</b> is the handler that reacts to it.</li>
+                    </ul>
+                    <h5>Content Provider</h5>
+                    <ul class="justify">
+                        <li>A standard interface to share structured data between apps, accessed through <code>content://</code> URIs via a <code>ContentResolver</code>.</li>
+                        <li>System data like Contacts, Calendar, and MediaStore are exposed this way.</li>
+                        <li>Access is guarded by permissions; exporting a provider carelessly is a common security risk.</li>
+                    </ul>
+                    <h5>App Sandbox</h5>
+                    <ul class="justify">
+                        <li>Each app gets a unique Linux UID and runs in its own process, isolated by the kernel and SELinux.</li>
+                        <li>An app's private files are not readable by other apps. Sharing happens only through intents, content providers, or explicit permissions.</li>
                     </ul>
                     <h5>WebView</h5>
                     <ul class="justify">
@@ -115,6 +262,71 @@
                         <li>Can load remote webpages, local HTML/JS files</li>
                         <li>JavaScript Interfaces: bridge between app code and web code</li>
                         <li><b>Security risks:</b> JavaScript injection, insecure URL loading, XSS, phishing, MITM attacks</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="data-storage">
+                <h4 class="heading">Data Storage &amp; Keystore</h4>
+                <div class="content">
+                    <p>Each app stores its private data in its own sandbox folder, <code>/data/data/&lt;package&gt;/</code> (also <code>/data/user/0/&lt;package&gt;/</code>), which other apps cannot read.</p>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Path (inside the app sandbox)</th>
+                                    <th>Contents</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>files/</code></td>
+                                    <td>internal storage files</td>
+                                </tr>
+                                <tr>
+                                    <td><code>databases/</code></td>
+                                    <td>SQLite database files</td>
+                                </tr>
+                                <tr>
+                                    <td><code>shared_prefs/</code></td>
+                                    <td>SharedPreferences XML files</td>
+                                </tr>
+                                <tr>
+                                    <td><code>cache/</code></td>
+                                    <td>temporary cache (the system may clear it)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h5>Storage Options</h5>
+                    <ul class="justify">
+                        <li><b>SharedPreferences :</b> small key-value pairs (settings, flags) saved as XML. <b>DataStore</b> is the modern Jetpack replacement.</li>
+                        <li><b>Internal Storage :</b> private files in the app sandbox; removed when the app is uninstalled.</li>
+                        <li><b>External Storage :</b> shared storage (<code>/sdcard</code>). Since Android 10/11, <b>scoped storage</b> limits apps to their own media and the MediaStore / Storage Access Framework for the rest.</li>
+                        <li><b>SQLite :</b> the built-in on-device relational database (see below).</li>
+                        <li><b>Room :</b> the Jetpack ORM over SQLite; compile-time checked queries, less boilerplate. Recommended for structured data.</li>
+                    </ul>
+                    <h5>SQLite</h5>
+                    <ul class="justify">
+                        <li>A lightweight, serverless, file-based relational database built into Android; the standard for structured local data.</li>
+                        <li>Each database is a single file in <code>databases/</code>. Accessed with SQL; apps usually use <b>Room</b> on top rather than raw SQL.</li>
+                        <li><b>Security note :</b> a plain SQLite file is not encrypted. Anyone with the file (e.g. on a rooted device or via backup) can read it. Use encryption (SQLCipher, or encrypt via the Keystore) for sensitive data.</li>
+                    </ul>
+                    <div class="code-box code-box-color"><code># Inspect an app's database on a device (debuggable app / emulator)
+adb shell run-as com.example.app ls databases/
+adb shell "run-as com.example.app sqlite3 databases/app.db '.tables'"</code></div>
+                    <h5>Android Keystore</h5>
+                    <p>The Keystore system stores cryptographic keys in a container that is hard to extract from the device. Keys are generated and used inside secure hardware, so the key material never enters the app's memory.</p>
+                    <ul class="justify">
+                        <li><b>Hardware-backed :</b> keys live in the TEE (Trusted Execution Environment) or a dedicated <b>StrongBox</b> secure element; they cannot be exported, only used.</li>
+                        <li><b>Access control :</b> a key can require user authentication (biometric / PIN) before each use, or be invalidated if the lock screen is removed.</li>
+                        <li>The app asks the Keystore to encrypt, decrypt, or sign; it never sees the raw key.</li>
+                    </ul>
+                    <h5>Secure Data Storage</h5>
+                    <ul class="justify">
+                        <li><b>EncryptedSharedPreferences :</b> SharedPreferences with keys and values encrypted using a Keystore-backed key (Jetpack Security).</li>
+                        <li><b>EncryptedFile :</b> the same idea for files.</li>
+                        <li><b>Rule of thumb :</b> keep secrets out of plain SharedPreferences, logs, and external storage. Hard-coded keys in the APK can be extracted by decompiling (see <a href="#app-dev">App Development &amp; APK</a>).</li>
                     </ul>
                 </div>
             </div>
@@ -293,13 +505,13 @@
                         <li>Superuser Manager (SuperSU/Magisk) intercepts su calls, prompts user for permission</li>
                     </ul>
                     <h5>Rooting Methods</h5>
-                    <h6>System Modifying Root (Older):</h6>
+                    <h6>System Modifying Root (Older)</h6>
                     <ul class="justify">
                         <li>Tools like SuperSU modified /system partition</li>
                         <li>Inserted su binary directly in system</li>
                         <li><b>Risks:</b> permanently changed system, broke OTA updates, easily detected</li>
                     </ul>
-                    <h6>Systemless Root - Magisk (Modern):</h6>
+                    <h6>Systemless Root - Magisk (Modern)</h6>
                     <ul class="justify">
                         <li>Modern systemless rooting framework by topjohnwu</li>
                         <li><b>Systemless Root:</b> patches boot image (boot.img), not /system and loads root at boot</li>
@@ -315,12 +527,12 @@
 
             <!-- Navigation Buttons -->
             <nav>
-                <a href="/Cheatsheets"><i class="bi bi-arrow-left-square-fill"></i></a>
-                <a href="#" ><i class="bi bi-arrow-up-square-fill"></i></a>
+                <a href="/cheatsheets" aria-label="All cheatsheets"><i class="bi bi-grid-3x3-gap-fill" aria-hidden="true"></i></a>
+                <a href="#" aria-label="Back to top"><i class="bi bi-arrow-up" aria-hidden="true"></i></a>
             </nav>
         </div>
 
         <!-- JavaScript -->
-        <script src="../assets/js/script.js"></script>
+        <script src="../assets/js/script.js?v=8"></script>
     </body>
 </html>

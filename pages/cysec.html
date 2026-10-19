@@ -5,21 +5,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>Cyber Security Cheatsheet</title>
+        <script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('cheatsheet-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'))}catch(e){}</script>
 
         <!-- Bootstrap CDN -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
         <!-- CSS -->
-        <link rel="stylesheet" href="../assets/css/style.css">
+        <link rel="stylesheet" href="../assets/css/style.css?v=11">
     </head>
 
-    <body data-theme="dark">
+    <body>
         <div class="container">
                         <!-- Top Bar -->
             <div class="top-bar">
-                <a href="/Cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
-                <div class="button"><i class="bi bi-circle-half"></i></div>
+                <a href="/cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
+                <button class="theme-toggle" type="button" aria-label="Toggle theme"><i class="bi bi-sun" aria-hidden="true"></i></button>
             </div>
 
             <h3 class="title">Cyber Security</h3>
@@ -51,19 +52,19 @@
                     <p>Governance elements refer to the foundational components and frameworks that guide an organization's approach to managing and protecting its information systems.</p>
                     <ul class="justify">
                         <li>
-                            <h6>Regulations :</h6>
+                            <h6>Regulations</h6>
                             <p>Regulations are commonly issued in the form of laws, usually from the government, and carry financial penalties and/or imprisonment for non-compliance. For example, the General Data Protection Regulations (GDPR) were enacted by the European Union (EU) to control the use of Personally Identifiable Information (PII) of its citizens and those in the EU.</p>
                         </li>
                         <li>
-                            <h6>Standards :</h6>
+                            <h6>Standards</h6>
                             <p>Standards are often used by government teams to provide a framework to introduce policies and procedures in support of regulations. For example, the International Organization for Standardization (ISO) develops and publishes international standards on a variety of technical subjects, including information systems and information security. And another is the National Institute of Standards and Technology (NIST), a United States government agency.</p>
                         </li>
                         <li>
-                            <h6>Policies :</h6>
+                            <h6>Policies</h6>
                             <p>Policies are put in place by organizational governance, such as executive management, to provide guidance in all activities to ensure that the organization meets industry standards and regulations.</p>
                         </li>
                         <li>
-                            <h6>Procedures :</h6>
+                            <h6>Procedures</h6>
                             <p>Procedures are the detailed steps to complete tasks that support departmental or organizational policies.</p>
                         </li>
                     </ul>
@@ -75,9 +76,9 @@
                 <h4 class="heading">Risk Management</h4>
                 <div class="content">
                     <p>Risk management is the process of identifying, assessing, and mitigating potential risks to an organization's digital assets, systems, and information. It includes risk assessments and audits, vulnerability scanning, implementing preventive measures such as firewalls, encryption, or multi-factor authentication, and developing risk management frameworks and policies.</p>
-                    <h5>Incident Response :</h5>
+                    <h5>Incident Response</h5>
                     <p>Incident Response (IR) refers to the organized approach taken by an organization to detect, respond to, manage, and recover from security incidents, such as cyberattacks, data breaches, or other malicious activities. The goal of incident response is to minimize the impact of an incident, restore normal operations as quickly as possible, and learn from the event to improve future security measures.</p>
-                    <h6>Terminologies -</h6>
+                    <h6>Terminologies</h6>
                     <ul class="justify">
                         <li><b>Asset :</b> An asset refers to any valuable entity that needs protection within an organization's IT infrastructure, network, or environment. Assets can include both tangible (physical devices) and intangible resources (data, software, and intellectual property).</li>
                         <li><b>Event :</b> An event refers to any observable occurrence or action within a system, network, or environment.</li>
@@ -90,7 +91,7 @@
                         <li><b>Incident :</b> An event that actually or potentially compromises the confidentiality, integrity, or availability of a system or network.</li>
                         <li><b>Zero Day :</b> A zero-day refers to a vulnerability in a software or system that is unknown to the vendor or the public.</li>
                     </ul>
-                    <h6>Rebundancy :</h6>
+                    <h6>Redundancy</h6>
                     <p>Redundancy refers to the practice of implementing backup systems, processes, or components to ensure that critical functions continue to operate smoothly in the event of failures, attacks, or disasters. By incorporating redundant systems, data storage, and network paths, organizations can reduce the risk of downtime, data loss, and service interruptions caused by system failures, cyberattacks, or other disruptions.</p>
                 </div>
             </div>
@@ -101,23 +102,23 @@
                     <p>The CIA Triad serves as the foundation of information security, and all three aspects must be addressed to ensure comprehensive cybersecurity.</p>
                     <ul>
                         <li>
-                            <h6>Confidentiality :</h6>
+                            <h6>Confidentiality</h6>
                             <p>Assurance that information is accessible only to those authorized to have access. Encryption, access controls, and authentication are used to prevent unauthorized access.</p>
                         </li>
                         <li>
-                            <h6>Integrity :</h6>
+                            <h6>Integrity</h6>
                             <p>The trustworthiness of data or resources is maintained by preventing improper or unauthorized changes. Hashing, checksums, and digital signatures are implemented to prevent and detect such modifications.</p>
                         </li>
                         <li>
-                            <h6>Availability :</h6>
+                            <h6>Availability</h6>
                             <p>Assurance that systems responsible for delivering, storing, and processing information are accessible to authorized users when needed. Redundancy, backups, and robust disaster recovery plans are implemented to ensure continuous access to resources.</p>
                         </li>
                         <li>
-                            <h6>Authenticity* :</h6>
+                            <h6>Authenticity*</h6>
                             <p>Authenticity ensures that the origin of information or communication is genuine and the source is verified as legitimate. It is achieved using digital signatures, certificates, public key infrastructure (PKI), authentication protocols (such as usernames, passwords, biometrics, and multi-factor authentication), and message authentication codes (MACs).</p>
                         </li>
                         <li>
-                            <h6>Non-Repudiation* :</h6>
+                            <h6>Non-Repudiation*</h6>
                             <p>Non-repudiation ensures that a party cannot deny the authenticity of their actions, such as sending a message or signing a document. It provides proof of origin and delivery, ensuring accountability. It is achieved using digital signatures, audit logs, message receipts, and secure time stamping.</p>
                         </li>
                     </ul>
@@ -131,37 +132,37 @@
                     <div class="block-quote">Who are you? (Identity) → Can you prove it? (Authentication) → What are you allowed to do? (Authorization)</div>
                     <ul>
                         <li>
-                            <h6>Identity :</h6>
+                            <h6>Identity</h6>
                             <p>The digital representation of a user or entity: employees, customers, admins, and non-human identities such as service accounts, API keys, and devices. An identity carries attributes like a username (<code>rahul@company.com</code>), employee ID, profile details, and group or role memberships. Identities live in a directory or Identity Provider (IdP), such as Microsoft Entra ID (Azure AD), Okta, Google Workspace, Keycloak, or Active Directory.</p>
                         </li>
                         <li>
-                            <h6>Authentication (AuthN) :</h6>
+                            <h6>Authentication (AuthN)</h6>
                             <p>Verifying that you really are the identity you claim to be, using passwords, OTPs, biometrics, hardware keys, or a trusted login provider ("Sign in with Google / Microsoft"). Authentication always comes first.</p>
                         </li>
                         <li>
-                            <h6>Authorization (AuthZ) :</h6>
+                            <h6>Authorization (AuthZ)</h6>
                             <p>Deciding what an authenticated identity is allowed to access and do. Permissions are assigned using an access control model such as RBAC or ABAC (see <a href="#access-control">Access Control</a>).</p>
                         </li>
                         <li>
-                            <h6>Accounting (Auditing) :</h6>
+                            <h6>Accounting (Auditing)</h6>
                             <p>Recording who accessed what and when, for monitoring, investigations, and compliance. Together with AuthN and AuthZ, this forms the AAA model.</p>
                         </li>
                     </ul>
-                    <h6>Analogy: An Office Building -</h6>
+                    <h6>Analogy: An Office Building</h6>
                     <div class="code-box code-box-color"><code>Authentication : "Show me your ID card."
 Authorization  : "Your card opens Floor 3, but not the server room."
 MFA            : "Show your ID card and enter the OTP sent to your phone."
 SSO            : "One office login works for HR, Jira, and email."
 RBAC           : "You're a Developer, so you get Developer permissions."
 Auditing       : "Every door logs each card swipe."</code></div>
-                    <h6>Authentication Factors -</h6>
+                    <h6>Authentication Factors</h6>
                     <ul class="justify">
                         <li><b>Something You Know :</b> Password, PIN, security question.</li>
                         <li><b>Something You Have :</b> Phone with an authenticator app, hardware security key (YubiKey), smart card.</li>
                         <li><b>Something You Are :</b> Fingerprint, face, iris (biometrics).</li>
                         <li><b>Context Signals :</b> Location, device, IP reputation, or typing behavior, used to adjust risk rather than as a standalone factor.</li>
                     </ul>
-                    <h6>Types of Authentication -</h6>
+                    <h6>Types of Authentication</h6>
                     <ul class="justify">
                         <li><b>Multi-Factor Authentication (MFA) :</b> Requires two or more factors from <i>different</i> categories. Password + OTP is MFA; password + security question is not (both are "something you know").</li>
                         <li><b>One-Time Password (OTP) :</b> TOTP (time-based codes from apps like Google Authenticator, valid ~30 seconds), HOTP (counter-based), and SMS OTP (weakest, vulnerable to SIM swapping).</li>
@@ -169,7 +170,7 @@ Auditing       : "Every door logs each card swipe."</code></div>
                         <li><b>Federated Login :</b> Authentication is delegated to a trusted external IdP ("Sign in with Google"), so the app never handles the password.</li>
                         <li><b>Single Sign-On (SSO) :</b> Authenticate once and access many applications (details below).</li>
                     </ul>
-                    <h6>Authorization Example -</h6>
+                    <h6>Authorization Example</h6>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -198,7 +199,7 @@ Auditing       : "Every door logs each card swipe."</code></div>
                             </tbody>
                         </table>
                     </div>
-                    <h6>Authentication vs Authorization -</h6>
+                    <h6>Authentication vs Authorization</h6>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -237,7 +238,7 @@ Auditing       : "Every door logs each card swipe."</code></div>
                             </tbody>
                         </table>
                     </div>
-                    <h5>IAM Protocols &amp; Standards :</h5>
+                    <h5>IAM Protocols &amp; Standards</h5>
                     <p>These terms are usually listed together, but they are different <i>kinds</i> of things: a concept, protocols, a framework, and a token format.</p>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
@@ -295,35 +296,35 @@ Auditing       : "Every door logs each card swipe."</code></div>
                             </tbody>
                         </table>
                     </div>
-                    <h5>Single Sign-On (SSO) :</h5>
+                    <h5>Single Sign-On (SSO)</h5>
                     <p>SSO lets a user authenticate once with a central Identity Provider (IdP) and then access many applications (Service Providers) without logging in again. Apps trust the IdP instead of storing their own passwords, so MFA, password policy, and offboarding are managed in one place. The trade-off: the IdP becomes a high-value target, so it must be protected with strong MFA. SSO across organizations (e.g. logging in to a partner's portal with your company account) is called <b>federation</b>.</p>
                     <div class="code-box code-box-color"><code>User logs in once at the IdP (Okta / Entra ID) with MFA
    -&gt; Jira     (no login prompt)
    -&gt; GitHub   (no login prompt)
    -&gt; Email    (no login prompt)</code></div>
-                    <h5>SAML (Security Assertion Markup Language) :</h5>
+                    <h5>SAML (Security Assertion Markup Language)</h5>
                     <p>SAML 2.0 is an XML-based open standard for exchanging authentication and authorization data between an Identity Provider and a Service Provider. It is the most common protocol behind enterprise SSO for web applications.</p>
                     <ul class="justify">
                         <li><b>Identity Provider (IdP) :</b> Authenticates the user and issues assertions (Okta, Entra ID, ADFS).</li>
                         <li><b>Service Provider (SP) :</b> The application the user wants to access (Salesforce, Jira, AWS console).</li>
                         <li><b>Assertion :</b> A digitally signed XML document stating who the user is, their attributes (email, groups), and how long the assertion is valid.</li>
                     </ul>
-                    <h6>SAML Login Flow (SP-Initiated) -</h6>
+                    <h6>SAML Login Flow (SP-Initiated)</h6>
                     <div class="code-box code-box-color"><code>1. User opens the app (SP)       -&gt; not logged in
 2. SP redirects the browser to the IdP with a SAML AuthnRequest
 3. User logs in at the IdP (password + MFA)
 4. IdP sends a signed SAML Response (assertion) back to the SP through the browser
 5. SP verifies the signature, issuer, audience, and expiry -&gt; user is logged in</code></div>
-                    <h5>OAuth 2.0 :</h5>
+                    <h5>OAuth 2.0</h5>
                     <p>OAuth 2.0 is an authorization framework that lets an application access a user's resources on another service <i>without</i> getting the user's password. The user approves specific permissions (scopes), and the app receives a limited, revocable access token. Example: a photo printing site gets read-only access to your Google Photos. OAuth is about access, not identity; for login, use OIDC on top of it.</p>
-                    <h6>Roles -</h6>
+                    <h6>Roles</h6>
                     <ul class="justify">
                         <li><b>Resource Owner :</b> The user who owns the data.</li>
                         <li><b>Client :</b> The application requesting access.</li>
                         <li><b>Authorization Server :</b> Authenticates the user, gets consent, and issues tokens (Google, Okta, Auth0).</li>
                         <li><b>Resource Server :</b> The API holding the data, which accepts the access token.</li>
                     </ul>
-                    <h6>Key Terms -</h6>
+                    <h6>Key Terms</h6>
                     <ul class="justify">
                         <li><b>Scope :</b> The specific permission requested, such as <code>photos.read</code> or <code>repo</code>.</li>
                         <li><b>Access Token :</b> Short-lived credential sent to the API as <code>Authorization: Bearer &lt;token&gt;</code>.</li>
@@ -331,7 +332,7 @@ Auditing       : "Every door logs each card swipe."</code></div>
                         <li><b>Redirect URI :</b> The pre-registered URL where the authorization server sends the user back.</li>
                         <li><b>State :</b> A random value sent and checked on return to prevent CSRF on the login flow.</li>
                     </ul>
-                    <h6>Grant Types (Flows) -</h6>
+                    <h6>Grant Types (Flows)</h6>
                     <ul class="justify">
                         <li><b>Authorization Code + PKCE :</b> The recommended flow for web, mobile, and single-page apps. PKCE (Proof Key for Code Exchange) ensures a stolen authorization code cannot be redeemed by an attacker.</li>
                         <li><b>Client Credentials :</b> Machine-to-machine access with no user involved, such as a backend service calling another API.</li>
@@ -339,14 +340,14 @@ Auditing       : "Every door logs each card swipe."</code></div>
                         <li><b>Refresh Token :</b> Exchanges a refresh token for a new access token.</li>
                         <li><b>Implicit &amp; Password Grants :</b> Deprecated. Implicit exposes tokens in the URL; the password grant hands the user's password to the app.</li>
                     </ul>
-                    <h6>Authorization Code Flow with PKCE -</h6>
+                    <h6>Authorization Code Flow with PKCE</h6>
                     <div class="code-box code-box-color"><code>1. App  -&gt; Auth Server : redirect user to /authorize?client_id=app&amp;scope=photos.read
                           &amp;code_challenge=HASH&amp;state=xyz&amp;redirect_uri=https://app.com/cb
 2. User logs in and clicks "Allow"
 3. Auth Server -&gt; App  : redirect to https://app.com/cb?code=AUTH_CODE&amp;state=xyz
 4. App  -&gt; Auth Server : POST /token (code + code_verifier) -&gt; access_token, refresh_token
 5. App  -&gt; API         : GET /photos   Authorization: Bearer &lt;access_token&gt;</code></div>
-                    <h5>OpenID Connect (OIDC) :</h5>
+                    <h5>OpenID Connect (OIDC)</h5>
                     <p>OIDC is an identity layer built on top of OAuth 2.0 that adds authentication. The app requests the <code>openid</code> scope and, along with the access token, receives an <b>ID Token</b>: a JWT describing who the user is. OIDC powers "Sign in with Google / Microsoft / Apple" and most modern SSO. Providers publish their configuration at <code>/.well-known/openid-configuration</code>.</p>
                     <div class="code-box code-box-color"><code>// Decoded ID token payload
 {
@@ -358,7 +359,7 @@ Auditing       : "Every door logs each card swipe."</code></div>
   "exp": 1767229200                       // expires (1 hour later)
 }</code></div>
                     <div class="block-quote"><b>OAuth 2.0 vs OIDC :</b> OAuth answers "what can this app access?" with an access token meant for the API. OIDC answers "who is this user?" with an ID token meant for the app. Never treat an OAuth access token as proof of login.</div>
-                    <h5>JSON Web Token (JWT) :</h5>
+                    <h5>JSON Web Token (JWT)</h5>
                     <p>JWT (pronounced "jot") is a compact, URL-safe token format for carrying claims between parties. It has three Base64URL-encoded parts separated by dots: <code>header.payload.signature</code>. The signature lets the receiver detect tampering, but a standard JWT is <i>not encrypted</i>: anyone can decode and read the payload, so never put passwords or secrets in it. JWTs are used as OIDC ID tokens, often as OAuth access tokens, and for stateless API sessions.</p>
                     <div class="code-box code-box-color"><code>Header    : {"alg": "HS256", "typ": "JWT"}
 Payload   : {"sub": "1234567890", "name": "John Doe", "iat": 1516239022}
@@ -371,7 +372,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
                         <li><b>Asymmetric Signing (RS256 / ES256) :</b> A private key signs and a public key verifies. Preferred when many services verify tokens from one issuer.</li>
                         <li><b>Stateless Trade-off :</b> The server does not store sessions, but a JWT cannot easily be revoked before it expires. Keep access tokens short-lived and use refresh tokens.</li>
                     </ul>
-                    <h6>Common IAM Weaknesses (Pentesting) -</h6>
+                    <h6>Common IAM Weaknesses (Pentesting)</h6>
                     <ul class="justify">
                         <li><b>JWT "alg": "none" / No Verification :</b> The server accepts unsigned or modified tokens, letting an attacker change <code>"role": "user"</code> to <code>"admin"</code>.</li>
                         <li><b>JWT Algorithm Confusion :</b> The server expects RS256 but accepts HS256, so the attacker signs a token using the server's <i>public</i> key as the HMAC secret.</li>
@@ -390,34 +391,34 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
                 <h4 class="heading">Access Control</h4>
                 <div class="content">
                     <p>Access control is the process and mechanism that restrict and manage access to systems, data, or resources within an organization. It limits the visibility, access, and use of resources in a computing environment. This ensures that only authorized users can access information, resources, and systems while preventing unauthorized access that could lead to data breaches, system vulnerabilities, or cyberattacks.</p>
-                    <h6>Types of Access Control Models -</h6>
+                    <h6>Types of Access Control Models</h6>
                     <ul>
                         <li>
-                            <h6>Discretionary Access Control (DAC) :</h6>
+                            <h6>Discretionary Access Control (DAC)</h6>
                             <p>The owner of a resource has the authority to grant or deny access to others. Access rights are determined based on the discretion of the resource owner. Once a user is given permission to access an object (usually by a system administrator or through an existing access control list), they can grant access to other users on an as-needed basis. Example: A file owner on a system determines who can read, write, or execute the file.</p>
                         </li>
                         <li>
-                            <h6>Mandatory Access Control (MAC) :</h6>
+                            <h6>Mandatory Access Control (MAC)</h6>
                             <p>Access decisions are made based on predetermined policies set by an administrator, not the resource owner. Resources are classified (e.g., top secret, confidential, public), and users are assigned clearance levels. Mandatory access control establishes strict security policies for individual users and the resources, systems, or data they are allowed to access. Example: Military or governmental organizations often use MAC, where access is based on security clearances.</p>
                         </li>
                         <li>
-                            <h6>Role-Based Access Control (RBAC) :</h6>
+                            <h6>Role-Based Access Control (RBAC)</h6>
                             <p>Access rights are assigned based on roles within an organization, rather than individual users. Users are granted permissions according to the role they are assigned (e.g., admin, manager, employee). Individuals can perform any action that is assigned to their role and may be assigned multiple roles as necessary. Example: The Developer role grants GitHub, Jira, and the dev server; the HR role grants the employee portal and payroll; an admin has full access.</p>
                         </li>
                         <li>
-                            <h6>Rule-Based Access Control :</h6>
+                            <h6>Rule-Based Access Control</h6>
                             <p>A set of rules is established to determine access; these rules are based on specific conditions (e.g., network location, device, or specific times of day). RuBAC is an extension of RBAC in which access is governed by a set of rules that the organization prescribes. Example: Allowing access to certain systems only when a user is connected from the company's secure network.</p>
                         </li>
                         <li>
-                            <h6>Attribute-Based Access Control (ABAC) :</h6>
+                            <h6>Attribute-Based Access Control (ABAC)</h6>
                             <p>Access decisions evaluate attributes of the user (department, clearance), the resource (owner, sensitivity), the action (read, approve), and the environment (time, location, device). More fine-grained than RBAC, since one policy can replace many roles. Example: "Finance managers can approve invoices under $10,000 during business hours from a company-managed device." AWS IAM policies with conditions and tags are a common implementation.</p>
                         </li>
                     </ul>
-                    <h5>Microsegmentation :</h5>
+                    <h5>Microsegmentation</h5>
                     <p>Microsegmentation is the practice of breaking up security perimeters into small zones to maintain separate access for separate parts of the network. Networks are divided into smaller, isolated segments to reduce the lateral movement of potential attackers. Each segment has its own security policy, making it more difficult for threats to spread across the network.</p>
-                    <h5>Zero Trust :</h5>
+                    <h5>Zero Trust</h5>
                     <p>Zero Trust is a security framework that operates on the principle of "never trust, always verify." It requires strict identity verification and access control for every user, device, application, and network trying to access resources, regardless of whether they are inside or outside the corporate network.</p>
-                    <h6>Key Principles of Zero Trust -</h6>
+                    <h6>Key Principles of Zero Trust</h6>
                     <ul class="justify">
                         <li><b>Never Trust, Always Verify :</b> Every request for access to systems, applications, or data is treated as though it is coming from an untrusted source, even if the request originates from inside the network.</li>
                         <li><b>Least Privilege Access :</b> Users and devices are granted the minimum level of access necessary to perform their tasks, reducing the potential attack surface. This includes enforcing strict access control policies and limiting user permissions.</li>
@@ -434,23 +435,23 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
                     <p>Cryptography is the practice and study of techniques for securing communication and data from third parties. It involves the creation of mathematical algorithms and protocols that ensure confidentiality, integrity, authenticity, and non-repudiation of information.</p>
                     <ul>
                         <li>
-                            <h6>Encryption :</h6>
+                            <h6>Encryption</h6>
                             <p>Encryption is the process of transforming readable plaintext into unreadable ciphertext to mask sensitive information from unauthorized users. Encryption is used to protect sensitive data from unauthorized access and data breaches.</p>
                         </li>
                         <li>
-                            <h6>Decryption :</h6>
+                            <h6>Decryption</h6>
                             <p>The decryption is a reverse process of encryption, where ciphertext is transformed back into plaintext using a decryption key.</p>
                         </li>
                         <li>
-                            <h6>Hashing :</h6>
+                            <h6>Hashing</h6>
                             <p>Hashing is a method of converting data (message, file, or password) into a fixed-size string of characters, which typically represents a "fingerprint" of the original data. This converted hash value is called digest. Hashes are used for data integrity checks, ensuring that data has not been altered.</p>
                         </li>
                         <li>
-                            <h6>Digital Signature :</h6>
+                            <h6>Digital Signature</h6>
                             <p>A digital signature is a cryptographic technique used to verify the authenticity and integrity of digital messages or documents. It serves as a virtual equivalent of a handwritten signature or a stamped seal, but with much more security.</p>
                         </li>
                         <li>
-                            <h6>Public Key Infrastructure (PKI) :</h6>
+                            <h6>Public Key Infrastructure (PKI)</h6>
                             <p>Public Key Infrastructure (PKI) is a framework that manages digital keys and certificates, enabling secure communication and data exchange over untrusted networks (like the internet). PKI ensures that public keys are properly distributed, authenticated, and managed so that secure transactions and communications can occur between parties.</p>
                         </li>
                     </ul>
@@ -466,7 +467,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
                         <li><b>Ciphertext :</b> Ciphertext is the encrypted, unreadable data or message and is not interpretable without the decryption key.</li>
                         <li><b>Encryption Algorithm (Cipher) :</b> An encryption algorithm is a mathematical procedure used to transform data (plaintext) into an unreadable format (ciphertext). This transformation process is achieved using a set of rules and a cryptographic key.</li>
                     </ul>
-                    <h6>Types of Encryption -</h6>
+                    <h6>Types of Encryption</h6>
                     <ul class="justify">
                         <li><b>Symmetric Encryption :</b> In symmetric encryption, the same key is used for both encryption and decryption processes. Example: AES (Advanced Encryption Standard) and DES (Data Encryption Standard)</li>
                         <li><b>Asymmetric Encryption :</b> In asymmetric encryption, different keys are used for encryption and decryption: a public key for encryption and a private key for decryption. Asymmetric encryption is also known as public key cryptography (PKC). Example: RSA (Rivest-Shamir-Adleman)</li>
@@ -484,7 +485,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
                         <li>The hash is irreversible, that is, a one-way operation; one cannot reverse the process to retrieve the original input data from the hash value.</li>
                         <li>Example: MD5 (Message Digest Algorithm) and SHA (Secure Hash Algorithm).</li>
                     </ul>
-                    <h5>Checksum :</h5>
+                    <h5>Checksum</h5>
                     <p>A checksum is a small-sized piece of data generated from a larger set of data, used for error detection in data transmission and storage. When the data is transmitted or stored, the checksum is sent or saved alongside it. A checksum is computed by applying a mathematical algorithm (e.g., CRC32, MD5, SHA-1) to the data. Checksum is used in error detection in file transfers, storage, and network protocols (e.g., CRC checks in network protocols like Ethernet or ZIP file integrity).</p>
                     <ul class="justify">
                         <li>Checksums are fast and efficient for detecting accidental data corruption but are not designed for security purposes; they don't provide a high level of protection against malicious tampering.</li>
@@ -497,17 +498,17 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
                 <h4 class="heading">Digital Signature</h4>
                 <div class="content">
                     <p>A digital signature is a cryptographic technique used to verify the authenticity and integrity of digital messages or documents. It serves as a virtual equivalent of a handwritten signature or a stamped seal, but with much more security. Digital signatures are based on asymmetric cryptography (also called public-key cryptography). It is used in email signing, software distribution, legal documents (contracts, agreements, and other legally binding documents), and blockchain.</p>
-                    <h6>Digital Signatures Working -</h6>
+                    <h6>Digital Signatures Working</h6>
                     <ul>
                         <li>
-                            <h6>Key Generation :</h6>
+                            <h6>Key Generation</h6>
                             <ul class="justify">
                                 <li>Private Key : This key is kept confidential by the signer and is used to create the digital signature.</li>
                                 <li>Public Key : This key is shared publicly and can be used by others to verify the authenticity of the signature.</li>
                             </ul>
                         </li>
                         <li>
-                            <h6>Signing Process :</h6>
+                            <h6>Signing Process</h6>
                             <ul class="justify">
                                 <li>The signer creates a hash (a unique digital fingerprint) of the document or message.</li>
                                 <li>This hash is encrypted using the signer's private key, forming the digital signature.</li>
@@ -515,7 +516,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
                             </ul>
                         </li>
                         <li>
-                            <h6>Verification Process :</h6>
+                            <h6>Verification Process</h6>
                             <ul class="justify">
                                 <li>The recipient uses the public key of the signer to decrypt the digital signature.</li>
                                 <li>The recipient also generates a hash of the original document.</li>
@@ -530,26 +531,26 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
                 <h4 class="heading">Public Key Infrastructure</h4>
                 <div class="content">
                     <p>Public Key Infrastructure (PKI) is a framework that manages digital keys and certificates, enabling secure communication and data exchange over untrusted networks (like the internet). PKI ensures that public keys are properly distributed, authenticated, and managed so that secure transactions and communications can occur between parties. PKI involves a set of hardware, software, policies, and standards that work together to provide services such as encryption, authentication, and digital signatures using public key cryptography.</p>
-                    <h6>Key Components of PKI -</h6>
+                    <h6>Key Components of PKI</h6>
                     <ul>
                         <li>
-                            <h6>Certificate Authority (CA) :</h6>
+                            <h6>Certificate Authority (CA)</h6>
                             <p>The CA is the trusted entity responsible for issuing and managing digital certificates. The CA validates the identity of the entity requesting a certificate before issuing it. Essentially, the CA vouches for the authenticity of a public key and the identity behind it. Example: DigiCert, GlobalSign, Let's Encrypt.</p>
                         </li>
                         <li>
-                            <h6>Registration Authority (RA) :</h6>
+                            <h6>Registration Authority (RA)</h6>
                             <p>The RA acts as an intermediary between users and the CA. When a user requests a digital certificate, the RA verifies the applicant’s identity (documents or database checks). Once the RA validates the request, it sends it to the CA for final approval and certificate issuance. The RA does not issue certificates but plays a key role in the identity verification process.</p>
                         </li>
                         <li>
-                            <h6>Digital Certificates :</h6>
+                            <h6>Digital Certificates</h6>
                             <p>A digital certificate is an electronic document that binds a public key to an identity (e.g., an individual, organization, or device). It contains the public key, the identity of the certificate holder, and the CA’s signature confirming its authenticity. <code>X.509</code> certificates are the most common format for digital certificates. Key fields of a digital certificate include the public key (associated with the user or entity), the subject (owner's identity, e.g., domain, email, or organizational entity), the issuer (Certificate Authority), the serial number (a unique identifier for the certificate.), the expiration date (certificate validity period), and the digital signature (the CA's signature confirming the certificate's authenticity).</p>
                         </li>
                         <li>
-                            <h6>Key Management :</h6>
+                            <h6>Key Management</h6>
                             <p>PKI systems must ensure proper key storage, revocation, and renewal processes. This includes handling certificate expiration and managing compromised keys. Key storage is typically done using secure hardware modules, such as Hardware Security Modules (HSMs), or software-based solutions like key vaults.</p>
                         </li>
                     </ul>
-                    <h6>Use Case of PKI : SSL/TLS Certificates -</h6>
+                    <h6>Use Case of PKI: SSL/TLS Certificates</h6>
                     <ul class="justify">
                         <li><b>Server & Client Interaction :</b> A client (web browser) connects to a web server via HTTPS. The server presents its SSL/TLS certificate, which contains its public key.</li>
                         <li><b>Certificate Validation :</b> The client’s browser checks if the certificate is valid (signed by a trusted CA, not expired, and not revoked). If valid, a secure communication channel is established by encrypting data using the server’s public key.</li>
@@ -562,7 +563,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
                 <h4 class="heading">Security Operations</h4>
                 <div class="content">
                     <p>SecOps (Security Operations) is a crucial discipline in cybersecurity that focuses on the integration of security practices and IT operations to ensure the continuous protection, monitoring, and management of an organization's infrastructure, networks, and data.</p>
-                    <h5>Logging and Monitoring :</h5>
+                    <h5>Logging and Monitoring</h5>
                     <p>Logging refers to the practice of recording detailed information about events, processes, and actions that occur within a system or network.</p>
                     <ul class="justify">
                         <li>These records, called logs, provide a history of events and activities that can be used for troubleshooting, performance monitoring, security auditing, and incident response.</li>
@@ -570,7 +571,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
                         <li>A log should be stored separately from the system where it is generated.</li>
                     </ul>
 
-                    <h5>Security Information and Event Management :</h5>
+                    <h5>Security Information and Event Management</h5>
                     <p>Security Information and Event Management (SIEM) is a system or tool used to provide real-time monitoring, analysis, and response to security threats across an organization's IT infrastructure.</p>
                     <ul class="justify">
                         <li>SIEM tools collect, aggregate, and analyze data from various sources, such as security logs, network traffic, and endpoint devices, to detect potential security incidents, vulnerabilities, or breaches.</li>
@@ -580,32 +581,32 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
                         <li>Example: Splunk, a popular SIEM platform that helps organizations monitor, analyze, and respond to security events and incidents.</li>
                     </ul>
 
-                    <h5>Intrusion Detection Systems :</h5>
+                    <h5>Intrusion Detection Systems</h5>
                     <p>Intrusion Detection Systems (IDS) are security tools designed to detect unauthorized access or anomalies in a network or system. IDS monitors and analyzes network traffic, system activity, and user behavior to identify potential security breaches, such as cyberattacks or data theft, and alerts administrators to take action. IDS automate the inspection of logs and real-time system events to detect intrusion attempts and system failures.</p>
-                    <h6>Type of IDS -</h6>
+                    <h6>Type of IDS</h6>
                     <ul class="justify">
                         <li><b>Network-based IDS (NIDS) :</b> NIDS monitor network traffic for suspicious activity. It is placed at strategic points within the network (e.g., between the internal network and the internet). It detects external attacks like denial-of-service (DoS) and port scanning.</li>
                         <li><b>Host-based IDS (HIDS) :</b> HIDS monitor activity on individual devices or hosts (servers, computers). It is installed on the host device, where it monitors file integrity, system calls, and application logs. It detects internal threats and activities like unauthorized access to files and malicious changes to system configurations.</li>
                     </ul>
 
-                    <h5>Intrusion Prevention Systems :</h5>
+                    <h5>Intrusion Prevention Systems</h5>
                     <p>An Intrusion Prevention System (IPS) is a network security device that monitors network and/or system activities for malicious activity. IPS is placed in line with traffic and is more advanced than an Intrusion Detection System (IDS). IPS not only detects but also automatically blocks or prevents the detected threats in real time to prevent unauthorized access or attacks on computer systems and networks. Since IPSs are more effective at preventing network-based attacks, their function is integrated into firewalls.</p>
-                    <h6>Types of IPS -</h6>
+                    <h6>Types of IPS</h6>
                     <ul class="justify">
                         <li><b>Network-based IPS (NIPS) :</b> These are deployed at key points in the network (e.g., network perimeter) to monitor and protect the entire network.</li>
                         <li><b>Host-based IPS (HIPS) :</b> Installed on individual devices or hosts, HIPS protect against threats targeting a specific machine, such as a server or endpoint.</li>
                         <li><b>Wireless IPS (WIPS) :</b> A specialized IPS designed to protect wireless networks from unauthorized access or attacks.</li>
                     </ul>
 
-                    <h5>Firewalls :</h5>
+                    <h5>Firewalls</h5>
                     <p>A firewall is a network security system that monitors and controls incoming and outgoing network traffic based on predetermined security rules. It acts as a barrier between a trusted internal network and untrusted external networks, such as the internet. These rules can be configured to permit or deny traffic based on factors such as IP address, port number, protocol, or specific applications. Firewalls can be hardware devices, software programs, or a combination of both. Firewalls use a variety of techniques to control and monitor network traffic, including packet filtering, stateful inspection, and application-level filtering. It blocks unauthorized access and filters out malicious traffic.</p>
-                    <h6>Types of Firewall -</h6>
+                    <h6>Types of Firewall</h6>
                     <ul class="justify">
                         <li><b>Network-based Firewall</b> : A network firewall is a device that protects an entire network from unauthorized access and attacks. Network firewalls can be hardware or software based and are typically installed at the perimeter of a network to block unauthorized access from the internet.</li>
                         <li><b>Host-based Firewall :</b> A host-based firewall is a firewall that protects an individual computer from unauthorized access and attacks. Host-based firewalls are typically software-based and are installed on individual computers to control access to network resources and block unauthorized traffic.</li>
                     </ul>
 
-                    <h5>Honeypots :</h5>
+                    <h5>Honeypots</h5>
                     <p>A honeypot is a security resource or system set up to attract and deceive attackers, making it appear as though it's a vulnerable or valuable target. The purpose of a honeypot is not to serve a legitimate function but to lure cybercriminals into interacting with it so that their actions can be monitored and analyzed. This helps cybersecurity professionals gather intelligence on attackers' tactics, techniques, and procedures (TTPs), as well as distract attackers from real, critical systems.</p>
                 </div>
             </div>
@@ -614,21 +615,21 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
                 <h4 class="heading">Security Testing &amp; Red Teaming</h4>
                 <div class="content">
                     <p>Security testing evaluates how well an organization can resist, detect, and respond to attacks. It is performed by authorized professionals under an agreed scope and rules of engagement, so the findings strengthen defenses rather than cause harm.</p>
-                    <h5>Security Teams :</h5>
+                    <h5>Security Teams</h5>
                     <ul class="justify">
                         <li><b>Red Team :</b> Plays the attacker. Emulates real-world adversaries to test defenses from an attacker's perspective.</li>
                         <li><b>Blue Team :</b> Plays the defender. The SOC, incident responders, and engineers who monitor, detect, and respond to threats.</li>
                         <li><b>Purple Team :</b> Not a separate team but a collaborative exercise where red and blue work together, sharing findings in real time so detections improve as attacks are run.</li>
                         <li><b>White Team :</b> The referees who define scope, set rules of engagement, and oversee the exercise.</li>
                     </ul>
-                    <h5>Red Teaming :</h5>
+                    <h5>Red Teaming</h5>
                     <p>Red Teaming is a simulated cyberattack performed by ethical hackers to assess an organization's security from an adversary's perspective. An independent red team emulates real-world threat actors to evaluate the effectiveness, readiness, and resilience of the organization's people, processes, and technology.</p>
                     <ul class="justify">
                         <li>The objective is not only to find vulnerabilities, but also to test detection and response capabilities, identify gaps across people, processes, and technology, and measure true attack preparedness.</li>
                         <li>Unlike traditional penetration testing, which focuses mainly on technical flaws, red teaming evaluates the organization's overall security posture in a realistic, goal-driven attack scenario (e.g., "reach the customer database without being detected").</li>
                         <li>Engagements are often <b>objective-based</b> and may run for weeks, favouring stealth and persistence over breadth.</li>
                     </ul>
-                    <h6>Types of Security Assessments -</h6>
+                    <h6>Types of Security Assessments</h6>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -662,7 +663,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
                             </tbody>
                         </table>
                     </div>
-                    <h6>Rules of Engagement -</h6>
+                    <h6>Rules of Engagement</h6>
                     <ul class="justify">
                         <li><b>Authorization :</b> written permission defining what may be tested; testing without it is illegal.</li>
                         <li><b>Scope :</b> the in-scope and out-of-scope systems, times, and techniques.</li>
@@ -676,13 +677,13 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
                 <h4 class="heading">Cyber Kill Chain</h4>
                 <div class="content">
                     <p>The Cyber Kill Chain, developed by Lockheed Martin, is a security framework that outlines the seven stages of a cyberattack, from initial preparation to final impact. It helps organizations understand attacker behaviour, detect threats early, and disrupt an attack at any stage, since breaking any single link stops the chain.</p>
-                    <h6>Why It Exists -</h6>
+                    <h6>Why It Exists</h6>
                     <ul class="justify">
                         <li>Provides a clear, step-by-step model of how attacks progress.</li>
                         <li>Helps defenders detect attackers early and decide where to interrupt (&quot;kill&quot;) the attack.</li>
                         <li>Improves SOC monitoring and incident response, and gives a common high-level vocabulary for attack stages.</li>
                     </ul>
-                    <h6>The 7 Stages -</h6>
+                    <h6>The 7 Stages</h6>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -739,7 +740,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
                             </tbody>
                         </table>
                     </div>
-                    <h6>Example Flow -</h6>
+                    <h6>Example Flow</h6>
                     <div class="code-box code-box-color"><code>Reconnaissance    -> collect employee emails
 Weaponization     -> build a macro-enabled Excel file
 Delivery          -> send it in a phishing email
@@ -747,7 +748,7 @@ Exploitation      -> user opens the file and enables macros
 Installation      -> malware installs a backdoor
 C2                -> backdoor connects to the attacker's server
 Actions           -> sensitive data is exfiltrated</code></div>
-                    <h6>How It Is Used -</h6>
+                    <h6>How It Is Used</h6>
                     <ul class="justify">
                         <li><b>Threat Detection :</b> SOC teams map alerts to stages (Delivery -&gt; suspicious emails, C2 -&gt; beaconing traffic).</li>
                         <li><b>Incident Response :</b> identify which stage the attacker is in and contain accordingly.</li>
@@ -762,13 +763,13 @@ Actions           -> sensitive data is exfiltrated</code></div>
                 <h4 class="heading">MITRE ATT&amp;CK</h4>
                 <div class="content">
                     <p>MITRE ATT&amp;CK (Adversarial Tactics, Techniques &amp; Common Knowledge) is a globally adopted framework that documents how real-world attackers behave. It provides a standardized, evidence-based way to describe attacker actions across the entire attack lifecycle, giving red teams, blue teams, and tools a shared vocabulary.</p>
-                    <h6>Why It Exists -</h6>
+                    <h6>Why It Exists</h6>
                     <ul class="justify">
                         <li>Before ATT&amp;CK, the industry lacked a common language for attacker behaviour.</li>
                         <li>Red teams can simulate realistic attacks; blue teams / SOCs can build better detection and response.</li>
                         <li>Security tools can map and validate their coverage, and organizations can find visibility and control gaps.</li>
                     </ul>
-                    <h6>Structure -</h6>
+                    <h6>Structure</h6>
                     <ul class="justify">
                         <li><b>Tactics (the "why") :</b> the attacker's goal or stage. These form the columns of the matrix.</li>
                         <li><b>Techniques (the "how") :</b> how a goal is achieved. Each tactic contains many techniques.</li>
@@ -777,12 +778,24 @@ Actions           -> sensitive data is exfiltrated</code></div>
                     <div class="code-box code-box-color"><code>Tactic        : Credential Access          (the goal)
   Technique   : T1003  OS Credential Dumping   (the method)
     Sub-tech  : T1003.001  LSASS Memory        (the specific variation)</code></div>
-                    <h6>The 14 Enterprise Tactics -</h6>
-                    <ul class="justify">
-                        <li>1. Reconnaissance &nbsp; 2. Resource Development &nbsp; 3. Initial Access &nbsp; 4. Execution &nbsp; 5. Persistence &nbsp; 6. Privilege Escalation &nbsp; 7. Defense Evasion</li>
-                        <li>8. Credential Access &nbsp; 9. Discovery &nbsp; 10. Lateral Movement &nbsp; 11. Collection &nbsp; 12. Command &amp; Control &nbsp; 13. Exfiltration &nbsp; 14. Impact</li>
-                    </ul>
-                    <h6>Example Techniques -</h6>
+                    <h6>The 14 Enterprise Tactics</h6>
+                    <ol class="columns">
+                        <li>Reconnaissance</li>
+                        <li>Resource Development</li>
+                        <li>Initial Access</li>
+                        <li>Execution</li>
+                        <li>Persistence</li>
+                        <li>Privilege Escalation</li>
+                        <li>Defense Evasion</li>
+                        <li>Credential Access</li>
+                        <li>Discovery</li>
+                        <li>Lateral Movement</li>
+                        <li>Collection</li>
+                        <li>Command &amp; Control</li>
+                        <li>Exfiltration</li>
+                        <li>Impact</li>
+                    </ol>
+                    <h6>Example Techniques</h6>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -821,27 +834,27 @@ Actions           -> sensitive data is exfiltrated</code></div>
                             </tbody>
                         </table>
                     </div>
-                    <h6>Matrices -</h6>
+                    <h6>Matrices</h6>
                     <ul class="justify">
                         <li><b>Enterprise :</b> Windows, Linux, macOS, Cloud, SaaS, Office 365, Containers.</li>
                         <li><b>Mobile :</b> Android, iOS.</li>
                         <li><b>ICS :</b> Industrial Control Systems / SCADA.</li>
                     </ul>
-                    <h6>How It Is Used -</h6>
+                    <h6>How It Is Used</h6>
                     <ul class="justify">
                         <li><b>Red Teaming :</b> build realistic, chained attack scenarios to exercise defenses.</li>
                         <li><b>Blue Team / SOC :</b> create detection logic, prioritize telemetry, and map coverage gaps against SIEMs (Splunk, Sentinel, QRadar, Elastic).</li>
                         <li><b>Threat Intelligence :</b> map known threat groups (e.g. APT29, FIN7, Lazarus) to the techniques they favour.</li>
                         <li><b>Product Evaluation :</b> EDR/XDR tools are assessed against ATT&amp;CK techniques (MITRE Engenuity evaluations).</li>
                     </ul>
-                    <h6>Example Attack Chain (mapped) -</h6>
+                    <h6>Example Attack Chain (mapped)</h6>
                     <div class="code-box code-box-color"><code>Initial Access       -> T1566.001  Spear-phishing Email
 Execution            -> T1059.001  PowerShell
 Privilege Escalation -> T1068      Exploitation for Privilege Escalation
 Credential Access    -> T1003.001  LSASS Memory
 Lateral Movement     -> T1021.002  SMB / Remote Services
 Exfiltration         -> T1041      Exfiltration Over C2 Channel</code></div>
-                    <h6>Kill Chain vs ATT&amp;CK -</h6>
+                    <h6>Kill Chain vs ATT&amp;CK</h6>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -878,8 +891,8 @@ Exfiltration         -> T1041      Exfiltration Over C2 Channel</code></div>
                 <h4 class="heading">Attacks</h4>
                 <div class="content">
                     <p>Attacks refer to any deliberate action or attempt to compromise the confidentiality, integrity, or availability of systems, networks, or data, with the intention of altering, stealing, destroying, or exposing information. These attacks can be perpetrated by individuals, groups, or even nation-states. The goal of a cyberattack can range from stealing sensitive information to disrupting the functioning of a system or causing financial, operational, or reputational harm.</p>
-                    <h6>Types of Attacks -</h6>
-                    <h5>Social Engineering :</h5>
+                    <h6>Types of Attacks</h6>
+                    <h5>Social Engineering</h5>
                     <p>Social engineering attacks involve manipulating or deceiving individuals into divulging confidential or personal information, typically to gain unauthorized access to systems, data, or financial resources. Unlike technical hacking methods that exploit vulnerabilities in software or hardware, social engineering targets the human element of security, exploiting psychological tendencies and trust. Social engineering techniques include phishing, baiting, tailgating (or piggybacking), and pretexting.</p>
                     <ul class="justify">
                         <li><b>Phishing :</b> Attackers impersonate legitimate organizations or individuals to trick people into revealing sensitive information, such as passwords, credit card numbers, or personal details. This is typically done through fraudulent emails, websites, or messages that appear to be from trusted sources, such as banks, online services, or social media platforms.</li>
@@ -893,7 +906,7 @@ Exfiltration         -> T1041      Exfiltration Over C2 Channel</code></div>
                         <li><b>Pharming :</b> Pharming is a type of cyber attack where a user is redirected from a legitimate website to a malicious one, often without their knowledge. This is typically done by exploiting vulnerabilities in DNS or by infecting the user's computer with malware that modifies their host file.</li>
                         <li><b>Evil Twin :</b> An Evil Twin attack is a type of wireless network attack where a malicious actor sets up a fake Wi-Fi access point that appears to be a legitimate, trusted network. The attacker’s fake access point mimics the SSID (network name) of a legitimate Wi-Fi network, often in a public space like an airport or hotel.</li>
                     </ul>
-                    <h5>Phishing Attacks :</h5>
+                    <h5>Phishing Attacks</h5>
                     <p>In phishing attacks, attackers impersonate legitimate organizations or individuals to trick people into revealing sensitive information, such as passwords, credit card numbers, or personal details. This is typically done through fraudulent emails, websites, or messages that appear to be from trusted sources, such as banks, online services, or social media platforms.</p>
                     <ul class="justify">
                         <li><b>Spear Phishing :</b> A targeted attempt to steal sensitive information using personalized fake communications (e.g., emails from seemingly trusted sources).</li>
@@ -901,11 +914,11 @@ Exfiltration         -> T1041      Exfiltration Over C2 Channel</code></div>
                         <li><b>Vishing (Voice Phishing) :</b> Attackers use phone calls or voice messages to impersonate legitimate entities and extract sensitive information over the phone.</li>
                         <li><b>Smishing (SMS Phishing) :</b> Phishing attempts through text messages to deceive users into revealing personal information.</li>
                     </ul>
-                    <h5>Eavesdropping (Sniffing) :</h5>
+                    <h5>Eavesdropping (Sniffing)</h5>
                     <p>Eavesdropping is the act of secretly intercepting and listening to private communications or data transmissions without the consent of the involved parties. It is often done to gather sensitive information, such as personal details, passwords, credit card numbers, or confidential business data. To prevent eavesdropping, encryption should be used for sensitive communications, and VPNs should be used to secure data over public networks.</p>
-                    <h5>DNS Spoofing :</h5>
+                    <h5>DNS Spoofing</h5>
                     <p>DNS Spoofing (also known as DNS Cache Poisoning) is an attack in which an attacker manipulates the Domain Name System (DNS) records to redirect or intercept users' web traffic. In a DNS spoofing attack, the attacker provides false DNS responses to a victim, causing the victim’s system to trust the malicious data. This can lead the victim to be redirected to malicious websites or servers, even though the domain name they entered was legitimate. To mitigate, use secure DNS servers, cache hygiene (regularly clearing DNS caches), and encryption.</p>
-                    <h5>Malware Attacks :</h5>
+                    <h5>Malware Attacks</h5>
                     <p>A malware attack refers to the process by which a malicious actor or software spreads or executes malware on a target system or network. Malware, short for malicious software, is any program or code designed to harm, exploit, or compromise the functionality of a computer, network, or device. Malware can lead to data theft, system damage, or a complete system takeover. Common types of malware include viruses, worms, trojans, ransomware, and spyware.</p>
                     <ul class="justify">
                         <li><b>Viruses :</b> A virus is a piece of malicious software or code that attaches itself to a program or file. It is designed to spread from one computer to another when the infected files are shared or opened, and it works by altering, overwriting, or deleting files once it infects a system. A virus often disrupts system operations.</li>
@@ -919,7 +932,7 @@ Exfiltration         -> T1041      Exfiltration Over C2 Channel</code></div>
                         <li><b>Rootkit :</b> A rootkit is malicious software designed to gain unauthorized access to a system or network and hide its presence. It allows attackers to maintain privileged control (root access) over the system while remaining undetected, often by manipulating system processes or logs. Rootkits operate at a low system level, such as the kernel or firmware, making them difficult to detect with standard security software. Detecting and removing rootkits typically requires specialized tools or a complete system reformat.</li>
                         <li><b>Botnet :</b> A botnet is a network of infected computers or devices, known as "bots" or "zombies," that are controlled remotely by an attacker, often without the knowledge of the device's owner. These devices are typically compromised by malware and can be used for a variety of malicious purposes, including Distributed Denial-of-Service (DDoS) attacks, spamming (sending large volumes of unsolicited emails), data theft, and mining cryptocurrency.</li>
                     </ul>
-                    <h5>Password Attacks :</h5>
+                    <h5>Password Attacks</h5>
                     <p>Passwords are often the primary means of authenticating users, and if compromised, they can provide access to sensitive data, systems, and resources.</p>
                     <ul class="justify">
                         <li><b>Brute Force Attack :</b> In a brute-force attack, the attacker systematically tries every possible combination of characters until the correct password is found. This method involves testing all possible combinations of letters, numbers, and symbols, making it time-consuming but effective if the password is weak or simple. Countermeasures include using long and complex passwords, implementing account lockouts after multiple failed attempts, and enabling multi-factor authentication (MFA).</li>
@@ -927,21 +940,21 @@ Exfiltration         -> T1041      Exfiltration Over C2 Channel</code></div>
                         <li><b>Rainbow Table Attack :</b> Rainbow tables are precomputed tables used to reverse cryptographic hash functions, converting hashed passwords back into plaintext. Attackers use precompiled tables of hash values corresponding to common passwords and attempt to match them with the hashes stored in a database. Countermeasures include using salting (adding random data) when storing passwords and employing strong cryptographic hashing algorithms like bcrypt.</li>
                         <li><b>Credential Stuffing :</b> Credential stuffing attacks use previously stolen username and password combinations (often from data breaches) to gain unauthorized access to multiple systems. Attackers automate the process of trying stolen credentials on various websites or services. If users reuse passwords across multiple sites, attackers can gain access to accounts on those platforms. Countermeasures include using never-reused passwords across different accounts, enabling MFA, and using password managers to generate and store unique passwords.</li>
                     </ul>
-                    <h5>MitM Attack :</h5>
+                    <h5>MitM Attack</h5>
                     <p>A Man-in-the-Middle (MitM) attack is a type of cyberattack where an attacker intercepts and potentially alters communication between two parties without their knowledge. The attacker positions themselves between the sender and the receiver, allowing them to eavesdrop on the conversation or modify the data being transmitted. This can occur in unsecured communication channels, like public Wi-Fi networks.</p>
-                    <h5>Denial-of-Service Attack :</h5>
+                    <h5>Denial-of-Service Attack</h5>
                     <p>In a Denial-of-Service (DoS) attack, an attacker attempts to disrupt the normal functioning of a target system, service, or network by overwhelming it with a flood of traffic or requests. The goal is to make the targeted system unavailable to its users, effectively denying access to legitimate users. DoS attacks can result in downtime for websites, services, or networks, causing significant disruptions, financial losses, or reputational damage.</p>
                     <ul class="justify">
                         <li><b>DoS (Denial of Service) :</b> In a traditional DoS attack, a single source or machine sends a massive volume of traffic to the target system, overwhelming its resources (such as bandwidth, memory, or CPU), causing the system to slow down or crash.</li>
                         <li><b>DDoS (Distributed Denial of Service) :</b> In a DDoS attack, the attacker uses multiple machines or devices (often part of a botnet) to flood the target system with traffic, making the attack more difficult to stop because it comes from many different sources.</li>
                     </ul>
-                    <h5>Privilege Escalation :</h5>
+                    <h5>Privilege Escalation</h5>
                     <p>Privilege escalation is a type of security vulnerability or attack where an attacker gains elevated access to resources or functions that they would normally not be able to access. This occurs when a user, application, or process is granted higher privileges (e.g., admin or root rights) than intended.</p>
                     <ul class="justify">
                         <li><b>Vertical Privilege Escalation (or Privilege Elevation) :</b> This occurs when a user gains higher privileges, such as a regular user gaining administrative (root) access. For example, a standard user may exploit a vulnerability to gain administrator rights and perform actions that are normally restricted.</li>
                         <li><b>Horizontal Privilege Escalation :</b> This happens when an attacker gains access to another user's resources or data, but without increasing their own privileges. In this case, they can access or modify data that belongs to a different user with similar or equal privilege levels.</li>
                     </ul>
-                    <h5>Advanced Persistent Threat (APT) :</h5>
+                    <h5>Advanced Persistent Threat (APT)</h5>
                     <p>An Advanced Persistent Threat (APT) is a type of cyberattack where an unauthorized user gains prolonged and covert access to a network to steal data or surveil activity. These attacks are typically orchestrated by well-funded and highly skilled threat actors, often linked to nation-states or organized crime groups.</p>
                 </div>
             </div>
@@ -950,10 +963,10 @@ Exfiltration         -> T1041      Exfiltration Over C2 Channel</code></div>
                 <h4 class="heading">Vulnerabilities</h4>
                 <div class="content">
                     <p>A vulnerability is a weakness in an information system, security procedures, internal controls, or implementation that could be exploited or triggered by a threat source.</p>
-                    <h6>Types of Vulnerabilities -</h6>
-                    <h5>Remote Code Execution (RCE) :</h5>
+                    <h6>Types of Vulnerabilities</h6>
+                    <h5>Remote Code Execution (RCE)</h5>
                     <p>Remote Code Execution (RCE) is a critical security vulnerability that allows an attacker to run arbitrary code on a remote system, usually the server, without authorization. RCE occurs when an application or system: Takes user input, and Executes it as code, or passes it to a vulnerable component (e.g., shell, interpreter) without proper validation. This allows attackers to send specially crafted data that executes commands, installs malware, or takes control of the system. Consequences of RCE: Full server compromise, Data theft or loss, Lateral movement within a network, etc. RCE Examples: Log4Shell (Apache Log4j).</p>
-                    <h5>Injection :</h5>
+                    <h5>Injection</h5>
                     <p>An injection vulnerability is a security flaw that allows an attacker to inject malicious input into a program, causing it to interpret that input as code or commands instead of plain data. Applications often interact with databases, operating systems, web services, or interpreters using user-provided input. If the application fails to properly validate or escape this input, attackers can "inject" special code that the system mistakenly executes. Types of Injection:</p>
                     <ul class="justify">
                         <li><b>SQL Injection:</b> Targets databases by injecting SQL commands.</li>
@@ -964,26 +977,26 @@ Exfiltration         -> T1041      Exfiltration Over C2 Channel</code></div>
                     </ul>
                     <h5>Insecure Deserialisation</h5>
                     <p>Insecure deserialization is a vulnerability that occurs when an application deserializes untrusted or tampered data without proper validation, allowing an attacker to manipulate the serialized object in a way that leads to unintended behavior such as remote code execution (RCE), privilege escalation, authentication bypass, or denial of service (DoS). Serialization is the process of converting an object (such as a Python dictionary or a Java object) into a format that can be stored or transmitted, like JSON, XML, or binary. Deserialization is the reverse process, where the data is converted back into its original object form.</p>
-                    <h5>Server-Side Request Forgery (SSRF) :</h5>
+                    <h5>Server-Side Request Forgery (SSRF)</h5>
                     <p>Server-Side Request Forgery (SSRF) is a web vulnerability that occurs when an attacker is able to make the server send HTTP (or other protocol) requests to an unintended destination, typically due to insecure handling of user-supplied URLs or input. In SSRF, the attacker tricks the server into making a request to a target that the attacker cannot reach directly. This is possible when an application fetches data from a URL provided by the user - for example, downloading a file, accessing an image, or connecting to a webhook - without validating or restricting the destination. Prevent SSRF by restricting allowed domains/IPs, blocking internal metadata endpoints, using firewalls or network segmentation, validating user input, and limiting server response data exposure.</p>
-                    <h5>Broken Access Control (BAC) :</h5>
+                    <h5>Broken Access Control (BAC)</h5>
                     <p>Broken Access Control is a security vulnerability that occurs when an application fails to properly enforce restrictions on what authenticated users are allowed to do, enabling attackers to gain unauthorized access to resources or perform actions outside their intended permissions. Access control defines who can perform specific actions within an application. When these rules are poorly implemented or entirely missing, it can allow malicious users to access other users' data, perform admin-level actions without proper authorization, or modify and delete records they should not have access to. Examples of Broken Access Control include Insecure Direct Object References (IDOR), where attackers modify user IDs in URLs to access unauthorized accounts; missing role checks that let regular users access admin functions; forced browsing to hidden, privileged endpoints; and relying on frontend restrictions without backend enforcement, allowing attackers to send unauthorized requests manually.</p>
-                    <h5>Broken Authentication :</h5>
+                    <h5>Broken Authentication</h5>
                     <p>Broken Authentication is a security vulnerability where an application’s authentication mechanisms are improperly implemented, allowing attackers to compromise user accounts, bypass authentication, or impersonate other users. Common causes include weak, predictable, or default passwords; poor session management (e.g., session IDs not rotated or invalidated on logout); credential stuffing attacks due to reused passwords; insecure password recovery or reset processes; exposing authentication tokens in URLs or logs; weak JWT validation or misconfigured OAuth / SAML flows (see <a href="#iam">IAM</a>); and failure to enforce multi-factor authentication (MFA) where appropriate. Consequences of broken authentication can include account takeover, data theft or unauthorized access, privilege escalation if administrative accounts are compromised, and fraud or identity theft.</p>
-                    <h5>Sensitive Data Exposure :</h5>
+                    <h5>Sensitive Data Exposure</h5>
                     <p>Sensitive Data Exposure is a security vulnerability that occurs when an application inadvertently exposes confidential or personal information to unauthorized parties. This can happen through weak encryption, improper handling, or insecure transmission and storage of sensitive data such as passwords, credit card numbers, personal identification details, or health records. When sensitive data is exposed, attackers can steal or manipulate it, leading to identity theft, financial loss, or privacy violations. Protecting sensitive data requires strong encryption, secure transmission protocols (like HTTPS), proper access controls, and careful data handling practices throughout the application lifecycle.</p>
-                    <h5>Security Misconfiguration :</h5>
+                    <h5>Security Misconfiguration</h5>
                     <p>Security Misconfiguration is a common vulnerability that occurs when security settings in an application, server, or platform are incorrectly configured or left at insecure defaults. This can expose the system to attacks by making it easier for attackers to exploit weaknesses, access sensitive data, or take control of the environment. Examples of security misconfiguration include leaving default passwords or keys unchanged, enabling unnecessary features, services, or ports, exposing sensitive information through debugging or error messages, and using insecure HTTP headers or outdated software versions.</p>
-                    <h5>Cross-Site Scripting (XSS) :</h5>
+                    <h5>Cross-Site Scripting (XSS)</h5>
                     <p>Cross-Site Scripting (XSS) is a web security vulnerability that allows attackers to inject malicious scripts into web pages viewed by other users. These scripts are typically written in JavaScript and can be used to manipulate content, steal sensitive information such as cookies and session tokens, hijack user sessions, deface websites, redirect users to malicious sites, or perform actions on behalf of the user without their consent. XSS occurs when an application takes untrusted input-like form fields, URLs, or comments-and renders it in a web page without proper sanitization or escaping, allowing the attacker’s script to execute in the victim’s browser. To prevent XSS, output should be escaped based on its context (HTML, JavaScript, URL), input should be sanitized using libraries like DOMPurify, and a Content Security Policy (CSP) should be implemented to restrict script execution. Unsafe DOM methods like innerHTML should be avoided, and modern frameworks such as React or Angular, which automatically handle output encoding, should be used. Types of XSS:</p>
                     <ul class="justify">
                         <li><b>Stored XSS (Persistent):</b> The malicious script is stored on the server (e.g., in comments or user profiles) and served to users later.</li>
                         <li><b>Reflected XSS:</b> The script is embedded in a URL or request and immediately reflected in the response, often in error messages or search results.</li>
                         <li><b>DOM-based XSS:</b> The vulnerability exists in client-side JavaScript that processes data from the browser without proper sanitization.</li>
                     </ul>
-                    <h5>Cross-Site Request Forgery (CSRF) :</h5>
+                    <h5>Cross-Site Request Forgery (CSRF)</h5>
                     <p>Cross-Site Request Forgery (CSRF) is a security vulnerability where an attacker tricks a logged-in user into unknowingly submitting unwanted actions on a web application. This happens because the user’s browser automatically includes their authentication credentials (like cookies) when making requests, so the server thinks the requests are legitimate. CSRF works by tricking a logged-in user’s browser into sending unauthorized requests to a trusted site without their knowledge, using their active authentication (like cookies). The site then processes these forged requests as if they were legitimate actions from the user. Prevent CSRF by using anti-CSRF tokens in forms and requests, requiring re-authentication for sensitive actions, setting the SameSite cookie attribute to restrict cross-site cookie sending, and verifying the request source through Referer or Origin headers.</p>
-                    <h5>SQL Injection :</h5>
+                    <h5>SQL Injection</h5>
                     <p>SQL Injection (SQLi) is a type of cyberattack in which an attacker exploits vulnerabilities in an application by inserting malicious SQL (Structured Query Language) code into input fields. This can allow the attacker to manipulate the database-viewing, modifying, or deleting data they should not have access to. Most web applications interact with databases using SQL queries, and if user input is not properly validated or sanitized, attackers can craft input that alters the intended SQL query. SQL Injection enables attackers to bypass authentication, access and steal sensitive data, modify or delete records, execute administrative tasks, extract entire databases, and potentially take control of the server. To prevent SQL Injection, use prepared statements (parameterized queries) to ensure user input is treated as data, not code. Validate and sanitize all inputs through input validation and escaping. Follow the principle of least privilege by restricting database permissions. Utilize ORM frameworks, which often include built-in SQLi protection, and deploy web application firewalls (WAFs) as an additional defense layer. Types of SQLi:</p>
                     <ul>
                         <li>
@@ -1007,12 +1020,12 @@ Exfiltration         -> T1041      Exfiltration Over C2 Channel</code></div>
 
             <!-- Navigation Buttons -->
             <nav>
-                <a href="/Cheatsheets"><i class="bi bi-arrow-left-square-fill"></i></a>
-                <a href="#" ><i class="bi bi-arrow-up-square-fill"></i></a>
+                <a href="/cheatsheets" aria-label="All cheatsheets"><i class="bi bi-grid-3x3-gap-fill" aria-hidden="true"></i></a>
+                <a href="#" aria-label="Back to top"><i class="bi bi-arrow-up" aria-hidden="true"></i></a>
             </nav>
         </div>
 
         <!-- JavaScript -->
-        <script src="../assets/js/script.js"></script>
+        <script src="../assets/js/script.js?v=8"></script>
     </body>
 </html>

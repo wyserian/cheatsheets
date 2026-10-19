@@ -5,21 +5,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>Software Architecture &amp; Development Cheatsheet</title>
+        <script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('cheatsheet-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'))}catch(e){}</script>
 
         <!-- Bootstrap CDN -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
         <!-- CSS -->
-        <link rel="stylesheet" href="../assets/css/style.css">
+        <link rel="stylesheet" href="../assets/css/style.css?v=11">
     </head>
 
-    <body data-theme="dark">
+    <body>
         <div class="container">
             <!-- Top Bar -->
             <div class="top-bar">
-                <a href="/Cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
-                <div class="button"><i class="bi bi-circle-half"></i></div>
+                <a href="/cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
+                <button class="theme-toggle" type="button" aria-label="Toggle theme"><i class="bi bi-sun" aria-hidden="true"></i></button>
             </div>
 
             <h3 class="title">Software Architecture &amp; Development</h3>
@@ -41,31 +42,31 @@
                     <p>An architectural style is a high-level blueprint that defines how an application is structured, how its components communicate, and how it is deployed and scaled. The choice of style affects development speed, scalability, operational complexity, and team organization.</p>
                     <ul class="justify">
                         <li>
-                            <h6>Monolith :</h6>
+                            <h6>Monolith</h6>
                             <p>A monolith is an application built and deployed as a single unit. The UI, business logic, and data access all live in one codebase and run as one process. It is simple to develop, test, and deploy in the beginning, but as the codebase grows, deployments become riskier and scaling means replicating the entire application instead of just the busy part. Example: A classic Django or Laravel application where one deployable serves every feature of the product. Monoliths are best suited for small teams, early-stage products, and applications with tightly coupled domains.</p>
                         </li>
                         <li>
-                            <h6>Microservices :</h6>
+                            <h6>Microservices</h6>
                             <p>Microservices architecture splits an application into small, independently deployable services. Each service owns a single business capability and ideally its own database, and services communicate over the network via APIs or messaging. This enables independent scaling, technology freedom per service, and isolated failures, but it adds operational complexity such as service discovery, distributed tracing, and eventual consistency. Example: An e-commerce platform with separate services for catalog, cart, payments, and shipping, each deployed and scaled on its own.</p>
                         </li>
                         <li>
-                            <h6>Serverless :</h6>
+                            <h6>Serverless</h6>
                             <p>Serverless architecture delegates server management entirely to a cloud provider. Code runs in short-lived, event-triggered functions (FaaS) or managed services, and you pay only for actual execution time. There are no servers to provision or patch, and scaling is automatic, including scaling down to zero. The trade-offs are cold starts, execution time limits, and vendor lock-in. Example: An image upload triggering an AWS Lambda function that generates thumbnails and stores them in S3.</p>
                         </li>
                         <li>
-                            <h6>Event-Driven Architecture :</h6>
+                            <h6>Event-Driven Architecture</h6>
                             <p>In event-driven architecture (EDA), components communicate by producing and consuming events instead of calling each other directly. An event is an immutable record that something happened, such as <code>OrderPlaced</code>. Producers emit events to a broker, and consumers react asynchronously. This decouples services, since a producer does not know or care who consumes its events, and new consumers can be added without touching existing code. Example: When an order is placed, the inventory, billing, and notification services each react to the same <code>OrderPlaced</code> event independently.</p>
                         </li>
                         <li>
-                            <h6>Layered / N-Tier Architecture :</h6>
+                            <h6>Layered / N-Tier Architecture</h6>
                             <p>Layered architecture organizes code into horizontal layers, each with a distinct responsibility, where a layer may only call the layer directly below it. The classic layers are presentation (UI), application or business logic, and data access, with the database at the bottom. "N-tier" refers to physically deploying these layers on separate machines, such as web server, application server, and database server. It is simple and widely understood, but changes that cut across layers can be tedious. Example: A typical Spring Boot application with <code>Controller → Service → Repository → Database</code>.</p>
                         </li>
                         <li>
-                            <h6>Hexagonal / Clean Architecture :</h6>
+                            <h6>Hexagonal / Clean Architecture</h6>
                             <p>Hexagonal architecture (also called Ports and Adapters) and Clean architecture place the business logic at the center, completely independent of frameworks, databases, and UIs. The core defines ports (interfaces describing what it needs), and the outside world plugs in through adapters such as a REST controller, a Postgres repository, or a message consumer. Dependencies always point inward, so the domain never imports infrastructure code. This makes the core easy to unit-test and lets you swap infrastructure (for example, MySQL to DynamoDB) without touching business rules. Example: An <code>OrderService</code> that depends on an <code>OrderRepository</code> interface, implemented separately by a database adapter and an in-memory adapter for tests.</p>
                         </li>
                         <li>
-                            <h6>Service Mesh :</h6>
+                            <h6>Service Mesh</h6>
                             <p>A service mesh is a dedicated infrastructure layer that handles service-to-service communication in a microservices system. A lightweight proxy (sidecar) is deployed next to every service instance and transparently handles routing, load balancing, retries, mutual TLS encryption, and observability, so none of that logic has to live in application code. A control plane configures all the proxies centrally. Example: Istio or Linkerd on Kubernetes, providing automatic mTLS and per-service traffic metrics without changing any service's code.</p>
                         </li>
                     </ul>
@@ -78,23 +79,23 @@
                     <p>The compute model defines where and how your code actually runs, for how long, triggered by what, and scaled in what way. Most real systems mix several models: long-running services for the core API, workers for heavy tasks, and scheduled jobs for maintenance.</p>
                     <ul class="justify">
                         <li>
-                            <h6>Serverless Functions :</h6>
+                            <h6>Serverless Functions</h6>
                             <p>Serverless functions (Function-as-a-Service) are short-lived units of code that run on demand in response to a trigger such as an HTTP request, a queue message, a file upload, or a timer. The platform handles provisioning, scaling, and billing per invocation. They suffer from cold starts (latency when a new instance spins up) and have execution time limits, so they suit spiky, stateless workloads. Example: AWS Lambda, Google Cloud Functions, or Azure Functions running a function that resizes each image uploaded to a storage bucket.</p>
                         </li>
                         <li>
-                            <h6>Edge Functions :</h6>
+                            <h6>Edge Functions</h6>
                             <p>Edge functions are lightweight serverless functions that run on CDN edge servers geographically close to the user instead of a single central region. They typically use lightweight runtimes (V8 isolates instead of containers), which gives near-zero cold starts, but with tighter CPU and memory limits and a restricted API surface. They are ideal for latency-sensitive request manipulation. Example: Cloudflare Workers or Vercel Edge Functions performing A/B testing, geolocation-based redirects, or auth-token checks before the request reaches the origin server.</p>
                         </li>
                         <li>
-                            <h6>Long-Running Services / Containers :</h6>
+                            <h6>Long-Running Services / Containers</h6>
                             <p>This is the traditional model: a process, often packaged as a container, starts once and keeps running, handling many requests over its lifetime. It can hold in-memory state, keep warm connections (database pools, WebSockets), and has no execution time limits. In return, you are responsible for scaling, health checks, and restarts, usually through an orchestrator. Example: A Node.js or Go API server packaged with Docker and run on Kubernetes or AWS ECS with 3 replicas behind a load balancer.</p>
                         </li>
                         <li>
-                            <h6>Background Jobs / Workers :</h6>
+                            <h6>Background Jobs / Workers</h6>
                             <p>Background workers process tasks outside the request-response cycle so the user never waits on slow work. The web process pushes a job (such as "send this email" or "generate this report") onto a queue and responds immediately. A separate worker process pulls jobs off the queue and executes them, with retries on failure. Example: Sidekiq (Ruby), Celery (Python), or BullMQ (Node.js) workers sending emails, processing videos, or syncing data with third-party APIs.</p>
                         </li>
                         <li>
-                            <h6>Cron / Scheduled Tasks :</h6>
+                            <h6>Cron / Scheduled Tasks</h6>
                             <p>Scheduled tasks run automatically at fixed times or intervals rather than in response to a request or event. They are classically defined with cron expressions, for example <code>0 2 * * *</code> means every day at 02:00. They are used for recurring maintenance and batch work. In distributed systems, care is needed to make sure a job runs exactly once even when multiple instances are running. Example: A nightly cron job that purges expired sessions, a weekly job that emails usage reports, or a Kubernetes <code>CronJob</code> and GitHub Actions <code>schedule</code> trigger.</p>
                         </li>
                     </ul>
@@ -107,47 +108,47 @@
                     <p>API and request handling covers how a server receives an incoming request, decides what code should run for it, processes it through reusable layers, and returns a response. It also covers the protocols and styles used to expose those APIs to clients.</p>
                     <ul class="justify">
                         <li>
-                            <h6>Routes :</h6>
+                            <h6>Routes</h6>
                             <p>A route maps an HTTP method and URL pattern to the code that should handle it. Routers support path parameters (<code>/users/:id</code>), wildcards, and grouping with shared prefixes or middleware. Example: In Express, <code>app.get('/users/:id', getUser)</code> routes <code>GET /users/42</code> to the <code>getUser</code> handler with <code>id = 42</code>.</p>
                         </li>
                         <li>
-                            <h6>Endpoints :</h6>
+                            <h6>Endpoints</h6>
                             <p>An endpoint is one specific, callable URL and method combination exposed by an API. It is the concrete "address" a client hits, and a route definition produces one or more endpoints. Example: <code>POST /api/orders</code> (create order) and <code>GET /api/orders/{id}</code> (fetch order) are two endpoints of an orders API.</p>
                         </li>
                         <li>
-                            <h6>Middleware :</h6>
+                            <h6>Middleware</h6>
                             <p>Middleware are functions that sit between the raw request and the final handler, forming a pipeline. Each middleware can inspect or modify the request and response, then pass control to the next one, or stop the chain early (for example, rejecting an unauthenticated request). Common middleware includes logging, CORS, body parsing, compression, authentication, and rate limiting. Example: In Express, <code>app.use(express.json())</code> parses JSON bodies for every request before any route handler runs.</p>
                         </li>
                         <li>
-                            <h6>Controllers / Handlers :</h6>
+                            <h6>Controllers / Handlers</h6>
                             <p>A controller (or handler) is the function that actually handles a matched request. It validates input, calls the business logic or services, and shapes the response. Keeping controllers thin by delegating real work to a service layer keeps logic testable and reusable. Example: A <code>UserController.create()</code> that validates the payload, calls <code>userService.register()</code>, and returns <code>201 Created</code> with the new user's JSON.</p>
                         </li>
                         <li>
-                            <h6>Request-Response Lifecycle :</h6>
+                            <h6>Request-Response Lifecycle</h6>
                             <p>The full journey of a request through the server: client request → DNS/TLS → load balancer → server → middleware chain (logging, auth, parsing) → router → controller → service or business logic → database and external calls → response serialization → middleware (compression, headers) → client. Understanding this pipeline is key to debugging (where did the 401 come from?) and performance work (where is the latency?).</p>
                         </li>
                         <li>
-                            <h6>REST :</h6>
+                            <h6>REST</h6>
                             <p>REST (Representational State Transfer) is an API style that models everything as resources identified by URLs and manipulated with standard HTTP methods: <code>GET</code> (read), <code>POST</code> (create), <code>PUT/PATCH</code> (update), and <code>DELETE</code> (remove), with proper status codes and stateless requests. It is simple, cacheable, and universally supported, but it can require multiple round-trips and tends to over-fetch or under-fetch data. Example: <code>GET /api/books?author=orwell</code> returns a JSON list of matching books.</p>
                         </li>
                         <li>
-                            <h6>GraphQL :</h6>
+                            <h6>GraphQL</h6>
                             <p>GraphQL is a query language for APIs where the client specifies exactly which fields it needs and the server returns precisely that shape. This solves REST's over-fetching and under-fetching with a single endpoint (<code>POST /graphql</code>). A strongly typed schema defines all available data; queries read, mutations write, and subscriptions stream. The trade-offs are that caching is harder and unbounded queries need depth or complexity limits. Example: <code>{ user(id: 42) { name posts { title } } }</code> fetches a user and their post titles in one request.</p>
                         </li>
                         <li>
-                            <h6>gRPC :</h6>
+                            <h6>gRPC</h6>
                             <p>gRPC is a high-performance RPC (Remote Procedure Call) framework. You define services and message types in Protocol Buffers (<code>.proto</code> files), and gRPC generates typed client and server code in many languages. It uses HTTP/2 and binary serialization, which makes it much faster and more compact than JSON over REST, and it supports bidirectional streaming. It is mostly used for internal service-to-service communication, since browser support requires a proxy (gRPC-Web). Example: A payments microservice exposing <code>rpc Charge(ChargeRequest) returns (ChargeResponse)</code> consumed by the orders service.</p>
                         </li>
                         <li>
-                            <h6>WebSockets :</h6>
+                            <h6>WebSockets</h6>
                             <p>WebSockets provide a persistent, full-duplex connection between client and server over a single TCP connection. After an HTTP "upgrade" handshake, both sides can push messages at any time, which replaces inefficient polling for real-time features. It requires managing connection state, reconnection, and scaling (sticky sessions or a pub/sub backplane). Example: A chat app or live dashboard using Socket.IO, where the server pushes new messages to all connected clients instantly.</p>
                         </li>
                         <li>
-                            <h6>Rate Limiting / Throttling :</h6>
+                            <h6>Rate Limiting / Throttling</h6>
                             <p>Rate limiting restricts how many requests a client can make in a time window. It protects APIs from abuse, brute-force attacks, and overload, and it enforces fair usage tiers. Common algorithms include fixed window (N requests per minute), sliding window (a smoother version), token bucket (allows bursts, refills at a steady rate), and leaky bucket (processes at a constant rate). When the limit is exceeded, the server returns HTTP <code>429 Too Many Requests</code>, often with a <code>Retry-After</code> header. Example: An API allowing 100 requests per minute per API key, tracked with counters in Redis.</p>
                         </li>
                         <li>
-                            <h6>Authentication &amp; Authorization (Middleware Layer) :</h6>
+                            <h6>Authentication &amp; Authorization (Middleware Layer)</h6>
                             <p>Authentication verifies who the caller is, and authorization verifies what they are allowed to do. In most frameworks both are implemented as middleware that runs before protected handlers. An auth middleware validates the credential (session cookie, JWT bearer token, API key, or OAuth 2.0 access token) and attaches the user to the request. An authorization check (roles and permissions, such as RBAC) then allows or rejects the action. Example: Middleware verifies the signature and expiry of the <code>Authorization: Bearer &lt;JWT&gt;</code> header, loads <code>req.user</code>, and a <code>requireRole('admin')</code> guard returns <code>403 Forbidden</code> for non-admins.</p>
                         </li>
                     </ul>
@@ -160,27 +161,27 @@
                     <p>Rendering strategy determines where and when a web page's HTML is generated: on the server per request, in the browser, at build time, or a mix. The choice trades off first-load speed, SEO, interactivity, and infrastructure cost. Modern frameworks such as Next.js, Nuxt, and SvelteKit let you choose per page.</p>
                     <ul class="justify">
                         <li>
-                            <h6>SSR (Server-Side Rendering) :</h6>
+                            <h6>SSR (Server-Side Rendering)</h6>
                             <p>The server renders the full HTML for each request using fresh data and sends it to the browser, so the user (and search engines) see complete content immediately. JavaScript then loads and hydrates the page to make it interactive. The benefits are great SEO, fast first paint, and always-fresh data. The downsides are that every request costs server compute and time-to-first-byte depends on server and data speed. Example: A product page in Next.js rendered on each request so price and stock are always current.</p>
                         </li>
                         <li>
-                            <h6>CSR (Client-Side Rendering) :</h6>
+                            <h6>CSR (Client-Side Rendering)</h6>
                             <p>The server sends a nearly empty HTML shell plus a JavaScript bundle. The browser downloads the JS, fetches data through APIs, and builds the UI entirely on the client. The benefits are rich app-like interactivity, cheap static hosting, and snappy navigation after the first load. The downsides are a slow first paint on large bundles and poor SEO unless crawlers execute JS. Example: A classic React SPA created with Vite, such as a dashboard behind a login where SEO does not matter.</p>
                         </li>
                         <li>
-                            <h6>SSG (Static Site Generation) :</h6>
+                            <h6>SSG (Static Site Generation)</h6>
                             <p>All pages are pre-rendered to static HTML at build time and served from a CDN. This gives the fastest possible delivery and effortless scaling, but content is frozen until the next build, so it fits content that changes rarely. Example: A blog or documentation site built with Astro, Hugo, or <code>next build</code>, where every article becomes a static <code>.html</code> file on a CDN.</p>
                         </li>
                         <li>
-                            <h6>ISR (Incremental Static Regeneration) :</h6>
+                            <h6>ISR (Incremental Static Regeneration)</h6>
                             <p>ISR combines SSG speed with fresh data. Pages are served statically, but the framework regenerates a page in the background after a revalidation period (or on demand via webhook) without rebuilding the whole site. It works like stale-while-revalidate at the page level. Example: In Next.js, <code>revalidate: 60</code> serves a cached product page and regenerates it at most once per minute when traffic arrives, and a CMS "publish" webhook can trigger instant regeneration.</p>
                         </li>
                         <li>
-                            <h6>Streaming SSR :</h6>
+                            <h6>Streaming SSR</h6>
                             <p>Instead of waiting for the entire page to render on the server, streaming SSR sends HTML to the browser in chunks as it becomes ready. The shell and fast parts appear immediately, while slow parts (wrapped in <code>&lt;Suspense&gt;</code> boundaries) stream in with placeholders that get replaced. This greatly improves perceived load time for pages with slow data dependencies. Example: React 18's <code>renderToPipeableStream</code> or the Next.js App Router streaming a page's header instantly while the recommendations section streams in once its data resolves.</p>
                         </li>
                         <li>
-                            <h6>Hydration :</h6>
+                            <h6>Hydration</h6>
                             <p>Hydration is the process where client-side JavaScript "takes over" server-rendered HTML by attaching event listeners and rebuilding component state, so the static markup becomes interactive. Until hydration completes, the page looks ready but buttons may not respond. Because full-page hydration is expensive, newer approaches reduce it: partial or islands hydration (only interactive islands hydrate, as in Astro), progressive hydration (hydrate on visibility or interaction), and resumability (skip hydration entirely, as in Qwik). Example: A server-rendered Next.js page where React hydrates the DOM on load, making the "Add to Cart" button functional.</p>
                         </li>
                     </ul>
@@ -193,23 +194,23 @@
                     <p>The data layer covers how an application stores, retrieves, and manages state that must survive restarts. This includes databases, the abstractions used to query them, caching layers for speed, and the operational practices (migrations, pooling) that keep it all healthy.</p>
                     <ul class="justify">
                         <li>
-                            <h6>Databases (SQL / NoSQL) :</h6>
+                            <h6>Databases (SQL / NoSQL)</h6>
                             <p>SQL (relational) databases store data in tables with a fixed schema, enforce relationships via foreign keys, support powerful joins, and guarantee ACID transactions (Atomicity, Consistency, Isolation, Durability). They are best for structured data and complex queries. Examples: PostgreSQL, MySQL, SQLite. NoSQL databases trade rigid schemas and joins for flexibility and horizontal scale, and come in several families: document (JSON-like documents, e.g., MongoDB), key-value (Redis, DynamoDB), wide-column (Cassandra), and graph (Neo4j, for highly connected data). A good rule of thumb is to default to SQL and reach for NoSQL when the data model or scale demands it.</p>
                         </li>
                         <li>
-                            <h6>ORM / Query Builders :</h6>
+                            <h6>ORM / Query Builders</h6>
                             <p>An ORM (Object-Relational Mapper) maps database tables to classes and objects in your language, letting you query and persist data without writing raw SQL, with type safety, relations, and migration tooling. Examples: Prisma and Sequelize (JavaScript), SQLAlchemy and Django ORM (Python), Eloquent (PHP), Hibernate (Java). A query builder is a lighter layer that composes SQL programmatically without full object mapping, such as Knex.js or Kysely. ORMs speed up development but can hide inefficient queries. The classic N+1 problem (one query for a list, then one more per item) is solved with eager loading. Example: <code>prisma.user.findMany({ include: { posts: true } })</code> instead of a hand-written JOIN.</p>
                         </li>
                         <li>
-                            <h6>Caching (Redis, In-Memory) :</h6>
+                            <h6>Caching (Redis, In-Memory)</h6>
                             <p>Caching stores frequently accessed data in fast storage (RAM) to avoid repeating expensive work such as database queries, API calls, or computations. In-memory caching lives inside the app process; it is the fastest option but is per-instance and lost on restart. Distributed caching (Redis, Memcached) is shared by all instances. The most common pattern is cache-aside: check the cache, on a miss load from the database, then write to the cache with a TTL. The hard part is invalidation, which means keeping the cache from serving stale data after updates. This is handled with TTL expiry, explicit deletes on write, or event-driven invalidation. Example: Caching a user's profile in Redis under the key <code>user:42</code> with a 5-minute TTL, cutting database reads dramatically.</p>
                         </li>
                         <li>
-                            <h6>Migrations :</h6>
+                            <h6>Migrations</h6>
                             <p>Migrations are versioned, incremental scripts that evolve the database schema alongside the code. Each migration describes a change (create table, add column, add index) and usually a rollback. They live in the repo, run in order, and are tracked in a migrations table so every environment converges to the same schema. The golden rule for production is to prefer backward-compatible changes (add a column, deploy code that writes both, backfill, then remove the old column) so deploys do not break running instances. Example: <code>prisma migrate dev</code>, Django's <code>manage.py migrate</code>, or a Flyway/Liquibase <code>V2__add_email_index.sql</code> file.</p>
                         </li>
                         <li>
-                            <h6>Connection Pooling :</h6>
+                            <h6>Connection Pooling</h6>
                             <p>Opening a database connection is expensive (TCP plus an auth handshake), and databases only allow a limited number of concurrent connections. A connection pool maintains a set of pre-opened connections that requests borrow and return, which avoids per-request connection cost and protects the database from being overwhelmed. Pool sizing matters: too small causes waiting, too large overloads the database. Serverless functions make this tricky because each instance opens its own pool, which is why external poolers and proxies exist. Example: PgBouncer or AWS RDS Proxy in front of PostgreSQL, or an app-level pool like HikariCP configured with <code>max_connections = 20</code>.</p>
                         </li>
                     </ul>
@@ -222,19 +223,19 @@
                     <p>Asynchronous messaging lets services communicate without calling each other directly and without waiting for a response. A broker sits in the middle and buffers messages, so producers and consumers are decoupled in time, load, and failure. This is the backbone of event-driven and microservice systems.</p>
                     <ul class="justify">
                         <li>
-                            <h6>Message Queues (RabbitMQ, SQS) :</h6>
+                            <h6>Message Queues (RabbitMQ, SQS)</h6>
                             <p>A message queue delivers each message to exactly one consumer. Producers push tasks onto the queue, and a pool of workers competes to process them (the point-to-point or work-queue pattern). The queue buffers load spikes, retries failed messages, and moves poison messages to a dead-letter queue after repeated failures. Since delivery is typically at-least-once, consumers should be idempotent, meaning it is safe to process the same message twice. Examples: RabbitMQ, AWS SQS, Azure Service Bus. Application: An order service enqueues "process payment" jobs, and whichever payment worker is free picks each one up exactly once.</p>
                         </li>
                         <li>
-                            <h6>Pub/Sub :</h6>
+                            <h6>Pub/Sub</h6>
                             <p>In the publish/subscribe pattern, a producer publishes a message to a topic, and every subscriber of that topic receives its own copy. This is one-to-many fan-out, versus a queue's one-to-one delivery. Publishers do not know who subscribes, so new consumers can be added without changing the producer. Examples: Redis Pub/Sub, Google Cloud Pub/Sub, and AWS SNS, which is often combined with SQS so that SNS fans out to multiple queues. Application: A <code>user.signup</code> event consumed independently by the email service, the analytics service, and the CRM sync.</p>
                         </li>
                         <li>
-                            <h6>Event Streaming (Kafka) :</h6>
+                            <h6>Event Streaming (Kafka)</h6>
                             <p>An event streaming platform stores events in an append-only, ordered log that is retained for days or forever. Unlike a queue, messages are not deleted when consumed. Consumers track their own offset and can replay history from any point. Topics are split into partitions for horizontal scale, and consumer groups share the work. This enables event sourcing, stream processing, and feeding the same data to many systems. Examples: Apache Kafka, AWS Kinesis, Redpanda, Apache Pulsar. Application: Clickstream events streamed through Kafka, consumed in real time by fraud detection and replayed later to backfill a new analytics warehouse.</p>
                         </li>
                         <li>
-                            <h6>Webhooks :</h6>
+                            <h6>Webhooks</h6>
                             <p>A webhook is a "reverse API call". Instead of you polling a service for changes, the service sends an HTTP POST to a URL you register whenever an event occurs. Providers sign the payload (for example, with an HMAC signature header) so you can verify authenticity, and they retry failed deliveries. Your endpoint should therefore respond fast (return 2xx immediately and process asynchronously) and handle duplicates idempotently. Application: Stripe calling your <code>/webhooks/stripe</code> endpoint on <code>payment_intent.succeeded</code>, or GitHub triggering your CI when a push event occurs.</p>
                         </li>
                     </ul>
@@ -243,12 +244,12 @@
 
             <!-- Navigation Buttons -->
             <nav>
-                <a href="/Cheatsheets"><i class="bi bi-arrow-left-square-fill"></i></a>
-                <a href="#" ><i class="bi bi-arrow-up-square-fill"></i></a>
+                <a href="/cheatsheets" aria-label="All cheatsheets"><i class="bi bi-grid-3x3-gap-fill" aria-hidden="true"></i></a>
+                <a href="#" aria-label="Back to top"><i class="bi bi-arrow-up" aria-hidden="true"></i></a>
             </nav>
         </div>
 
         <!-- JavaScript -->
-        <script src="../assets/js/script.js"></script>
+        <script src="../assets/js/script.js?v=8"></script>
     </body>
 </html>

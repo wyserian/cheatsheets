@@ -5,21 +5,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>Cloud Computing Cheatsheet</title>
+        <script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('cheatsheet-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'))}catch(e){}</script>
 
         <!-- Bootstrap CDN -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
         <!-- CSS -->
-        <link rel="stylesheet" href="../assets/css/style.css">
+        <link rel="stylesheet" href="../assets/css/style.css?v=11">
     </head>
 
-    <body data-theme="dark">
+    <body>
         <div class="container">
             <!-- Top Bar -->
             <div class="top-bar">
-                <a href="/Cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
-                <div class="button"><i class="bi bi-circle-half"></i></div>
+                <a href="/cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
+                <button class="theme-toggle" type="button" aria-label="Toggle theme"><i class="bi bi-sun" aria-hidden="true"></i></button>
             </div>
 
             <h3 class="title">Cloud Computing</h3>
@@ -40,7 +41,7 @@
                 <h4 class="heading">Cloud Computing</h4>
                 <div class="content">
                     <p>Cloud computing is the on-demand delivery of computing resources (servers, storage, databases, networking, software) over the internet, with pay-as-you-go pricing. Instead of buying and maintaining physical servers, you rent resources from a cloud service provider (CSP) and access them from anywhere.</p>
-                    <h6>Use Cases -</h6>
+                    <h6>Use Cases</h6>
                     <ul class="justify">
                         <li><b>Web &amp; App Hosting :</b> Most websites and mobile app backends run on cloud servers instead of company-owned hardware.</li>
                         <li><b>Streaming :</b> Netflix, Spotify, and YouTube deliver content from cloud infrastructure that scales with viewers worldwide.</li>
@@ -53,7 +54,7 @@
                         <li><b>Gaming :</b> Multiplayer game servers and cloud gaming services (Xbox Cloud Gaming, GeForce NOW) run gameplay in cloud data centers.</li>
                         <li><b>IoT :</b> Smart devices (watches, cameras, sensors) send their data to cloud platforms for storage and analysis.</li>
                     </ul>
-                    <h6>Problems Before the Cloud -</h6>
+                    <h6>Problems Before the Cloud</h6>
                     <ul class="justify">
                         <li>Running your own servers meant paying for hardware, energy, OS licenses, cooling, and a dedicated IT workforce. It was unwieldy and very expensive.</li>
                         <li>Each application typically used only a fraction of its server's capacity, so most of the hardware sat idle.</li>
@@ -61,7 +62,7 @@
                         <li>Every new business application usually meant buying a new physical server.</li>
                     </ul>
                     <p>Virtualization solved the utilization problem by running multiple isolated machines on one server, and cloud providers built on that to rent out computing at massive scale.</p>
-                    <h6>Benefits of Cloud Computing -</h6>
+                    <h6>Benefits of Cloud Computing</h6>
                     <ul class="justify">
                         <li><b>Reduced Cost :</b> Cuts both capital expenditure (CapEx: servers, data centers, cooling, failover systems) and operational expenditure (OpEx: maintenance, IT staff).</li>
                         <li><b>Pay As You Go :</b> Resources are metered and you pay only for what you use, like a water or electricity bill.</li>
@@ -71,7 +72,7 @@
                         <li><b>Automatic Updates :</b> The provider patches and upgrades the underlying platform.</li>
                         <li><b>Collaboration &amp; Self-Service :</b> Teams work on shared resources, and new resources can be provisioned in minutes through a portal or API without raising a ticket.</li>
                     </ul>
-                    <h6>Risks of Cloud Computing -</h6>
+                    <h6>Risks of Cloud Computing</h6>
                     <ul class="justify">
                         <li><b>Loss of Data or Services :</b> An outage or account issue at the provider can take your services down.</li>
                         <li><b>Data Security :</b> Your data lives on shared infrastructure that you do not physically control.</li>
@@ -91,20 +92,20 @@
                         <li><b>Hypervisor (VMM, Virtual Machine Monitor) :</b> The software layer that creates and runs VMs, allocating the host's CPU, memory, and storage among them. It improves hardware utilization and reduces space, energy, and maintenance requirements.</li>
                         <li><b>VPS (Virtual Private Server) :</b> A VM rented from a hosting provider. You get root access and a dedicated slice of a physical server at a fixed monthly price. Examples: DigitalOcean Droplets, Linode, AWS Lightsail.</li>
                     </ul>
-                    <h6>Types of Hypervisors -</h6>
+                    <h6>Types of Hypervisors</h6>
                     <ul class="justify">
                         <li><b>Type 1 (Native / Bare Metal) :</b> Runs directly on the host hardware like a lightweight OS: <code>Hardware → Hypervisor → Guest OS</code>. Used in data centers and cloud platforms. Examples: VMware ESXi, Microsoft Hyper-V, Xen, KVM.</li>
                         <li><b>Type 2 (Hosted) :</b> Runs as an application on top of a normal OS: <code>Hardware → Host OS → Hypervisor → Guest OS</code>. Used on desktops for testing and development. Examples: VirtualBox, VMware Workstation.</li>
                     </ul>
-                    <h5>Containers vs VMs :</h5>
+                    <h5>Containers vs VMs</h5>
                     <p>A VM virtualizes the hardware, so every VM carries a full guest OS along with the app and its dependencies. A container virtualizes at the OS level instead: containers share the host OS kernel and package only the application code and its dependencies. Example: Docker containers running on one Linux host, orchestrated at scale with Kubernetes.</p>
-                    <h6>Downsides of VMs -</h6>
+                    <h6>Downsides of VMs</h6>
                     <ul class="justify">
                         <li>Each guest OS wastes server resources (disk space, memory, processor).</li>
                         <li>Every OS needs licensing and admin time to keep it updated.</li>
                         <li>Booting a full OS makes VM startup slow.</li>
                     </ul>
-                    <h6>Why Containers -</h6>
+                    <h6>Why Containers</h6>
                     <ul class="justify">
                         <li>No guest OS per container, which saves disk, RAM, and CPU.</li>
                         <li>Containers start in seconds and many can run on the same machine.</li>
@@ -120,43 +121,43 @@
                     <p>Service models define how much of the stack you manage versus how much the cloud service provider manages. The full stack, from top to bottom: Application, Data, Runtime, Middleware, OS, Virtualization, Servers, Storage, Networking. On-premise means you manage all of it.</p>
                     <ul class="justify">
                         <li>
-                            <h6>IaaS (Infrastructure as a Service) :</h6>
+                            <h6>IaaS (Infrastructure as a Service)</h6>
                             <p>The provider gives you raw building blocks: virtual machines, storage, and networking. You install and manage everything from the OS up, such as hosting web applications or running your own SQL Server or Oracle installation. Also called Hardware as a Service (HaaS). Used by infrastructure and software development teams. Benefits: reduced financial risk (if a product launch fails, shut it down and stop paying), fast deployment, geographic reach, unlimited scalability. Examples: AWS EC2, Azure Virtual Machines, Google Compute Engine.</p>
                         </li>
                         <li>
-                            <h6>PaaS (Platform as a Service) :</h6>
+                            <h6>PaaS (Platform as a Service)</h6>
                             <p>The provider manages the runtime, middleware, and OS as well; you bring only your application and data. It is a ready platform for software development, typically used for data-driven web apps (ASP.NET Core or Java with a managed database and web server). Benefits: everything IaaS offers, plus auto scaling, reduced development time, support for global teams, and multi-platform development. Examples: Azure App Service, AWS Elastic Beanstalk, Google App Engine, Heroku.</p>
                         </li>
                         <li>
-                            <h6>SaaS (Software as a Service) :</h6>
+                            <h6>SaaS (Software as a Service)</h6>
                             <p>The provider manages the entire stack and you just use the finished software through a browser or app, usually on a subscription. Used by individuals and organizations of every size for CRM, financial management, HR, billing, storage, and entertainment. Benefits: very easy to start, accessible anywhere, automatic updates, usage-based pricing. Examples: Office 365, Google Drive, Dropbox, Netflix.</p>
                         </li>
                         <li>
-                            <h6>CaaS (Containers as a Service) :</h6>
+                            <h6>CaaS (Containers as a Service)</h6>
                             <p>The provider hosts and orchestrates your containers; you bring container images and the platform handles scheduling, scaling, and networking. It sits between IaaS and PaaS: more control than PaaS, less server management than IaaS. Examples: AWS ECS/EKS, Google Kubernetes Engine, Azure Kubernetes Service.</p>
                         </li>
                         <li>
-                            <h6>FaaS (Functions as a Service) :</h6>
+                            <h6>FaaS (Functions as a Service)</h6>
                             <p>You deploy individual functions that run only when triggered by an event (HTTP request, file upload, queue message) and are billed per execution. This is the basis of serverless computing: no servers to manage and automatic scaling, including down to zero. Examples: AWS Lambda, Azure Functions, Google Cloud Functions, Cloudflare Workers.</p>
                         </li>
                         <li>
-                            <h6>BaaS (Backend as a Service) :</h6>
+                            <h6>BaaS (Backend as a Service)</h6>
                             <p>The provider supplies ready-made backend features (database, authentication, file storage, APIs, realtime updates) that your frontend calls through an SDK. You write little or no backend code. Examples: Firebase, Supabase, AWS Amplify, Appwrite.</p>
                         </li>
                         <li>
-                            <h6>DBaaS (Database as a Service) :</h6>
+                            <h6>DBaaS (Database as a Service)</h6>
                             <p>A managed database where the provider handles installation, backups, patching, replication, and scaling; you just connect and query. Examples: AWS RDS, Azure SQL Database, MongoDB Atlas, PlanetScale.</p>
                         </li>
                         <li>
-                            <h6>DaaS (Desktop as a Service) :</h6>
+                            <h6>DaaS (Desktop as a Service)</h6>
                             <p>A full virtual desktop streamed from the cloud, letting users access their work environment from any device. Examples: Azure Virtual Desktop, Amazon WorkSpaces.</p>
                         </li>
                         <li>
-                            <h6>XaaS (Anything as a Service) :</h6>
+                            <h6>XaaS (Anything as a Service)</h6>
                             <p>The umbrella term for all such models, reflecting that nearly any IT capability (monitoring, security, storage, AI) can now be consumed as a metered cloud service.</p>
                         </li>
                     </ul>
-                    <h6>Responsibility Breakdown :</h6>
+                    <h6>Responsibility Breakdown</h6>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -244,21 +245,21 @@
                     <p>The deployment model defines who owns the cloud infrastructure and who can use it.</p>
                     <ul class="justify">
                         <li>
-                            <h6>Public Cloud :</h6>
+                            <h6>Public Cloud</h6>
                             <p>The provider owns and maintains all the physical servers, storage, and networking, and rents them out to anyone. It is the most common model, managed through the provider's web portal, with multi-tenancy (multiple organizations share the same underlying resources) and pay-as-you-go billing. Examples: AWS, Microsoft Azure. Benefits: no upfront CapEx, no maintenance, highly scalable and reliable. Limitations: less visibility and control, compliance concerns. Fits fast-growing businesses, varying peak demands, and backup or disaster recovery solutions.</p>
                         </li>
                         <li>
-                            <h6>Private Cloud :</h6>
+                            <h6>Private Cloud</h6>
                             <p>Cloud infrastructure dedicated to a single organization (single-tenancy), located on-premise or hosted by a third party. The organization purchases the hardware and can customize everything. Benefits: better security and control, predictable costs, easier legal compliance. Limitations: limited scalability, huge initial CapEx, limited access. Fits government agencies, financial institutions, and other highly regulated businesses.</p>
                         </li>
                         <li>
-                            <h6>Hybrid Cloud :</h6>
+                            <h6>Hybrid Cloud</h6>
                             <p>A combination of private and public cloud. Security-sensitive and business-critical workloads stay in the private cloud, while high-volume, lower-security workloads use the public cloud. With cloud bursting, an app runs in the private cloud under regular demand and bursts into the public cloud during spikes. Benefits: best of both worlds, better control, cost-effective. Limitations: added complexity, plus the public side's compliance and visibility concerns.</p>
                         </li>
                     </ul>
-                    <h5>Multi-Cloud :</h5>
+                    <h5>Multi-Cloud</h5>
                     <p>Multi-cloud means using services from more than one public cloud provider at the same time, for example running compute on AWS while using BigQuery on Google Cloud. It is different from hybrid cloud, which mixes private and public infrastructure. Organizations go multi-cloud to avoid vendor lock-in, pick the best service from each provider, meet regional or legal requirements, and survive a provider-wide outage. The cost is added complexity: separate billing, tooling, and skills for each provider.</p>
-                    <h6>Ownership Summary :</h6>
+                    <h6>Ownership Summary</h6>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -298,7 +299,7 @@
                 <h4 class="heading">Cloud Platforms &amp; Infrastructure</h4>
                 <div class="content">
                     <p>A cloud platform is a provider's full suite of services: compute, storage, databases, networking, AI, and more, all managed from one console and API. Each provider offers equivalent core services under different names.</p>
-                    <h6>Major Providers -</h6>
+                    <h6>Major Providers</h6>
                     <ul class="justify">
                         <li><b>AWS (Amazon Web Services, 2006) :</b> The first and largest cloud platform with the widest service catalog. Key services: EC2 (virtual machines), S3 (object storage), RDS (managed databases), Lambda (serverless functions), CloudFront (CDN), VPC (networking).</li>
                         <li><b>Microsoft Azure (2010) :</b> Second largest, strongest in enterprises already on the Microsoft stack (Windows Server, Active Directory, Office 365). Key services: Virtual Machines, Blob Storage, Azure SQL Database, Azure Functions, Azure DevOps, Entra ID (identity).</li>
@@ -307,19 +308,19 @@
                     </ul>
                     <ul class="justify">
                         <li>
-                            <h6>Infrastructure :</h6>
+                            <h6>Infrastructure</h6>
                             <p>In cloud terms, infrastructure means all the underlying resources an application needs: VMs, networks, load balancers, databases, DNS, and storage. Providers organize it into regions (geographic areas) and availability zones (isolated data centers within a region) so workloads can survive a data center failure.</p>
                         </li>
                         <li>
-                            <h6>Scalability :</h6>
+                            <h6>Scalability</h6>
                             <p>Scalability is a system's ability to handle growing load by adding resources. Vertical scaling (scale up) means moving to a bigger machine with more CPU and RAM; it is simple but has a hardware limit and usually needs downtime. Horizontal scaling (scale out) means adding more machines behind a load balancer; it has no practical limit and is the cloud-preferred approach, but the application must be built to run on multiple instances. Auto scaling adds or removes instances automatically based on metrics, for example an AWS Auto Scaling Group launching a new instance when average CPU stays above 70% and removing it when traffic drops.</p>
                         </li>
                         <li>
-                            <h6>Cloud Storage Types :</h6>
+                            <h6>Cloud Storage Types</h6>
                             <p>Object storage stores files as objects with metadata, accessed over an HTTP API. It scales practically without limit and is the cheapest option, used for media, backups, logs, and static websites. Examples: S3, Azure Blob Storage, Google Cloud Storage. Block storage provides raw disk volumes attached to a VM with low latency, used for boot disks and databases. Examples: AWS EBS, Azure Managed Disks. File storage is a shared network filesystem (NFS/SMB) that many servers can mount at once, used for shared content and legacy applications. Examples: AWS EFS, Azure Files.</p>
                         </li>
                         <li>
-                            <h6>Infrastructure as Code (Terraform) :</h6>
+                            <h6>Infrastructure as Code (Terraform)</h6>
                             <p>Infrastructure as Code (IaC) means defining infrastructure in version-controlled configuration files instead of clicking through a console. Terraform is the most popular IaC tool: you declare the desired resources in <code>.tf</code> files, and <code>terraform plan</code> shows what will change while <code>terraform apply</code> makes it real. It works across AWS, Azure, GCP, and many other providers. Alternatives: AWS CloudFormation, Pulumi, Ansible.</p>
                             <div class="code-box code-box-color"><code>resource "aws_instance" "web" {
   ami           = "ami-0abcdef123"
@@ -327,11 +328,11 @@
 }</code></div>
                         </li>
                         <li>
-                            <h6>Site Reliability Engineering (SRE) :</h6>
+                            <h6>Site Reliability Engineering (SRE)</h6>
                             <p>SRE is the discipline of running systems reliably at scale by applying software engineering to operations. Key ideas: SLIs (measured indicators like latency and uptime), SLOs (target values for those indicators), error budgets (allowed unreliability; if the budget is spent, new releases pause), and automating away repetitive manual work (toil). Monitoring, alerting, and incident response are the day-to-day tools.</p>
                         </li>
                         <li>
-                            <h6>Cloud Migration Strategies :</h6>
+                            <h6>Cloud Migration Strategies</h6>
                             <p>Ways to move an existing application from on-premise to the cloud, in increasing order of effort. Rehost (lift and shift): move the app as-is onto cloud VMs; fastest, but gains little cloud benefit. Replatform (lift, tinker, and shift): make small optimizations while moving, such as switching the database to a managed one like RDS. Refactor / Re-architect: redesign the app to be cloud-native (microservices, containers, serverless); most effort, most benefit. The remaining options from the "6 Rs": Repurchase (drop the app and buy a SaaS product instead), Retire (shut it down), and Retain (leave it on-premise for now).</p>
                         </li>
                     </ul>
@@ -342,7 +343,7 @@
                 <h4 class="heading">Backend Hosting &amp; BaaS</h4>
                 <div class="content">
                     <p>Modern platforms sit on top of the big clouds and remove most deployment work. They fall into two groups: hosting/runtime platforms, where you write the backend yourself and they just run it, and Backend-as-a-Service, where the backend itself is provided.</p>
-                    <h6>Backend-as-a-Service (BaaS) -</h6>
+                    <h6>Backend-as-a-Service (BaaS)</h6>
                     <p>A BaaS provides ready-made backend features: database, authentication, APIs, file storage, and often realtime updates. You write mostly frontend code and call their SDK. It is very fast to build with, but the platform remains a permanent part of your backend, so switching later is hard.</p>
                     <ul class="justify">
                         <li><b>Firebase :</b> Google's BaaS with Firestore (realtime NoSQL database), Auth, Cloud Storage, and Cloud Functions. Popular for mobile and rapid prototypes.</li>
@@ -352,7 +353,7 @@
                         <li><b>PocketBase :</b> A tiny open-source BaaS in a single executable (SQLite database, auth, file storage, realtime). Great for small projects and prototypes.</li>
                         <li><b>Nhost / Back4App :</b> Other open-source-based BaaS options; Nhost pairs PostgreSQL with a GraphQL API, Back4App builds on the Parse framework.</li>
                     </ul>
-                    <h6>Hosting / Runtime Platforms -</h6>
+                    <h6>Hosting / Runtime Platforms</h6>
                     <ul class="justify">
                         <li><b>GitHub Pages :</b> Free static site hosting straight from a GitHub repository. Best for docs, portfolios, and project pages. No backend code runs here.</li>
                         <li><b>Cloudflare Pages / Workers :</b> Pages hosts static sites and frontends on Cloudflare's CDN; Workers run serverless code at the edge, close to users. Note: Workers is a runtime (FaaS), not a BaaS, because you still write the backend code yourself. Cloudflare only blurs the line by offering storage add-ons (KV, D1, R2) that Workers can use.</li>
@@ -370,14 +371,14 @@
                 <h4 class="heading">Cloud Security</h4>
                 <div class="content">
                     <p>Cloud security follows the Shared Responsibility Model. The provider is responsible for security <b>of</b> the cloud: physical data centers, hardware, networking, and the virtualization layer. You are responsible for security <b>in</b> the cloud: your data, user identities, access permissions, and service configuration. Most cloud breaches come from the customer side, typically misconfiguration such as a public S3 bucket or leaked access keys.</p>
-                    <h6>How the Split Shifts by Service Model -</h6>
+                    <h6>How the Split Shifts by Service Model</h6>
                     <ul class="justify">
                         <li><b>IaaS :</b> You also secure the OS, runtime, and applications on your VMs, including patching them.</li>
                         <li><b>PaaS :</b> The provider takes over OS and runtime security; you secure your application, data, and access.</li>
                         <li><b>SaaS :</b> The provider secures almost everything; you manage your data, users, and account settings.</li>
                     </ul>
                     <p>In every model, data, identities, and access control remain your responsibility. Moving to the cloud can still improve security overall, since providers offer mature tooling that most organizations could not build themselves.</p>
-                    <h6>Core Practices -</h6>
+                    <h6>Core Practices</h6>
                     <ul class="justify">
                         <li><b>Encryption :</b> Encrypt data at rest (stored on disk) and in transit (TLS/HTTPS). Cloud services offer this as a built-in option, often with managed keys.</li>
                         <li><b>Two-Factor Authentication :</b> Require a second factor beyond the password for console and account access, especially for admin accounts.</li>
@@ -389,12 +390,12 @@
 
             <!-- Navigation Buttons -->
             <nav>
-                <a href="/Cheatsheets"><i class="bi bi-arrow-left-square-fill"></i></a>
-                <a href="#" ><i class="bi bi-arrow-up-square-fill"></i></a>
+                <a href="/cheatsheets" aria-label="All cheatsheets"><i class="bi bi-grid-3x3-gap-fill" aria-hidden="true"></i></a>
+                <a href="#" aria-label="Back to top"><i class="bi bi-arrow-up" aria-hidden="true"></i></a>
             </nav>
         </div>
 
         <!-- JavaScript -->
-        <script src="../assets/js/script.js"></script>
+        <script src="../assets/js/script.js?v=8"></script>
     </body>
 </html>

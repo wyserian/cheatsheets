@@ -5,21 +5,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>Flutter Cheatsheet</title>
+        <script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('cheatsheet-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'))}catch(e){}</script>
 
         <!-- Bootstrap CDN -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
         <!-- CSS -->
-        <link rel="stylesheet" href="../assets/css/style.css">
+        <link rel="stylesheet" href="../assets/css/style.css?v=11">
     </head>
 
-    <body data-theme="dark">
+    <body>
         <div class="container">
             <!-- Top Bar -->
             <div class="top-bar">
-                <a href="/Cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
-                <div class="button"><i class="bi bi-circle-half"></i></div>
+                <a href="/cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
+                <button class="theme-toggle" type="button" aria-label="Toggle theme"><i class="bi bi-sun" aria-hidden="true"></i></button>
             </div>
 
             <h3 class="title">Flutter</h3>
@@ -44,7 +45,7 @@
                 <h4 class="heading">Flutter</h4>
                 <div class="content">
                     <p>Flutter is an open-source UI toolkit from Google, released in 2017, for building natively compiled apps for mobile, web, and desktop from a single codebase. It is written in the Dart language (see the Dart cheatsheet for language basics). Instead of using the platform's native UI controls, Flutter draws every pixel itself with its own rendering engine, so the app looks and behaves the same on every platform.</p>
-                    <h6>Key Features -</h6>
+                    <h6>Key Features</h6>
                     <ul class="justify">
                         <li><b>Single Codebase :</b> One Dart codebase compiles to Android, iOS, web, Windows, macOS, and Linux.</li>
                         <li><b>Everything Is a Widget :</b> The entire UI is built from widgets, small building blocks composed into a tree.</li>
@@ -60,14 +61,14 @@
                 <h4 class="heading">How Flutter Works</h4>
                 <div class="content">
                     <p>Flutter builds the UI as a tree of widgets. When data changes, the affected widgets are rebuilt, and Flutter efficiently updates only what changed on screen, much like React's virtual DOM.</p>
-                    <h6>The Build Process -</h6>
-                    <ul class="justify">
-                        <li><b>1. Widget Tree :</b> Your UI is a nested tree of widgets that describe what the interface should look like.</li>
-                        <li><b>2. build() :</b> Each widget has a <code>build()</code> method that returns its child widgets. Flutter calls it to construct the UI.</li>
-                        <li><b>3. Three Trees :</b> Flutter keeps a Widget tree (the config), an Element tree (the live instances), and a Render tree (what gets painted). Widgets are cheap and thrown away often; elements persist.</li>
-                        <li><b>4. setState / Rebuild :</b> When state changes, the affected widgets rebuild, producing a new widget tree.</li>
-                        <li><b>5. Diff &amp; Paint :</b> Flutter compares the new tree to the old one and repaints only the parts that actually changed.</li>
-                    </ul>
+                    <h6>The Build Process</h6>
+                    <ol class="justify">
+                        <li><b>Widget Tree :</b> Your UI is a nested tree of widgets that describe what the interface should look like.</li>
+                        <li><b>build() :</b> Each widget has a <code>build()</code> method that returns its child widgets. Flutter calls it to construct the UI.</li>
+                        <li><b>Three Trees :</b> Flutter keeps a Widget tree (the config), an Element tree (the live instances), and a Render tree (what gets painted). Widgets are cheap and thrown away often; elements persist.</li>
+                        <li><b>setState / Rebuild :</b> When state changes, the affected widgets rebuild, producing a new widget tree.</li>
+                        <li><b>Diff &amp; Paint :</b> Flutter compares the new tree to the old one and repaints only the parts that actually changed.</li>
+                    </ol>
                     <div class="code-box code-box-color"><code>void main() =&gt; runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -97,7 +98,7 @@ flutter run              # run the app (press r = hot reload, R = restart)
 flutter build apk        # build Android APK
 flutter build ios        # build for iOS
 flutter build web        # build for web</code></div>
-                    <h6>Packages (pub) -</h6>
+                    <h6>Packages (pub)</h6>
                     <p>Dependencies live in <code>pubspec.yaml</code> and come from pub.dev, Dart and Flutter's package registry.</p>
                     <div class="code-box code-box-color"><code>flutter pub get          # install dependencies
 flutter pub add http     # add a package
@@ -137,7 +138,7 @@ flutter pub upgrade      # update packages</code></div>
                         <li><b>StatelessWidget :</b> Has no internal state that changes; it looks the same once built (unless its inputs change). Example: an icon, a label. It only needs a <code>build()</code> method.</li>
                         <li><b>StatefulWidget :</b> Holds mutable state that can change over time, triggering rebuilds. Example: a checkbox, a counter, a form.</li>
                     </ul>
-                    <h6>Common Widgets -</h6>
+                    <h6>Common Widgets</h6>
                     <ul class="justify">
                         <li><b>Text :</b> Displays a string, styled with <code>TextStyle</code>.</li>
                         <li><b>Image :</b> Shows images from assets, network, or files.</li>
@@ -167,7 +168,7 @@ flutter pub upgrade      # update packages</code></div>
                         <li><b>ListView :</b> A scrollable list, with <code>ListView.builder</code> for long or dynamic lists.</li>
                         <li><b>GridView :</b> A scrollable grid of items.</li>
                     </ul>
-                    <h6>Alignment -</h6>
+                    <h6>Alignment</h6>
                     <ul class="justify">
                         <li><b>mainAxisAlignment :</b> Positions children along the main axis (vertical for Column, horizontal for Row).</li>
                         <li><b>crossAxisAlignment :</b> Positions children along the other axis.</li>
@@ -293,26 +294,26 @@ Future&lt;List&gt; fetchUsers() async {
                         <li><b>cached_network_image :</b> Load and cache images from the network.</li>
                         <li><b>intl :</b> Formatting dates, numbers, and localization.</li>
                     </ul>
-                    <h6>What Flutter Is Used For -</h6>
+                    <h6>What Flutter Is Used For</h6>
                     <ul class="justify">
                         <li><b>Cross-Platform Mobile Apps :</b> Its main use, building Android and iOS apps from one codebase.</li>
                         <li><b>Web &amp; Desktop :</b> The same code can target the browser, Windows, macOS, and Linux.</li>
                         <li><b>MVPs &amp; Startups :</b> Fast development and hot reload make it ideal for shipping quickly.</li>
                         <li><b>Rich, Custom UIs :</b> Because Flutter draws everything itself, highly branded and animated interfaces are easy.</li>
                     </ul>
-                    <h6>Flutter vs React Native -</h6>
+                    <h6>Flutter vs React Native</h6>
                     <p>Both build cross-platform apps from one codebase. Flutter uses Dart and draws its own widgets for consistent results and strong performance. React Native uses JavaScript and renders real native components, which feels more platform-native but can be less consistent across devices.</p>
                 </div>
             </div>
 
             <!-- Navigation Buttons -->
             <nav>
-                <a href="/Cheatsheets"><i class="bi bi-arrow-left-square-fill"></i></a>
-                <a href="#" ><i class="bi bi-arrow-up-square-fill"></i></a>
+                <a href="/cheatsheets" aria-label="All cheatsheets"><i class="bi bi-grid-3x3-gap-fill" aria-hidden="true"></i></a>
+                <a href="#" aria-label="Back to top"><i class="bi bi-arrow-up" aria-hidden="true"></i></a>
             </nav>
         </div>
 
         <!-- JavaScript -->
-        <script src="../assets/js/script.js"></script>
+        <script src="../assets/js/script.js?v=8"></script>
     </body>
 </html>

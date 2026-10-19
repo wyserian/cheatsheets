@@ -5,21 +5,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>DBMS &amp; SQL Cheatsheet</title>
+        <script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('cheatsheet-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'))}catch(e){}</script>
 
         <!-- Bootstrap CDN -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
         <!-- CSS -->
-        <link rel="stylesheet" href="../assets/css/style.css">
+        <link rel="stylesheet" href="../assets/css/style.css?v=11">
     </head>
 
-    <body data-theme="dark">
+    <body>
         <div class="container">
             <!-- Top Bar -->
             <div class="top-bar">
-                <a href="/Cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
-                <div class="button"><i class="bi bi-circle-half"></i></div>
+                <a href="/cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
+                <button class="theme-toggle" type="button" aria-label="Toggle theme"><i class="bi bi-sun" aria-hidden="true"></i></button>
             </div>
 
             <h3 class="title">DBMS &amp; SQL</h3>
@@ -57,7 +58,7 @@
                         <li><b>Non-Relational (NoSQL) :</b> Databases that do not store data in tables, such as document, key-value, and graph databases. Example: MongoDB.</li>
                         <li><b>SQL vs MySQL :</b> SQL is the language used to interact with relational databases; MySQL is one RDBMS that understands SQL. SQL keywords are not case sensitive.</li>
                     </ul>
-                    <h6>Why DBMS over File Systems -</h6>
+                    <h6>Why DBMS over File Systems</h6>
                     <p>DBMSs were developed to solve the problems of storing data in plain files:</p>
                     <ul class="justify">
                         <li>Data redundancy and inconsistency (the same data duplicated in multiple files, going out of sync).</li>
@@ -75,12 +76,12 @@
                 <h4 class="heading">ER Model</h4>
                 <div class="content">
                     <p>An ER (Entity Relationship) diagram is a conceptual model that graphically represents the logical structure of a database: its entities, their attributes, and the relationships and constraints among them. It is drawn before creating the actual tables.</p>
-                    <h6>Entity Sets -</h6>
+                    <h6>Entity Sets</h6>
                     <ul class="justify">
                         <li><b>Strong Entity Set :</b> Has enough attributes to uniquely identify each entity, meaning a primary key exists (shown by underlining the key attribute). Example: a Student identified by Roll_no.</li>
                         <li><b>Weak Entity Set :</b> Cannot uniquely identify its entities on its own; it has no primary key, only a partial key called a discriminator (underlined with a dashed line) and depends on a strong entity set.</li>
                     </ul>
-                    <h6>Types of Attributes -</h6>
+                    <h6>Types of Attributes</h6>
                     <ul class="justify">
                         <li><b>Simple :</b> Cannot be divided further. Example: Age.</li>
                         <li><b>Composite :</b> Composed of several simple attributes. Example: Name (first, last), Address.</li>
@@ -88,9 +89,9 @@
                         <li><b>Derived :</b> Can be computed from other attributes. Example: Age derived from DOB.</li>
                         <li><b>Key :</b> Uniquely identifies an entity in the set. Example: Roll No.</li>
                     </ul>
-                    <h6>Relationships -</h6>
+                    <h6>Relationships</h6>
                     <p>A relationship is an association among entities. Based on how many entity sets participate: unary (one), binary (two, the most common), ternary (three), and n-ary (n entity sets).</p>
-                    <h6>Cardinality Constraints -</h6>
+                    <h6>Cardinality Constraints</h6>
                     <ul class="justify">
                         <li><b>One-to-One :</b> An entity in A relates to at most one entity in B, and vice versa. Example: person and passport.</li>
                         <li><b>One-to-Many :</b> An entity in A can relate to many entities in B, but each entity in B relates to at most one in A. Example: department and employees.</li>
@@ -113,7 +114,7 @@
                         <li><b>Composite Key :</b> A primary key made of two or more attributes together.</li>
                         <li><b>Unique Key :</b> Enforces uniqueness like a primary key but may allow NULL, and a table can have several unique keys.</li>
                     </ul>
-                    <h6>Cascading for Foreign Keys -</h6>
+                    <h6>Cascading for Foreign Keys</h6>
                     <ul class="justify">
                         <li><b>ON DELETE CASCADE :</b> Deleting a parent row automatically deletes the child rows that reference it.</li>
                         <li><b>ON UPDATE CASCADE :</b> Updating the referenced key automatically updates the referencing rows in the child table.</li>
@@ -125,7 +126,7 @@
                 <h4 class="heading">Constraints</h4>
                 <div class="content">
                     <p>Constraints are rules imposed on the data to keep the database correct and consistent.</p>
-                    <h6>Relational Model Constraints -</h6>
+                    <h6>Relational Model Constraints</h6>
                     <ul class="justify">
                         <li><b>Domain Constraint :</b> Every attribute value must be an atomic value from its defined domain (type and allowed range).</li>
                         <li><b>Tuple Uniqueness Constraint :</b> All tuples in a relation must be unique.</li>
@@ -133,7 +134,7 @@
                         <li><b>Entity Integrity Constraint :</b> No part of a primary key may be NULL.</li>
                         <li><b>Referential Integrity Constraint :</b> Every foreign key value must either exist as a primary key value in the referenced relation or be NULL.</li>
                     </ul>
-                    <h6>SQL Constraints -</h6>
+                    <h6>SQL Constraints</h6>
                     <ul class="justify">
                         <li><b>NOT NULL :</b> The column cannot store NULL.</li>
                         <li><b>UNIQUE :</b> All values in the column must be different.</li>
@@ -163,7 +164,7 @@
                         <li><b>Non-Trivial FD :</b> <code>X → Y</code> where at least one attribute of Y is not in X. These are the dependencies that matter for design.</li>
                         <li><b>Closure of an Attribute Set :</b> The set of all attributes that can be functionally determined from a given attribute set. Used to find candidate keys.</li>
                     </ul>
-                    <h6>Decomposition -</h6>
+                    <h6>Decomposition</h6>
                     <p>Decomposition is breaking one relation into two or more sub-relations, done during normalization. A good decomposition must satisfy two properties:</p>
                     <ul class="justify">
                         <li><b>Lossless Join :</b> Joining the sub-relations back gives exactly the original relation, so no information is lost: <code>R1 ⋈ R2 ⋈ ... ⋈ Rn = R</code>. If the join produces extra spurious tuples (<code>⊃ R</code>), the decomposition is lossy.</li>
@@ -190,7 +191,7 @@
                 <h4 class="heading">Transactions &amp; ACID</h4>
                 <div class="content">
                     <p>A transaction is a single logical unit of work made of a set of operations, such as transferring money (debit one account, credit another). Its basic operations are Read(A), which loads a value into the main-memory buffer, and Write(A), which writes the updated value from the buffer back to the database.</p>
-                    <h6>Transaction States -</h6>
+                    <h6>Transaction States</h6>
                     <ul class="justify">
                         <li><b>Active :</b> Instructions are executing; changes live only in the buffer.</li>
                         <li><b>Partially Committed :</b> The last instruction has executed, but changes are still in the buffer, not yet on disk.</li>
@@ -199,7 +200,7 @@
                         <li><b>Aborted :</b> All changes made by the failed transaction have been rolled back.</li>
                         <li><b>Terminated :</b> The end of the life cycle, reached after commit or abort.</li>
                     </ul>
-                    <h6>ACID Properties -</h6>
+                    <h6>ACID Properties</h6>
                     <ul class="justify">
                         <li><b>Atomicity :</b> A transaction happens completely or not at all; never partially.</li>
                         <li><b>Consistency :</b> Integrity constraints hold before and after the transaction, so the database moves from one valid state to another.</li>
@@ -217,13 +218,13 @@
                         <li><b>Serial Schedule :</b> Transactions run one after another with no overlap. Always consistent, recoverable, cascadeless, and strict, but slow.</li>
                         <li><b>Non-Serial Schedule :</b> Operations of transactions are interleaved for concurrency. Faster, but not guaranteed to be consistent or recoverable.</li>
                     </ul>
-                    <h6>Serializability -</h6>
+                    <h6>Serializability</h6>
                     <p>A non-serial schedule is serializable if it is equivalent to some serial schedule, which guarantees it keeps the database consistent.</p>
                     <ul class="justify">
                         <li><b>Conflict Serializable :</b> The schedule can be converted to a serial one by swapping its non-conflicting operations.</li>
                         <li><b>View Serializable :</b> The schedule is view-equivalent to some serial schedule (a weaker, broader condition).</li>
                     </ul>
-                    <h6>Recoverability -</h6>
+                    <h6>Recoverability</h6>
                     <ul class="justify">
                         <li><b>Irrecoverable Schedule :</b> A transaction dirty-reads from an uncommitted transaction and commits before it; if the source then rolls back, the damage cannot be undone.</li>
                         <li><b>Recoverable Schedule :</b> The reader's commit is delayed until the transaction it read from commits or rolls back.</li>
@@ -328,13 +329,13 @@
                 <h4 class="heading">Indexing &amp; File Structures</h4>
                 <div class="content">
                     <p>An index is an ordered auxiliary structure that speeds up data retrieval, like the index of a book: instead of scanning every block, the DBMS looks up the key and follows a pointer to the data block.</p>
-                    <h6>Types of Indexes -</h6>
+                    <h6>Types of Indexes</h6>
                     <ul class="justify">
                         <li><b>Primary Index :</b> An ordered file of fixed-length records with two fields: the primary key of the data file and a pointer to its data block. Average block accesses with the index are about <code>log2(Bi) + 1</code>, where Bi is the number of index blocks.</li>
                         <li><b>Clustering Index :</b> Created on a data file that is physically ordered on a non-key field (the clustering field).</li>
                         <li><b>Secondary Index :</b> Provides an additional access path on a field for which primary access already exists.</li>
                     </ul>
-                    <h6>B-Trees and B+ Trees -</h6>
+                    <h6>B-Trees and B+ Trees</h6>
                     <ul class="justify">
                         <li><b>B-Tree :</b> A balanced multi-way search tree where every node stores keys along with data pointers (to a block or record). For a tree of order P (the maximum number of children): the root has between 2 and P children, internal nodes have between ⌈P/2⌉ and P children, and internal nodes hold between ⌈P/2⌉-1 and P-1 keys.</li>
                         <li><b>B+ Tree :</b> Stores data pointers only in the leaf nodes; internal nodes hold just keys for navigation, so leaf and non-leaf nodes have different orders (non-leaf higher). This makes the tree shallower and searching faster, and the linked leaves make range queries efficient. Most database indexes are B+ trees.</li>
@@ -346,7 +347,7 @@
                 <h4 class="heading">SQL Basics</h4>
                 <div class="content">
                     <p>SQL (Structured Query Language) is the standard language for storing, manipulating, and retrieving data in relational databases. It covers the CRUD operations: Create, Read, Update, Delete.</p>
-                    <h6>Types of SQL Commands -</h6>
+                    <h6>Types of SQL Commands</h6>
                     <ul class="justify">
                         <li><b>DDL (Data Definition Language) :</b> Defines and changes structure: <code>CREATE</code>, <code>ALTER</code>, <code>DROP</code>, <code>TRUNCATE</code>, <code>RENAME</code>.</li>
                         <li><b>DQL (Data Query Language) :</b> Retrieves data: <code>SELECT</code>.</li>
@@ -354,7 +355,7 @@
                         <li><b>DCL (Data Control Language) :</b> Manages permissions: <code>GRANT</code>, <code>REVOKE</code>.</li>
                         <li><b>TCL (Transaction Control Language) :</b> Manages transactions: <code>COMMIT</code>, <code>ROLLBACK</code>, <code>SAVEPOINT</code>.</li>
                     </ul>
-                    <h6>Common Data Types -</h6>
+                    <h6>Common Data Types</h6>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -423,13 +424,13 @@
                 <h4 class="heading">DDL Commands</h4>
                 <div class="content">
                     <p>DDL commands define and manage the structure of databases and their objects (tables, indexes, constraints).</p>
-                    <h6>Database Level -</h6>
+                    <h6>Database Level</h6>
                     <div class="code-box code-box-color"><code>CREATE DATABASE IF NOT EXISTS db_name;
 DROP DATABASE IF EXISTS db_name;
 SHOW DATABASES;
 USE db_name;
 SHOW TABLES;</code></div>
-                    <h6>Table Level -</h6>
+                    <h6>Table Level</h6>
                     <div class="code-box code-box-color"><code>-- create
 CREATE TABLE employees (
     id INT PRIMARY KEY,
@@ -442,7 +443,7 @@ DROP TABLE employees;
 
 -- delete all data, keep structure
 TRUNCATE TABLE employees;</code></div>
-                    <h6>ALTER TABLE -</h6>
+                    <h6>ALTER TABLE</h6>
                     <div class="code-box code-box-color"><code>-- add column
 ALTER TABLE employees ADD COLUMN email VARCHAR(100);
 
@@ -457,7 +458,7 @@ ALTER TABLE employees CHANGE COLUMN name full_name VARCHAR(80);
 
 -- rename table
 ALTER TABLE employees RENAME TO staff;</code></div>
-                    <h6>Indexes -</h6>
+                    <h6>Indexes</h6>
                     <div class="code-box code-box-color"><code>CREATE INDEX idx_emp_name ON employees (name);
 DROP INDEX idx_emp_name;</code></div>
                     <ul class="justify">
@@ -470,18 +471,18 @@ DROP INDEX idx_emp_name;</code></div>
                 <h4 class="heading">DML Commands</h4>
                 <div class="content">
                     <p>DML commands add, change, and remove the data inside tables.</p>
-                    <h6>INSERT -</h6>
+                    <h6>INSERT</h6>
                     <div class="code-box code-box-color"><code>INSERT INTO employees (name, salary)
 VALUES ('John Doe', 50000),
        ('Jane Roe', 60000);
 
 -- without column list, values must match column order
 INSERT INTO employees VALUES (1, 'John Doe', 50000);</code></div>
-                    <h6>UPDATE -</h6>
+                    <h6>UPDATE</h6>
                     <div class="code-box code-box-color"><code>UPDATE employees
 SET salary = 55000, name = 'John D.'
 WHERE id = 1;</code></div>
-                    <h6>DELETE -</h6>
+                    <h6>DELETE</h6>
                     <div class="code-box code-box-color"><code>DELETE FROM employees WHERE id = 1;
 
 -- without WHERE, deletes ALL rows (structure remains)
@@ -498,7 +499,7 @@ DELETE FROM employees;</code></div>
 SELECT * FROM table_name;            -- all columns
 SELECT DISTINCT country FROM customers;   -- unique values
 SELECT name AS "Full Name" FROM employees; -- rename output column</code></div>
-                    <h6>WHERE Clause -</h6>
+                    <h6>WHERE Clause</h6>
                     <p>Filters rows using conditions built from operators: comparison (<code>=</code>, <code>!=</code> or <code>&lt;&gt;</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>), logical (<code>AND</code>, <code>OR</code>, <code>NOT</code>), and arithmetic.</p>
                     <div class="code-box code-box-color"><code>SELECT * FROM customers WHERE country = 'Mexico';
 SELECT * FROM customers
@@ -508,7 +509,7 @@ WHERE country = 'Germany' AND (city = 'Berlin' OR city = 'Munich');</code></div>
                         <li><b>BETWEEN :</b> Inclusive range: <code>WHERE price BETWEEN 10 AND 20</code>. Works with numbers, text, and dates.</li>
                         <li><b>IS NULL / IS NOT NULL :</b> NULL cannot be tested with <code>=</code>; use <code>WHERE email IS NULL</code>.</li>
                     </ul>
-                    <h6>LIKE Patterns -</h6>
+                    <h6>LIKE Patterns</h6>
                     <p><code>%</code> matches any number of characters (including zero); <code>_</code> matches exactly one character.</p>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
@@ -546,7 +547,7 @@ WHERE country = 'Germany' AND (city = 'Berlin' OR city = 'Munich');</code></div>
                             </tbody>
                         </table>
                     </div>
-                    <h6>Sorting &amp; Limiting -</h6>
+                    <h6>Sorting &amp; Limiting</h6>
                     <div class="code-box code-box-color"><code>-- sort (ASC is default; NULLs sort first in ASC)
 SELECT * FROM customers ORDER BY country ASC, name DESC;
 
@@ -566,20 +567,20 @@ SELECT * FROM customers WHERE ROWNUM &lt;= 3;        -- Oracle</code></div>
 SELECT MIN(price) AS cheapest, MAX(price) AS costliest FROM products;
 SELECT AVG(price) FROM products;
 SELECT SUM(quantity) FROM order_details;</code></div>
-                    <h6>GROUP BY -</h6>
+                    <h6>GROUP BY</h6>
                     <p>Groups rows that share a value into summary rows, almost always combined with an aggregate function. Grouping by multiple columns creates hierarchical groups.</p>
                     <div class="code-box code-box-color"><code>-- customers per country
 SELECT country, COUNT(customer_id)
 FROM customers
 GROUP BY country
 ORDER BY COUNT(customer_id) DESC;</code></div>
-                    <h6>HAVING -</h6>
+                    <h6>HAVING</h6>
                     <p>WHERE cannot use aggregate functions, so HAVING exists to filter groups after grouping. WHERE filters rows before grouping and runs first.</p>
                     <div class="code-box code-box-color"><code>SELECT country, COUNT(customer_id)
 FROM customers
 GROUP BY country
 HAVING COUNT(customer_id) > 5;</code></div>
-                    <h6>General Clause Order -</h6>
+                    <h6>General Clause Order</h6>
                     <div class="code-box code-box-color"><code>SELECT column(s)
 FROM table_name
 WHERE condition        -- filter rows
@@ -658,7 +659,7 @@ FROM (SELECT * FROM students WHERE city = 'Delhi') AS delhi_students;</code></di
                     <ul class="justify">
                         <li><b>Subqueries vs Joins :</b> Subqueries break a complex task into steps and are easier to read for simple cases; joins are generally more efficient for combining data from multiple tables at scale.</li>
                     </ul>
-                    <h5>Views :</h5>
+                    <h5>Views</h5>
                     <p>A view is a virtual table defined by a stored SELECT statement. It holds no data of its own; the database re-runs the query each time the view is used, so a view always shows up-to-date data. Views simplify complex queries and restrict which columns or rows users can see.</p>
                     <div class="code-box code-box-color"><code>CREATE VIEW high_earners AS
 SELECT name, salary FROM employees WHERE salary > 80000;
@@ -671,14 +672,14 @@ DROP VIEW high_earners;</code></div>
             <div class="sections" id="dcl-tcl">
                 <h4 class="heading">DCL &amp; TCL</h4>
                 <div class="content">
-                    <h6>DCL (Data Control Language) -</h6>
+                    <h6>DCL (Data Control Language)</h6>
                     <p>DCL manages access rights and permissions, ensuring only authorized users can read or modify data.</p>
                     <div class="code-box code-box-color"><code>-- give a user SELECT permission on a table
 GRANT SELECT ON employees TO analyst;
 
 -- take it back
 REVOKE SELECT ON employees FROM analyst;</code></div>
-                    <h6>TCL (Transaction Control Language) -</h6>
+                    <h6>TCL (Transaction Control Language)</h6>
                     <p>TCL groups DML statements into transactions so related changes succeed or fail together.</p>
                     <ul class="justify">
                         <li><b>COMMIT :</b> Permanently saves all changes made since the transaction began.</li>
@@ -700,12 +701,12 @@ COMMIT;                      -- make it permanent</code></div>
 
             <!-- Navigation Buttons -->
             <nav>
-                <a href="/Cheatsheets"><i class="bi bi-arrow-left-square-fill"></i></a>
-                <a href="#" ><i class="bi bi-arrow-up-square-fill"></i></a>
+                <a href="/cheatsheets" aria-label="All cheatsheets"><i class="bi bi-grid-3x3-gap-fill" aria-hidden="true"></i></a>
+                <a href="#" aria-label="Back to top"><i class="bi bi-arrow-up" aria-hidden="true"></i></a>
             </nav>
         </div>
 
         <!-- JavaScript -->
-        <script src="../assets/js/script.js"></script>
+        <script src="../assets/js/script.js?v=8"></script>
     </body>
 </html>

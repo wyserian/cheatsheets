@@ -5,27 +5,28 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>HTML Cheatsheet</title>
+        <script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('cheatsheet-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'))}catch(e){}</script>
 
         <!-- Bootstrap CDN -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
         <!-- CSS -->
-        <link rel="stylesheet" href="../assets/css/style.css">
+        <link rel="stylesheet" href="../assets/css/style.css?v=11">
     </head>
 
-    <body data-theme="dark">
+    <body>
         <div class="container">
                         <!-- Top Bar -->
             <div class="top-bar">
-                <a href="/Cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
-                <div class="button"><i class="bi bi-circle-half"></i></div>
+                <a href="/cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
+                <button class="theme-toggle" type="button" aria-label="Toggle theme"><i class="bi bi-sun" aria-hidden="true"></i></button>
             </div>
 
             <h3 class="title">HTML</h3>
 
             <div class="sections">
-                <h6>Languages of Web Development -</h6>
+                <h6>Languages of Web Development</h6>
                 <ol>
                     <li><b>HTML :</b> define the structure and content of web pages.</li>
                     <li><b>CSS :</b> defines the styling of web pages.</li>
@@ -67,7 +68,7 @@
             <div class="sections" id="tags">
                 <h4 class="heading">Tags</h4>
                 <div class="content">
-                    <h5>&bull; Heading</h5>
+                    <h5>Heading</h5>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -105,7 +106,7 @@
                         </table>
                     </div>
 
-                    <h5>&bull; Containers</h5>
+                    <h5>Containers</h5>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -131,7 +132,7 @@
                         </table>
                     </div>
 
-                    <h5>&bull; Text Formatting</h5>
+                    <h5>Text Formatting</h5>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -232,7 +233,7 @@
                         </table>
                     </div>
 
-                    <h5>&bull; Others</h5>
+                    <h5>Others</h5>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -261,7 +262,7 @@
                         </table>
                     </div>
 
-                    <h5>&bull; Semantic Elements</h5>
+                    <h5>Semantic Elements</h5>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -327,7 +328,7 @@
                     <pre class="code-box"><code>&lt;a href=&quot;url&quot; download=&quot;filename&quot; target=&quot;_blank&quot;&gt; Link Text &lt;/a&gt;</code></pre>
                     <p><strong>target :</strong> <code>blanck|self|parent|top</code></p>
 
-                    <h5>&bull; Bookmarks :</h5>
+                    <h5>Bookmarks</h5>
                     <pre class="code-box"><code>&lt;h2 id=&quot;C4&quot;&gt;Chapter 4&lt;/h2&gt;
 
 &lt;a href=&quot;#C4&quot;&gt;Jump to Chapter 4&lt;/a&gt;</code></pre>
@@ -337,13 +338,13 @@
             <div class="sections" id="lists">
                 <h4 class="heading">Lists</h4>
                 <div class="content">
-                    <h5>&bull; Unordered :</h5>
+                    <h5>Unordered</h5>
                     <pre class="code-box"><code>&lt;ul&gt;
     &lt;li&gt;Item&lt;/li&gt;
     &lt;li&gt;Item&lt;/li&gt;
 &lt;/ul&gt;</code></pre>
 
-                    <h5>&bull; Ordered :</h5>
+                    <h5>Ordered</h5>
                     <pre class="code-box"><code>&lt;ol type=&quot;value&quot; start=&quot;20&quot;&gt;
     &lt;li&gt;Item&lt;/li&gt;
     &lt;li&gt;Item&lt;/li&gt;
@@ -353,7 +354,7 @@
                         <li><code>start</code> : start counting from 20</li>
                     </ul>
 
-                    <h5>&bull; Description Lists :</h5>
+                    <h5>Description Lists</h5>
                     <pre class="code-box"><code>&lt;dl&gt;
     &lt;dt&gt;Term&lt;/dt&gt;
     &lt;dd&gt;- description &lt;/dd&gt;
@@ -392,7 +393,7 @@
                         <li><code>rowspan=&quot;value&quot;</code> : span rows</li>
                     </ul>
 
-                    <h6>Caption :</h6>
+                    <h6>Caption</h6>
                     <pre class="code-box"><code>&lt;caption&gt;Text&lt;/caption&gt;</code></pre>
 
                     <p>The <code>&lt;caption&gt;</code> tag must be inserted immediately after the <code>&lt;table&gt;</code> tag.</p>
@@ -405,7 +406,7 @@
                     <pre class="code-box"><code>&lt;img src=&quot;image.jpg&quot; alt=&quot;Image Not Supported&quot; width=&quot;104&quot; height=&quot;142&quot;&gt;
 </code></pre>
 
-                    <h5>&bull; Clickable Area :</h5>
+                    <h5>Clickable Area</h5>
                     <pre class="code-box"><code>&lt;map name=&quot;workmap&quot;&gt;
     &lt;area shape=&quot;rect&quot; coords=&quot;34,44,270,350&quot; alt=&quot;Computer&quot; href=&quot;computer.htm&quot;&gt;
     &lt;area shape=&quot;rect&quot; coords=&quot;290,172,333,250&quot; alt=&quot;Phone&quot; href=&quot;phone.htm&quot;&gt;
@@ -413,7 +414,7 @@
 &lt;/map&gt;
 </code></pre>
 
-                    <h5>&bull; Picture Gallery :</h5>
+                    <h5>Picture Gallery</h5>
                     <pre class="code-box"><code>&lt;picture&gt;
     &lt;source media=&quot;(min-width:650px)&quot; srcset=&quot;img_pink_flowers.jpg&quot;&gt;
     &lt;source media=&quot;(min-width:465px)&quot; srcset=&quot;img_white_flower.jpg&quot;&gt;
@@ -480,17 +481,17 @@
                         </li>
                     </ul>
 
-                    <h5>&bull; Button :</h5>
+                    <h5>Button</h5>
                     <pre class="code-box"><code>&lt;button type=&quot;button&quot; onclick=&quot;alert(&#39;Message&#39;)&quot;&gt;Click&lt;/button&gt;
 </code></pre>
 
-                    <h5>&bull; Fieldset :</h5>
+                    <h5>Fieldset</h5>
                     <pre class="code-box"><code>&lt;fieldset&gt;
     &lt;legend&gt;Caption&lt;/legend&gt;
 &lt;/fieldset&gt;
 </code></pre>
 
-                    <h5>&bull; Selection List :</h5>
+                    <h5>Selection List</h5>
                     <pre class="code-box"><code>&lt;select id=&quot;cars&quot; name=&quot;cars&quot; size=&quot;3&quot; multiple&gt;
     &lt;option value=&quot;volvo&quot;&gt;Volvo&lt;/option&gt;
     &lt;option value=&quot;saab&quot;&gt;Saab&lt;/option&gt;
@@ -500,7 +501,7 @@
 &lt;/select&gt;
 </code></pre>
 
-                    <h5>&bull; Data List :</h5>
+                    <h5>Data List</h5>
                     <pre class="code-box"><code>&lt;datalist id=&quot;browsers&quot;&gt;
     &lt;option value=&quot;Internet Explorer&quot;&gt;
     &lt;option value=&quot;Firefox&quot;&gt;
@@ -510,7 +511,7 @@
 &lt;/datalist&gt;
 </code></pre>
 
-                    <h5>&bull; Textarea :</h5>
+                    <h5>Textarea</h5>
                     <pre class="code-box"><code>&lt;textarea name=&quot;message&quot; rows=&quot;10&quot; cols=&quot;30&quot;&gt;
     Text
 &lt;/textarea&gt;
@@ -599,12 +600,12 @@
 
             <!-- Navigation Buttons -->
             <nav>
-                <a href="/Cheatsheets"><i class="bi bi-arrow-left-square-fill"></i></a>
-                <a href="#" ><i class="bi bi-arrow-up-square-fill"></i></a>
+                <a href="/cheatsheets" aria-label="All cheatsheets"><i class="bi bi-grid-3x3-gap-fill" aria-hidden="true"></i></a>
+                <a href="#" aria-label="Back to top"><i class="bi bi-arrow-up" aria-hidden="true"></i></a>
             </nav>
         </div>
 
         <!-- JavaScript -->
-        <script src="../assets/js/script.js"></script>
+        <script src="../assets/js/script.js?v=8"></script>
     </body>
 </html>

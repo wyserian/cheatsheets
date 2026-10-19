@@ -5,21 +5,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>Windows Cheatsheet</title>
+        <script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('cheatsheet-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'))}catch(e){}</script>
 
         <!-- Bootstrap CDN -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
         <!-- CSS -->
-        <link rel="stylesheet" href="../assets/css/style.css">
+        <link rel="stylesheet" href="../assets/css/style.css?v=11">
     </head>
 
-    <body data-theme="dark">
+    <body>
         <div class="container">
             <!-- Top Bar -->
             <div class="top-bar">
-                <a href="/Cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
-                <div class="button"><i class="bi bi-circle-half"></i></div>
+                <a href="/cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
+                <button class="theme-toggle" type="button" aria-label="Toggle theme"><i class="bi bi-sun" aria-hidden="true"></i></button>
             </div>
 
             <h3 class="title">Windows</h3>
@@ -53,7 +54,7 @@
                 <h4 class="heading">Windows</h4>
                 <div class="content">
                     <p>Microsoft Windows is a family of proprietary, closed-source operating systems first released in 1985. Modern Windows (10, 11, and Server) is built on the <b>Windows NT</b> architecture, a clean design from 1993 that replaced the old MS-DOS base. NT was designed to be secure, multi-user, portable across processors, and fully 32/64-bit.</p>
-                    <h6>Key Characteristics -</h6>
+                    <h6>Key Characteristics</h6>
                     <ul class="justify">
                         <li><b>Hybrid Kernel :</b> A middle ground between monolithic and microkernel designs. Core services run in kernel mode for speed, but the design is more modular than classic UNIX.</li>
                         <li><b>Backward Compatibility :</b> A strong focus on running old software on new versions, a major reason for Windows' dominance on the desktop.</li>
@@ -61,7 +62,7 @@
                         <li><b>Driver Model :</b> Hardware vendors ship signed drivers (<code>.sys</code>) that load into the kernel.</li>
                         <li><b>Win32 API :</b> The long-standing native programming interface; newer apps may use WinRT / the Windows App SDK.</li>
                     </ul>
-                    <h6>Editions &amp; Lines -</h6>
+                    <h6>Editions &amp; Lines</h6>
                     <ul class="justify">
                         <li><b>Client :</b> Windows 10, Windows 11 (Home, Pro, Enterprise, Education).</li>
                         <li><b>Server :</b> Windows Server 2019 / 2022 / 2025, used for Active Directory, file, web, and database services.</li>
@@ -90,7 +91,7 @@
 +==============================================================+
 |  Hardware                                                    |
 +==============================================================+</code></pre>
-                    <h6>Core Components -</h6>
+                    <h6>Core Components</h6>
                     <ul class="justify">
                         <li><b>HAL (hal.dll) :</b> Hardware Abstraction Layer. Hides CPU/motherboard differences so the kernel is portable.</li>
                         <li><b>Kernel (ntoskrnl.exe) :</b> The NT kernel: thread scheduling, interrupts, and low-level synchronization.</li>
@@ -99,14 +100,14 @@
                         <li><b>Subsystem DLLs :</b> <code>kernel32.dll</code> (core Win32), <code>user32.dll</code> (windows, input), <code>gdi32.dll</code> (graphics), <code>advapi32.dll</code> (registry, security).</li>
                         <li><b>Win32 Subsystem (csrss.exe) :</b> Client/Server Runtime, manages console windows and processes for the Win32 environment.</li>
                     </ul>
-                    <h6>Processes, Threads &amp; Services -</h6>
+                    <h6>Processes, Threads &amp; Services</h6>
                     <ul class="justify">
                         <li><b>Process :</b> A running program with its own virtual memory and one or more threads. Identified by a PID.</li>
                         <li><b>Thread :</b> The unit the scheduler runs. A process has at least one.</li>
                         <li><b>Service :</b> A background process (the Windows equivalent of a daemon), managed by the Service Control Manager (<code>services.msc</code>, <code>sc.exe</code>). Many run inside shared <code>svchost.exe</code> host processes.</li>
                         <li><b>Session :</b> Session 0 is reserved for services; interactive users log on to session 1 and above (session isolation).</li>
                     </ul>
-                    <h6>Key System Processes -</h6>
+                    <h6>Key System Processes</h6>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -161,16 +162,16 @@
    -> Windows Loader (winload.efi) -> Kernel (ntoskrnl.exe) + HAL + drivers
       -> Session Manager (smss.exe) -> wininit.exe + winlogon.exe
          -> Services + Logon UI -> Desktop</code></pre>
-                    <ul class="justify">
-                        <li><b>1. Firmware (UEFI/BIOS) :</b> Runs POST, then hands off to the boot manager. UEFI is the modern standard and is required for Secure Boot.</li>
-                        <li><b>2. Windows Boot Manager (bootmgfw.efi) :</b> Reads the <b>BCD</b> (Boot Configuration Data) store and shows the OS menu. Replaces the old <code>boot.ini</code>.</li>
-                        <li><b>3. Windows Loader (winload.efi) :</b> Loads the kernel, the HAL, and boot-critical drivers into memory.</li>
-                        <li><b>4. Kernel Init :</b> The kernel initializes the Executive, starts remaining drivers, and launches the Session Manager.</li>
-                        <li><b>5. smss.exe :</b> Sets up the environment, paging file, and sessions, then starts <code>csrss.exe</code> and <code>wininit.exe</code>.</li>
-                        <li><b>6. wininit.exe :</b> Starts the Service Control Manager (<code>services.exe</code>), the Local Security Authority (<code>lsass.exe</code>), and the Local Session Manager.</li>
-                        <li><b>7. winlogon.exe :</b> Shows the logon UI (LogonUI), authenticates the user through LSASS, and starts <code>explorer.exe</code>.</li>
-                    </ul>
-                    <h6>BCD &amp; Boot Tools -</h6>
+                    <ol class="justify">
+                        <li><b>Firmware (UEFI/BIOS) :</b> Runs POST, then hands off to the boot manager. UEFI is the modern standard and is required for Secure Boot.</li>
+                        <li><b>Windows Boot Manager (bootmgfw.efi) :</b> Reads the <b>BCD</b> (Boot Configuration Data) store and shows the OS menu. Replaces the old <code>boot.ini</code>.</li>
+                        <li><b>Windows Loader (winload.efi) :</b> Loads the kernel, the HAL, and boot-critical drivers into memory.</li>
+                        <li><b>Kernel Init :</b> The kernel initializes the Executive, starts remaining drivers, and launches the Session Manager.</li>
+                        <li><b>smss.exe :</b> Sets up the environment, paging file, and sessions, then starts <code>csrss.exe</code> and <code>wininit.exe</code>.</li>
+                        <li><b>wininit.exe :</b> Starts the Service Control Manager (<code>services.exe</code>), the Local Security Authority (<code>lsass.exe</code>), and the Local Session Manager.</li>
+                        <li><b>winlogon.exe :</b> Shows the logon UI (LogonUI), authenticates the user through LSASS, and starts <code>explorer.exe</code>.</li>
+                    </ol>
+                    <h6>BCD &amp; Boot Tools</h6>
                     <pre class="code-box"><code>bcdedit                       :: view the boot configuration store
 bcdedit /set {current} safeboot minimal  :: next boot into Safe Mode
 msconfig                      :: System Configuration (boot options GUI)
@@ -182,14 +183,14 @@ bootrec /rebuildbcd           :: repair BCD from recovery environment</code></pr
             <div class="sections" id="secure-boot">
                 <h4 class="heading">Secure Boot &amp; TPM</h4>
                 <div class="content">
-                    <h5>&bull; Secure Boot :</h5>
+                    <h5>Secure Boot</h5>
                     <p>Secure Boot is a UEFI feature that ensures only software signed by a trusted key runs during boot, blocking bootkits and rootkits that load before the OS. The firmware verifies the signature of each boot component before running it, forming a chain of trust from the firmware up to the kernel.</p>
                     <ul class="justify">
                         <li><b>Keys :</b> PK (Platform Key, owned by the OEM), KEK (Key Exchange Keys), and the <code>db</code> / <code>dbx</code> databases of allowed and revoked signatures.</li>
                         <li><b>Chain of Trust :</b> Firmware verifies the Boot Manager, which verifies the Loader, which verifies the kernel and its drivers.</li>
                         <li><b>Requirement :</b> Secure Boot (plus TPM 2.0) is a formal requirement for Windows 11.</li>
                     </ul>
-                    <h5>&bull; TPM (Trusted Platform Module) :</h5>
+                    <h5>TPM (Trusted Platform Module)</h5>
                     <p>The TPM is a dedicated secure hardware chip (or firmware equivalent, fTPM) that stores cryptographic keys and performs crypto operations in isolation from the main CPU and OS. Keys generated inside the TPM never leave it in plaintext.</p>
                     <ul class="justify">
                         <li><b>PCRs (Platform Configuration Registers) :</b> Store measurements (hashes) of the boot components. Their values change if boot code is tampered with.</li>
@@ -197,7 +198,7 @@ bootrec /rebuildbcd           :: repair BCD from recovery environment</code></pr
                         <li><b>Attestation :</b> The TPM can produce signed proof of the machine's boot state for a remote server.</li>
                         <li><b>Measured Boot :</b> Each boot stage measures the next into the TPM before running it, creating a verifiable log.</li>
                     </ul>
-                    <h5>&bull; BitLocker :</h5>
+                    <h5>BitLocker</h5>
                     <p>BitLocker is Windows' full-volume encryption. With a TPM, the decryption key is sealed to the boot state, so the drive stays locked if moved to another machine or if the boot chain is altered.</p>
                     <pre class="code-box"><code>tpm.msc                          :: TPM management console
 Get-Tpm                          # PowerShell: TPM status
@@ -211,7 +212,7 @@ Confirm-SecureBootUEFI           # PowerShell: is Secure Boot on?</code></pre>
                 <h4 class="heading">File System &amp; Paths</h4>
                 <div class="content">
                     <p>Unlike Linux's single tree, Windows gives each volume a <b>drive letter</b> (<code>C:</code>, <code>D:</code>). Paths use backslashes (<code>\</code>), and file names are case-insensitive (but case-preserving).</p>
-                    <h6>Path Types -</h6>
+                    <h6>Path Types</h6>
                     <ul class="justify">
                         <li><b>Absolute :</b> <code>C:\Users\Rahul\file.txt</code> (drive + full path).</li>
                         <li><b>Relative :</b> <code>docs\file.txt</code>, <code>..\backup</code>.</li>
@@ -219,7 +220,7 @@ Confirm-SecureBootUEFI           # PowerShell: is Secure Boot on?</code></pre>
                         <li><b>Extended-length :</b> <code>\\?\C:\very\long\path</code> bypasses the old 260-character <code>MAX_PATH</code> limit.</li>
                         <li><b>Device :</b> <code>\\.\PhysicalDrive0</code>, <code>\\.\C:</code> for raw device access.</li>
                     </ul>
-                    <h6>Key Folders -</h6>
+                    <h6>Key Folders</h6>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -272,7 +273,7 @@ Confirm-SecureBootUEFI           # PowerShell: is Secure Boot on?</code></pre>
                             </tbody>
                         </table>
                     </div>
-                    <h6>Environment Variables -</h6>
+                    <h6>Environment Variables</h6>
                     <p>Referenced as <code>%NAME%</code> in CMD and <code>$env:NAME</code> in PowerShell.</p>
                     <ul class="justify">
                         <li><code>%SystemRoot%</code> / <code>%windir%</code> : <code>C:\Windows</code></li>
@@ -287,7 +288,7 @@ Confirm-SecureBootUEFI           # PowerShell: is Secure Boot on?</code></pre>
                 <h4 class="heading">NTFS</h4>
                 <div class="content">
                     <p>NTFS (New Technology File System) is the default Windows file system since Windows NT. It is a journaling file system with permissions, encryption, compression, and large-volume support.</p>
-                    <h6>Key Features -</h6>
+                    <h6>Key Features</h6>
                     <ul class="justify">
                         <li><b>MFT (Master File Table) :</b> A database with one record per file, holding its metadata and (for small files) the data itself.</li>
                         <li><b>Journaling :</b> A transaction log (<code>$LogFile</code>) lets NTFS recover a consistent state after a crash.</li>
@@ -298,7 +299,7 @@ Confirm-SecureBootUEFI           # PowerShell: is Secure Boot on?</code></pre>
                         <li><b>Hard Links, Junctions &amp; Symlinks :</b> Multiple names for one file, and directory redirections (<code>mklink</code>).</li>
                         <li><b>VSS (Volume Shadow Copy) :</b> Point-in-time snapshots used for backups and System Restore.</li>
                     </ul>
-                    <h6>NTFS Permissions (ACLs) -</h6>
+                    <h6>NTFS Permissions (ACLs)</h6>
                     <p>Each file/folder has a <b>DACL</b> (Discretionary Access Control List) made of <b>ACEs</b> (Access Control Entries) that allow or deny a trustee specific rights. Permissions are inherited from the parent folder by default.</p>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
@@ -341,7 +342,7 @@ mklink /D Link Target                 :: directory symbolic link
 mklink /H hard.txt file.txt           :: hard link
 compact /c /s file.txt                :: NTFS compression
 cipher /e file.txt                    :: EFS encryption</code></pre>
-                    <h6>Other Windows File Systems -</h6>
+                    <h6>Other Windows File Systems</h6>
                     <ul class="justify">
                         <li><b>FAT32 :</b> Old, simple; 4 GB max file size. Still used for small USB drives and UEFI system partitions.</li>
                         <li><b>exFAT :</b> FAT without the size limit, for large USB drives and SD cards shared across OSes.</li>
@@ -354,14 +355,14 @@ cipher /e file.txt                    :: EFS encryption</code></pre>
                 <h4 class="heading">Registry</h4>
                 <div class="content">
                     <p>The Registry is a central hierarchical database for OS and application configuration, the Windows equivalent of Linux's scattered <code>/etc</code> files. It is edited with <code>regedit</code> or the <code>reg</code> command, and read/written through the <code>advapi32.dll</code> APIs.</p>
-                    <h6>Structure -</h6>
+                    <h6>Structure</h6>
                     <ul class="justify">
                         <li><b>Keys :</b> Folders in the tree (can contain subkeys).</li>
                         <li><b>Values :</b> The data inside a key, each with a name, type, and data.</li>
                         <li><b>Value Types :</b> <code>REG_SZ</code> (string), <code>REG_DWORD</code> / <code>REG_QWORD</code> (32/64-bit number), <code>REG_BINARY</code>, <code>REG_MULTI_SZ</code>, <code>REG_EXPAND_SZ</code>.</li>
                         <li><b>Hives :</b> The physical files backing the registry, stored in <code>C:\Windows\System32\config</code> (SYSTEM, SOFTWARE, SAM, SECURITY) and the per-user <code>NTUSER.DAT</code>.</li>
                     </ul>
-                    <h6>Root Keys (Hives) -</h6>
+                    <h6>Root Keys (Hives)</h6>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -394,7 +395,7 @@ cipher /e file.txt                    :: EFS encryption</code></pre>
                             </tbody>
                         </table>
                     </div>
-                    <h6>Notable Keys -</h6>
+                    <h6>Notable Keys</h6>
                     <ul class="justify">
                         <li><b>Autostart (common malware persistence) :</b> <code>HKLM\...\CurrentVersion\Run</code> and <code>HKCU\...\CurrentVersion\Run</code> list programs that launch at logon.</li>
                         <li><b>Services :</b> <code>HKLM\SYSTEM\CurrentControlSet\Services</code>.</li>
@@ -415,15 +416,15 @@ Set-ItemProperty "HKCU:\Software\MyApp" -Name Theme -Value Dark</code></pre>
             <div class="sections" id="services">
                 <h4 class="heading">Services &amp; Scheduled Tasks</h4>
                 <div class="content">
-                    <h5>&bull; Services :</h5>
+                    <h5>Services</h5>
                     <p>A service is a background process (like a Linux daemon) managed by the <b>Service Control Manager (SCM)</b>. Services can start at boot before any user logs on. They are defined under <code>HKLM\SYSTEM\CurrentControlSet\Services</code> and are a top target for persistence and privilege escalation, so auditors review them closely.</p>
-                    <h6>Start Types -</h6>
+                    <h6>Start Types</h6>
                     <ul class="justify">
                         <li><b>Automatic :</b> starts at boot (optionally "Automatic (Delayed Start)").</li>
                         <li><b>Manual :</b> starts on demand or when triggered.</li>
                         <li><b>Disabled :</b> cannot start.</li>
                     </ul>
-                    <h6>Service Accounts -</h6>
+                    <h6>Service Accounts</h6>
                     <ul class="justify">
                         <li><b>LocalSystem :</b> highest local privilege; avoid unless required.</li>
                         <li><b>LocalService / NetworkService :</b> low-privilege built-in accounts (NetworkService uses the machine account on the network).</li>
@@ -438,13 +439,13 @@ net start / net stop [service]        :: start / stop
 # PowerShell (see the PowerShell cheatsheet for more)
 Get-Service | Where-Object Status -eq Running
 Get-CimInstance Win32_Service | Select Name, StartName, PathName, StartMode</code></pre>
-                    <h6>Common Audit Findings -</h6>
+                    <h6>Common Audit Findings</h6>
                     <ul class="justify">
                         <li><b>Unquoted Service Path :</b> a service binary path with spaces and no quotes (e.g. <code>C:\Program Files\My App\svc.exe</code>) can let a planted <code>C:\Program.exe</code> run as the service account.</li>
                         <li><b>Weak Service Permissions :</b> if a low-privileged user can reconfigure a service (<code>SERVICE_CHANGE_CONFIG</code>) or replace its binary, they can run code as SYSTEM. Check with Sysinternals <code>accesschk -uwcqv</code>.</li>
                         <li><b>Insecure Registry / Binary ACLs :</b> writable service keys or executables.</li>
                     </ul>
-                    <h5>&bull; Scheduled Tasks :</h5>
+                    <h5>Scheduled Tasks</h5>
                     <p>The Task Scheduler runs programs on triggers: a time, at logon/boot, on an event, or on idle. Tasks are stored in <code>C:\Windows\System32\Tasks</code> (XML) and under the registry. Like services, they are a common persistence mechanism.</p>
                     <pre class="code-box"><code>schtasks /query /fo LIST /v             :: list all tasks (verbose)
 schtasks /create /tn Backup /tr C:\b.bat /sc daily /st 02:00
@@ -462,7 +463,7 @@ Get-ScheduledTask Backup | Get-ScheduledTaskInfo   # last/next run</code></pre>
             <div class="sections" id="processes">
                 <h4 class="heading">Processes, DLLs &amp; Signing</h4>
                 <div class="content">
-                    <h5>&bull; Executables &amp; the PE Format :</h5>
+                    <h5>Executables &amp; the PE Format</h5>
                     <p>Windows programs and libraries use the <b>PE</b> (Portable Executable) format: <code>.exe</code>, <code>.dll</code>, <code>.sys</code> (drivers). Understanding its layout matters for debugging, malware analysis, and auditing.</p>
                     <ul class="justify">
                         <li><b>DOS Header :</b> starts with <code>MZ</code>; holds a stub and a pointer to the PE header.</li>
@@ -470,7 +471,7 @@ Get-ScheduledTask Backup | Get-ScheduledTaskInfo   # last/next run</code></pre>
                         <li><b>Sections :</b> <code>.text</code> (code), <code>.data</code> (variables), <code>.rdata</code> (read-only + imports), <code>.rsrc</code> (resources: icons, manifest, version), <code>.reloc</code> (relocations).</li>
                         <li><b>Imports (IAT) :</b> the functions and DLLs the program depends on; <b>Exports</b> are what a DLL provides.</li>
                     </ul>
-                    <h5>&bull; DLLs &amp; Search Order :</h5>
+                    <h5>DLLs &amp; Search Order</h5>
                     <p>A DLL (Dynamic Link Library) is shared code loaded at runtime. When a program loads a DLL by name, Windows searches directories in a set order. With the default <b>SafeDllSearchMode</b> on, the order is roughly:</p>
                     <pre class="code-box code-box-color"><code>1. The application's own directory
 2. The system directory (C:\Windows\System32)
@@ -484,7 +485,7 @@ Get-ScheduledTask Backup | Get-ScheduledTaskInfo   # last/next run</code></pre>
                         <li><b>KnownDLLs :</b> core system DLLs listed under <code>HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\KnownDLLs</code> are always loaded from System32, which protects them from hijacking.</li>
                         <li><b>DLL Side-Loading :</b> a signed, trusted executable is used to load a malicious DLL placed beside it.</li>
                     </ul>
-                    <h5>&bull; Code Signing (Authenticode) :</h5>
+                    <h5>Code Signing (Authenticode)</h5>
                     <p>Authenticode lets publishers sign executables, DLLs, and drivers with a certificate so Windows can verify the file's publisher and that it has not been tampered with. Signatures chain to a trusted Certificate Authority.</p>
                     <ul class="justify">
                         <li><b>DSE (Driver Signature Enforcement) :</b> 64-bit Windows refuses to load unsigned kernel drivers; this is a key kernel-integrity control.</li>
@@ -497,7 +498,7 @@ Get-AuthenticodeSignature C:\Windows\System32\cmd.exe |
 
 signtool verify /pa app.exe             :: verify (Windows SDK)
 Get-Process lsass | Select Path, Company  # basic process info</code></pre>
-                    <h5>&bull; Sysinternals Toolkit :</h5>
+                    <h5>Sysinternals Toolkit</h5>
                     <p>A free Microsoft suite that every Windows developer and auditor uses for deep inspection.</p>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
@@ -546,28 +547,28 @@ Get-Process lsass | Select Path, Company  # basic process info</code></pre>
                 <h4 class="heading">Authentication &amp; Logon</h4>
                 <div class="content">
                     <p>All Windows security decisions are based on <b>SIDs</b> (Security Identifiers) and <b>access tokens</b>, coordinated by the <b>LSA</b> (Local Security Authority) inside <code>lsass.exe</code>.</p>
-                    <h6>Core Concepts -</h6>
+                    <h6>Core Concepts</h6>
                     <ul class="justify">
                         <li><b>SID (Security Identifier) :</b> A unique value identifying a user, group, or computer, e.g. <code>S-1-5-21-...-1001</code>. Names are just labels; permissions are stored against SIDs. Well-known SIDs include <code>S-1-5-18</code> (SYSTEM) and <code>S-1-5-32-544</code> (Administrators).</li>
                         <li><b>Access Token :</b> Attached to every process; lists the user's SID, group SIDs, and privileges. Created at logon and checked on every access.</li>
                         <li><b>Security Descriptor :</b> Attached to every securable object (file, key, service); contains the owner SID and the DACL.</li>
                         <li><b>LSASS :</b> Validates credentials, issues tokens, and caches secrets in memory, which is why it is a prime target for credential theft.</li>
                     </ul>
-                    <h6>Logon Flow -</h6>
+                    <h6>Logon Flow</h6>
                     <pre class="code-box code-box-color"><code>User enters credentials (winlogon / LogonUI)
    -> LSASS selects an authentication package
       -> Local account?  -> verify against SAM
       -> Domain account? -> Kerberos / NTLM to a Domain Controller
    -> on success: LSASS builds an access token (SIDs + privileges)
       -> winlogon starts the user's shell (explorer.exe) with that token</code></pre>
-                    <h6>Logon Types -</h6>
+                    <h6>Logon Types</h6>
                     <ul class="justify">
                         <li><b>Interactive :</b> at the physical keyboard.</li>
                         <li><b>Network :</b> accessing a share or service remotely (no interactive desktop).</li>
                         <li><b>RemoteInteractive :</b> Remote Desktop (RDP).</li>
                         <li><b>Service / Batch :</b> for services and scheduled tasks.</li>
                     </ul>
-                    <h6>Authentication Factors -</h6>
+                    <h6>Authentication Factors</h6>
                     <ul class="justify">
                         <li><b>Password :</b> verified against the SAM (local) or a Domain Controller.</li>
                         <li><b>Windows Hello :</b> biometric (face, fingerprint) or PIN, backed by the TPM. The PIN is device-local, not a password sent over the network.</li>
@@ -580,12 +581,12 @@ Get-Process lsass | Select Path, Company  # basic process info</code></pre>
                 <h4 class="heading">SAM &amp; Hashes</h4>
                 <div class="content">
                     <p>The <b>SAM</b> (Security Account Manager) is the database of local user accounts and their password hashes on a standalone (non-domain) machine. On a domain controller, this role is handled instead by the Active Directory database (<code>NTDS.dit</code>).</p>
-                    <h6>Where It Lives -</h6>
+                    <h6>Where It Lives</h6>
                     <ul class="justify">
                         <li><b>File :</b> <code>C:\Windows\System32\config\SAM</code>, loaded as the <code>HKLM\SAM</code> hive. It is locked while Windows runs and is not readable even by administrators through normal file access.</li>
                         <li><b>Encryption :</b> Hashes in the SAM are further encrypted with a key called <b>SYSKEY</b>, stored in the SYSTEM hive.</li>
                     </ul>
-                    <h6>Password Hashes -</h6>
+                    <h6>Password Hashes</h6>
                     <ul class="justify">
                         <li><b>LM Hash :</b> The legacy LAN Manager hash. Weak (case-insensitive, split into two 7-character halves) and disabled by default since Windows Vista. Should never be enabled.</li>
                         <li><b>NT Hash :</b> The current format: an unsalted MD4 hash of the password (UTF-16). Because it is unsalted, identical passwords produce identical hashes.</li>
@@ -599,7 +600,7 @@ Get-Process lsass | Select Path, Company  # basic process info</code></pre>
                 <h4 class="heading">NTLM &amp; Kerberos</h4>
                 <div class="content">
                     <p>Windows has two main network authentication protocols. <b>Kerberos</b> is the modern default inside a domain; <b>NTLM</b> is the older challenge-response protocol, kept for backward compatibility and non-domain scenarios.</p>
-                    <h5>&bull; NTLM :</h5>
+                    <h5>NTLM</h5>
                     <p>NTLM proves the client knows the NT hash without sending it, using a challenge-response handshake.</p>
                     <pre class="code-box code-box-color"><code>1. Client -> Server : "I want to log in as Rahul"  (NEGOTIATE)
 2. Server -> Client : random challenge (nonce)     (CHALLENGE)
@@ -609,7 +610,7 @@ Get-Process lsass | Select Path, Company  # basic process info</code></pre>
                         <li><b>Stateless &amp; no DC trust of server :</b> Works without a trusted third party, which is also its weakness.</li>
                         <li><b>Weaknesses :</b> No mutual authentication (server is not verified), vulnerable to pass-the-hash and relay attacks. Microsoft is actively deprecating it.</li>
                     </ul>
-                    <h5>&bull; Kerberos :</h5>
+                    <h5>Kerberos</h5>
                     <p>Kerberos uses a trusted third party, the <b>KDC</b> (Key Distribution Center, running on every Domain Controller), and time-limited <b>tickets</b> so passwords are never sent over the network after the initial logon.</p>
                     <pre class="code-box code-box-color"><code>1. Client -> KDC (AS)  : request, proof derived from password
    KDC -> Client        : TGT (Ticket Granting Ticket), encrypted with krbtgt key
@@ -661,7 +662,7 @@ Get-Process lsass | Select Path, Company  # basic process info</code></pre>
                 <h4 class="heading">Credential Storage</h4>
                 <div class="content">
                     <p>Windows provides several protected stores so applications never have to keep passwords in plain text.</p>
-                    <h5>&bull; Credential Manager :</h5>
+                    <h5>Credential Manager</h5>
                     <p>A per-user vault for saved logins, split into <b>Web Credentials</b> (browsers, apps) and <b>Windows Credentials</b> (network shares, RDP, domain logins). The data is encrypted with DPAPI and stored in the user's profile.</p>
                     <pre class="code-box"><code>control /name Microsoft.CredentialManager   :: open the GUI
 cmdkey /list                                 :: list stored credentials
@@ -670,15 +671,15 @@ cmdkey /delete:server01                      :: remove one
 
 # PowerShell (via the CredentialManager module)
 Get-StoredCredential -Target "server01"</code></pre>
-                    <h5>&bull; DPAPI (Data Protection API) :</h5>
+                    <h5>DPAPI (Data Protection API)</h5>
                     <p>The underlying encryption service used by Credential Manager, browsers, and many apps. <code>CryptProtectData</code> / <code>CryptUnprotectData</code> encrypt data with a key derived from the user's logon password, so only that user (on that machine) can decrypt it. No app has to manage its own key.</p>
-                    <h5>&bull; Windows Hello &amp; Passkeys :</h5>
+                    <h5>Windows Hello &amp; Passkeys</h5>
                     <p>Hello stores credentials in a hardware-backed container tied to the TPM and unlocked by biometrics or a PIN. The private key never leaves the device, making it phishing-resistant.</p>
-                    <h5>&bull; Credential Guard :</h5>
+                    <h5>Credential Guard</h5>
                     <p>On supported editions, Credential Guard uses <b>virtualization-based security (VBS)</b> to run LSASS secrets inside an isolated hypervisor container (the "Isolated LSA"). Even an administrator or malware with kernel access on the main OS cannot read the cached hashes and Kerberos tickets, which blocks pass-the-hash and credential dumping.</p>
-                    <h5>&bull; LSA Protection :</h5>
+                    <h5>LSA Protection</h5>
                     <p>Runs <code>lsass.exe</code> as a Protected Process Light (PPL) so other processes cannot read its memory or inject into it.</p>
-                    <h6>Stores at a Glance -</h6>
+                    <h6>Stores at a Glance</h6>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -718,7 +719,7 @@ Get-StoredCredential -Target "server01"</code></pre>
             <div class="sections" id="uac">
                 <h4 class="heading">UAC &amp; Privileges</h4>
                 <div class="content">
-                    <h5>&bull; UAC (User Account Control) :</h5>
+                    <h5>UAC (User Account Control)</h5>
                     <p>UAC limits the damage an account can do by running even administrators with a standard-user token most of the time. When an action needs admin rights, Windows shows a consent prompt to <b>elevate</b>.</p>
                     <ul class="justify">
                         <li><b>Split Token :</b> At logon, an admin receives two tokens: a filtered standard token (used by default) and a full admin token (used only after elevation).</li>
@@ -733,7 +734,7 @@ Get-StoredCredential -Target "server01"</code></pre>
 
 Start-Process powershell -Verb RunAs    # relaunch elevated
 runas /user:Administrator cmd           :: run as another user</code></pre>
-                    <h5>&bull; Privileges &amp; Rights :</h5>
+                    <h5>Privileges &amp; Rights</h5>
                     <p>Beyond file permissions, an account holds <b>privileges</b>: system-wide capabilities listed in its token, assigned via Local Security Policy (<code>secpol.msc</code>) or Group Policy.</p>
                     <ul class="justify">
                         <li><b>SeDebugPrivilege :</b> debug and read the memory of other processes.</li>
@@ -744,7 +745,7 @@ runas /user:Administrator cmd           :: run as another user</code></pre>
                     <pre class="code-box"><code>whoami /priv        :: list current privileges
 whoami /groups      :: list group SIDs and integrity level
 whoami /all         :: everything about the current token</code></pre>
-                    <h6>Built-in Accounts -</h6>
+                    <h6>Built-in Accounts</h6>
                     <ul class="justify">
                         <li><b>SYSTEM :</b> the local OS account, more powerful than Administrator; used by services.</li>
                         <li><b>Administrator :</b> the built-in local admin (disabled by default on modern Windows).</li>
@@ -758,7 +759,7 @@ whoami /all         :: everything about the current token</code></pre>
                 <h4 class="heading">Security &amp; Defenses</h4>
                 <div class="content">
                     <p>The sections above describe the attack surface; this one covers the built-in controls an auditor checks for hardening. Windows layers several defenses (defense in depth).</p>
-                    <h5>&bull; Microsoft Defender Antivirus :</h5>
+                    <h5>Microsoft Defender Antivirus</h5>
                     <p>The built-in anti-malware engine, with real-time protection, cloud-delivered detection, and controlled folder access (anti-ransomware).</p>
                     <pre class="code-box"><code>Get-MpComputerStatus          # engine state, real-time protection on/off
 Get-MpThreat                  # detected threats
@@ -766,15 +767,15 @@ Get-MpPreference              # configuration (exclusions etc.)
 Start-MpScan -ScanType QuickScan
 "C:\Program Files\...\MpCmdRun.exe" -Scan -ScanType 1</code></pre>
                     <p>Auditors review <b>exclusions</b> (over-broad exclusions weaken protection) and whether real-time protection or tamper protection is off.</p>
-                    <h5>&bull; Attack Surface Reduction (ASR) :</h5>
+                    <h5>Attack Surface Reduction (ASR)</h5>
                     <p>A set of Defender rules that block common attack techniques: Office apps spawning child processes, credential theft from LSASS, executables from email, obfuscated scripts, and more. Rules run in Audit or Block mode.</p>
-                    <h5>&bull; Application Control :</h5>
+                    <h5>Application Control</h5>
                     <ul class="justify">
                         <li><b>AppLocker :</b> allow/deny which executables, scripts, installers, and DLLs can run, by path, publisher, or hash. Configured via Group Policy.</li>
                         <li><b>WDAC (App Control for Business) :</b> a stronger, kernel-enforced code-integrity policy that whitelists trusted code system-wide; harder to bypass than AppLocker.</li>
                         <li><b>SmartScreen :</b> reputation-based blocking of unknown apps and sites; triggered on downloaded files via the Mark of the Web (see <a href="#ntfs">NTFS</a>).</li>
                     </ul>
-                    <h5>&bull; Windows Firewall :</h5>
+                    <h5>Windows Firewall</h5>
                     <p>Host firewall with three profiles (Domain, Private, Public), each with inbound/outbound rules. Default-deny inbound is the baseline.</p>
                     <pre class="code-box"><code>netsh advfirewall show allprofiles      :: profile state
 netsh advfirewall firewall add rule name="Block8080" ^
@@ -784,9 +785,9 @@ netsh advfirewall firewall add rule name="Block8080" ^
 Get-NetFirewallProfile | Select Name, Enabled
 New-NetFirewallRule -DisplayName "Allow RDP" -Direction Inbound `
     -Protocol TCP -LocalPort 3389 -Action Allow</code></pre>
-                    <h5>&bull; Virtualization-Based Security (VBS) :</h5>
+                    <h5>Virtualization-Based Security (VBS)</h5>
                     <p>Uses the hypervisor to isolate sensitive data from the OS. It underpins <b>Credential Guard</b> (protects LSASS secrets, see <a href="#credstore">Credential Storage</a>) and <b>HVCI / Memory Integrity</b> (verifies kernel drivers in an isolated environment).</p>
-                    <h5>&bull; PowerShell Security :</h5>
+                    <h5>PowerShell Security</h5>
                     <p>PowerShell is both an admin tool and a common attack tool, so it has its own controls (full detail in the PowerShell cheatsheet):</p>
                     <ul class="justify">
                         <li><b>Execution Policy :</b> controls whether scripts run and must be signed (a safety setting, not a security boundary).</li>
@@ -801,19 +802,19 @@ New-NetFirewallRule -DisplayName "Allow RDP" -Direction Inbound `
                 <h4 class="heading">Auditing &amp; Logging</h4>
                 <div class="content">
                     <p>Windows records activity in structured <b>event logs</b> (viewable in <code>eventvwr.msc</code>, queryable with <code>wevtutil</code> or <code>Get-WinEvent</code>). What gets logged is governed by the <b>audit policy</b>. This is the auditor's primary evidence source.</p>
-                    <h6>Main Logs -</h6>
+                    <h6>Main Logs</h6>
                     <ul class="justify">
                         <li><b>Security :</b> logons, privilege use, object access, account and policy changes.</li>
                         <li><b>System :</b> drivers, services, hardware.</li>
                         <li><b>Application :</b> app and service messages.</li>
                         <li><b>Operational logs :</b> per-component channels under <code>Applications and Services Logs</code> (PowerShell, Sysmon, Task Scheduler, etc.).</li>
                     </ul>
-                    <h6>Audit Policy -</h6>
+                    <h6>Audit Policy</h6>
                     <pre class="code-box"><code>auditpol /get /category:*                 :: current audit settings
 auditpol /set /subcategory:"Logon" /success:enable /failure:enable
 secpol.msc                                :: Local Security Policy (GUI)</code></pre>
                     <p>Advanced audit policy (and Group Policy in a domain) controls subcategories like Logon, Process Creation, and Object Access. Process-creation auditing (and logging the command line) is a high-value setting often missing.</p>
-                    <h6>Key Security Event IDs -</h6>
+                    <h6>Key Security Event IDs</h6>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -874,7 +875,7 @@ secpol.msc                                :: Local Security Policy (GUI)</code><
 Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4625} -MaxEvents 10
 Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4624} |
     Where-Object { $_.Message -match 'Logon Type:\s+10' }   # RDP logons</code></pre>
-                    <h6>Sysmon -</h6>
+                    <h6>Sysmon</h6>
                     <p>A free Sysinternals driver that adds detailed, tamper-resistant security logging far beyond the defaults, driven by a config file. It is the de-facto standard for endpoint visibility.</p>
                     <ul class="justify">
                         <li><b>Event 1 :</b> process creation (with hashes and command line).</li>
@@ -883,7 +884,7 @@ Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4624} |
                         <li><b>Event 11 :</b> file created. <b>Event 13 :</b> registry value set.</li>
                     </ul>
                     <p>Logs land in <code>Microsoft-Windows-Sysmon/Operational</code> and are usually forwarded to a SIEM.</p>
-                    <h6>ETW (Event Tracing for Windows) -</h6>
+                    <h6>ETW (Event Tracing for Windows)</h6>
                     <p>The high-performance tracing framework underneath the event logs. <b>Providers</b> emit events, <b>sessions</b> collect them, and <b>consumers</b> read them. Most logging (including Sysmon and many EDRs) is built on ETW; manage sessions with <code>logman</code> or <code>wpr</code>.</p>
                 </div>
             </div>
@@ -892,7 +893,7 @@ Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4624} |
                 <h4 class="heading">Active Directory</h4>
                 <div class="content">
                     <p>Active Directory (AD) is Microsoft's directory service for managing users, computers, and resources centrally across a network. Instead of every machine keeping its own local accounts (SAM), a <b>domain</b> stores identities centrally and every member machine trusts it.</p>
-                    <h6>Structure -</h6>
+                    <h6>Structure</h6>
                     <ul class="justify">
                         <li><b>Domain :</b> A security and administrative boundary sharing one AD database, e.g. <code>corp.example.com</code>.</li>
                         <li><b>Domain Controller (DC) :</b> A server running AD Domain Services (AD DS) that authenticates users and holds a copy of the directory (the <code>NTDS.dit</code> database). DCs also run the Kerberos KDC and DNS.</li>
@@ -901,7 +902,7 @@ Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4624} |
                         <li><b>OU (Organizational Unit) :</b> A folder inside a domain for grouping objects and applying policy.</li>
                         <li><b>Objects :</b> Users, groups, computers, printers, each with attributes, identified by a Distinguished Name (<code>CN=Rahul,OU=IT,DC=corp,DC=example,DC=com</code>).</li>
                     </ul>
-                    <h6>Key Services -</h6>
+                    <h6>Key Services</h6>
                     <ul class="justify">
                         <li><b>Authentication :</b> Domain logons use Kerberos (see above) against a DC.</li>
                         <li><b>Group Policy (GPO) :</b> Centrally enforces settings, security policy, and software on users and computers. Managed with <code>gpmc.msc</code>; refresh with <code>gpupdate /force</code>.</li>
@@ -926,7 +927,7 @@ Get-ADComputer -Filter *</code></pre>
                 <h4 class="heading">WMI &amp; CIM</h4>
                 <div class="content">
                     <p>WMI (Windows Management Instrumentation) is the built-in framework for querying and managing almost everything about a Windows system, locally or remotely: hardware, OS, processes, services, event logs, and more. It is Microsoft's implementation of the industry-standard <b>CIM</b> (Common Information Model).</p>
-                    <h6>Concepts -</h6>
+                    <h6>Concepts</h6>
                     <ul class="justify">
                         <li><b>Classes :</b> Managed things are modeled as classes like <code>Win32_Process</code>, <code>Win32_Service</code>, <code>Win32_OperatingSystem</code>, <code>Win32_LogicalDisk</code>.</li>
                         <li><b>Namespace :</b> Classes are organized under namespaces, mainly <code>root\CIMV2</code>.</li>
@@ -934,7 +935,7 @@ Get-ADComputer -Filter *</code></pre>
                         <li><b>Providers :</b> Components that supply data for classes.</li>
                         <li><b>WMI as attack surface :</b> Its power and remote reach make it popular for both administration and for persistence/lateral movement by attackers, so it is heavily logged.</li>
                     </ul>
-                    <h6>Accessing WMI -</h6>
+                    <h6>Accessing WMI</h6>
                     <p>Use the modern <b>CIM cmdlets</b> (<code>Get-CimInstance</code>) in PowerShell; the older <code>Get-WmiObject</code> and the <code>wmic</code> command are deprecated.</p>
                     <pre class="code-box"><code># Preferred: CIM cmdlets
 Get-CimInstance Win32_OperatingSystem | Select Caption, Version, BuildNumber
@@ -955,7 +956,7 @@ wmic process list brief</code></pre>
                 <h4 class="heading">System State &amp; Recovery</h4>
                 <div class="content">
                     <p>Windows keeps multiple snapshots and logs of its configuration so it can be recovered after a bad update, driver, or crash.</p>
-                    <h6>System State -</h6>
+                    <h6>System State</h6>
                     <p>"System State" is a backup concept covering the critical configuration that makes a Windows install bootable and consistent: the registry, boot files, the COM+ database, and, on a DC, Active Directory. It is backed up as a unit with <code>wbadmin</code>.</p>
                     <ul class="justify">
                         <li><b>System Restore :</b> Creates <b>restore points</b> (registry + system files) before major changes, using Volume Shadow Copy. Roll back without touching personal files.</li>
@@ -963,7 +964,7 @@ wmic process list brief</code></pre>
                         <li><b>Reset / Recovery :</b> "Reset this PC" reinstalls Windows keeping or removing files; <b>WinRE</b> provides repair tools offline.</li>
                         <li><b>Hibernation :</b> Saves RAM to <code>hiberfil.sys</code> and powers off; Fast Startup is a hybrid that hibernates only the kernel session.</li>
                     </ul>
-                    <h6>Recovery Tools -</h6>
+                    <h6>Recovery Tools</h6>
                     <pre class="code-box"><code>sfc /scannow                    :: scan and repair system files
 DISM /Online /Cleanup-Image /RestoreHealth   :: repair the component store
 rstrui                          :: open System Restore
@@ -977,7 +978,7 @@ vssadmin list shadows           :: list shadow copies</code></pre>
                 <h4 class="heading">Commands</h4>
                 <div class="content">
                     <p>Windows has two shells: <b>CMD</b> (legacy) and <b>PowerShell</b> (modern, object-based, see the PowerShell cheatsheet). Below are common CMD and management commands. Many management consoles are <code>.msc</code> snap-ins.</p>
-                    <h6>System &amp; Info -</h6>
+                    <h6>System &amp; Info</h6>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -1022,7 +1023,7 @@ vssadmin list shadows           :: list shadow copies</code></pre>
                             </tbody>
                         </table>
                     </div>
-                    <h6>Files &amp; Disk (CMD) -</h6>
+                    <h6>Files &amp; Disk (CMD)</h6>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -1071,7 +1072,7 @@ vssadmin list shadows           :: list shadow copies</code></pre>
                             </tbody>
                         </table>
                     </div>
-                    <h6>Networking (CMD) -</h6>
+                    <h6>Networking (CMD)</h6>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -1112,7 +1113,7 @@ vssadmin list shadows           :: list shadow copies</code></pre>
                             </tbody>
                         </table>
                     </div>
-                    <h6>Management Consoles (.msc) -</h6>
+                    <h6>Management Consoles (.msc)</h6>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -1161,7 +1162,7 @@ vssadmin list shadows           :: list shadow copies</code></pre>
                             </tbody>
                         </table>
                     </div>
-                    <h6>Local Users (CMD) -</h6>
+                    <h6>Local Users (CMD)</h6>
                     <pre class="code-box"><code>net user                          :: list local users
 net user Rahul                     :: details of a user
 net localgroup Administrators      :: members of a group
@@ -1172,12 +1173,12 @@ sc query [service]                 :: query service state</code></pre>
 
             <!-- Navigation Buttons -->
             <nav>
-                <a href="/Cheatsheets"><i class="bi bi-arrow-left-square-fill"></i></a>
-                <a href="#" ><i class="bi bi-arrow-up-square-fill"></i></a>
+                <a href="/cheatsheets" aria-label="All cheatsheets"><i class="bi bi-grid-3x3-gap-fill" aria-hidden="true"></i></a>
+                <a href="#" aria-label="Back to top"><i class="bi bi-arrow-up" aria-hidden="true"></i></a>
             </nav>
         </div>
 
         <!-- JavaScript -->
-        <script src="../assets/js/script.js"></script>
+        <script src="../assets/js/script.js?v=8"></script>
     </body>
 </html>

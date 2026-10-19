@@ -1,9 +1,9 @@
 <h1 align="center">#CHEATSHEETS</h1>
 
 <blockquote align="center">
-TL;DR for devs - Developed while Experimenting with New Technologies.
+Quick references written while experimenting with new technologies.
 </blockquote>
 
 <p align="center">
-⚡ <b><a href="https://patkarmandar.github.io/Cheatsheets">patkarmandar.github.io/Cheatsheets</a></b> ⚡
+<b><a href="https://wyserian.github.io/cheatsheets">wyserian.github.io/cheatsheets</a></b>
 </p>

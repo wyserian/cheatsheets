@@ -5,21 +5,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>Linux Cheatsheet</title>
+        <script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('cheatsheet-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'))}catch(e){}</script>
 
         <!-- Bootstrap CDN -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
         <!-- CSS -->
-        <link rel="stylesheet" href="../assets/css/style.css">
+        <link rel="stylesheet" href="../assets/css/style.css?v=11">
     </head>
 
-    <body data-theme="dark">
+    <body>
         <div class="container">
             <!-- Top Bar -->
             <div class="top-bar">
-                <a href="/Cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
-                <div class="button"><i class="bi bi-circle-half"></i></div>
+                <a href="/cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
+                <button class="theme-toggle" type="button" aria-label="Toggle theme"><i class="bi bi-sun" aria-hidden="true"></i></button>
             </div>
 
             <h3 class="title">Linux</h3>
@@ -55,7 +56,7 @@
                 <div class="content">
                     <p>Linux is a free and open-source, Unix-like operating system. Strictly speaking, <b>Linux is only the kernel</b>: the core program that manages the hardware. A complete operating system is formed by combining the Linux kernel with GNU tools, system libraries, an init system, and applications, and is shipped as a <b>distribution</b> (distro) such as Ubuntu, Fedora, or Arch.</p>
                     <p>The kernel was created in 1991 by <b>Linus Torvalds</b>, a student at the University of Helsinki, as a hobby project. It is released under the <b>GNU General Public License v2 (GPLv2)</b> and is developed by thousands of contributors and companies worldwide.</p>
-                    <h6>Key Features -</h6>
+                    <h6>Key Features</h6>
                     <ul class="justify">
                         <li><b>Open Source :</b> Anyone can read, modify, and redistribute the source code.</li>
                         <li><b>Multi-User &amp; Multitasking :</b> Many users and processes run at the same time, isolated by permissions.</li>
@@ -64,7 +65,7 @@
                         <li><b>Everything Is a File :</b> Devices, processes, and system settings are exposed as files that can be read and written with normal tools.</li>
                         <li><b>Shell &amp; Automation :</b> Powerful command-line shells (see the Bash Shell cheatsheet) make every task scriptable.</li>
                     </ul>
-                    <h6>Where Linux Is Used -</h6>
+                    <h6>Where Linux Is Used</h6>
                     <ul class="justify">
                         <li><b>Servers &amp; Cloud :</b> Runs the majority of web servers and cloud workloads (AWS, Google Cloud, Azure).</li>
                         <li><b>Mobile :</b> Android is built on the Linux kernel.</li>
@@ -79,15 +80,15 @@
             <div class="sections" id="gnu-unix">
                 <h4 class="heading">UNIX, GNU &amp; Open Source</h4>
                 <div class="content">
-                    <h5>&bull; UNIX :</h5>
+                    <h5>UNIX</h5>
                     <p>UNIX was created at AT&amp;T Bell Labs in 1969 by Ken Thompson and Dennis Ritchie, and was rewritten in the C language in 1973. Its design ideas, such as small tools that each do one job, pipes, plain-text files, and a hierarchical file system, shaped every modern operating system. Descendants include BSD (FreeBSD, OpenBSD), Solaris, AIX, and macOS. Linux is <b>Unix-like</b>: it follows the same design and standards but contains no original UNIX code.</p>
                     <ul class="justify">
                         <li><b>POSIX :</b> An IEEE standard (1988) that defines the common interface of Unix-like systems: system calls, shell, and utilities. Code written for POSIX runs on Linux, macOS, and BSD with little or no change.</li>
                         <li><b>Unix Philosophy :</b> "Write programs that do one thing and do it well. Write programs to work together."</li>
                     </ul>
-                    <h5>&bull; GNU :</h5>
+                    <h5>GNU</h5>
                     <p>The GNU Project ("GNU's Not Unix") was launched in 1983 by <b>Richard Stallman</b> to build a completely free Unix-like operating system. By 1991 GNU had nearly everything (compiler, shell, libraries, utilities) except a working kernel, as its own kernel, GNU Hurd, was unfinished. The Linux kernel filled that gap, and the combination is why some people call the OS <b>GNU/Linux</b>.</p>
-                    <h6>Important GNU Components -</h6>
+                    <h6>Important GNU Components</h6>
                     <ul class="justify">
                         <li><b>GCC :</b> GNU Compiler Collection, compiles C, C++ and more, including the Linux kernel itself.</li>
                         <li><b>glibc :</b> GNU C Library, the layer programs use to talk to the kernel.</li>
@@ -95,7 +96,7 @@
                         <li><b>Coreutils :</b> Basic commands like <code>ls</code>, <code>cp</code>, <code>mv</code>, <code>cat</code>, <code>chmod</code>.</li>
                         <li><b>Others :</b> <code>grep</code>, <code>sed</code>, <code>awk</code> (gawk), <code>tar</code>, <code>make</code>, GRUB, Emacs.</li>
                     </ul>
-                    <h5>&bull; Free &amp; Open Source Software :</h5>
+                    <h5>Free &amp; Open Source Software</h5>
                     <ul class="justify">
                         <li><b>Free Software :</b> Defined by the Free Software Foundation (FSF, founded 1985) by four freedoms: to run, study, modify, and share software. "Free" means freedom, not price.</li>
                         <li><b>Open Source :</b> A similar movement (Open Source Initiative, 1998) that focuses on the practical benefits of open development.</li>
@@ -109,7 +110,7 @@
                 <h4 class="heading">Linux Kernel</h4>
                 <div class="content">
                     <p>The kernel is the core of the operating system. It is the first program loaded after the bootloader, runs with full control of the hardware, and acts as the bridge between applications and the physical machine. Applications never touch hardware directly; they ask the kernel through <b>system calls</b>.</p>
-                    <h6>Responsibilities of the Kernel -</h6>
+                    <h6>Responsibilities of the Kernel</h6>
                     <ul class="justify">
                         <li><b>Process Management :</b> Creates and destroys processes and schedules which one gets the CPU and for how long.</li>
                         <li><b>Memory Management :</b> Gives each process its own virtual memory, handles paging and swap, and keeps processes from reading each other's memory.</li>
@@ -119,7 +120,7 @@
                         <li><b>Security :</b> Users and permissions, plus security modules such as SELinux and AppArmor (see <a href="#security">Security &amp; Auditing</a>).</li>
                         <li><b>System Calls :</b> The interface applications use to request kernel services, e.g. <code>open()</code>, <code>read()</code>, <code>write()</code>, <code>fork()</code>, <code>execve()</code>.</li>
                     </ul>
-                    <h6>Kernel Space vs User Space -</h6>
+                    <h6>Kernel Space vs User Space</h6>
                     <ul class="justify">
                         <li><b>Kernel Space :</b> Where the kernel runs, with full hardware access (CPU privileged mode, "ring 0"). A bug here can crash the whole system (kernel panic).</li>
                         <li><b>User Space :</b> Where all applications run, with restricted access ("ring 3"). A crashing program only affects itself.</li>
@@ -129,7 +130,7 @@
       -&gt; system call (switch to kernel mode)
          -&gt; VFS -&gt; ext4 driver -&gt; disk driver -&gt; hardware
       &lt;- data returned to user space</code></pre>
-                    <h6>Types of Kernels -</h6>
+                    <h6>Types of Kernels</h6>
                     <ul class="justify">
                         <li><b>Monolithic Kernel :</b> All core services (drivers, file systems, networking) run together in kernel space. Fast, because components call each other directly. Examples: <b>Linux</b>, traditional UNIX, BSD.</li>
                         <li><b>Microkernel :</b> Only the bare minimum (scheduling, memory, messaging) runs in kernel space; drivers and file systems run as separate user-space services. More robust but slower due to message passing. Examples: MINIX, QNX, seL4, GNU Hurd.</li>
@@ -143,7 +144,7 @@ sudo modprobe [module]   # load a module (with its dependencies)
 sudo modprobe -r [module] # unload a module
 dmesg                    # kernel messages (ring buffer)
 cat /proc/version        # kernel build information</code></pre>
-                    <h6>Kernel Versions -</h6>
+                    <h6>Kernel Versions</h6>
                     <ul class="justify">
                         <li><b>Mainline :</b> The newest development version, maintained by Linus Torvalds; a new release about every 9-10 weeks.</li>
                         <li><b>Stable :</b> Bug-fix updates to recent releases.</li>
@@ -168,7 +169,7 @@ cat /proc/version        # kernel build information</code></pre>
 +--------------------------------------------------------+
 |  Hardware   CPU, RAM, disk, network card, devices       |
 +--------------------------------------------------------+</code></pre>
-                    <h6>Components of a Linux System -</h6>
+                    <h6>Components of a Linux System</h6>
                     <ul class="justify">
                         <li><b>Hardware :</b> The physical machine: CPU, memory, storage, and peripherals.</li>
                         <li><b>Kernel :</b> Manages all hardware and resources (see <a href="#kernel">Linux Kernel</a>).</li>
@@ -188,15 +189,15 @@ cat /proc/version        # kernel build information</code></pre>
                 <h4 class="heading">Boot Process</h4>
                 <div class="content">
                     <pre class="code-box code-box-color"><code>Power On -&gt; BIOS/UEFI -&gt; Bootloader (GRUB) -&gt; Kernel + initramfs -&gt; init (systemd) -&gt; Target -&gt; Login</code></pre>
-                    <ul class="justify">
-                        <li><b>1. BIOS / UEFI :</b> Firmware runs the Power-On Self-Test (POST), finds a bootable disk, and starts the bootloader. UEFI is the modern replacement for BIOS and supports Secure Boot.</li>
-                        <li><b>2. Bootloader (GRUB 2) :</b> Shows the boot menu, then loads the kernel image (<code>/boot/vmlinuz-*</code>) and the initial RAM disk (<code>initramfs</code>) into memory.</li>
-                        <li><b>3. Kernel :</b> Decompresses itself, detects hardware, loads drivers, and uses the initramfs to mount the real root file system.</li>
-                        <li><b>4. Init (systemd, PID 1) :</b> Starts all services in parallel according to their dependencies.</li>
-                        <li><b>5. Target :</b> systemd reaches the default target: <code>multi-user.target</code> (text mode, servers) or <code>graphical.target</code> (desktop).</li>
-                        <li><b>6. Login :</b> A text login prompt (getty) or a graphical display manager (GDM, SDDM) appears.</li>
-                    </ul>
-                    <h6>Runlevels vs systemd Targets -</h6>
+                    <ol class="justify">
+                        <li><b>BIOS / UEFI :</b> Firmware runs the Power-On Self-Test (POST), finds a bootable disk, and starts the bootloader. UEFI is the modern replacement for BIOS and supports Secure Boot.</li>
+                        <li><b>Bootloader (GRUB 2) :</b> Shows the boot menu, then loads the kernel image (<code>/boot/vmlinuz-*</code>) and the initial RAM disk (<code>initramfs</code>) into memory.</li>
+                        <li><b>Kernel :</b> Decompresses itself, detects hardware, loads drivers, and uses the initramfs to mount the real root file system.</li>
+                        <li><b>Init (systemd, PID 1) :</b> Starts all services in parallel according to their dependencies.</li>
+                        <li><b>Target :</b> systemd reaches the default target: <code>multi-user.target</code> (text mode, servers) or <code>graphical.target</code> (desktop).</li>
+                        <li><b>Login :</b> A text login prompt (getty) or a graphical display manager (GDM, SDDM) appears.</li>
+                    </ol>
+                    <h6>Runlevels vs systemd Targets</h6>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -245,7 +246,7 @@ systemd-analyze blame                        # which services slowed down boot</
                 <h4 class="heading">Distributions</h4>
                 <div class="content">
                     <p>A distribution (distro) packages the Linux kernel with GNU tools, a package manager, an installer, default software, and usually a desktop. Distros differ mainly in package format, release model, and target audience.</p>
-                    <h6>Major Distribution Families -</h6>
+                    <h6>Major Distribution Families</h6>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -290,13 +291,13 @@ systemd-analyze blame                        # which services slowed down boot</
                             </tbody>
                         </table>
                     </div>
-                    <h6>Types of Release Models -</h6>
+                    <h6>Types of Release Models</h6>
                     <ul class="justify">
                         <li><b>Fixed / Point Release :</b> Major versions released on a schedule, then only security and bug fixes. Stable and predictable. Examples: Debian, Ubuntu, RHEL.</li>
                         <li><b>LTS (Long Term Support) :</b> Fixed releases supported for many years, e.g. Ubuntu LTS (5 years of standard support, released every 2 years in April).</li>
                         <li><b>Rolling Release :</b> Continuous updates with no major versions; always the latest software. Examples: Arch, openSUSE Tumbleweed.</li>
                     </ul>
-                    <h6>Choosing a Distro -</h6>
+                    <h6>Choosing a Distro</h6>
                     <ul class="justify">
                         <li><b>Beginners / Desktop :</b> Ubuntu, Linux Mint, Fedora Workstation.</li>
                         <li><b>Servers :</b> Ubuntu Server, Debian, RHEL, Rocky Linux, AlmaLinux.</li>
@@ -313,8 +314,7 @@ hostnamectl              # OS, kernel and hardware summary (systemd)</code></pre
                 <h4 class="heading">Linux File System</h4>
                 <div class="content">
                     <p>Linux uses a single directory tree starting at the root <code>/</code>. There are no drive letters: extra disks and USB drives are <b>mounted</b> into a folder of this tree. File names are case-sensitive (<code>File.txt</code> and <code>file.txt</code> are different), and names starting with a dot (<code>.bashrc</code>) are hidden.</p>
-                    <h5>&bull; Filesystem Hierarchy Standard (FHS) :</h5>
-                    <img src="../assets/img/linux-filesystem.png" alt="linux filesystem hierarchy" class="img">
+                    <h5>Filesystem Hierarchy Standard (FHS)</h5>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -329,60 +329,72 @@ hostnamectl              # OS, kernel and hardware summary (systemd)</code></pre
                                     <td>root of the entire file system</td>
                                 </tr>
                                 <tr>
-                                    <td><code>/bin</code>, <code>/sbin</code></td>
-                                    <td>essential user and system commands (on modern distros these link to <code>/usr/bin</code> and <code>/usr/sbin</code>)</td>
+                                    <td><code>/bin</code></td>
+                                    <td>essential command binaries for all users (<code>ls</code>, <code>cp</code>, <code>bash</code>); a link to <code>/usr/bin</code> on modern distros</td>
                                 </tr>
                                 <tr>
                                     <td><code>/boot</code></td>
-                                    <td>kernel, initramfs and bootloader files</td>
+                                    <td>bootloader files: kernel image (<code>vmlinuz</code>), initramfs / initrd, GRUB configuration</td>
                                 </tr>
                                 <tr>
                                     <td><code>/dev</code></td>
-                                    <td>device files, e.g. <code>/dev/sda</code> (disk), <code>/dev/null</code></td>
+                                    <td>device files for hardware and partitions, e.g. <code>/dev/sda</code> (disk), <code>/dev/null</code></td>
                                 </tr>
                                 <tr>
                                     <td><code>/etc</code></td>
-                                    <td>system-wide configuration files</td>
+                                    <td>system-wide configuration files and scripts</td>
                                 </tr>
                                 <tr>
                                     <td><code>/home</code></td>
                                     <td>home directories of regular users (<code>/home/username</code>)</td>
                                 </tr>
                                 <tr>
+                                    <td><code>/lib</code>, <code>/lib64</code></td>
+                                    <td>shared libraries for the binaries in <code>/bin</code> and <code>/sbin</code>, and kernel modules</td>
+                                </tr>
+                                <tr>
+                                    <td><code>/lost+found</code></td>
+                                    <td>files recovered by <code>fsck</code> after a crash; one per partition (ext file systems)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>/media</code></td>
+                                    <td>mount points for removable media (USB, CD), mounted automatically</td>
+                                </tr>
+                                <tr>
+                                    <td><code>/mnt</code></td>
+                                    <td>mount point for temporarily mounted file systems (manual mounts)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>/net</code></td>
+                                    <td>access to directory trees on remote NFS servers (automounter); found on some systems, not part of the FHS</td>
+                                </tr>
+                                <tr>
+                                    <td><code>/opt</code></td>
+                                    <td>optional, large add-on application software packages</td>
+                                </tr>
+                                <tr>
+                                    <td><code>/proc</code></td>
+                                    <td>virtual file system with kernel and process information (e.g. <code>/proc/cpuinfo</code>)</td>
+                                </tr>
+                                <tr>
                                     <td><code>/root</code></td>
                                     <td>home directory of the root user</td>
                                 </tr>
                                 <tr>
-                                    <td><code>/lib</code>, <code>/lib64</code></td>
-                                    <td>shared libraries and kernel modules</td>
+                                    <td><code>/run</code></td>
+                                    <td>runtime data since the last boot (PID files, sockets)</td>
                                 </tr>
                                 <tr>
-                                    <td><code>/media</code></td>
-                                    <td>auto-mount point for removable media (USB, CD)</td>
+                                    <td><code>/sbin</code></td>
+                                    <td>essential system binaries and administration commands (<code>fdisk</code>, <code>reboot</code>); a link to <code>/usr/sbin</code> on modern distros</td>
                                 </tr>
                                 <tr>
-                                    <td><code>/mnt</code></td>
-                                    <td>temporary mount point for manual mounts</td>
-                                </tr>
-                                <tr>
-                                    <td><code>/opt</code></td>
-                                    <td>optional third-party software</td>
-                                </tr>
-                                <tr>
-                                    <td><code>/proc</code></td>
-                                    <td>virtual file system with process and kernel information (e.g. <code>/proc/cpuinfo</code>)</td>
+                                    <td><code>/srv</code></td>
+                                    <td>data for services provided by the system (web, FTP)</td>
                                 </tr>
                                 <tr>
                                     <td><code>/sys</code></td>
                                     <td>virtual file system exposing devices and kernel settings</td>
-                                </tr>
-                                <tr>
-                                    <td><code>/run</code></td>
-                                    <td>runtime data since last boot (PID files, sockets)</td>
-                                </tr>
-                                <tr>
-                                    <td><code>/srv</code></td>
-                                    <td>data served by the system (web, FTP)</td>
                                 </tr>
                                 <tr>
                                     <td><code>/tmp</code></td>
@@ -390,22 +402,78 @@ hostnamectl              # OS, kernel and hardware summary (systemd)</code></pre
                                 </tr>
                                 <tr>
                                     <td><code>/usr</code></td>
-                                    <td>installed programs, libraries and documentation (<code>/usr/bin</code>, <code>/usr/lib</code>, <code>/usr/local</code>)</td>
+                                    <td>user utilities and applications (read-only, shareable)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>/usr/bin</code></td>
+                                    <td>non-essential command binaries for all users</td>
+                                </tr>
+                                <tr>
+                                    <td><code>/usr/lib</code></td>
+                                    <td>libraries for the binaries in <code>/usr/bin</code> and <code>/usr/sbin</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>/usr/sbin</code></td>
+                                    <td>non-essential system binaries (daemons and services)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>/usr/share</code></td>
+                                    <td>architecture-independent data (documentation, man pages, icons)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>/usr/src</code></td>
+                                    <td>source code (e.g. kernel sources)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>/usr/local</code></td>
+                                    <td>software installed locally by the administrator, outside the package manager</td>
+                                </tr>
+                                <tr>
+                                    <td><code>/usr/local/bin</code></td>
+                                    <td>local software binaries</td>
+                                </tr>
+                                <tr>
+                                    <td><code>/usr/local/games</code></td>
+                                    <td>local game binaries</td>
+                                </tr>
+                                <tr>
+                                    <td><code>/usr/local/include</code></td>
+                                    <td>local C header files</td>
+                                </tr>
+                                <tr>
+                                    <td><code>/usr/local/lib</code></td>
+                                    <td>local libraries for the binaries in <code>/usr/local/bin</code> and <code>/usr/local/sbin</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>/usr/local/man</code></td>
+                                    <td>local manual pages</td>
+                                </tr>
+                                <tr>
+                                    <td><code>/usr/local/sbin</code></td>
+                                    <td>local system binaries</td>
+                                </tr>
+                                <tr>
+                                    <td><code>/usr/local/share</code></td>
+                                    <td>local architecture-independent data</td>
+                                </tr>
+                                <tr>
+                                    <td><code>/usr/local/src</code></td>
+                                    <td>local source code</td>
                                 </tr>
                                 <tr>
                                     <td><code>/var</code></td>
-                                    <td>variable data: logs (<code>/var/log</code>), caches, mail, databases, websites (<code>/var/www</code>)</td>
+                                    <td>variable files that change while running: logs (<code>/var/log</code>), caches, mail spools, databases, websites (<code>/var/www</code>)</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                    <h5>&bull; Paths :</h5>
+                    <h5>Paths</h5>
                     <ul class="justify">
                         <li><b>Absolute Path :</b> Starts from root: <code>/home/rahul/docs/notes.txt</code>.</li>
                         <li><b>Relative Path :</b> Starts from the current directory: <code>docs/notes.txt</code>, <code>../backup</code>.</li>
                         <li><b>Special Names :</b> <code>.</code> current directory, <code>..</code> parent directory, <code>~</code> home directory, <code>-</code> previous directory (with <code>cd</code>).</li>
                     </ul>
-                    <h5>&bull; Types of Files :</h5>
+                    <h5>Types of Files</h5>
                     <p>The first character of <code>ls -l</code> output shows the file type.</p>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
@@ -455,7 +523,7 @@ hostnamectl              # OS, kernel and hardware summary (systemd)</code></pre
                             </tbody>
                         </table>
                     </div>
-                    <h5>&bull; Types of File Systems :</h5>
+                    <h5>Types of File Systems</h5>
                     <ul class="justify">
                         <li><b>ext4 :</b> The default on Debian and Ubuntu. Mature, reliable, journaling file system.</li>
                         <li><b>XFS :</b> High-performance journaling file system for large files; default on RHEL.</li>
@@ -467,7 +535,7 @@ hostnamectl              # OS, kernel and hardware summary (systemd)</code></pre
                         <li><b>swap :</b> Disk space used as overflow memory when RAM is full.</li>
                         <li><b>NFS / SMB :</b> Network file systems for sharing folders across machines.</li>
                     </ul>
-                    <h5>&bull; Inodes &amp; Links :</h5>
+                    <h5>Inodes &amp; Links</h5>
                     <p>An <b>inode</b> stores a file's metadata (permissions, owner, size, timestamps, location of data blocks) but <b>not</b> its name. A directory is a list that maps names to inode numbers.</p>
                     <ul class="justify">
                         <li><b>Hard Link :</b> Another name pointing to the <i>same</i> inode. The data remains until every hard link is deleted. Cannot cross file systems or link to directories. <code>ln file.txt hard.txt</code></li>
@@ -476,7 +544,7 @@ hostnamectl              # OS, kernel and hardware summary (systemd)</code></pre
                     <pre class="code-box"><code>ls -i file.txt           # show inode number
 stat file.txt            # full inode details
 df -i                    # inode usage per file system</code></pre>
-                    <h5>&bull; Disks &amp; Mounting :</h5>
+                    <h5>Disks &amp; Mounting</h5>
                     <pre class="code-box"><code>lsblk                          # list disks and partitions
 df -h                          # free space per mounted file system
 du -sh [dir]                   # total size of a directory
@@ -499,7 +567,7 @@ sudo mkfs.ext4 /dev/sdb1       # format a partition as ext4 (erases data)</code>
                         <li><b>Regular Users :</b> Human users (UID 1000 and above on most distros).</li>
                         <li><b>sudo :</b> Lets permitted users run a single command as root, logging what they do. Users in the <code>sudo</code> group (Debian/Ubuntu) or <code>wheel</code> group (Fedora/RHEL/Arch) can use it.</li>
                     </ul>
-                    <h6>Account Files -</h6>
+                    <h6>Account Files</h6>
                     <ul class="justify">
                         <li><code>/etc/passwd</code> : user list, format <code>name:x:UID:GID:comment:home:shell</code>.</li>
                         <li><code>/etc/shadow</code> : hashed passwords and password expiry (readable by root only; format in <a href="#auth-pam">Authentication &amp; PAM</a>).</li>
@@ -581,7 +649,7 @@ sudo mkfs.ext4 /dev/sdb1       # format a partition as ext4 (erases data)</code>
                 <h4 class="heading">File Permissions</h4>
                 <div class="content">
                     <p>Every file has an owner (user), a group, and three sets of permissions: for the owner, for the group, and for everyone else (others).</p>
-                    <h6>Format of Permission :</h6>
+                    <h6>Format of Permission</h6>
                     <pre class="code-box"><code>-rwxr-xr--  1  rahul  dev  4096  Oct 19 10:00  script.sh
 |\_/\_/\_/      owner  group
 | |  |  |
@@ -617,23 +685,23 @@ sudo mkfs.ext4 /dev/sdb1       # format a partition as ext4 (erases data)</code>
                             </tbody>
                         </table>
                     </div>
-                    <h6>Meaning for Files vs Directories -</h6>
+                    <h6>Meaning for Files vs Directories</h6>
                     <ul class="justify">
                         <li><b>r :</b> read the file's contents / list the directory's entries.</li>
                         <li><b>w :</b> modify the file / create, delete or rename files inside the directory.</li>
                         <li><b>x :</b> run the file as a program / enter the directory with <code>cd</code>.</li>
                     </ul>
-                    <h5>&bull; chmod (Symbolic) :</h5>
-                    <h6>Syntax :</h6>
+                    <h5>chmod (Symbolic)</h5>
+                    <h6>Syntax</h6>
                     <pre class="code-box"><code>chmod [who][+-=][permission] [file]
 chmod -R [who][+-=][permission] [dir]     # change recursively</code></pre>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>chmod u+x script.sh          # owner can execute
 chmod go-w notes.txt         # remove write for group and others
 chmod a=r report.pdf         # everyone read-only
 chmod u=rwx,g=rx,o= app      # set all three at once</code></pre>
 
-                    <h5>&bull; chmod (Numeric / Octal) :</h5>
+                    <h5>chmod (Numeric / Octal)</h5>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -720,19 +788,19 @@ chmod u=rwx,g=rx,o= app      # set all three at once</code></pre>
                         <li>rwx rwx --- = 4+2+1 4+2+1 0+0+0 = 770</li>
                         <li>r-x r-- r-- = 4+0+1 4+0+0 4+0+0 = 544</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>chmod 755 script.sh     # rwxr-xr-x : owner full, others read &amp; run (scripts, folders)
 chmod 644 notes.txt     # rw-r--r-- : owner edits, others read (normal files)
 chmod 600 ~/.ssh/id_rsa # rw------- : private to owner (SSH keys)</code></pre>
                     <div class="block-quote">Avoid <code>chmod 777</code>: it lets every user on the system modify or replace the file.</div>
 
-                    <h5>&bull; Ownership :</h5>
+                    <h5>Ownership</h5>
                     <pre class="code-box"><code>sudo chown rahul file.txt          # change owner
 sudo chown rahul:dev file.txt      # change owner and group
 sudo chown -R www-data /var/www    # recursively
 sudo chgrp dev file.txt            # change group only</code></pre>
 
-                    <h5>&bull; Special Permissions :</h5>
+                    <h5>Special Permissions</h5>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -764,7 +832,7 @@ sudo chgrp dev file.txt            # change group only</code></pre>
                     <pre class="code-box"><code>chmod u+s [file]     # or chmod 4755 [file]
 chmod g+s [dir]      # or chmod 2775 [dir]
 chmod +t [dir]       # or chmod 1777 [dir]</code></pre>
-                    <h5>&bull; umask :</h5>
+                    <h5>umask</h5>
                     <p>The umask removes permissions from newly created files. With the common default <code>022</code>, new files get <code>644</code> and new directories get <code>755</code>.</p>
                     <pre class="code-box"><code>umask          # show current mask
 umask 027      # new files 640, new directories 750</code></pre>
@@ -775,22 +843,22 @@ umask 027      # new files 640, new directories 750</code></pre>
                 <h4 class="heading">Authentication &amp; PAM</h4>
                 <div class="content">
                     <p>Linux does not have one central authentication service like Windows' LSASS. Instead, every program that logs users in (<code>login</code>, <code>sshd</code>, <code>sudo</code>, the graphical login screen) hands authentication to <b>PAM</b>, a shared library, so the rules are configured once and reused everywhere.</p>
-                    <h6>Login Flow -</h6>
+                    <h6>Login Flow</h6>
                     <pre class="code-box code-box-color"><code>getty / display manager (GDM, SDDM) / sshd
    -&gt; PAM  auth      : verify the user (password, key, MFA)
    -&gt; PAM  account   : is the account allowed now? (expired, locked, time limits)
    -&gt; PAM  session   : set up the session (limits, mount home, start keyring)
    -&gt; user's shell starts with their UID, GID and groups</code></pre>
-                    <h5>&bull; PAM (Pluggable Authentication Modules) :</h5>
+                    <h5>PAM (Pluggable Authentication Modules)</h5>
                     <p>Each service has a config file in <code>/etc/pam.d/</code> (e.g. <code>sshd</code>, <code>sudo</code>, <code>login</code>). Shared rules live in <code>common-auth</code> etc. on Debian/Ubuntu and in <code>system-auth</code> on Fedora/RHEL. Each line is a <b>type</b>, a <b>control flag</b>, and a <b>module</b>.</p>
-                    <h6>Module Types -</h6>
+                    <h6>Module Types</h6>
                     <ul class="justify">
                         <li><b>auth :</b> proves identity (password, OTP, hardware key).</li>
                         <li><b>account :</b> checks whether the account may log in (expiry, lockout, access rules).</li>
                         <li><b>password :</b> rules for changing passwords (strength, hashing).</li>
                         <li><b>session :</b> runs actions at login and logout (resource limits, logging, keyring unlock).</li>
                     </ul>
-                    <h6>Control Flags -</h6>
+                    <h6>Control Flags</h6>
                     <ul class="justify">
                         <li><b>required :</b> must succeed; on failure the rest still runs, then the whole stack fails.</li>
                         <li><b>requisite :</b> must succeed; on failure stop immediately.</li>
@@ -798,7 +866,7 @@ umask 027      # new files 640, new directories 750</code></pre>
                         <li><b>optional :</b> result only matters if it is the only module.</li>
                         <li><b>include :</b> pull in rules from another file.</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>#type     control     module              arguments
 auth      required    pam_faillock.so     preauth            # lock after repeated failures
 auth      required    pam_unix.so                            # check /etc/shadow
@@ -807,7 +875,7 @@ account   required    pam_unix.so
 password  requisite   pam_pwquality.so    retry=3 minlen=12  # password strength
 password  required    pam_unix.so         use_authtok sha512 shadow
 session   required    pam_limits.so                          # apply /etc/security/limits.conf</code></pre>
-                    <h6>Common Modules -</h6>
+                    <h6>Common Modules</h6>
                     <ul class="justify">
                         <li><code>pam_unix.so</code> : classic passwords from <code>/etc/passwd</code> and <code>/etc/shadow</code>.</li>
                         <li><code>pam_faillock.so</code> : account lockout after failed attempts (<code>faillock --user [name]</code> to view, <code>--reset</code> to unlock).</li>
@@ -817,7 +885,7 @@ session   required    pam_limits.so                          # apply /etc/securi
                         <li><code>pam_limits.so</code> : per-user resource limits.</li>
                     </ul>
                     <div class="block-quote">A mistake in <code>/etc/pam.d/</code> can lock everyone out, including root. Keep a root shell open while editing and test the login in a second session before closing it.</div>
-                    <h5>&bull; Password Hashes (/etc/shadow) :</h5>
+                    <h5>Password Hashes (/etc/shadow)</h5>
                     <pre class="code-box"><code>rahul:$y$j9T$Fq3...salt...$Wd8...hash...:20015:0:99999:7:::
  |     |   |       |           |           |   | |     |
  |     |   |       |           |           |   | |     +-- warn days before expiry
@@ -873,14 +941,14 @@ session   required    pam_limits.so                          # apply /etc/securi
                         </table>
                     </div>
                     <p>Unlike the Windows NT hash, every Linux hash includes a random <b>salt</b>, so two users with the same password get different hashes, and precomputed (rainbow table) attacks do not work.</p>
-                    <h6>Password Ageing &amp; Locking -</h6>
+                    <h6>Password Ageing &amp; Locking</h6>
                     <pre class="code-box"><code>sudo chage -l rahul         # show password ageing info
 sudo chage -M 90 rahul      # password must change every 90 days
 sudo chage -d 0 rahul       # force a password change at next login
 sudo passwd -l rahul        # lock the password (adds ! to the hash)
 sudo passwd -u rahul        # unlock
 sudo passwd -S rahul        # password status</code></pre>
-                    <h5>&bull; NSS &amp; Central Accounts :</h5>
+                    <h5>NSS &amp; Central Accounts</h5>
                     <p>PAM decides <i>how</i> a user proves who they are; <b>NSS</b> (Name Service Switch) decides <i>where</i> user and group information is looked up. <code>/etc/nsswitch.conf</code> lists the sources in order, e.g. <code>passwd: files sss</code> (local files first, then SSSD).</p>
                     <ul class="justify">
                         <li><b>SSSD :</b> System Security Services Daemon. Connects Linux to LDAP, FreeIPA, or Active Directory, and caches credentials so users can log in while offline.</li>
@@ -900,13 +968,13 @@ klist                                    # list Kerberos tickets</code></pre>
                 <h4 class="heading">SSH &amp; Key-Based Auth</h4>
                 <div class="content">
                     <p>SSH (Secure Shell) is the standard way to log in to and manage Linux machines remotely. It encrypts the whole session and supports password, public-key, and certificate authentication. <b>Key-based authentication</b> is the recommended method: it is stronger than passwords and cannot be brute-forced.</p>
-                    <h6>How Key Authentication Works -</h6>
+                    <h6>How Key Authentication Works</h6>
                     <pre class="code-box code-box-color"><code>1. Client connects; server proves its identity with its host key
    (client checks ~/.ssh/known_hosts, asks "trust this host?" the first time)
 2. Client offers a public key; server looks for it in ~/.ssh/authorized_keys
 3. Client signs data with its PRIVATE key (which never leaves the client)
 4. Server verifies the signature with the stored PUBLIC key -&gt; logged in</code></pre>
-                    <h6>Key Types -</h6>
+                    <h6>Key Types</h6>
                     <ul class="justify">
                         <li><b>Ed25519 :</b> modern, fast, short keys. Recommended default.</li>
                         <li><b>RSA :</b> widely compatible; use 3072 or 4096 bits.</li>
@@ -919,7 +987,7 @@ ssh-copy-id rahul@server                  # install your public key on a server
 ssh -i ~/.ssh/id_ed25519 rahul@server     # log in with a specific key
 ssh-keygen -lf ~/.ssh/id_ed25519.pub      # show key fingerprint
 ssh-keygen -R server                      # remove an old host key from known_hosts</code></pre>
-                    <h6>Files &amp; Required Permissions -</h6>
+                    <h6>Files &amp; Required Permissions</h6>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -964,14 +1032,14 @@ ssh-keygen -R server                      # remove an old host key from known_ho
                         </table>
                     </div>
                     <p>sshd refuses keys if these files are writable by other users. A line in <code>authorized_keys</code> can be restricted with options, e.g. <code>from="10.0.0.0/8",command="/usr/local/bin/backup" ssh-ed25519 AAAA...</code>.</p>
-                    <h6>ssh-agent -</h6>
+                    <h6>ssh-agent</h6>
                     <p>The agent keeps decrypted private keys in memory, so you type the passphrase once per session.</p>
                     <pre class="code-box"><code>eval "$(ssh-agent -s)"           # start the agent
 ssh-add ~/.ssh/id_ed25519        # add a key (asks for the passphrase)
 ssh-add -l                       # list loaded keys
 ssh-add -D                       # remove all keys</code></pre>
                     <p><b>Agent forwarding (<code>ssh -A</code>)</b> lets a remote server use your agent. Root on that server can then use your keys while you are connected, so prefer <code>ssh -J jumphost target</code> (ProxyJump) instead.</p>
-                    <h6>Server Hardening (sshd_config) -</h6>
+                    <h6>Server Hardening (sshd_config)</h6>
                     <pre class="code-box code-box-color"><code>PermitRootLogin no               # log in as a user, then use sudo
 PasswordAuthentication no        # keys only (set up keys first!)
 PubkeyAuthentication yes
@@ -989,7 +1057,7 @@ sudo systemctl reload ssh        # Debian/Ubuntu ("sshd" on Fedora/RHEL/Arch)</c
                 <h4 class="heading">Credential Storage</h4>
                 <div class="content">
                     <p>Linux has no single built-in vault like Windows Credential Manager. Desktops use the <b>Secret Service</b> standard, and command-line tools use agents and encrypted stores.</p>
-                    <h5>&bull; Secret Service (Keyrings) :</h5>
+                    <h5>Secret Service (Keyrings)</h5>
                     <p>The Secret Service API (freedesktop.org standard, accessed through <b>libsecret</b>) is the desktop credential store. Browsers, Git, email clients, and Wi-Fi settings save passwords there. It is implemented by:</p>
                     <ul class="justify">
                         <li><b>GNOME Keyring :</b> default on GNOME; manage it with the <b>Seahorse</b> app ("Passwords and Keys").</li>
@@ -1000,30 +1068,30 @@ sudo systemctl reload ssh        # Debian/Ubuntu ("sshd" on Fedora/RHEL/Arch)</c
                     <pre class="code-box"><code>secret-tool store --label="My API" service myapp user rahul   # save (prompts for secret)
 secret-tool lookup service myapp user rahul                   # read it back
 secret-tool clear service myapp user rahul                    # delete it</code></pre>
-                    <h5>&bull; pass (Password Store) :</h5>
+                    <h5>pass (Password Store)</h5>
                     <p>The standard Unix password manager: each secret is a GPG-encrypted file in <code>~/.password-store</code>, which can be synced with Git.</p>
                     <pre class="code-box"><code>pass init [gpg-key-id]           # create the store
 pass insert email/gmail          # add a password
 pass show email/gmail            # decrypt and show
 pass -c email/gmail              # copy to clipboard (cleared after 45 s)
 pass generate web/github 20      # generate a 20-character password</code></pre>
-                    <h5>&bull; Agents :</h5>
+                    <h5>Agents</h5>
                     <ul class="justify">
                         <li><b>ssh-agent :</b> holds decrypted SSH keys in memory (see <a href="#ssh">SSH</a>).</li>
                         <li><b>gpg-agent :</b> caches GPG passphrases; can also serve as the SSH agent.</li>
                         <li><b>SSSD cache :</b> stores hashed domain credentials so domain users can log in offline.</li>
                     </ul>
-                    <h5>&bull; Git Credentials :</h5>
+                    <h5>Git Credentials</h5>
                     <pre class="code-box"><code>git config --global credential.helper libsecret          # store in the desktop keyring (if installed)
 git config --global credential.helper 'cache --timeout=3600'  # in memory for 1 hour
 git config --global credential.helper store              # PLAINTEXT in ~/.git-credentials (avoid)</code></pre>
                     <p>Git Credential Manager (GCM) is a cross-platform alternative that uses the keyring and supports browser sign-in.</p>
-                    <h5>&bull; Service Credentials :</h5>
+                    <h5>Service Credentials</h5>
                     <p><code>systemd-creds</code> encrypts secrets for services (optionally bound to the TPM), so they are not stored as plain files.</p>
                     <pre class="code-box"><code>echo -n "s3cret" | sudo systemd-creds encrypt --name=dbpass - dbpass.cred
 # in the unit file:  LoadCredentialEncrypted=dbpass:/etc/myapp/dbpass.cred
 # the service reads it from $CREDENTIALS_DIRECTORY/dbpass</code></pre>
-                    <h5>&bull; Plaintext Credentials to Audit :</h5>
+                    <h5>Plaintext Credentials to Audit</h5>
                     <p>Secrets often end up in plain files. Auditors check:</p>
                     <ul class="justify">
                         <li><code>~/.bash_history</code> : passwords typed on the command line (e.g. <code>mysql -p[password]</code>).</li>
@@ -1032,7 +1100,7 @@ git config --global credential.helper store              # PLAINTEXT in ~/.git-c
                         <li><code>.env</code> files and app config in <code>/var/www</code>, <code>/opt</code> : database passwords and API keys.</li>
                         <li><code>/proc/[PID]/environ</code> : environment variables of running processes (readable by the owner and root).</li>
                     </ul>
-                    <h6>Windows vs Linux -</h6>
+                    <h6>Windows vs Linux</h6>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -1071,7 +1139,7 @@ git config --global credential.helper store              # PLAINTEXT in ~/.git-c
             <div class="sections" id="security">
                 <h4 class="heading">Security &amp; Auditing</h4>
                 <div class="content">
-                    <h5>&bull; Mandatory Access Control (SELinux &amp; AppArmor) :</h5>
+                    <h5>Mandatory Access Control (SELinux &amp; AppArmor)</h5>
                     <p>Normal file permissions are <b>Discretionary Access Control (DAC)</b>: the file owner decides who has access. <b>Mandatory Access Control (MAC)</b> adds system-wide rules that even root processes must follow, so a compromised web server can only touch the files its policy allows.</p>
                     <ul class="justify">
                         <li><b>SELinux :</b> used by Fedora, RHEL, and Android. Every file and process has a security <b>label</b> (context), and policy rules decide which labels may interact. Modes: <code>enforcing</code>, <code>permissive</code> (log only), <code>disabled</code>.</li>
@@ -1092,7 +1160,7 @@ sudo aa-complain /usr/sbin/nginx # log only for one program
 sudo aa-enforce /usr/sbin/nginx  # enforce again</code></pre>
                     <div class="block-quote">Disabling SELinux or AppArmor to "fix" an error is a common audit finding. Fix the label or the profile instead.</div>
 
-                    <h5>&bull; Linux Capabilities :</h5>
+                    <h5>Linux Capabilities</h5>
                     <p>Capabilities split root's power into separate privileges that can be given to a single program, similar to Windows privileges. A web server can bind port 80 without running as root.</p>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
@@ -1132,7 +1200,7 @@ sudo setcap -r /usr/bin/myapp                       # remove capabilities
 grep Cap /proc/self/status                          # capabilities of the current process</code></pre>
                     <p>An interpreter (python, perl, node) with <code>cap_setuid</code> or <code>cap_dac_override</code> is a privilege-escalation risk and should be flagged.</p>
 
-                    <h5>&bull; sudo Rules :</h5>
+                    <h5>sudo Rules</h5>
                     <p>Rules in <code>/etc/sudoers</code> and <code>/etc/sudoers.d/</code> follow the format <code>who where=(as_whom) what</code>. Always edit with <code>sudo visudo</code>, which checks syntax before saving.</p>
                     <pre class="code-box code-box-color"><code>rahul   ALL=(ALL:ALL) ALL                                  # full sudo, password required
 %admins ALL=(ALL) ALL                                      # everyone in group "admins"
@@ -1141,7 +1209,7 @@ deploy  ALL=(root) NOPASSWD: /usr/bin/systemctl restart myapp  # one command, no
 sudo -l -U deploy          # rules for another user (as root)</code></pre>
                     <p><b>Audit risks :</b> <code>NOPASSWD: ALL</code>, wildcards in commands, and sudo access to editors, pagers, or interpreters (<code>vim</code>, <code>less</code>, <code>find</code>, <code>python</code>), which can open a root shell.</p>
 
-                    <h5>&bull; Boot &amp; Disk Security :</h5>
+                    <h5>Boot &amp; Disk Security</h5>
                     <ul class="justify">
                         <li><b>Secure Boot :</b> UEFI firmware loads <b>shim</b> (signed by Microsoft), which verifies the distro-signed GRUB and kernel. Custom kernel modules must be signed with a <b>MOK</b> (Machine Owner Key) enrolled with <code>mokutil</code>.</li>
                         <li><b>Kernel Lockdown :</b> with Secure Boot on, the kernel blocks actions that could modify it at runtime, such as loading unsigned modules or writing to <code>/dev/mem</code>.</li>
@@ -1156,7 +1224,7 @@ sudo cryptsetup open /dev/sdb1 secure      # unlock as /dev/mapper/secure
 sudo systemd-cryptenroll --tpm2-device=auto /dev/nvme0n1p3   # unlock with the TPM</code></pre>
                     <p>For the host firewall (ufw, firewalld), see <a href="#networking">Networking</a>.</p>
 
-                    <h5>&bull; Authentication Logs :</h5>
+                    <h5>Authentication Logs</h5>
                     <pre class="code-box"><code>sudo tail -f /var/log/auth.log           # Debian/Ubuntu: logins, sudo, SSH
 sudo tail -f /var/log/secure             # Fedora/RHEL equivalent
 journalctl -u ssh --since today          # SSH logs via systemd ("sshd" on RHEL)
@@ -1197,7 +1265,7 @@ lastlog                                  # last login of every user</code></pre>
                         </table>
                     </div>
 
-                    <h5>&bull; auditd (Linux Audit Framework) :</h5>
+                    <h5>auditd (Linux Audit Framework)</h5>
                     <p>The kernel audit system records security-relevant events (file access, system calls, logins) according to rules, the Linux counterpart of Windows audit policy. Events are written to <code>/var/log/audit/audit.log</code>.</p>
                     <pre class="code-box"><code>sudo auditctl -w /etc/shadow -p wa -k shadow-change    # watch writes/attribute changes
 sudo auditctl -w /etc/sudoers -p wa -k sudoers-change
@@ -1207,7 +1275,7 @@ sudo aureport --auth                                   # authentication report
 sudo aureport --failed                                 # failed events summary
 # make rules permanent in /etc/audit/rules.d/*.rules</code></pre>
 
-                    <h5>&bull; Where Persistence Hides (Audit Checklist) :</h5>
+                    <h5>Where Persistence Hides (Audit Checklist)</h5>
                     <ul class="justify">
                         <li><b>Accounts :</b> extra UID 0 users (<code>awk -F: '$3 == 0' /etc/passwd</code>), accounts with empty passwords, unexpected sudoers entries.</li>
                         <li><b>SSH Keys :</b> unknown entries in <code>~/.ssh/authorized_keys</code> and <code>/root/.ssh/authorized_keys</code>.</li>
@@ -1219,7 +1287,7 @@ sudo aureport --failed                                 # failed events summary
                         <li><b>Kernel Modules :</b> unexpected entries in <code>lsmod</code>.</li>
                         <li><b>Writable PATH :</b> directories in <code>$PATH</code> writable by normal users.</li>
                     </ul>
-                    <h6>Audit &amp; Hardening Tools -</h6>
+                    <h6>Audit &amp; Hardening Tools</h6>
                     <ul class="justify">
                         <li><b>Lynis :</b> security audit and hardening suggestions (<code>sudo lynis audit system</code>).</li>
                         <li><b>AIDE :</b> file integrity monitoring; alerts when system files change.</li>
@@ -1234,7 +1302,7 @@ sudo aureport --failed                                 # failed events summary
             <div class="sections" id="commands">
                 <h4 class="heading">Basic Commands</h4>
                 <div class="content">
-                    <h5>&bull; Help &amp; Terminal :</h5>
+                    <h5>Help &amp; Terminal</h5>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -1296,7 +1364,7 @@ sudo aureport --failed                                 # failed events summary
                         </table>
                     </div>
 
-                    <h5>&bull; File Management :</h5>
+                    <h5>File Management</h5>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -1462,7 +1530,7 @@ sudo aureport --failed                                 # failed events summary
                         </table>
                     </div>
 
-                    <h5>&bull; System Information :</h5>
+                    <h5>System Information</h5>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -1532,7 +1600,7 @@ sudo aureport --failed                                 # failed events summary
                         </table>
                     </div>
 
-                    <h5>&bull; Power :</h5>
+                    <h5>Power</h5>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -1576,7 +1644,7 @@ sudo aureport --failed                                 # failed events summary
                 <h4 class="heading">Processes &amp; Signals</h4>
                 <div class="content">
                     <p>A <b>process</b> is a running instance of a program. Each has a unique Process ID (<b>PID</b>) and a parent (<b>PPID</b>). The first process, <code>systemd</code> (PID 1), is the ancestor of all others. A <b>daemon</b> is a process that runs in the background without a terminal.</p>
-                    <h6>Process States -</h6>
+                    <h6>Process States</h6>
                     <ul class="justify">
                         <li><b>R (Running) :</b> Running or ready to run.</li>
                         <li><b>S (Sleeping) :</b> Waiting for an event, such as user input.</li>
@@ -1644,7 +1712,7 @@ sudo aureport --failed                                 # failed events summary
                             </tbody>
                         </table>
                     </div>
-                    <h5>&bull; Signals :</h5>
+                    <h5>Signals</h5>
                     <p>Signals are messages the kernel or another process sends to a process. List them all with <code>kill -l</code>.</p>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
@@ -1771,7 +1839,7 @@ sudo aureport --failed                                 # failed events summary
                         </table>
                     </div>
                     <p>For more Arch commands, see the Arch Pacman cheatsheet.</p>
-                    <h6>Universal Package Formats -</h6>
+                    <h6>Universal Package Formats</h6>
                     <ul class="justify">
                         <li><b>Snap :</b> Canonical's sandboxed packages, work on many distros (<code>snap install [pkg]</code>).</li>
                         <li><b>Flatpak :</b> Sandboxed desktop apps from Flathub (<code>flatpak install flathub [app]</code>).</li>
@@ -1783,7 +1851,7 @@ sudo aureport --failed                                 # failed events summary
             <div class="sections" id="systemd">
                 <h4 class="heading">Services, Logs &amp; Scheduling</h4>
                 <div class="content">
-                    <h5>&bull; systemd &amp; systemctl :</h5>
+                    <h5>systemd &amp; systemctl</h5>
                     <p>systemd is the init system and service manager on most distributions. It manages <b>units</b>: services (<code>.service</code>), timers (<code>.timer</code>), sockets, mounts, and targets. Custom unit files go in <code>/etc/systemd/system/</code>.</p>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
@@ -1837,7 +1905,7 @@ sudo aureport --failed                                 # failed events summary
                             </tbody>
                         </table>
                     </div>
-                    <h6>Ex : A Simple Service Unit -</h6>
+                    <h6>Example: A Simple Service Unit</h6>
                     <pre class="code-box code-box-color"><code># /etc/systemd/system/myapp.service
 [Unit]
 Description=My Node.js App
@@ -1851,14 +1919,14 @@ Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target</code></pre>
-                    <h5>&bull; Logs :</h5>
+                    <h5>Logs</h5>
                     <pre class="code-box"><code>journalctl -u nginx              # logs of one service
 journalctl -u nginx -f           # follow live
 journalctl -b                    # logs since last boot
 journalctl -p err                # only errors and worse
 journalctl --since "1 hour ago"
 ls /var/log                      # classic text logs (syslog, auth.log, messages)</code></pre>
-                    <h5>&bull; Scheduling with cron :</h5>
+                    <h5>Scheduling with cron</h5>
                     <p>cron runs commands on a schedule. Edit your schedule with <code>crontab -e</code> and list it with <code>crontab -l</code>.</p>
                     <pre class="code-box code-box-color"><code># ┌───────── minute (0-59)
 # │ ┌─────── hour (0-23)
@@ -1953,14 +2021,14 @@ ls /var/log                      # classic text logs (syslog, auth.log, messages
                             </tbody>
                         </table>
                     </div>
-                    <h6>Network Config Files -</h6>
+                    <h6>Network Config Files</h6>
                     <ul class="justify">
                         <li><code>/etc/hosts</code> : static hostname to IP mappings, checked before DNS.</li>
                         <li><code>/etc/resolv.conf</code> : DNS servers used by the system.</li>
                         <li><code>/etc/hostname</code> : the machine's name.</li>
                         <li><code>~/.ssh/config</code> : SSH shortcuts and per-host settings.</li>
                     </ul>
-                    <h6>Firewall -</h6>
+                    <h6>Firewall</h6>
                     <pre class="code-box"><code>sudo ufw allow 22/tcp            # Ubuntu (ufw)
 sudo ufw enable
 sudo firewall-cmd --add-service=http --permanent   # Fedora / RHEL (firewalld)
@@ -1972,9 +2040,9 @@ sudo firewall-cmd --reload</code></pre>
                 <h4 class="heading">Text Processing</h4>
                 <div class="content">
                     <p>Linux tools are built to be chained with pipes: each reads text, transforms it, and passes it on.</p>
-                    <h5>&bull; Grep :</h5>
+                    <h5>Grep</h5>
                     <p>Global regular expression print (grep) prints lines that match a pattern in text or files.</p>
-                    <h6>Syntax :</h6>
+                    <h6>Syntax</h6>
                     <pre class="code-box"><code>grep [options] [pattern] [file]</code></pre>
                     <ul>
                         <li><code>grep hello file.txt</code> : print lines containing "hello" in file.txt</li>
@@ -1989,7 +2057,7 @@ sudo firewall-cmd --reload</code></pre>
                         <li><code>grep -B 2 -A 3 hello file.txt</code> : print 2 lines before and 3 lines after each match</li>
                         <li><code>grep -E "error|warn" app.log</code> : extended regex, match either word</li>
                     </ul>
-                    <h5>&bull; Regular Expressions :</h5>
+                    <h5>Regular Expressions</h5>
                     <p>A regular expression (regex) is a pattern for matching text. Use <code>grep -E</code> for extended regex, where <code>+ ? | ( ) { }</code> work without backslashes.</p>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
@@ -2039,7 +2107,7 @@ sudo firewall-cmd --reload</code></pre>
                             </tbody>
                         </table>
                     </div>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <ul>
                         <li><code>grep '^The' file.txt</code> : lines starting with "The"</li>
                         <li><code>grep 'end$' file.txt</code> : lines ending with "end"</li>
@@ -2050,9 +2118,9 @@ sudo firewall-cmd --reload</code></pre>
                         <li><code>grep -v '^#' config.conf | grep -v '^$'</code> : drop comment and empty lines</li>
                     </ul>
 
-                    <h5>&bull; Tr :</h5>
+                    <h5>Tr</h5>
                     <p>Translate, squeeze, and/or delete characters from standard input and write them to standard output.</p>
-                    <h6>Syntax :</h6>
+                    <h6>Syntax</h6>
                     <pre class="code-box"><code>tr [options] [set1] [set2]</code></pre>
                     <ul>
                         <li><code>tr "ab" "xy" &lt;&lt;&lt; "abcd"</code> : replace "a" with "x" and "b" with "y" (xycd)</li>
@@ -2065,7 +2133,7 @@ sudo firewall-cmd --reload</code></pre>
                         <li><code>tr -c "a" "x" &lt;&lt;&lt; "ababc"</code> : replace every character <i>except</i> "a" (complement with -c)</li>
                         <li><code>tr -cd '[:digit:]' &lt;&lt;&lt; "abc123def456"</code> : delete everything except digits (123456)</li>
                     </ul>
-                    <h6>Tokens :</h6>
+                    <h6>Tokens</h6>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -2143,7 +2211,7 @@ sudo firewall-cmd --reload</code></pre>
                         </table>
                     </div>
 
-                    <h5>&bull; Other Text Tools :</h5>
+                    <h5>Other Text Tools</h5>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -2200,7 +2268,7 @@ sudo firewall-cmd --reload</code></pre>
                             </tbody>
                         </table>
                     </div>
-                    <h6>Ex : Top 5 IP Addresses in a Web Log -</h6>
+                    <h6>Example: Top 5 IP Addresses in a Web Log</h6>
                     <pre class="code-box code-box-color"><code>awk '{print $1}' access.log | sort | uniq -c | sort -rn | head -5</code></pre>
                 </div>
             </div>
@@ -2208,9 +2276,9 @@ sudo firewall-cmd --reload</code></pre>
             <div class="sections" id="find">
                 <h4 class="heading">Find &amp; Search</h4>
                 <div class="content">
-                    <h5>&bull; Find :</h5>
+                    <h5>Find</h5>
                     <p>Searches for files and directories in a directory tree, by name, type, size, time, owner, or permissions, and can run commands on the results.</p>
-                    <h6>Syntax :</h6>
+                    <h6>Syntax</h6>
                     <pre class="code-box"><code>find [path] [conditions] [action]</code></pre>
                     <ul>
                         <li><code>find . -name file.txt</code> : find "file.txt" (case sensitive)</li>
@@ -2231,7 +2299,7 @@ sudo firewall-cmd --reload</code></pre>
                         <li><code>find . -name "*.tmp" -delete</code> : delete matching files</li>
                     </ul>
                     <p>Add <code>2&gt;/dev/null</code> to hide "Permission denied" errors when searching from <code>/</code>.</p>
-                    <h5>&bull; Other Search Tools :</h5>
+                    <h5>Other Search Tools</h5>
                     <ul>
                         <li><code>locate [file]</code> : very fast name search using a database (refresh it with <code>sudo updatedb</code>)</li>
                         <li><code>which [command]</code> : path of the command that runs</li>
@@ -2278,7 +2346,7 @@ tar -cJvf backup.tar.xz project/     # xz compression (smaller, slower)</code></
                             </tbody>
                         </table>
                     </div>
-                    <h6>Other Compression Tools -</h6>
+                    <h6>Other Compression Tools</h6>
                     <pre class="code-box"><code>gzip file.txt            # compress to file.txt.gz (removes original)
 gunzip file.txt.gz       # decompress
 zip -r project.zip project/
@@ -2289,12 +2357,12 @@ unzip -l project.zip     # list contents</code></pre>
 
             <!-- Navigation Buttons -->
             <nav>
-                <a href="/Cheatsheets"><i class="bi bi-arrow-left-square-fill"></i></a>
-                <a href="#" ><i class="bi bi-arrow-up-square-fill"></i></a>
+                <a href="/cheatsheets" aria-label="All cheatsheets"><i class="bi bi-grid-3x3-gap-fill" aria-hidden="true"></i></a>
+                <a href="#" aria-label="Back to top"><i class="bi bi-arrow-up" aria-hidden="true"></i></a>
             </nav>
         </div>
 
         <!-- JavaScript -->
-        <script src="../assets/js/script.js"></script>
+        <script src="../assets/js/script.js?v=8"></script>
     </body>
 </html>

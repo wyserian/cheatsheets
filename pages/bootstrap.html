@@ -5,24 +5,25 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>Bootstrap Cheatsheet</title>
+        <script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('cheatsheet-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'))}catch(e){}</script>
 
         <!-- Bootstrap CDN -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
         <!-- CSS -->
-        <link rel="stylesheet" href="../assets/css/style.css">
+        <link rel="stylesheet" href="../assets/css/style.css?v=11">
     </head>
 
-    <body data-theme="dark">
+    <body>
         <div class="container">
                         <!-- Top Bar -->
             <div class="top-bar">
-                <a href="/Cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
-                <div class="button"><i class="bi bi-circle-half"></i></div>
+                <a href="/cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
+                <button class="theme-toggle" type="button" aria-label="Toggle theme"><i class="bi bi-sun" aria-hidden="true"></i></button>
             </div>
 
-            <h3 class="title">BOOTSTRAP 4</h3>
+            <h3 class="title">Bootstrap 4</h3>
 
             <div class="section-list">
                 <ul>
@@ -79,7 +80,7 @@
                     <li><code>container-fluid</code> : add to <code>&lt;div&gt;</code> for full width container</li>
                     <li><code>container-sm|md|lg|xl</code> : add to <code>&lt;div&gt;</code> for responive containers</li>
                 </ul>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <pre class="code-box code-box-color"><code>&lt;div class=&quot;container&quot;&gt; ... &lt;/div&gt;
 </code></pre>
             </div>
@@ -90,7 +91,7 @@
                     <li><code>jumbotron</code> : add to <code>&lt;div&gt;</code> for indicate big grey box for calling extra attention</li>
                     <li><code>jumbotron-fluid</code> : add to <code>&lt;div&gt;</code> for full-width jumbotron without rounded borders</li>
                 </ul>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <pre class="code-box code-box-color"><code>&lt;div class=&quot;jumbotron&quot;&gt;
     &lt;h1&gt;Bootstrap Tutorial&lt;/h1&gt;
     &lt;p&gt;Bootstrap is the most popular HTML, CSS...&lt;/p&gt;
@@ -110,7 +111,7 @@
                 <ul>
                     <li><code>display-1|2|3|4</code> : define header for element</li>
                 </ul>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <pre class="code-box code-box-color"><code>&lt;h1 class=&quot;display-1&quot;&gt;Display 1&lt;/h1&gt;
 </code></pre>
             </div>
@@ -118,7 +119,7 @@
             <div class="sections" id="typography-classes">
                 <h4 class="heading">Typography Classes</h4>
                 <div>
-                    <h5>Font Style :</h5>
+                    <h5>Font Style</h5>
                     <ul>
                         <li><code>font-weight-bold</code> : bold text</li>
                         <li><code>font-weight-bolder</code> : bolder text</li>
@@ -127,12 +128,12 @@
                         <li><code>font-weight-lighter</code> : lighter text</li>
                         <li><code>font-weight-normal</code> : normal text</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;p class=&quot;font-weight-bold&quot;&gt;Bold text&lt;/p&gt;
 </code></pre>
                 </div>
                 <div>
-                    <h5>Text Alignment :</h5>
+                    <h5>Text Alignment</h5>
                     <ul>
                         <li><code>text-left</code> : left aligned text</li>
                         <li><code>text-sm|md|lg|xl-left</code> : left-aligned text on screen size</li>
@@ -142,12 +143,12 @@
                         <li><code>text-sm|md|lg|xl-center</code> : center aligned text on screens size</li>
                         <li><code>text-justify</code> : justified text</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;p class=&quot;text-right&quot;&gt;Right-aligned text&lt;/p&gt;
 </code></pre>
                 </div>
                 <div>
-                    <h5>Text Format &amp; Cases :</h5>
+                    <h5>Text Format &amp; Cases</h5>
                     <ul>
                         <li><code>text-monospace</code> : monospaced text</li>
                         <li><code>text-lowercase</code> : lowercased text</li>
@@ -158,17 +159,17 @@
                         <li><code>text-reset</code> : resets color of text/link</li>
                         <li><code>text-decoration-none</code> : removes underline from link</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;p class=&quot;text-uppercase&quot;&gt;Uppercased text&lt;/p&gt;
 </code></pre>
                 </div>
                 <div>
-                    <h5>Lists Style :</h5>
+                    <h5>Lists Style</h5>
                     <ul>
                         <li><code>list-unstyled</code> : add to <code>&lt;ul&gt;</code>/<code>&lt;ol&gt;</code> to remove default list-style &amp; ml on list items (this class only applies to immediate children list items)</li>
                         <li><code>list-inline</code> : place all list items on single line (used together with .list-inline-item on each <code>&lt;li&gt;</code> elements)</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;ul class=&quot;list-unstyled&quot;&gt;
     &lt;li&gt;Coffee&lt;/li&gt;
     &lt;li&gt;Milk&lt;/li&gt;
@@ -180,14 +181,14 @@
 </code></pre>
                 </div>
                 <div>
-                    <h5>Text Format :</h5>
+                    <h5>Text Format</h5>
                     <ul>
                         <li><code>lead</code> : makes paragraph stand out</li>
                         <li><code>small</code> : small text than parent</li>
                         <li><code>initialism</code> : display text inside <code>&lt;abbr&gt;</code> element in slightly smaller font size</li>
                         <li><code>pre-scrollable</code> : make <code>&lt;pre&gt;</code> element scrollable</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;p class=&quot;lead&quot;&gt;This paragraph stands out&lt;/p&gt;
 &lt;p&gt;The &lt;abbr title=&quot;World Health Organization&quot; class=&quot;initialism&quot;&gt;WHO&lt;/abbr&gt; was founded in 1948&lt;/p&gt;
 &lt;pre class=&quot;pre-scrollable&quot;&gt;
@@ -196,7 +197,7 @@
 </code></pre>
                 </div>
                 <div>
-                    <h5>Flex &amp; Grid :</h5>
+                    <h5>Flex &amp; Grid</h5>
                     <ul>
                         <li><code>justify-content</code> : justify content to start (default)</li>
                         <li><code>justify-content-start|end|center|between|around</code> : justifies inside content to</li>
@@ -212,18 +213,18 @@
                     <li><code>float-left|right</code> : float image to left or right</li>
                     <li><code>clearfix</code> : clear floats</li>
                 </ul>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <pre class="code-box code-box-color"><code>&lt;div class=&quot;clearfix&quot;&gt;
     &lt;span class=&quot;float-left&quot;&gt;Float left&lt;/span&gt;
     &lt;span class=&quot;float-right&quot;&gt;Float right&lt;/span&gt;
 &lt;/div&gt;
 </code></pre>
                 <div>
-                    <h5>Responive Floats Class :</h5>
+                    <h5>Responive Floats Class</h5>
                     <ul>
                         <li><code>float-sm|md|lg|xl-left|right</code> : float depends on screen width</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;float-sm-right&quot;&gt;Float right on small screens or wider&lt;/div&gt;
     </code></pre>
                 </div>
@@ -237,7 +238,7 @@
                     <li><code>h-%</code> : set height to %</li>
                     <li><code>mh-%</code> : set max-height to %</li>
                 </ul>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <pre class="code-box code-box-color"><code>&lt;div class=&quot;h-50 w-25 bg-warning&quot;&gt;Width 25%, Height 50%&lt;/div&gt;
 </code></pre>
             </div>
@@ -259,14 +260,14 @@
                         <li>screen width : xs/sm/md/lg/xl</li>
                     </ol>
                 </div>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <pre class="code-box code-box-color"><code>&lt;div class=&quot;pt-4 bg-warning&quot;&gt;Padding 1.5rem&lt;/div&gt;
 &lt;div class=&quot;m-5 pb-5 bg-info&quot;&gt;Margin 3rem &amp; Bottom Padding 3rem&lt;/div&gt;
 &lt;div class=&quot;mb-sm-5 bg-warning&quot;&gt;Margin Bottom 3rem on sm screens&lt;/div&gt;
 &lt;div class=&quot;px-xl-5 bg-primary&quot;&gt;Padding on x 5 on xl screens&lt;/div&gt;
 </code></pre>
                 <div>
-                    <h6>Center Align Element Using Margin :</h6>
+                    <h6>Center Align Element Using Margin</h6>
                     <p>Set left &amp; right margin to auto i.e. <code>mx-auto</code></p>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;mx-auto bg-warning&quot; style=&quot;width:150px&quot;&gt;Centered&lt;/div&gt;
     </code></pre>
@@ -284,7 +285,7 @@
                     <li><code>align-text-top</code> : align text to top of line</li>
                     <li><code>align-text-bottom</code> : align text to bottom of line</li>
                 </ul>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <pre class="code-box code-box-color"><code>&lt;span class=&quot;align-baseline&quot;&gt;baseline&lt;/span&gt;
 </code></pre>
             </div>
@@ -295,7 +296,7 @@
                     <li><code>visible</code> : make element visible (visibility:visible)</li>
                     <li><code>invisible</code> : make element invisible (visibility:hidden)</li>
                 </ul>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <pre class="code-box code-box-color"><code>&lt;div class=&quot;visible&quot;&gt;I am visible&lt;/div&gt;
 </code></pre>
             </div>
@@ -306,7 +307,7 @@
                     <li><code>fixed-top|bottom</code> : fixed to top or bottom</li>
                     <li><code>sticky-top</code> : sticks to top on scroll</li>
                 </ul>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <p>Fixed nav-bar at top -</p>
                 <pre class="code-box code-box-color"><code>&lt;nav class=&quot;navbar navbar-expand-sm bg-dark navbar-dark fixed-top&quot;&gt;...&lt;/nav&gt;
 </code></pre>
@@ -324,12 +325,12 @@
                     <li><code>d-inline-block</code> : make element inline block</li>
                     <li><code>d-sm|md|lg|xl-inline-block</code> : make element inline-block on specific screen size</li>
                 </ul>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <pre class="code-box code-box-color"><code>&lt;span class=&quot;d-block bg-success&quot;&gt;d-block&lt;/span&gt;
 &lt;span class=&quot;d-sm-block bg-success&quot;&gt;d-sm-block&lt;/span&gt;
 </code></pre>
                 <div>
-                    <h5>Display as Table :</h5>
+                    <h5>Display as Table</h5>
                     <ul>
                         <li><code>d-table</code> : add to <code>&lt;div&gt;</code> to make element display as table</li>
                         <li><code>d-sm|md|lg|xl-table</code> : add to <code>&lt;div&gt;</code> make element display as table depends on screen size</li>
@@ -338,7 +339,7 @@
                         <li><code>d-table-row</code> : add to <code>&lt;div&gt;</code> inside cell to make element display as table row</li>
                         <li><code>d-sm|md|lg|xl-table-row</code> : add to <code>&lt;div&gt;</code> to make element display as table row depends on screen size</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;d-table&quot; style=&quot;width:100%&quot;&gt;
     &lt;div class=&quot;d-table-row&quot; style=&quot;width:100%&quot;&gt;
         &lt;div class=&quot;d-table-cell&quot;&gt;
@@ -358,14 +359,14 @@
 </code></pre>
                 </div>
                 <div>
-                    <h5>Display as Flex :</h5>
+                    <h5>Display as Flex</h5>
                     <ul>
                         <li><code>d-flex</code> : create flexbox container &amp; transform direct children into flex items</li>
                         <li><code>d-md|sm|lg|xl-flex</code> : create flexbox container depends on screen size</li>
                         <li><code>d-inline-flex</code> : create inline flexbox container</li>
                         <li><code>d-sm|md|lg|xl-inline-flex</code> : create inline flexbox container depends on screen size</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;d-flex p-3 bg-secondary text-white&quot;&gt;    
     &lt;div class=&quot;p-2 bg-info&quot;&gt;Flex item 1&lt;/div&gt;
     &lt;div class=&quot;p-2 bg-warning&quot;&gt;Flex item 2&lt;/div&gt;
@@ -378,7 +379,7 @@
             <div class="sections" id="color-classes">
                 <h4 class="heading">Color Classes</h4>
                 <div>
-                    <h5>Text Color Classes :</h5>
+                    <h5>Text Color Classes</h5>
                     <ul>
                         <li><code>text-primary</code> : blue</li>
                         <li><code>text-secondary</code> : silver grey</li>
@@ -393,14 +394,14 @@
                         <li><code>text-muted</code> : grey</li>
                         <li><code>text-class-opacity</code> : text-dark-50 (50% opacity text)</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;p class=&quot;text-primary&quot;&gt;This text is important&lt;/p&gt;
 &lt;a href=&quot;#&quot; class=&quot;text-success&quot;&gt;Success link&lt;/a&gt;
 &lt;p class=&quot;text-black-50&quot;&gt;Black text with 50% opacity on white background&lt;/p&gt;
 </code></pre>
                 </div>
                 <div>
-                    <h5>Background Color Classes :</h5>
+                    <h5>Background Color Classes</h5>
                     <ul>
                         <li><code>bg-primary</code> : blue</li>
                         <li><code>bg-secondary</code> : grey</li>
@@ -411,7 +412,7 @@
                         <li><code>bg-dark</code> : dark grey</li>
                         <li><code>bg-light</code> : light grey</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;p class=&quot;bg-primary text-white&quot;&gt;This text is important&lt;/p&gt;
 </code></pre>
                 </div>
@@ -422,7 +423,7 @@
                 <ul>
                     <li><code>sr-only</code> : to hide element on all devices, except screen readers</li>
                 </ul>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <pre class="code-box code-box-color"><code>&lt;span class=&quot;sr-only&quot;&gt;I will be hidden on all screens except for screen readers.&lt;/span&gt;
 </code></pre>
             </div>
@@ -433,7 +434,7 @@
                     <li><code>embed-responsive-aspectRatio</code> : add to parent element of video/iframe (div/span)</li>
                     <li><code>embed-responsive-item</code> : add to <code>&lt;video&gt;/&lt;iframe&gt;</code></li>
                 </ul>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <p>Frame will be open is ratio 21:9 on screen -</p>
                 <pre class="code-box code-box-color"><code>&lt;div class=&quot;embed-responsive embed-responsive-21by9&quot;&gt;
     &lt;iframe class=&quot;embed-responsive-item&quot; src=&quot;...&quot;&gt;&lt;/iframe&gt;
@@ -448,13 +449,13 @@
                     <li><code>border-0</code> : set border width to 0</li>
                     <li><code>border-top|bottom|left|right-0</code> : set specific border to 0</li>
                 </ul>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <pre class="code-box code-box-color"><code>&lt;span class=&quot;border&quot;&gt;&lt;/span&gt;
 &lt;span class=&quot;border border-0&quot;&gt;&lt;/span&gt;
 &lt;span class=&quot;border border-top-0&quot;&gt;&lt;/span&gt;
 </code></pre>
                 <div>
-                    <h5>Contextual Border Color Classes :</h5>
+                    <h5>Contextual Border Color Classes</h5>
                     <ul>
                         <li><code>border-primary</code> : blue</li>
                         <li><code>border-secondary</code> : grey</li>
@@ -466,12 +467,12 @@
                         <li><code>border-light</code> : light grey</li>
                         <li><code>border-white</code> : white</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;span class=&quot;border border-primary&quot;&gt;&lt;/span&gt;
 </code></pre>
                 </div>
                 <div>
-                    <h5>Border Radius Classes :</h5>
+                    <h5>Border Radius Classes</h5>
                     <ul>
                         <li><code>rounded</code> : rounded border</li>
                         <li><code>rounded-sm</code> : rounded border on sm, lg &amp; xl screens</li>
@@ -480,7 +481,7 @@
                         <li><code>rounded-circle</code> : border of 50% radius</li>
                         <li><code>rounded-0</code> : no rounded border</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;span class=&quot;rounded-lg&quot;&gt;&lt;/span&gt;
 </code></pre>
                 </div>
@@ -493,7 +494,7 @@
                     <li><code>shadow-none</code> : no shadow</li>
                     <li><code>shadow-sm|lg</code> : add shadow on sm &amp; lg shadow</li>
                 </ul>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <pre class="code-box code-box-color"><code>&lt;div class=&quot;shadow-none p-4 mb-4 bg-light&quot;&gt;No shadow&lt;/div&gt;
 &lt;div class=&quot;shadow-sm p-4 mb-4 bg-white&quot;&gt;Small shadow&lt;/div&gt;
 </code></pre>
@@ -504,7 +505,7 @@
                 <ul>
                     <li><code>table</code> : add to <code>&lt;table&gt;</code> for basic table style</li>
                 </ul>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <pre class="code-box code-box-color"><code>&lt;table class=&quot;table&quot;&gt;
     &lt;thead&gt;
         &lt;tr&gt;
@@ -520,7 +521,7 @@
 &lt;/table&gt;
 </code></pre>
                 <div>
-                    <h5>Table Style Classes :</h5>
+                    <h5>Table Style Classes</h5>
                     <ul>
                         <li><code>table-striped</code> : add zebra-stripes to rows</li>
                         <li><code>table-bordered</code> : add borders on all sides of table and cells</li>
@@ -530,7 +531,7 @@
                         <li><code>table-sm</code> : make table smaller by cutting cell padding in half</li>
                     </ul>
                     <p>Add in <code>&lt;table&gt;</code>.</p>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;table class=&quot;table table-striped&quot;&gt;
     &lt;thead class=&quot;thead-dark&quot;&gt;
         &lt;tr&gt;
@@ -549,26 +550,26 @@
 </code></pre>
                 </div>
                 <div>
-                    <h5>Responsive Table :</h5>
+                    <h5>Responsive Table</h5>
                     <ul>
                         <li><code>table-responsive</code> : add scrollbar to table when needed</li>
                         <li><code>table-responsive-sm|md|lg|xl</code> : add scrollbar to table when needed depends on screen width</li>
                     </ul>
                     <p>Add in parent <code>&lt;div&gt;</code> element of table.</p>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;table-responsive&quot;&gt;
     &lt;table class=&quot;table table-bordered&quot;&gt; ... &lt;/table&gt;
 &lt;/div&gt;
 </code></pre>
                 </div>
                 <div>
-                    <h5>Table Header Color :</h5>
+                    <h5>Table Header Color</h5>
                     <ul>
                         <li><code>thead-dark</code> : add dark background to table header</li>
                         <li><code>thead-light</code> : add grey background to table header</li>
                     </ul>
                     <p>Add in table header <code>&lt;thead&gt;</code>.</p>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;table class=&quot;table table-striped table-sm&quot;&gt;
     &lt;thead class=&quot;thead-dark&quot;&gt;
         &lt;tr&gt;
@@ -587,7 +588,7 @@
 </code></pre>
                 </div>
                 <div>
-                    <h5>Contextual Color Classes :</h5>
+                    <h5>Contextual Color Classes</h5>
                     <ul>
                         <li><code>table-primary</code> : blue</li>
                         <li><code>table-success</code> : green</li>
@@ -600,7 +601,7 @@
                         <li><code>table-dark</code> : dark grey</li>
                     </ul>
                     <p>For row/col.</p>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;table class=&quot;table table-striped&quot;&gt;
     &lt;thead&gt;
         &lt;tr class=&quot;table-primary&quot;&gt;
@@ -627,12 +628,12 @@
                     <li><code>float-right</code> : float image to right</li>
                     <li><code>img-fluid</code> : image scale to parent element</li>
                 </ul>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <pre class="code-box code-box-color"><code>&lt;img src=&quot;cinqueterre.jpg&quot; class=&quot;rounded&quot; alt=&quot;Cinque Terre&quot;&gt;
 &lt;img src=&quot;paris.jpg&quot; class=&quot;float-left&quot;&gt;
 </code></pre>
                 <div>
-                    <h6>Float Image To Center (Center Aligned Image) -</h6>
+                    <h6>Float Image To Center (Center Aligned Image)</h6>
                     <pre class="code-box code-box-color"><code>&lt;img src=&quot;paris.jpg&quot; class=&quot;mx-auto d-block&quot;&gt;
 </code></pre>
                 </div>
@@ -643,13 +644,13 @@
                 <ul>
                     <li><code>alert</code> : default alert</li>
                 </ul>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <pre class="code-box code-box-color"><code>&lt;div class=&quot;alert&quot;&gt;
     &lt;strong&gt;Alert!&lt;/strong&gt; This is alert-box
 &lt;/div&gt;
 </code></pre>
                 <div>
-                    <h5>Contextual Alert Classes :</h5>
+                    <h5>Contextual Alert Classes</h5>
                     <ul>
                         <li><code>alert-success</code></li>
                         <li><code>alert-info</code></li>
@@ -660,29 +661,29 @@
                         <li><code>alert-light</code></li>
                         <li><code>alert-dark</code></li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;alert alert-success&quot;&gt;
     &lt;strong&gt;Success!&lt;/strong&gt; Indicates a successful or positive action.
 &lt;/div&gt;
 </code></pre>
                 </div>
                 <div>
-                    <h5>Alert Links Class :</h5>
+                    <h5>Alert Links Class</h5>
                     <ul>
                         <li><code>alert-link</code> : add to links <code>&lt;a&gt;</code> inside alert box to create matching colored links</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;alert alert-success&quot;&gt;
     &lt;strong&gt;Success!&lt;/strong&gt; You should &lt;a href=&quot;#&quot; class=&quot;alert-link&quot;&gt;read this message&lt;/a&gt;.
 &lt;/div&gt;
 </code></pre>
                 </div>
                 <div>
-                    <h5>Animated Alerts :</h5>
+                    <h5>Animated Alerts</h5>
                     <ul>
                         <li>add <code>.fade</code> and <code>.show</code> class to alert box</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;alert alert-success alert-dismissible fade show&quot;&gt;
     &lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;alert&quot;&gt;&amp;times;&lt;/button&gt;
     &lt;strong&gt;Success!&lt;/strong&gt; This alert box could indicate a successful or positive action.
@@ -690,11 +691,11 @@
 </code></pre>
                 </div>
                 <div>
-                    <h5>Close Button Class :</h5>
+                    <h5>Close Button Class</h5>
                     <ul>
                         <li><code>alert-dismissible</code> : add to create dismussible alert box</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;alert alert-success alert-dismissible&quot;&gt;
     &lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;alert&quot;&gt;&amp;times;&lt;/button&gt;
     &lt;strong&gt;Success!&lt;/strong&gt; Indicates a successful or positive action.
@@ -708,24 +709,24 @@
                 <ul>
                     <li><code>btn</code> : add to <code>&lt;button&gt;/&lt;input&gt;/&lt;a&gt;</code> for basic button style</li>
                 </ul>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <pre class="code-box code-box-color"><code>&lt;button type=&quot;button&quot; class=&quot;btn&quot;&gt;Basic&lt;/button&gt;
 </code></pre>
                 <div>
-                    <h5>Button Classes :</h5>
+                    <h5>Button Classes</h5>
                     <ul>
                         <li><code>btn-block</code> : make button block-level that spans full width</li>
                         <li><code>active</code> : active button</li>
                         <li><code>disable</code> : disabled button</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;button type=&quot;button&quot; class=&quot;btn btn-primary btn-block&quot;&gt;Full-Width Button&lt;/button&gt;
 &lt;button type=&quot;button&quot; class=&quot;btn btn-primary active&quot;&gt;Active Primary&lt;/button&gt;
 &lt;a href=&quot;#&quot; class=&quot;btn btn-primary disabled&quot;&gt;Disabled Link&lt;/a&gt;
 </code></pre>
                 </div>
                 <div>
-                    <h5>Contextual Button Colors :</h5>
+                    <h5>Contextual Button Colors</h5>
                     <ul>
                         <li><code>btn-primary</code> : blue</li>
                         <li><code>btn-secondary</code> : grey</li>
@@ -737,12 +738,12 @@
                         <li><code>btn-dark </code>: dark grey</li>
                         <li><code>btn-link</code> : no color</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;button type=&quot;button&quot; class=&quot;btn btn-warning&quot;&gt;Warning&lt;/button&gt;
 </code></pre>
                 </div>
                 <div>
-                    <h5>Button Outline Classes :</h5>
+                    <h5>Button Outline Classes</h5>
                     <ul>
                         <li><code>btn-outline-primary</code> : blue</li>
                         <li><code>btn-outline-secondary</code> : grey</li>
@@ -753,39 +754,39 @@
                         <li><code>btn-outline-light</code> : light grey</li>
                         <li><code>btn-outline-dark</code> : dark grey</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;button type=&quot;button&quot; class=&quot;btn btn-outline-primary&quot;&gt;Primary&lt;/button&gt;
 </code></pre>
                 </div>
                 <div>
-                    <h5>Spinner Buttons :</h5>
+                    <h5>Spinner Buttons</h5>
                     <ul>
                         <li><code>spinner-border</code> : spinner button</li>
                         <li><code>spinner-border-sm</code> : small size spinner button</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;button class=&quot;btn btn-primary&quot;&gt;
     &lt;span class=&quot;spinner-border spinner-border-sm&quot;&gt;&lt;/span&gt;
 &lt;/button&gt;
 </code></pre>
                 </div>
                 <div>
-                    <h5>Button Size Classes :</h5>
+                    <h5>Button Size Classes</h5>
                     <ul>
                         <li><code>btn-sm</code> : small size button</li>
                         <li><code>btn-lg</code> : large size button</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;button type=&quot;button&quot; class=&quot;btn btn-primary btn-lg&quot;&gt;Large&lt;/button&gt;
 </code></pre>
                 </div>
                 <div>
-                    <h5>Button Groups Classes :</h5>
+                    <h5>Button Groups Classes</h5>
                     <ul>
                         <li><code>btn-group</code> : add to parent <code>&lt;div&gt;</code> of <code>&lt;button&gt;</code> for horizontal group buttons</li>
                         <li><code>btn-group-vertical</code> : add to parent <code>&lt;div&gt;</code> of <code>&lt;button&gt;</code> for vertical group buttons</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;btn-group&quot;&gt;
     &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Apple&lt;/button&gt;
     &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Samsung&lt;/button&gt;
@@ -798,12 +799,12 @@
 </code></pre>
                 </div>
                 <div>
-                    <h5>Button Group Sizing Classes :</h5>
+                    <h5>Button Group Sizing Classes</h5>
                     <ul>
                         <li><code>btn-group-sm</code> : small button</li>
                         <li><code>btn-group-lg</code> : large button</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;btn-group btn-group-lg&quot;&gt;
     &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Apple&lt;/button&gt;
     &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Sony&lt;/button&gt;
@@ -811,7 +812,7 @@
 </code></pre>
                 </div>
                 <div>
-                    <h6>Button Group With Dropdown List -</h6>
+                    <h6>Button Group With Dropdown List</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;btn-group&quot;&gt;
      &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Apple&lt;/button&gt;
     &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Samsung&lt;/button&gt;
@@ -827,7 +828,7 @@
 &lt;/div&gt;</code></pre>
                 </div>
                 <div>
-                    <h5>Split Button Dropdown :</h5>
+                    <h5>Split Button Dropdown</h5>
                     <ul>
                         <li><code>dropdown-toggle-split</code> : add to button for split</li>
                     </ul>
@@ -849,20 +850,20 @@
                 <ul>
                     <li><code>badge</code> : add badge to <code>&lt;span&gt;</code></li>
                 </ul>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <pre class="code-box code-box-color"><code>&lt;span class=&quot;badge&quot;&gt;Badge&lt;/span&gt;
 </code></pre>
                 <div>
-                    <h5>Pill Badges :</h5>
+                    <h5>Pill Badges</h5>
                     <ul>
                         <li><code>badge-pill</code> : to make badges more round</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;span class=&quot;badge badge-pill badge-primary&quot;&gt;Primary&lt;/span&gt;
 </code></pre>
                 </div>
                 <div>
-                    <h5>Contextual Color Badges :</h5>
+                    <h5>Contextual Color Badges</h5>
                     <ul>
                         <li><code>badge-primary</code> : blue</li>
                         <li><code>badge-secondary</code> : grey</li>
@@ -873,7 +874,7 @@
                         <li><code>badge-light</code> : light grey</li>
                         <li><code>badge-dark</code> : dark grey</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;span class=&quot;badge badge-primary&quot;&gt;Primary&lt;/span&gt;
 </code></pre>
                 </div>
@@ -885,18 +886,18 @@
                     <li><code>progress</code> : add progress to parent <code>&lt;div&gt;</code></li>
                     <li><code>progress-bar</code> : add progress-bar inside of parent progress for progress status</li>
                 </ul>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <pre class="code-box code-box-color"><code>&lt;div class=&quot;progress&quot;&gt;
     &lt;div class=&quot;progress-bar&quot; style=&quot;width:70%&quot;&gt; 70% &lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
                 <div>
-                    <h5>Progress Bar Style Class :</h5>
+                    <h5>Progress Bar Style Class</h5>
                     <ul>
                         <li><code>progress-bar-striped</code> : add stripes to progress bar</li>
                         <li><code>progress-bar-animated</code> : for animating progress bar</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;progress&quot;&gt;
     &lt;div class=&quot;progress-bar progress-bar-striped&quot; style=&quot;width:40%&quot;&gt;&lt;/div&gt;
 &lt;/div&gt;
@@ -907,7 +908,7 @@
 </code></pre>
                 </div>
                 <div>
-                    <h5>Multiple Progress Bar :</h5>
+                    <h5>Multiple Progress Bar</h5>
                     <p>Use contextual color classes for bg &amp; text color.</p>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;progress&quot;&gt;
     &lt;div class=&quot;progress-bar bg-success&quot; style=&quot;width:40%&quot;&gt;
@@ -929,26 +930,26 @@
                 <ul>
                     <li><code>spinner-border</code> : add to <code>&lt;div&gt;/&lt;span&gt;</code> for spinner of spinning border</li>
                 </ul>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <p>Use contextual color classes for color.</p>
                 <pre class="code-box code-box-color"><code>&lt;div class=&quot;spinner-border text-primary&quot;&gt;&lt;/div&gt;
 </code></pre>
                 <div>
-                    <h5>Growing Spinner :</h5>
+                    <h5>Growing Spinner</h5>
                     <ul>
                         <li><code>spinner-grow</code> : add to <code>&lt;div&gt;/&lt;span&gt;</code> for growing spinner</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;spinner-grow text-muted&quot;&gt;&lt;/div&gt;
 </code></pre>
                 </div>
                 <div>
-                    <h5>Spinner Size Classes :</h5>
+                    <h5>Spinner Size Classes</h5>
                     <ul>
                         <li><code>spinner-border-sm|lg</code> : spinner size</li>
                         <li><code>spinner-grow-sm|lg</code> : spinner size</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;spinner-border spinner-border-sm&quot;&gt;&lt;/div&gt;
 &lt;div class=&quot;spinner-grow spinner-grow-sm&quot;&gt;&lt;/div&gt;
 </code></pre>
@@ -963,12 +964,12 @@
                     <li><code>page-link</code> : add to each link <code>&lt;a&gt;</code> inside of <code>&lt;li&gt;</code></li>
                 </ul>
                 <div>
-                    <h5>Page Status Class :</h5>
+                    <h5>Page Status Class</h5>
                     <ul>
                         <li><code>active</code> : add to <code>&lt;li&gt;</code> for highlight current page</li>
                         <li><code>disabled</code> : add to <code>&lt;li&gt;</code> for disable page click</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;ul class=&quot;pagination&quot;&gt;
     &lt;li class=&quot;page-item&quot;&gt;&lt;a class=&quot;page-link&quot; href=&quot;#&quot;&gt;Previous&lt;/a&gt;&lt;/li&gt;
     &lt;li class=&quot;page-item&quot;&gt;&lt;a class=&quot;page-link&quot; href=&quot;#&quot;&gt;1&lt;/a&gt;&lt;/li&gt;
@@ -979,11 +980,11 @@
 </code></pre>
                 </div>
                 <div>
-                    <h5>Pagination Size :</h5>
+                    <h5>Pagination Size</h5>
                     <ul>
                         <li><code>pagination-sm|lg</code> : small &amp; large pagination</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;ul class=&quot;pagination pagination-lg&quot;&gt;
     &lt;li class=&quot;page-item&quot;&gt;&lt;a class=&quot;page-link&quot; href=&quot;#&quot;&gt;Previous&lt;/a&gt;&lt;/li&gt;
     &lt;li class=&quot;page-item&quot;&gt;&lt;a class=&quot;page-link&quot; href=&quot;#&quot;&gt;1&lt;/a&gt;&lt;/li&gt;
@@ -993,25 +994,25 @@
 </code></pre>
                 </div>
                 <div>
-                    <h5>Pagination Alignment Classes :</h5>
+                    <h5>Pagination Alignment Classes</h5>
                     <ul>
                         <li><code>justify-content-center</code> : center aligned</li>
                         <li><code>justify-content-end</code> : right aligned</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;ul class=&quot;pagination justify-content-end&quot; style=&quot;margin:20px 0&quot;&gt;
     &lt;li class=&quot;page-item&quot;&gt;...&lt;/li&gt;
 &lt;/ul&gt;
 </code></pre>
                 </div>
                 <div>
-                    <h5>Breadcrumbs :</h5>
+                    <h5>Breadcrumbs</h5>
                     <p>Indicates current page&#39;s location within navigational hierarchy.</p>
                     <ul>
                         <li><code>breadcrumb</code> : add to <code>&lt;ul&gt;</code></li>
                         <li><code>breadcrumb-item</code> : add to each <code>&lt;li&gt;</code></li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;ul class=&quot;breadcrumb&quot;&gt;
     &lt;li class=&quot;breadcrumb-item&quot;&gt;&lt;a href=&quot;#&quot;&gt;Photos&lt;/a&gt;&lt;/li&gt;
     &lt;li class=&quot;breadcrumb-item&quot;&gt;&lt;a href=&quot;#&quot;&gt;Summer 2017&lt;/a&gt;&lt;/li&gt;
@@ -1029,12 +1030,12 @@
                     <li><code>list-group-item</code> : add to each <code>&lt;li&gt;</code></li>
                 </ul>
                 <div>
-                    <h5>List Page Status :</h5>
+                    <h5>List Page Status</h5>
                     <ul>
                         <li><code>active</code> : add to <code>&lt;li&gt;/&lt;a&gt;</code> for highlight current page</li>
                         <li><code>disabled</code> : add to <code>&lt;li&gt;/&lt;a&gt;</code> for disable list</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;ul class=&quot;list-group&quot;&gt;
     &lt;li class=&quot;list-group-item&quot;&gt;First item&lt;/li&gt;
     &lt;li class=&quot;list-group-item active&quot;&gt;Second item&lt;/li&gt;
@@ -1046,12 +1047,12 @@
 </code></pre>
                 </div>
                 <div>
-                    <h5>List Group With Linked Items :</h5>
+                    <h5>List Group With Linked Items</h5>
                     <ul>
                         <li><code>list-group</code> : add to <code>&lt;div&gt;</code></li>
                         <li><code>list-group-items</code> : add to each <code>&lt;a&gt;</code></li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;list-group&quot;&gt;
     &lt;a href=&quot;#&quot; class=&quot;list-group-item list-group-item-action&quot;&gt;First item&lt;/a&gt;
     &lt;a href=&quot;#&quot; class=&quot;list-group-item list-group-item-action&quot;&gt;Second item&lt;/a&gt;
@@ -1060,11 +1061,11 @@
 </code></pre>
                 </div>
                 <div>
-                    <h5>Horizontal List Groups :</h5>
+                    <h5>Horizontal List Groups</h5>
                     <ul>
                         <li><code>list-group-horizontal</code> : groups list horizontally</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;ul class=&quot;list-group list-group-horizontal&quot;&gt;
     &lt;li class=&quot;list-group-item&quot;&gt;First item&lt;/li&gt;
     &lt;li class=&quot;list-group-item&quot;&gt;Second item&lt;/li&gt;
@@ -1072,12 +1073,12 @@
 </code></pre>
                 </div>
                 <div>
-                    <h5>List Group Style :</h5>
+                    <h5>List Group Style</h5>
                     <ul>
                         <li><code>list-group-flush</code> : add to <code>&lt;ul&gt;</code> to remove border &amp; rounded corners</li>
                         <li><code>list-group-item-action</code> : add to <code>&lt;li&gt;</code> to create grey bg on hover</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;ul class=&quot;list-group list-group-flush&quot;&gt;
     &lt;li class=&quot;list-group-item&quot;&gt;First item&lt;/li&gt;
     &lt;li class=&quot;list-group-item list-group-item-action&quot;&gt;Second item&lt;/li&gt;
@@ -1085,7 +1086,7 @@
 </code></pre>
                 </div>
                 <div>
-                    <h5>Contextual List BG Colors :</h5>
+                    <h5>Contextual List BG Colors</h5>
                     <ul>
                         <li><code>list-group-item-action</code> : white</li>
                         <li><code>list-group-item-success</code> : green</li>
@@ -1097,7 +1098,7 @@
                         <li><code>list-group-item-dark</code> : dark grey</li>
                         <li><code>list-group-item-light</code> : light grey</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;ul class=&quot;list-group&quot;&gt;
     &lt;li class=&quot;list-group-item list-group-item-success&quot;&gt;Success item&lt;/li&gt;
     &lt;li class=&quot;list-group-item list-group-item-secondary&quot;&gt;Secondary item&lt;/li&gt;
@@ -1105,7 +1106,7 @@
 </code></pre>
                 </div>
                 <div>
-                    <h6>Link List with Contextual Colors -</h6>
+                    <h6>Link List with Contextual Colors</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;list-group&quot;&gt;
     &lt;a href=&quot;#&quot; class=&quot;list-group-item list-group-item-action list-group-item-dark&quot;&gt;Action item&lt;/a&gt;
     &lt;a href=&quot;#&quot; class=&quot;list-group-item list-group-item-action list-group-item-success&quot;&gt;Success item&lt;/a&gt;
@@ -1119,7 +1120,7 @@
                     <li><code>card</code> : add to parent <code>&lt;div&gt;</code> for basic card</li>
                 </ul>
                 <div>
-                    <h5>Card Classes :</h5>
+                    <h5>Card Classes</h5>
                     <ul>
                         <li><code>card-header</code> : add inside card for card header</li>
                         <li><code>card-body</code> : add inside card for card body</li>
@@ -1129,7 +1130,7 @@
                         <li><code>card-link</code> : add add inside body for card link</li>
                     </ul>
                     <p>Use contextual colors for bg &amp; text colors.</p>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;card&quot;&gt;
     &lt;div class=&quot;card-body&quot;&gt;
         &lt;h4 class=&quot;card-title&quot;&gt;Card title&lt;/h4&gt;
@@ -1141,12 +1142,12 @@
 </code></pre>
                 </div>
                 <div>
-                    <h5>Card Images Classes :</h5>
+                    <h5>Card Images Classes</h5>
                     <ul>
                         <li><code>card-img-top</code> : add inside card for add image to top</li>
                         <li><code>card-img-bottom</code> : add inside card for add image to bottom</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;card&quot; style=&quot;width:400px&quot;&gt;
     &lt;img class=&quot;card-img-top&quot; src=&quot;img_avatar1.png&quot; alt=&quot;Card image&quot;&gt;
     &lt;div class=&quot;card-body&quot;&gt;
@@ -1158,11 +1159,11 @@
 </code></pre>
                 </div>
                 <div>
-                    <h5>Stretched Link :</h5>
+                    <h5>Stretched Link</h5>
                     <ul>
                         <li><code>stretched-link</code> : add inside make whole card clickable &amp; hoverable</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;card&quot; style=&quot;width:400px&quot;&gt;
     &lt;img class=&quot;card-img-top&quot; src=&quot;img_avatar1.png&quot; alt=&quot;Card image&quot; style=&quot;width:100%&quot;&gt;
     &lt;div class=&quot;card-body&quot;&gt;
@@ -1174,11 +1175,11 @@
 </code></pre>
                 </div>
                 <div>
-                    <h5>Card Image Overlay :</h5>
+                    <h5>Card Image Overlay</h5>
                     <ul>
                         <li><code>card-img-overlay</code> : add inside card for text on top of image</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;card&quot; style=&quot;width:500px&quot;&gt;
     &lt;img class=&quot;card-img-top&quot; src=&quot;img_avatar1.png&quot; alt=&quot;Card image&quot;&gt;
     &lt;div class=&quot;card-img-overlay&quot;&gt;
@@ -1190,12 +1191,12 @@
 </code></pre>
                 </div>
                 <div>
-                    <h5>Card Columns :</h5>
+                    <h5>Card Columns</h5>
                     <ul>
                         <li><code>card-columns</code> : add to parent <code>&lt;div&gt;</code> of card to create grid of cards (like pinterest)</li>
                     </ul>
                     <p><strong>Note :</strong> The layout will automatically adjust as you insert more cards. Cards are displayed vertically on small screens (&lt;576px).</p>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;card-columns&quot;&gt;
     &lt;div class=&quot;card bg-primary&quot;&gt;
         &lt;div class=&quot;card-body text-center&quot;&gt;
@@ -1216,12 +1217,12 @@
 </code></pre>
                 </div>
                 <div>
-                    <h5>Card Deck :</h5>
+                    <h5>Card Deck</h5>
                     <ul>
                         <li><code>card-deck</code> : add to parent <code>&lt;div&gt;</code> of card to create grid of cards are of equal height &amp; width</li>
                     </ul>
                     <p><strong>Note :</strong> The layout will automatically adjust as you insert more cards. Cards are displayed vertically on small screens (&lt;576px).</p>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;card-deck&quot;&gt;
     &lt;div class=&quot;card bg-primary&quot;&gt;
         &lt;div class=&quot;card-body text-center&quot;&gt;
@@ -1242,12 +1243,12 @@
 </code></pre>
                 </div>
                 <div>
-                    <h5>Card Group :</h5>
+                    <h5>Card Group</h5>
                     <ul>
                         <li><code>card-group</code> : add to parent <code>&lt;div&gt;</code> of card to create group of cards (same as card column &amp; deck but it removes left &amp; right margin)</li>
                     </ul>
                     <p><strong>Note :</strong> The layout will automatically adjust as you insert more cards. Cards are displayed vertically on small screens (&lt;576px) with a top and bottom margin.</p>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;card-group&quot;&gt;
     &lt;div class=&quot;card bg-primary&quot;&gt;
         &lt;div class=&quot;card-body text-center&quot;&gt;
@@ -1280,7 +1281,7 @@
                     <li><code>dropdown-toggle</code> : add to <code>&lt;button&gt;/&lt;a&gt;</code> for dropdown toggle</li>
                     <li><code>data-toggle=&quot;dropdown&quot;</code> : add to <code>&lt;button&gt;/&lt;a&gt;</code> to made toggle as dropdown</li>
                 </ul>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <pre class="code-box code-box-color"><code>&lt;div class=&quot;dropdown&quot;&gt;
     &lt;button type=&quot;button&quot; class=&quot;btn btn-primary dropdown-toggle&quot; data-toggle=&quot;dropdown&quot;&gt;
         Dropdown button
@@ -1292,12 +1293,12 @@
 &lt;/div&gt;
 </code></pre>
                 <div>
-                    <h5>Dropdown Item Status :</h5>
+                    <h5>Dropdown Item Status</h5>
                     <ul>
                         <li><code>active</code> : add to <code>&lt;a&gt;</code> of each menu for highlight active class</li>
                         <li><code>disabled</code> : add to <code>&lt;a&gt;</code> of each menu for disable item</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;dropdown&quot;&gt;
         &lt;button type=&quot;button&quot; class=&quot;btn btn-primary dropdown-toggle&quot; data-toggle=&quot;dropdown&quot;&gt;
             Dropdown button
@@ -1311,11 +1312,11 @@
 </code></pre>
                 </div>
                 <div>
-                    <h5>Dropdown Divider :</h5>
+                    <h5>Dropdown Divider</h5>
                     <ul>
                         <li><code>dropdown-divider</code> : add to <code>&lt;div&gt;</code> for dividing dropdown list &amp; link with thin horiz border</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;dropdown&quot;&gt;
     &lt;button type=&quot;button&quot; class=&quot;btn btn-primary dropdown-toggle&quot; data-toggle=&quot;dropdown&quot;&gt;
         Dropdown button
@@ -1329,11 +1330,11 @@
 </code></pre>
                 </div>
                 <div>
-                    <h5>Dropdown Header :</h5>
+                    <h5>Dropdown Header</h5>
                     <ul>
                         <li><code>dropdown-header</code> : add inside of dropdown menu for header</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;dropdown&quot;&gt;
     &lt;button type=&quot;button&quot; class=&quot;btn btn-primary dropdown-toggle&quot; data-toggle=&quot;dropdown&quot;&gt;
         Dropdown button
@@ -1348,14 +1349,14 @@
 </code></pre>
                 </div>
                 <div>
-                    <h5>Dropdown Position Class :</h5>
+                    <h5>Dropdown Position Class</h5>
                     <ul>
                         <li><code>dropleft</code> : add to dropdown class for left dropdown menu</li>
                         <li><code>dropright</code> : add to dropdown class for right dropdown menu</li>
                         <li><code>dropup</code> : add instead of dropdown for dropup menu</li>
                         <li><code>dropdown-menu-right</code> : add to dropdown class for right-align dropdown menu</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;dropdown dropright&quot;&gt;
     &lt;button type=&quot;button&quot; class=&quot;btn btn-primary dropdown-toggle&quot; data-toggle=&quot;dropdown&quot;&gt;
         Dropright button
@@ -1368,7 +1369,7 @@
 </code></pre>
                 </div>
                 <div>
-                    <h5>Dropup :</h5>
+                    <h5>Dropup</h5>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;dropup&quot;&gt;
     &lt;button type=&quot;button&quot; class=&quot;btn btn-primary dropdown-toggle&quot; data-toggle=&quot;dropdown&quot;&gt;
         Dropup button
@@ -1380,11 +1381,11 @@
 &lt;/div&gt;</code></pre>
                 </div>
                 <div>
-                    <h5>Dropdown Text :</h5>
+                    <h5>Dropdown Text</h5>
                     <ul>
                         <li><code>dropdown-item-text</code> : add text with dropdown link</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;dropdown&quot;&gt;
     &lt;button type=&quot;button&quot; class=&quot;btn btn-primary dropdown-toggle&quot; data-toggle=&quot;dropdown&quot;&gt;
         Dropdown button
@@ -1398,7 +1399,7 @@
 </code></pre>
                 </div>
                 <div>
-                    <h6>Grouped Buttons with Dropdown -</h6>
+                    <h6>Grouped Buttons with Dropdown</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;btn-group&quot;&gt;
     &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Apple&lt;/button&gt;
     &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Samsung&lt;/button&gt;
@@ -1415,11 +1416,11 @@
 </code></pre>
                 </div>
                 <div>
-                    <h5>Split Button Dropdowns :</h5>
+                    <h5>Split Button Dropdowns</h5>
                     <ul>
                         <li><code>dropdown-toggle-split</code> : add to button to split button &amp; dropdown toggle</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;btn-group&quot;&gt;
     &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Primary&lt;/button&gt;
     &lt;button type=&quot;button&quot; class=&quot;btn btn-primary dropdown-toggle dropdown-toggle-split&quot; data-toggle=&quot;dropdown&quot;&gt;
@@ -1432,11 +1433,11 @@
 </code></pre>
                 </div>
                 <div>
-                    <h5>Vertical Button Group with Dropdown :</h5>
+                    <h5>Vertical Button Group with Dropdown</h5>
                     <ul>
                         <li><code>btn-group-vertical</code> : add to parent <code>&lt;div&gt;</code> for vertical button group</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;btn-group-vertical&quot;&gt;
     &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Apple&lt;/button&gt;
     &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Samsung&lt;/button&gt;
@@ -1465,7 +1466,7 @@
                     <li><code>hide</code> (default) : hide content</li>
                     <li><code>show</code> : show content</li>
                 </ul>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <pre class="code-box code-box-color"><code>&lt;button data-toggle=&quot;collapse&quot; data-target=&quot;#demo&quot;&gt;Collapsible&lt;/button&gt;
 &lt;div id=&quot;demo&quot; class=&quot;collapse&quot;&gt;
     Text Here
@@ -1478,7 +1479,7 @@
 &lt;/div&gt;
 </code></pre>
                 <div>
-                    <h5>Accordion (Collaspible Cards) :</h5>
+                    <h5>Accordion (Collaspible Cards)</h5>
                     <pre class="code-box code-box-color"><code>&lt;div id=&quot;accordion&quot;&gt;
     &lt;div class=&quot;card&quot;&gt;
         &lt;div class=&quot;card-header&quot;&gt;
@@ -1516,7 +1517,7 @@
                     <li><code>nav-item</code> : add to each <code>&lt;li&gt;</code> for nav items</li>
                     <li><code>nav-link</code> : add to each link (<code>&lt;a&gt;)</code> of <code>&lt;li&gt;</code></li>
                 </ul>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <pre class="code-box code-box-color"><code>&lt;ul class=&quot;nav&quot;&gt;
     &lt;li class=&quot;nav-item&quot;&gt;
         &lt;a class=&quot;nav-link&quot; href=&quot;#&quot;&gt;Link&lt;/a&gt;
@@ -1527,31 +1528,31 @@
 &lt;/ul&gt;
 </code></pre>
                 <div>
-                    <h5>Nav Alignment :</h5>
+                    <h5>Nav Alignment</h5>
                     <ul>
                         <li><code>justify-content-center</code> : add to <code>&lt;ul&gt;</code> for center aligned nav</li>
                         <li><code>justify-content-end</code> : add to <code>&lt;ul&gt;</code> for right aligned nav</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;ul class=&quot;nav justify-content-center&quot;&gt; ... &lt;/ul&gt;
 </code></pre>
                 </div>
                 <div>
-                    <h5>Vertical Nav :</h5>
+                    <h5>Vertical Nav</h5>
                     <ul>
                         <li><code>flex-column</code> : add to <code>&lt;ul&gt;</code> for vertical nav</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;ul class=&quot;nav flex-column&quot;&gt;
 </code></pre>
                 </div>
                 <div>
-                    <h5>Nav Tabs :</h5>
+                    <h5>Nav Tabs</h5>
                     <ul>
                         <li><code>nav-tabs</code> : add to <code>&lt;ul&gt;</code> for turn nav menu into navigation tabs</li>
                     </ul>
                     <p>Add <code>.active</code> class to indicate active tab.</p>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;ul class=&quot;nav nav-tabs&quot;&gt;
     &lt;li class=&quot;nav-item&quot;&gt;
         &lt;a class=&quot;nav-link active&quot; href=&quot;#&quot;&gt;Active&lt;/a&gt;
@@ -1566,12 +1567,12 @@
 </code></pre>
                 </div>
                 <div>
-                    <h5>Nav Pills :</h5>
+                    <h5>Nav Pills</h5>
                     <ul>
                         <li><code>nav-pills</code> : add to <code>&lt;ul&gt;</code> for turn nav menu into navigation pills</li>
                     </ul>
                     <p>Add <code>.active</code> class to indicate active tab.</p>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;ul class=&quot;nav nav-pills&quot;&gt;
     &lt;li class=&quot;nav-item&quot;&gt;
         &lt;a class=&quot;nav-link active&quot; href=&quot;#&quot;&gt;Active&lt;/a&gt;
@@ -1586,19 +1587,19 @@
 </code></pre>
                 </div>
                 <div>
-                    <h5>Justified Tabs/Pills :</h5>
+                    <h5>Justified Tabs/Pills</h5>
                     <p>Tabs or pills of equal width.</p>
                     <ul>
                         <li><code>nav-justified</code> : add to <code>&lt;ul&gt;</code> for nav-tabs/pills of equal width tabs</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;ul class=&quot;nav nav-pills nav-justified&quot;&gt; ... &lt;/ul&gt;
 &lt;ul class=&quot;nav nav-tabs nav-justified&quot;&gt; ... &lt;/ul&gt;
 </code></pre>
                 </div>
                 <div>
                     <div>
-                        <h6>Pills with Dropdown -</h6>
+                        <h6>Pills with Dropdown</h6>
                         <pre class="code-box code-box-color"><code>&lt;ul class=&quot;nav nav-pills&quot;&gt;
     &lt;li class=&quot;nav-item&quot;&gt;
         &lt;a class=&quot;nav-link active&quot; href=&quot;#&quot;&gt;Active&lt;/a&gt;
@@ -1616,7 +1617,7 @@
 &lt;/ul&gt;</code></pre>
                     </div>
                     <div>
-                        <h6>Tabs with Dropdown -</h6>
+                        <h6>Tabs with Dropdown</h6>
                         <pre class="code-box code-box-color"><code>&lt;ul class=&quot;nav nav-tabs&quot;&gt;
     &lt;li class=&quot;nav-item&quot;&gt;
         &lt;a class=&quot;nav-link active&quot; href=&quot;#&quot;&gt;Active&lt;/a&gt;
@@ -1635,7 +1636,7 @@
 </code></pre>
                     </div>
                     <div>
-                        <h6>Toggleable / Dynamic Tabs -</h6>
+                        <h6>Toggleable / Dynamic Tabs</h6>
                         <pre class="code-box code-box-color"><code>&lt;!-- Nav Tabs --&gt;
 &lt;ul class=&quot;nav nav-tabs&quot;&gt;
     &lt;li class=&quot;nav-item&quot;&gt;
@@ -1653,7 +1654,7 @@
 </code></pre>
                     </div>
                     <div>
-                        <h6>Toggleable / Dynamic Pills :</h6>
+                        <h6>Toggleable / Dynamic Pills</h6>
                         <pre class="code-box code-box-color"><code>&lt;!-- Nav Pills --&gt;
 &lt;ul class=&quot;nav nav-pills&quot;&gt;
     &lt;li class=&quot;nav-item&quot;&gt;
@@ -1688,7 +1689,7 @@
                     <li><code>active|disabled</code> : add to link <code>(&lt;a&gt;)</code> for disable|active nav-item</li>
                 </ul>
                 <p>Use contextual color class for colored navbar.</p>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <pre class="code-box code-box-color"><code>&lt;nav class=&quot;navbar navbar-expand-sm navbar-dark bg-light&quot;&gt;
     &lt;ul class=&quot;navbar-nav&quot;&gt;
         &lt;li class=&quot;nav-item&quot;&gt;
@@ -1701,11 +1702,11 @@
 &lt;/nav&gt;
 </code></pre>
                 <div>
-                    <h5>Navbar Brand/Logo :</h5>
+                    <h5>Navbar Brand/Logo</h5>
                     <ul>
                         <li><code>navbar-brand</code> : add to <code>&lt;a&gt;/&lt;span&gt;</code> for navigation brand/logo and place inside <code>&lt;nav&gt;</code> on top</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;nav class=&quot;navbar navbar-expand-sm bg-dark&quot;&gt;
     &lt;a class=&quot;navbar-brand&quot; href=&quot;#&quot;&gt;Logo&lt;/a&gt;
     ...
@@ -1713,11 +1714,11 @@
 </code></pre>
                 </div>
                 <div>
-                    <h5>Navbar Text :</h5>
+                    <h5>Navbar Text</h5>
                     <ul>
                         <li><code>navbar-text</code> : add inside <code>&lt;nav&gt;</code> for text to navbar</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;nav class=&quot;navbar navbar-expand-sm bg-dark navbar-dark&quot;&gt;
     &lt;ul class=&quot;navbar-nav&quot;&gt;
         &lt;li class=&quot;nav-item&quot;&gt;
@@ -1731,11 +1732,11 @@
 </code></pre>
                 </div>
                 <div>
-                    <h5>Vertical Navbar :</h5>
+                    <h5>Vertical Navbar</h5>
                     <ul>
                         <li>remove <code>navbar-expand-sm|md|lg|xl</code> to create vertical navbar</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;nav class=&quot;navbar bg-light&quot;&gt;
     &lt;ul class=&quot;navbar-nav&quot;&gt;
         &lt;li class=&quot;nav-item&quot;&gt;
@@ -1749,16 +1750,16 @@
 </code></pre>
                 </div>
                 <div>
-                    <h5>Center Navbar :</h5>
+                    <h5>Center Navbar</h5>
                     <ul>
                         <li><code>justify-content-center</code> : add to <code>&lt;nav&gt;</code> for center aligned navbar</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;nav class=&quot;navbar navbar-expand-sm bg-light justify-content-center&quot;&gt; ... &lt;/nav&gt;
 </code></pre>
                 </div>
                 <div>
-                    <h5>Collapsing Navigation Bar :</h5>
+                    <h5>Collapsing Navigation Bar</h5>
                     <ul>
                         <li><code>navbar-toggler</code> : add to <code>&lt;button&gt;</code> to create collapsible navbar</li>
                         <li><code>navbar-toggler-icon</code> : add in <code>&lt;span&gt;</code> inside button for collapse icon</li>
@@ -1770,7 +1771,7 @@
                         <li>add <code>data-target=&quot;#thetarget&quot;</code> to <code>&lt;button&gt;</code> for selecting nav menu</li>
                         <li>remove <code>.navbar-expand-md</code> class to always hide <code>nav-menu</code> items</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;nav class=&quot;navbar navbar-expand-md bg-dark navbar-dark&quot;&gt;
     &lt;a class=&quot;navbar-brand&quot; href=&quot;#&quot;&gt;Navbar&lt;/a&gt;
     &lt;button class=&quot;navbar-toggler&quot; type=&quot;button&quot; data-toggle=&quot;collapse&quot; data-target=&quot;#collapsibleNavbar&quot;&gt;
@@ -1787,13 +1788,13 @@
 </code></pre>
                 </div>
                 <div>
-                    <h5>Fixed Navigation Bar :</h5>
+                    <h5>Fixed Navigation Bar</h5>
                     <ul>
                         <li><code>fixed-top</code> : add to <code>&lt;nav&gt;</code> for navigation bar fixed at top</li>
                         <li><code>fixed-bottom</code> : add to <code>&lt;nav&gt;</code> for navigation bar fixed at bottom</li>
                         <li><code>sticky-top</code> : add to <code>&lt;nav&gt;</code> for navigation bar to stay top while scroll</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;nav class=&quot;navbar navbar-expand-sm bg-dark navbar-dark fixed-top&quot;&gt;
     ...
 &lt;/nav&gt;
@@ -1801,7 +1802,7 @@
                 </div>
                 <div>
                     <div>
-                        <h6>Navbar With Dropdown -</h6>
+                        <h6>Navbar With Dropdown</h6>
                         <pre class="code-box code-box-color"><code>&lt;nav class=&quot;navbar navbar-expand-sm bg-dark navbar-dark&quot;&gt;
     &lt;a class=&quot;navbar-brand&quot; href=&quot;#&quot;&gt;Logo&lt;/a&gt;
     &lt;ul class=&quot;navbar-nav&quot;&gt;
@@ -1822,7 +1823,7 @@
 </code></pre>
                     </div>
                     <div>
-                        <h6>Navbar With Forms &amp; Buttons -</h6>
+                        <h6>Navbar With Forms &amp; Buttons</h6>
                         <pre class="code-box code-box-color"><code>&lt;nav class=&quot;navbar navbar-expand-sm bg-dark navbar-dark&quot;&gt;
     &lt;form class=&quot;form-inline&quot; action=&quot;/action_page.php&quot;&gt;
         &lt;input class=&quot;form-control mr-sm-2&quot; type=&quot;text&quot; placeholder=&quot;Search&quot;&gt;
@@ -1856,7 +1857,7 @@
                         <li>Add <code>data-slide-to=&quot;0&quot;</code> no to each <code>&lt;li&gt;</code> item.</li>
                     </ol>
                 </div>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <pre class="code-box code-box-color"><code>&lt;div id=&quot;demo&quot; class=&quot;carousel slide&quot; data-ride=&quot;carousel&quot;&gt;
     &lt;!-- Indicators --&gt;
     &lt;ul class=&quot;carousel-indicators&quot;&gt;
@@ -1886,11 +1887,11 @@
 &lt;/div&gt;
 </code></pre>
                 <div>
-                    <h5>Add Caption :</h5>
+                    <h5>Add Caption</h5>
                     <ul>
                         <li><code>carousel-caption</code> : add within each <code>&lt;div class=&quot;carousel-item&quot;&gt;</code> to create caption for each slide</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div id=&quot;demo&quot; class=&quot;carousel slide&quot; data-ride=&quot;carousel&quot;&gt;
     &lt;ul class=&quot;carousel-indicators&quot;&gt;
         &lt;li data-target=&quot;#demo&quot; data-slide-to=&quot;0&quot; class=&quot;active&quot;&gt;&lt;/li&gt;
@@ -1933,7 +1934,7 @@
                         <li>for close button add <code>&lt;button&gt;</code> inside header or footer &amp; add data-dismiss=&quot;modal&quot; to <code>&lt;button&gt;</code>.</li>
                     </ol>
                 </div>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <pre class="code-box code-box-color"><code>&lt;!-- Button to Open the Modal --&gt;
 &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; data-toggle=&quot;modal&quot; data-target=&quot;#myModal&quot;&gt;
     Open modal
@@ -1960,38 +1961,38 @@
 &lt;/div&gt;
 </code></pre>
                 <div>
-                    <h5>Add Open/Close Animation :</h5>
+                    <h5>Add Open/Close Animation</h5>
                     <ul>
                         <li><code>fade</code> : add with <code>.modal</code> class for open/close fading animation</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;modal fade&quot;&gt; ... &lt;/div&gt;
 </code></pre>
                 </div>
                 <div>
-                    <h5>Modal Size :</h5>
+                    <h5>Modal Size</h5>
                     <ul>
                         <li><code>modal-sm|lg|xl</code> (default md) : add with <code>.modal-dialog</code> class for sizing modal</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;modal-dialog modal-sm&quot;&gt; ... &lt;/div&gt;
 </code></pre>
                 </div>
                 <div>
-                    <h5>Centered Modal :</h5>
+                    <h5>Centered Modal</h5>
                     <ul>
                         <li><code>modal-dialog-centered</code> : add with <code>.modal-dialog</code> for center modal vertically &amp; horizontally within page</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;modal-dialog modal-dialog-centered&quot;&gt; ... &lt;/div&gt;
 </code></pre>
                 </div>
                 <div>
-                    <h5>Scrolling Modal :</h5>
+                    <h5>Scrolling Modal</h5>
                     <ul>
                         <li><code>modal-dialog-scrollable</code> : add with <code>.modal-dialog</code> to only scroll inside modal body instead of page itself</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;modal-dialog modal-dialog-scrollable&quot;&gt; ... &lt;/div&gt;
 </code></pre>
                 </div>
@@ -2004,7 +2005,7 @@
                     <li><code>title=&quot;Hover Text&quot;</code> : add attribute to element for hover text</li>
                     <li><code>data-placement=&quot;top|bottom|left|right&quot;</code> : add attribute to element for placement of tooltip</li>
                 </ul>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <pre class="code-box code-box-color"><code>&lt;a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;Hooray!&quot;&gt;Hover over me&lt;/a&gt;
 
 &lt;a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Hooray!&quot;&gt;Hover&lt;/a&gt;
@@ -2028,7 +2029,7 @@ $(document).ready(function(){
                     <li><code>data-trigger=&quot;focus&quot;</code> : add attribute to element to close popover when clicking outside element</li>
                     <li><code>data-trigger=&quot;hover&quot;</code> : add attribute to element for popover to be display when mouse-over element</li>
                 </ul>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <pre class="code-box code-box-color"><code>&lt;a href=&quot;#&quot; data-toggle=&quot;popover&quot; title=&quot;Popover Header&quot; data-content=&quot;Some content inside popover&quot;&gt;Toggle popover&lt;/a&gt;
 
 &lt;a href=&quot;#&quot; data-toggle=&quot;popover&quot; title=&quot;Header&quot; data-placement=&quot;top&quot; data-content=&quot;Content&quot;&gt;Click&lt;/a&gt;
@@ -2055,7 +2056,7 @@ $(document).ready(function(){
                     <li><code>data-autohide=&quot;false&quot;</code> : add attribute with <code>.toast</code> for toasts to show by default (default hidden)</li>
                     <li><code>data-dismiss=&quot;toast&quot;</code> : add attribute to <code>&lt;button&gt;</code> to close toast</li>
                 </ul>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <pre class="code-box code-box-color"><code>&lt;div class=&quot;toast&quot;&gt;
     &lt;div class=&quot;toast-header&quot;&gt;
         Toast Header
@@ -2093,7 +2094,7 @@ $(document).ready(function(){
                     <li><code>data-offset=&quot;value&quot;</code> : set number of pixels to offset from top when calculating position of scroll (optional)</li>
                 </ul>
                 <p><strong>Note :</strong> Scrollable element must match id/class of links inside navbar&#39;s list items (<code>&lt;div id=&quot;section1&quot;&gt;</code> matches <code>&lt;a href=&quot;#section1&quot;&gt;</code>).</p>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <pre class="code-box code-box-color"><code>&lt;body data-spy=&quot;scroll&quot; data-target=&quot;.navbar&quot; data-offset=&quot;50&quot;&gt;
 &lt;nav class=&quot;navbar navbar-expand-sm bg-dark navbar-dark fixed-top&quot;&gt;  
     &lt;ul class=&quot;navbar-nav&quot;&gt;
@@ -2127,7 +2128,7 @@ $(document).ready(function(){
 &lt;/body&gt;
 </code></pre>
                 <div>
-                    <h6>Vertical Navigation Bar -</h6>
+                    <h6>Vertical Navigation Bar</h6>
                     <pre class="code-box code-box-color"><code>&lt;body data-spy=&quot;scroll&quot; data-target=&quot;#myScrollspy&quot; data-offset=&quot;1&quot;&gt;
 &lt;div class=&quot;container-fluid&quot;&gt;
     &lt;div class=&quot;row&quot;&gt;
@@ -2172,7 +2173,7 @@ $(document).ready(function(){
                     <li><code>media</code> : add to <code>&lt;div&gt;</code> element for creating media &amp; must be add inside container</li>
                     <li><code>media-body</code> : add to <code>&lt;div&gt;</code> inside <code>.media</code> for adding content</li>
                 </ul>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <pre class="code-box code-box-color"><code>&lt;div class=&quot;media border p-3&quot;&gt;
     &lt;img src=&quot;img_avatar3.png&quot; alt=&quot;John Doe&quot; class=&quot;mr-3 mt-3 rounded-circle&quot; style=&quot;width:60px;&quot;&gt;
     &lt;div class=&quot;media-body&quot;&gt;
@@ -2182,7 +2183,7 @@ $(document).ready(function(){
 &lt;/div&gt;
 </code></pre>
                 <div>
-                    <h5>Nested Media Objects :</h5>
+                    <h5>Nested Media Objects</h5>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;media border p-3&quot;&gt;
     &lt;img src=&quot;img_avatar3.png&quot; alt=&quot;John Doe&quot; class=&quot;mr-3 mt-3 rounded-circle&quot; style=&quot;width:60px;&quot;&gt;
     &lt;div class=&quot;media-body&quot;&gt;
@@ -2200,7 +2201,7 @@ $(document).ready(function(){
 </code></pre>
                 </div>
                 <div>
-                    <h5>Right-Aligned Media Image :</h5>
+                    <h5>Right-Aligned Media Image</h5>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;media border p-3&quot;&gt;
     &lt;div class=&quot;media-body&quot;&gt;
         &lt;h4&gt;John Doe &lt;small&gt;&lt;i&gt;Posted on February 19, 2016&lt;/i&gt;&lt;/small&gt;&lt;/h4&gt;
@@ -2211,8 +2212,8 @@ $(document).ready(function(){
 </code></pre>
                 </div>
                 <div>
-                    <h5>Top, Middle or Bottom Alignment :</h5>
-                    <h6>Media Top -</h6>
+                    <h5>Top, Middle or Bottom Alignment</h5>
+                    <h6>Media Top</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;media&quot;&gt;
     &lt;img src=&quot;img_avatar1.png&quot; class=&quot;align-self-start mr-3&quot; style=&quot;width:60px&quot;&gt;
     &lt;div class=&quot;media-body&quot;&gt;
@@ -2221,7 +2222,7 @@ $(document).ready(function(){
     &lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
-                    <h6>Media Middle -</h6>
+                    <h6>Media Middle</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;media&quot;&gt;
     &lt;img src=&quot;img_avatar1.png&quot; class=&quot;align-self-center mr-3&quot; style=&quot;width:60px&quot;&gt;
     &lt;div class=&quot;media-body&quot;&gt;
@@ -2230,7 +2231,7 @@ $(document).ready(function(){
     &lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
-                    <h6>Media Bottom -</h6>
+                    <h6>Media Bottom</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;media&quot;&gt;
     &lt;img src=&quot;img_avatar1.png&quot; class=&quot;align-self-end mr-3&quot; style=&quot;width:60px&quot;&gt;
     &lt;div class=&quot;media-body&quot;&gt;
@@ -2247,7 +2248,7 @@ $(document).ready(function(){
                 <ul>
                     <li><code>form-group</code> : add wrapper <code>&lt;div&gt;</code> with this class to each form&#39;s element for full width stacked form</li>
                 </ul>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <pre class="code-box code-box-color"><code>&lt;form action=&quot;/action_page.php&quot;&gt;
     &lt;div class=&quot;form-group&quot;&gt;
         &lt;label for=&quot;email&quot;&gt;Email address:&lt;/label&gt;
@@ -2266,21 +2267,21 @@ $(document).ready(function(){
 &lt;/form&gt;
 </code></pre>
                 <div>
-                    <h5>Inline Form :</h5>
+                    <h5>Inline Form</h5>
                     <ul>
                         <li><code>form-inline</code> : add to <code>&lt;form&gt;</code> for inline forms</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;form class=&quot;form-inline&quot; action=&quot;/action_page.php&quot;&gt; ... &lt;/form&gt;
 </code></pre>
                 </div>
                 <div>
-                    <h5>Form Row/Column :</h5>
+                    <h5>Form Row/Column</h5>
                     <ul>
                         <li><code>row|form-row</code> : add to wrapper <code>&lt;div&gt;</code> to create row form element</li>
                         <li><code>col</code> : to add <code>&lt;div&gt;</code> inside .row to create col for each element</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;form&gt;
     &lt;div class=&quot;form-row&quot;&gt;
         &lt;div class=&quot;col&quot;&gt;
@@ -2294,7 +2295,7 @@ $(document).ready(function(){
 </code></pre>
                 </div>
                 <div>
-                    <h5>Form Validation :</h5>
+                    <h5>Form Validation</h5>
                     <ul>
                         <li><code>was-validated</code> : add to <code>&lt;form&gt;</code> for validate before submision</li>
                         <li><code>needs-validation</code> : add to <code>&lt;form&gt;</code> for validate after submision</li>
@@ -2304,7 +2305,7 @@ $(document).ready(function(){
                         <li><code>invalid-feedback</code> : add to seperate <code>&lt;div&gt;</code> with message for feedback if form is invalid</li>
                     </ul>
                     <div>
-                        <h6>Validate Before Submission -</h6>
+                        <h6>Validate Before Submission</h6>
                         <pre class="code-box code-box-color"><code>&lt;form action=&quot;/action_page.php&quot; class=&quot;was-validated&quot;&gt;
     &lt;div class=&quot;form-group&quot;&gt;
         &lt;label for=&quot;uname&quot;&gt;Username:&lt;/label&gt;
@@ -2330,7 +2331,7 @@ $(document).ready(function(){
 </code></pre>
                     </div>
                     <div>
-                        <h6>Validate After Submission -</h6>
+                        <h6>Validate After Submission</h6>
                         <pre class="code-box code-box-color"><code>&lt;form action=&quot;/action_page.php&quot; class=&quot;needs-validation&quot; novalidate&gt;
     &lt;div class=&quot;form-group&quot;&gt;
         &lt;label for=&quot;uname&quot;&gt;Username:&lt;/label&gt;
@@ -2384,31 +2385,31 @@ $(document).ready(function(){
                     <li><code>form-control</code> : add to <code>&lt;input&gt;</code> to style inputs with full-width &amp; proper padding</li>
                 </ul>
                 <div>
-                    <h5>Form Control Sizing :</h5>
+                    <h5>Form Control Sizing</h5>
                     <ul>
                         <li><code>form-control-sm|lg</code> : add to <code>&lt;input&gt;</code> for input on specific screen size</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;input type=&quot;text&quot; class=&quot;form-control form-control-sm&quot;&gt;
 &lt;input type=&quot;text&quot; class=&quot;form-control form-control&quot;&gt;
 &lt;input type=&quot;text&quot; class=&quot;form-control form-control-lg&quot;&gt;
 </code></pre>
                 </div>
                 <div>
-                    <h5>Form Control Types :</h5>
-                    <h6>Form Control with Plain text -</h6>
+                    <h5>Form Control Types</h5>
+                    <h6>Form Control with Plain text</h6>
                     <ul>
                         <li><code>form-control-plaintext</code> : add to <code>&lt;input&gt;</code> for plain text form without border</li>
                     </ul>
                     <pre class="code-box code-box-color"><code>&lt;input type=&quot;text&quot; class=&quot;form-control-plaintext&quot;&gt;
 </code></pre>
-                    <h6>Form Control File -</h6>
+                    <h6>Form Control File</h6>
                     <ul>
                         <li><code>form-control-file</code> : for input type file</li>
                     </ul>
                     <pre class="code-box code-box-color"><code>&lt;input type=&quot;file&quot; class=&quot;form-control-file border&quot;&gt;
 </code></pre>
-                    <h6>Form Control Range -</h6>
+                    <h6>Form Control Range</h6>
                     <ul>
                         <li><code>form-control-range</code> : for input type range</li>
                     </ul>
@@ -2416,8 +2417,8 @@ $(document).ready(function(){
 </code></pre>
                 </div>
                 <div>
-                    <h5>Inputs Types :</h5>
-                    <h6>Text/Password -</h6>
+                    <h5>Inputs Types</h5>
+                    <h6>Text/Password</h6>
                     <ul>
                         <li><code>form-control</code> : add to <code>&lt;input&gt;</code></li>
                     </ul>
@@ -2430,7 +2431,7 @@ $(document).ready(function(){
   &lt;input type=&quot;password&quot; class=&quot;form-control&quot; id=&quot;pwd&quot;&gt;
 &lt;/div&gt;
 </code></pre>
-                    <h6>Textarea -</h6>
+                    <h6>Textarea</h6>
                     <ul>
                         <li><code>form-control</code> : add to <code>&lt;textarea&gt;</code></li>
                     </ul>
@@ -2439,7 +2440,7 @@ $(document).ready(function(){
   &lt;textarea class=&quot;form-control&quot; rows=&quot;5&quot; id=&quot;comment&quot;&gt;&lt;/textarea&gt;
 &lt;/div&gt;
 </code></pre>
-                    <h6>Checkboxes -</h6>
+                    <h6>Checkboxes</h6>
                     <ul>
                         <li><code>form-check</code> : add to wrapper <code>&lt;div&gt;</code> to create checkbox</li>
                         <li><code>form-check-label</code> : add to <code>&lt;label&gt;</code> to set label of checkbox</li>
@@ -2462,7 +2463,7 @@ $(document).ready(function(){
   &lt;/label&gt;
 &lt;/div&gt;
 </code></pre>
-                    <h6>Inline Checkbox -</h6>
+                    <h6>Inline Checkbox</h6>
                     <ul>
                         <li><code>form-check-inline</code> : add to wrapper <code>&lt;div&gt;</code> to create inline checkboxes</li>
                     </ul>
@@ -2482,7 +2483,7 @@ $(document).ready(function(){
   &lt;/label&gt;
 &lt;/div&gt;
 </code></pre>
-                    <h6>Radio Buttons -</h6>
+                    <h6>Radio Buttons</h6>
                     <ul>
                         <li><code>form-check</code> : add to wrapper <code>&lt;div&gt;</code> to create radio button</li>
                         <li><code>form-check-label</code> : add to <code>&lt;label&gt;</code> to set label of radio button</li>
@@ -2505,7 +2506,7 @@ $(document).ready(function(){
   &lt;/label&gt;
 &lt;/div&gt;
 </code></pre>
-                    <h6>Inline Radio Buttons -</h6>
+                    <h6>Inline Radio Buttons</h6>
                     <ul>
                         <li><code>form-check-inline</code> : add to wrapper <code>&lt;div&gt;</code> to create inline radio buttons</li>
                     </ul>
@@ -2525,7 +2526,7 @@ $(document).ready(function(){
   &lt;/label&gt;
 &lt;/div&gt; 
 </code></pre>
-                    <h6>Selection Lists -</h6>
+                    <h6>Selection Lists</h6>
                     <ul>
                         <li><code>form-check</code> : add to wrapper <code>&lt;div&gt;</code> to create select list</li>
                         <li><code>form-control</code> : add to <code>&lt;select&gt;</code> for styling options</li>
@@ -2551,7 +2552,7 @@ $(document).ready(function(){
                     <li><code>input-group-append</code> : add to <code>&lt;div&gt;</code> for help text behind input</li>
                     <li><code>input-group-text</code> : add to <code>&lt;span&gt;</code> for specified help text</li>
                 </ul>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <pre class="code-box code-box-color"><code>&lt;form&gt;
     &lt;div class=&quot;input-group mb-3&quot;&gt;
         &lt;div class=&quot;input-group-prepend&quot;&gt;
@@ -2568,11 +2569,11 @@ $(document).ready(function(){
 &lt;/form&gt;
 </code></pre>
                 <div>
-                    <h5>Input Group Sizing :</h5>
+                    <h5>Input Group Sizing</h5>
                     <ul>
                         <li><code>input-group-sm|lg</code> : add with <code>.input-group</code> for sizing input groups (default md)</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;form&gt;
     &lt;div class=&quot;input-group mb-3 input-group-sm&quot;&gt;
          &lt;div class=&quot;input-group-prepend&quot;&gt;
@@ -2584,8 +2585,8 @@ $(document).ready(function(){
 </code></pre>
                 </div>
                 <div>
-                    <h5>Multiple Inputs &amp; Helpers :</h5>
-                    <h6>Multiple Inputs -</h6>
+                    <h5>Multiple Inputs &amp; Helpers</h5>
+                    <h6>Multiple Inputs</h6>
                     <pre class="code-box code-box-color"><code>&lt;form&gt;
     &lt;div class=&quot;input-group mb-3&quot;&gt;
         &lt;div class=&quot;input-group-prepend&quot;&gt;
@@ -2596,7 +2597,7 @@ $(document).ready(function(){
     &lt;/div&gt;
 &lt;/form&gt;
 </code></pre>
-                    <h6>Multiple Helper Text -</h6>
+                    <h6>Multiple Helper Text</h6>
                     <pre class="code-box code-box-color"><code>&lt;form&gt;
     &lt;div class=&quot;input-group mb-3&quot;&gt;
         &lt;div class=&quot;input-group-prepend&quot;&gt;
@@ -2610,8 +2611,8 @@ $(document).ready(function(){
 </code></pre>
                 </div>
                 <div>
-                    <h5>Input Group with Checkboxes &amp; Radios :</h5>
-                    <h6>Checkboxes -</h6>
+                    <h5>Input Group with Checkboxes &amp; Radios</h5>
+                    <h6>Checkboxes</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;input-group mb-3&quot;&gt;
     &lt;div class=&quot;input-group-prepend&quot;&gt;
         &lt;div class=&quot;input-group-text&quot;&gt;
@@ -2621,7 +2622,7 @@ $(document).ready(function(){
     &lt;input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;Some text&quot;&gt;
 &lt;/div&gt;
 </code></pre>
-                    <h6>Radios -</h6>
+                    <h6>Radios</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;input-group mb-3&quot;&gt;
     &lt;div class=&quot;input-group-prepend&quot;&gt;
         &lt;div class=&quot;input-group-text&quot;&gt;
@@ -2633,8 +2634,8 @@ $(document).ready(function(){
 </code></pre>
                 </div>
                 <div>
-                    <h5>Input Group Buttons :</h5>
-                    <h6>Basic Button -</h6>
+                    <h5>Input Group Buttons</h5>
+                    <h6>Basic Button</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;input-group mb-3&quot;&gt;
     &lt;div class=&quot;input-group-prepend&quot;&gt;
         &lt;button class=&quot;btn btn-outline-primary&quot; type=&quot;button&quot;&gt;Basic Button&lt;/button&gt;
@@ -2642,7 +2643,7 @@ $(document).ready(function(){
     &lt;input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;Some text&quot;&gt;
 &lt;/div&gt;
 </code></pre>
-                    <h6>Go Button -</h6>
+                    <h6>Go Button</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;input-group mb-3&quot;&gt;
     &lt;input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;Search&quot;&gt;
     &lt;div class=&quot;input-group-append&quot;&gt;
@@ -2650,7 +2651,7 @@ $(document).ready(function(){
     &lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
-                    <h6>Ok &amp; Cancel Button -</h6>
+                    <h6>Ok &amp; Cancel Button</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;input-group mb-3&quot;&gt;
     &lt;input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;Something clever..&quot;&gt;
     &lt;div class=&quot;input-group-append&quot;&gt;
@@ -2659,7 +2660,7 @@ $(document).ready(function(){
     &lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
-                    <h6>Input Group with Dropdown Button -</h6>
+                    <h6>Input Group with Dropdown Button</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;input-group mt-3 mb-3&quot;&gt;
     &lt;div class=&quot;input-group-prepend&quot;&gt;
         &lt;button type=&quot;button&quot; class=&quot;btn btn-outline-secondary dropdown-toggle&quot; data-toggle=&quot;dropdown&quot;&gt;
@@ -2674,7 +2675,7 @@ $(document).ready(function(){
     &lt;input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;Username&quot;&gt;
 &lt;/div&gt;
 </code></pre>
-                    <h6>Input Group Labels -</h6>
+                    <h6>Input Group Labels</h6>
                     <pre class="code-box code-box-color"><code>&lt;form&gt;
     &lt;label for=&quot;demo&quot;&gt;Write your email here:&lt;/label&gt;
     &lt;div class=&quot;input-group mb-3&quot;&gt;
@@ -2695,7 +2696,7 @@ $(document).ready(function(){
                     <li><code>custom-control-inline</code> : add with <code>.custom-control</code> to create inline custom form element</li>
                     <li><code>custom-control-label</code> : add to <code>&lt;label&gt;</code> inside <code>.custom-control</code> for label text</li>
                 </ul>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <pre class="code-box code-box-color"><code>&lt;form&gt;
     &lt;div class=&quot;custom-control custom-radio custom-control-inline&quot;&gt;
         &lt;input type=&quot;radio&quot; class=&quot;custom-control-input&quot; id=&quot;customRadio&quot; name=&quot;example&quot; value=&quot;customEx&quot;&gt;
@@ -2709,12 +2710,12 @@ $(document).ready(function(){
 </code></pre>
                 <div>
                     <div>
-                        <h5>Custom Checkbox :</h5>
+                        <h5>Custom Checkbox</h5>
                         <ul>
                             <li><code>custom-control-input</code> : add to <code>&lt;input&gt;</code></li>
                             <li><code>custom-checkbox</code> : add with <code>.custom-control</code> for custom checkboxes</li>
                         </ul>
-                        <h6>Ex :</h6>
+                        <h6>Example</h6>
                         <pre class="code-box code-box-color"><code>&lt;form&gt;
     &lt;div class=&quot;custom-control custom-checkbox&quot;&gt;
         &lt;input type=&quot;checkbox&quot; class=&quot;custom-control-input&quot; id=&quot;customCheck&quot; name=&quot;example1&quot;&gt;
@@ -2724,7 +2725,7 @@ $(document).ready(function(){
 </code></pre>
                     </div>
                     <div>
-                        <h5>Custom Switch :</h5>
+                        <h5>Custom Switch</h5>
                         <ul>
                             <li><code>custom-control-input</code> : add to <code>&lt;input&gt;</code></li>
                             <li><code>custom-switch</code> : add with <code>.custom-control</code> for custom switch</li>
@@ -2738,7 +2739,7 @@ $(document).ready(function(){
 </code></pre>
                     </div>
                     <div>
-                        <h5>Custom Radio buttons :</h5>
+                        <h5>Custom Radio buttons</h5>
                         <ul>
                             <li><code>custom-control-input</code> : add to <code>&lt;input&gt;</code></li>
                             <li><code>custom-radio</code> : add with <code>.custom-control</code> for custom radio buttons</li>
@@ -2752,7 +2753,7 @@ $(document).ready(function(){
 </code></pre>
                     </div>
                     <div>
-                        <h5>Custom Select Menu :</h5>
+                        <h5>Custom Select Menu</h5>
                         <ul>
                             <li><code>custom-select</code> : add to <code>&lt;select&gt;</code> element for custom select menu</li>
                             <li><code>custom-select-sm|lg</code> : add to <code>&lt;select&gt;</code> element for sizing custom select menu (default md)</li>
@@ -2766,7 +2767,7 @@ $(document).ready(function(){
     &lt;/select&gt;
 &lt;/form&gt;
 </code></pre>
-                        <h6>Small Custom Select Menu -</h6>
+                        <h6>Small Custom Select Menu</h6>
                         <pre class="code-box code-box-color"><code>&lt;form&gt;
     &lt;select name=&quot;cars&quot; class=&quot;custom-select-sm&quot;&gt;
         &lt;option selected&gt;Small Custom Select Menu&lt;/option&gt;
@@ -2778,7 +2779,7 @@ $(document).ready(function(){
 </code></pre>
                     </div>
                     <div>
-                        <h5>Custom Range :</h5>
+                        <h5>Custom Range</h5>
                         <ul>
                             <li><code>custom-range</code> : add to <code>&lt;input&gt;</code> type range for custom range</li>
                         </ul>
@@ -2789,7 +2790,7 @@ $(document).ready(function(){
 </code></pre>
                     </div>
                     <div>
-                        <h5>Custom File Upload :</h5>
+                        <h5>Custom File Upload</h5>
                         <ul>
                             <li><code>custom-file</code> : add to wrapper <code>&lt;div&gt;</code> element for custom file upload</li>
                             <li><code>custom-file-input</code> : add to <code>&lt;input&gt;</code> type file for custom file upload</li>
@@ -2820,7 +2821,7 @@ $(&quot;.custom-file-input&quot;).on(&quot;change&quot;, function() {
                     <li><code>d-md|sm|lg|xl-flex</code> : add it to <code>&lt;div&gt;</code> to create flexbox container on specific screen size</li>
                 </ul>
                 <p><strong>Note :</strong> max columns are 12.</p>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <pre class="code-box code-box-color"><code>&lt;div class=&quot;d-flex p-3 bg-secondary text-white&quot;&gt;
     &lt;div class=&quot;p-2 bg-info&quot;&gt;Flex item 1&lt;/div&gt;
     &lt;div class=&quot;p-2 bg-warning&quot;&gt;Flex item 2&lt;/div&gt;
@@ -2828,12 +2829,12 @@ $(&quot;.custom-file-input&quot;).on(&quot;change&quot;, function() {
 &lt;/div&gt;
 </code></pre>
                 <div>
-                    <h5>Inine Flexbox :</h5>
+                    <h5>Inine Flexbox</h5>
                     <ul>
                         <li><code>d-inline-flex</code> : add it to <code>&lt;div&gt;</code> to create inline flexbox container</li>
                         <li><code>d-sm|md|lg|xl-inline-flex</code> : add it to <code>&lt;div&gt;</code> to create inline flexbox container on specific screen size</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;d-inline-flex p-3 bg-secondary text-white&quot;&gt;
     &lt;div class=&quot;p-2 bg-info&quot;&gt;Flex item 1&lt;/div&gt;
     &lt;div class=&quot;p-2 bg-warning&quot;&gt;Flex item 2&lt;/div&gt;
@@ -2842,12 +2843,12 @@ $(&quot;.custom-file-input&quot;).on(&quot;change&quot;, function() {
 </code></pre>
                 </div>
                 <div>
-                    <h5>Horizontal Direction Flexbox Items :</h5>
+                    <h5>Horizontal Direction Flexbox Items</h5>
                     <ul>
                         <li><code>flex-row</code> : add with <code>.d-flex</code> to display flex items horizontally (side by side)</li>
                         <li><code>flex-row-reverse</code> : add with <code>.d-flex</code> to right-align horizontal direction</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;d-flex flex-row bg-secondary&quot;&gt;
     &lt;div class=&quot;p-2 bg-info&quot;&gt;Flex item 1&lt;/div&gt;
     &lt;div class=&quot;p-2 bg-warning&quot;&gt;Flex item 2&lt;/div&gt;
@@ -2856,12 +2857,12 @@ $(&quot;.custom-file-input&quot;).on(&quot;change&quot;, function() {
 </code></pre>
                 </div>
                 <div>
-                    <h5>Vertical Direction Flexbox Items :</h5>
+                    <h5>Vertical Direction Flexbox Items</h5>
                     <ul>
                         <li><code>flex-column</code> : add with <code>.d-flex</code> to display flex items vertically (on top of each other)</li>
                         <li><code>flex-column-reverse</code> : add with <code>.d-flex</code> to reverse vertical direction</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;d-flex flex-column&quot;&gt;
     &lt;div class=&quot;p-2 bg-info&quot;&gt;Flex item 1&lt;/div&gt;
     &lt;div class=&quot;p-2 bg-warning&quot;&gt;Flex item 2&lt;/div&gt;
@@ -2870,22 +2871,22 @@ $(&quot;.custom-file-input&quot;).on(&quot;change&quot;, function() {
 </code></pre>
                 </div>
                 <div>
-                    <h5>Justify Content Flex Items (align) :</h5>
+                    <h5>Justify Content Flex Items (align)</h5>
                     <ul>
                         <li><code>justify-content-start|end|center|between|around</code> : add with <code>.d-flex</code> to justify inside content to following</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;d-flex justify-content-start&quot;&gt;...&lt;/div&gt;
 &lt;div class=&quot;d-flex justify-content-center&quot;&gt;...&lt;/div&gt;
 &lt;div class=&quot;d-flex justify-content-end&quot;&gt;...&lt;/div&gt;
 </code></pre>
                 </div>
                 <div>
-                    <h5>Fill/Equal Width Flex Items :</h5>
+                    <h5>Fill/Equal Width Flex Items</h5>
                     <ul>
                         <li><code>flex-fill</code> : add to each flex item to force them into equal widths</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;d-flex&quot;&gt;
     &lt;div class=&quot;p-2 bg-info flex-fill&quot;&gt;Flex item 1&lt;/div&gt;
     &lt;div class=&quot;p-2 bg-warning flex-fill&quot;&gt;Flex item 2&lt;/div&gt;
@@ -2894,12 +2895,12 @@ $(&quot;.custom-file-input&quot;).on(&quot;change&quot;, function() {
 </code></pre>
                 </div>
                 <div>
-                    <h5>Flex Grow &amp; Shrink :</h5>
+                    <h5>Flex Grow &amp; Shrink</h5>
                     <ul>
                         <li><code>flex-grow-1</code> : add to flex item to take up rest of space</li>
                         <li><code>flex-shrink-1</code> : add to flex item to make it shrink if necessary</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;d-flex&quot;&gt;
     &lt;div class=&quot;p-2 bg-info&quot;&gt;Flex item 1&lt;/div&gt;
     &lt;div class=&quot;p-2 bg-primary flex-grow-1&quot;&gt;Flex item 2&lt;/div&gt;
@@ -2907,12 +2908,12 @@ $(&quot;.custom-file-input&quot;).on(&quot;change&quot;, function() {
 </code></pre>
                 </div>
                 <div>
-                    <h5>Flex Order :</h5>
+                    <h5>Flex Order</h5>
                     <ul>
                         <li><code>order</code> : add to flex items to change visual order of specific flex item</li>
                     </ul>
                     <p><strong>Note :</strong> Valid classes are from 0-12. The lowest number has the highest priority, i.e., order-1 is shown before order-2.</p>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;d-flex bg-secondary&quot;&gt;
     &lt;div class=&quot;p-2 bg-info order-3&quot;&gt;Flex item 1&lt;/div&gt;
     &lt;div class=&quot;p-2 bg-warning order-2&quot;&gt;Flex item 2&lt;/div&gt;
@@ -2921,21 +2922,21 @@ $(&quot;.custom-file-input&quot;).on(&quot;change&quot;, function() {
 </code></pre>
                 </div>
                 <div>
-                    <h5>Flex Wrap :</h5>
+                    <h5>Flex Wrap</h5>
                     <p>Controls how flex items are wrapped in flex containers.</p>
                     <ul>
                         <li><code>flex-nowrap</code> : add with <code>d-flex</code> to no wrapping to flex container (default)</li>
                         <li><code>flex-wrap</code> : add with <code>d-flex</code> to wrap flex container</li>
                         <li><code>flex-wrap-reverse</code> : add with <code>d-flex</code> to reverse wrap flex container</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;d-flex flex-wrap&quot;&gt;..&lt;/div&gt;
 &lt;div class=&quot;d-flex flex-wrap-reverse&quot;&gt;..&lt;/div&gt;
 &lt;div class=&quot;d-flex flex-nowrap&quot;&gt;..&lt;/div&gt;
 </code></pre>
                 </div>
                 <div>
-                    <h5>Auto Margins :</h5>
+                    <h5>Auto Margins</h5>
                     <p>Add auto margins to flex items with <code>.mr-auto</code>, push items to right -</p>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;d-flex bg-secondary&quot;&gt;
   &lt;div class=&quot;p-2 mr-auto bg-info&quot;&gt;Flex item 1&lt;/div&gt;
@@ -2952,35 +2953,35 @@ $(&quot;.custom-file-input&quot;).on(&quot;change&quot;, function() {
 </code></pre>
                 </div>
                 <div>
-                    <h5>Flex Align Content :</h5>
+                    <h5>Flex Align Content</h5>
                     <p>Controls the vertical alignment of gathered flex items.</p>
                     <ul>
                         <li><code>align-content-start|end|center|between|around|stretch</code> : add with <code>d-flex</code> for vertical alignment of gathered flex items</li>
                     </ul>
                     <p><strong>Note :</strong> These classes have no effect on single rows of flex items.</p>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;d-flex flex-wrap align-content-start&quot;&gt;..&lt;/div&gt;
 &lt;div class=&quot;d-flex flex-wrap align-content-end&quot;&gt;..&lt;/div&gt;
 </code></pre>
                 </div>
                 <div>
-                    <h5>Flex Align Items :</h5>
+                    <h5>Flex Align Items</h5>
                     <p>Controls the vertical alignment of single rows of flex items.</p>
                     <ul>
                         <li><code>align-items-start|end|center|baseline|stretch</code> : add with <code>d-flex</code> for vertical alignment of single rows of flex items</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;d-flex align-items-start&quot;&gt;..&lt;/div&gt;
 &lt;div class=&quot;d-flex align-items-end&quot;&gt;..&lt;/div&gt;
 </code></pre>
                 </div>
                 <div>
-                    <h5>Flex Align Self :</h5>
+                    <h5>Flex Align Self</h5>
                     <div>Controls the vertical alignment of a specified flex item.</div>
                     <ul>
                         <li><code>align-self-start|end|center|baseline|stretch</code> : add with <code>d-flex</code> for vertical alignment of specified flex item</li>
                     </ul>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;d-flex bg-light&quot; style=&quot;height:150px&quot;&gt;
     &lt;div class=&quot;p-2 border&quot;&gt;Flex item 1&lt;/div&gt;
     &lt;div class=&quot;p-2 border align-self-start&quot;&gt;Flex item 2&lt;/div&gt;
@@ -2989,21 +2990,21 @@ $(&quot;.custom-file-input&quot;).on(&quot;change&quot;, function() {
 </code></pre>
                 </div>
                 <div>
-                    <h5>Responsive Flex :</h5>
+                    <h5>Responsive Flex</h5>
                     <p><strong>Note :</strong> * = <code>sm|md|lg|xl</code></p>
-                    <h6>Flex Container -</h6>
+                    <h6>Flex Container</h6>
                     <ul>
                         <li><code>d-*-flex</code> : creates flexbox container for different screens</li>
                         <li><code>d-*-inline-flex</code> : ceates inline flexbox container for different screens</li>
                     </ul>
-                    <h6>Direction -</h6>
+                    <h6>Direction</h6>
                     <ul>
                         <li><code>flex-*-row</code> : display flex items horizontally on different screens</li>
                         <li><code>flex-*-row-reverse</code> : display flex items horizontally, and right-aligned, on different screens</li>
                         <li><code>flex-*-column</code> : display flex items vertically on different screens</li>
                         <li><code>flex-*-column-reverse</code> : display flex items vertically, with reversed order, on different screens screens</li>
                     </ul>
-                    <h6>Justified Content -</h6>
+                    <h6>Justified Content</h6>
                     <ul>
                         <li><code>justify-content-*-start</code> : display flex items from the start (left-aligned) on different screens</li>
                         <li><code>justify-content-*-end</code> : display flex items at the end (right-aligned) on different screens</li>
@@ -3011,31 +3012,31 @@ $(&quot;.custom-file-input&quot;).on(&quot;change&quot;, function() {
                         <li><code>justify-content-*-between</code> : display flex items in &quot;between&quot; on different screens</li>
                         <li><code>justify-content-*-around</code> : display flex items &quot;around&quot; on different screens</li>
                     </ul>
-                    <h6>Fill/Equal Width -</h6>
+                    <h6>Fill/Equal Width</h6>
                     <ul>
                         <li><code>flex-*-fill</code> : force flex items into equal widths on different screens</li>
                     </ul>
-                    <h6>Grow -</h6>
+                    <h6>Grow</h6>
                     <ul>
                         <li><code>flex-*-grow-0</code> : don&#39;t make items grow on different screens</li>
                         <li><code>flex-*-grow-1</code> : make items grow on different screens</li>
                     </ul>
-                    <h6>Shrink -</h6>
+                    <h6>Shrink</h6>
                     <ul>
                         <li><code>flex-*-shrink-0</code> : don&#39;t make items shrink on diferent screens</li>
                         <li><code>flex-*-shrink-1</code> : make items shrink on different screens</li>
                     </ul>
-                    <h6>Order -</h6>
+                    <h6>Order</h6>
                     <ul>
                         <li><code>order-*-0-12</code> : change order from 0 to 12 on small screens</li>
                     </ul>
-                    <h6>Wrap -</h6>
+                    <h6>Wrap</h6>
                     <ul>
                         <li><code>flex-*-nowrap</code> : don&#39;t wrap items on different screens</li>
                         <li><code>flex-*-wrap</code> : wrap items on different screens</li>
                         <li><code>flex-*-wrap-reverse</code> : reverse wrapping of items on different screens</li>
                     </ul>
-                    <h6>Align Content -</h6>
+                    <h6>Align Content</h6>
                     <ul>
                         <li><code>align-content-*-start</code> : align gathered items from start on different screens</li>
                         <li><code>align-content-*-end</code> : align gathered items at the end on different screens</li>
@@ -3043,7 +3044,7 @@ $(&quot;.custom-file-input&quot;).on(&quot;change&quot;, function() {
                         <li><code>align-content-*-around</code> : align gathered items &quot;around&quot; on different screens</li>
                         <li><code>align-content-*-stretch</code> : stretch gathered items on different screens</li>
                     </ul>
-                    <h6>Align Items -</h6>
+                    <h6>Align Items</h6>
                     <ul>
                         <li><code>align-items-*-start</code> : align single rows of items from the start on different screens</li>
                         <li><code>align-items-*-end</code> : align single rows of items at the end on different screens</li>
@@ -3051,7 +3052,7 @@ $(&quot;.custom-file-input&quot;).on(&quot;change&quot;, function() {
                         <li><code>align-items-*-baseline</code> : align single rows of items on the baseline on different screens</li>
                         <li><code>align-items-*-stretch</code> : stretch single rows of items on different screens</li>
                     </ul>
-                    <h6>Align Self -</h6>
+                    <h6>Align Self</h6>
                     <ul>
                         <li><code>align-self-*-start</code> : align flex item from the start on different screens</li>
                         <li><code>align-self-*-end</code> : lign flex item at the end on different screens</li>
@@ -3080,22 +3081,22 @@ $(&quot;.custom-file-input&quot;).on(&quot;change&quot;, function() {
                     </ol>
                 </div>
                 <div>
-                    <h6>Ex :</h6>
-                    <h6 class="justify">Create unequal col of 25% 50% 25% :</h6>
+                    <h6>Example</h6>
+                    <h6 class="justify">Create unequal col of 25% 50% 25%</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;row&quot;&gt;
     &lt;div class=&quot;col-md-3&quot;&gt;&lt;/div&gt;
     &lt;div class=&quot;col-md-6&quot;&gt;&lt;/div&gt;
     &lt;div class=&quot;col-md-3&quot;&gt;&lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
-                    <h6 class="justify">Create col of equal width (auto layout col) :</h6>
+                    <h6 class="justify">Create col of equal width (auto layout col)</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;row&quot;&gt;
     &lt;div class=&quot;col-*&quot;&gt;&lt;/div&gt;
     &lt;div class=&quot;col-*&quot;&gt;&lt;/div&gt;
     &lt;div class=&quot;col-*&quot;&gt;&lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
-                    <h6 class="justify">Stacked horizontally on large screens and stacked on top of each other on small screens :</h6>
+                    <h6 class="justify">Stacked horizontally on large screens and stacked on top of each other on small screens</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;container-fluid&quot;&gt;
     &lt;div class=&quot;row&quot;&gt;
         &lt;div class=&quot;col-sm-6&quot;&gt;
@@ -3107,7 +3108,7 @@ $(&quot;.custom-file-input&quot;).on(&quot;change&quot;, function() {
     &lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
-                    <h6 class="justify">4 columns of 25% width each (auto layout col) :</h6>
+                    <h6 class="justify">4 columns of 25% width each (auto layout col)</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;row&quot;&gt;
     &lt;div class=&quot;col-sm&quot;&gt;1 of 4&lt;/div&gt;
     &lt;div class=&quot;col-sm&quot;&gt;2 of 4&lt;/div&gt;
@@ -3115,7 +3116,7 @@ $(&quot;.custom-file-input&quot;).on(&quot;change&quot;, function() {
     &lt;div class=&quot;col-sm&quot;&gt;4 of 4&lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
-                    <h6 class="justify">Nested Columns :</h6>
+                    <h6 class="justify">Nested Columns</h6>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;row&quot;&gt;
     &lt;div class=&quot;col-8&quot;&gt;
         col-8
@@ -3127,7 +3128,7 @@ $(&quot;.custom-file-input&quot;).on(&quot;change&quot;, function() {
     &lt;div class=&quot;col-4&quot;&gt;col-4&lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
-                    <h6 class="justify">On Xtra Small Screen Devices :</h6>
+                    <h6 class="justify">On Xtra Small Screen Devices</h6>
                     <p>Two cols of 25% 75% split on all devices (xsm, sm, md, lg, xl).</p>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;container-fluid&quot;&gt;
     &lt;div class=&quot;row&quot;&gt;
@@ -3140,7 +3141,7 @@ $(&quot;.custom-file-input&quot;).on(&quot;change&quot;, function() {
     &lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
-                    <h6 class="justify">On Small Screen Devices :</h6>
+                    <h6 class="justify">On Small Screen Devices</h6>
                     <p>Two cols of 25% 75% split on sm (md, lg, xl) devices, on x-sm devices it will automatically stack 100% width.</p>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;container-fluid&quot;&gt;
     &lt;div class=&quot;row&quot;&gt;
@@ -3153,7 +3154,7 @@ $(&quot;.custom-file-input&quot;).on(&quot;change&quot;, function() {
     &lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
-                    <h6 class="justify">On Medium Screen Devices :</h6>
+                    <h6 class="justify">On Medium Screen Devices</h6>
                     <p>
                         On sm size, look at classes with <code>-sm-</code> in them and use those &amp; on md size look at classes with <code>-md-</code> in them and use those. 25% 75% split on sm devices &amp; 50% 50% split on md (lg, xl)
                         devices. on x-sm devices, it will automatically stack (100%) -
@@ -3179,7 +3180,7 @@ $(&quot;.custom-file-input&quot;).on(&quot;change&quot;, function() {
     &lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
-                    <h6 class="justify">On Large Screen Devices :</h6>
+                    <h6 class="justify">On Large Screen Devices</h6>
                     <p>
                         On sm size, look at classes with <code>-sm-</code>. on md size, look at classes with <code>-md-</code>. on lg size, look at classes with <code>-lg-</code>. 25% 75% split on sm devices, 50% 50% split on md devices
                         &amp; 33% 66% split on lg &amp; xl devices. On x-sm devices, it will automatically stack (100%) -
@@ -3207,7 +3208,7 @@ $(&quot;.custom-file-input&quot;).on(&quot;change&quot;, function() {
     &lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
-                    <h6 class="justify">On Extra Large Screen Devices :</h6>
+                    <h6 class="justify">On Extra Large Screen Devices</h6>
                     <p>25% 75% split on sm devices, 50% 50% split on md devices, 33% 66% split on lg &amp; 20% 80% split on xl devices. On x-sm devices, it will automatically stack (100%) -</p>
                     <pre class="code-box code-box-color"><code>&lt;div class=&quot;container-fluid&quot;&gt;
     &lt;div class=&quot;row&quot;&gt;
@@ -3235,12 +3236,12 @@ $(&quot;.custom-file-input&quot;).on(&quot;change&quot;, function() {
 
             <!-- Navigation Buttons -->
             <nav>
-                <a href="/Cheatsheets"><i class="bi bi-arrow-left-square-fill"></i></a>
-                <a href="#" ><i class="bi bi-arrow-up-square-fill"></i></a>
+                <a href="/cheatsheets" aria-label="All cheatsheets"><i class="bi bi-grid-3x3-gap-fill" aria-hidden="true"></i></a>
+                <a href="#" aria-label="Back to top"><i class="bi bi-arrow-up" aria-hidden="true"></i></a>
             </nav>
         </div>
 
         <!-- JavaScript -->
-        <script src="../assets/js/script.js"></script>
+        <script src="../assets/js/script.js?v=8"></script>
     </body>
 </html>

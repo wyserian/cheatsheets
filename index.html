@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A collection of developer cheatsheets for quick reference on various technologies.">
-    <meta name="theme-color" content="#0d1117">
+    <meta name="theme-color" content="#0e1116">
 
     <title>Cheatsheets</title>
+    <script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('cheatsheet-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'))}catch(e){}</script>
 
     <!-- Devicon CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
@@ -16,12 +17,27 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/style-index.css">
+    <link rel="stylesheet" href="assets/css/style.css?v=11">
+    <link rel="stylesheet" href="assets/css/style-index.css?v=10">
 </head>
 
 <body>
-    <div class="container">
-        <h1 class="title">#CHEATSHEETS</h1>
+    <div class="home">
+        <div class="home-top">
+            <button class="theme-toggle" type="button" aria-label="Toggle theme"><i class="bi bi-sun" aria-hidden="true"></i></button>
+        </div>
+
+        <header class="home-header">
+            <h1 class="home-title"><span class="hash">#</span>CHEATSHEETS</h1>
+            <p class="home-subtitle">Quick references written while experimenting with new technologies.</p>
+        </header>
+
+        <div class="search">
+            <i class="bi bi-search" aria-hidden="true"></i>
+            <input id="search" type="search" placeholder="Search cheatsheets" autocomplete="off" spellcheck="false" aria-label="Search cheatsheets" aria-describedby="result-count">
+            <kbd class="search-hint" aria-hidden="true">/</kbd>
+        </div>
+        <p id="result-count" class="result-count" aria-live="polite"></p>
 
         <div class="list">
             <a class="list-block" href="pages/ai">
@@ -70,7 +86,7 @@
             </a>
             <a class="list-block" href="pages/dbms">
                 <i class="bi bi-database"></i>
-                <span>DBMS | SQL</span>
+                <span>DBMS &amp; SQL</span>
             </a>
             <a class="list-block" href="pages/devops">
                 <i class="bi bi-infinity"></i>
@@ -125,14 +141,14 @@
                 <span>Windows</span>
             </a>
         </div>
+
+        <div id="no-results" class="no-results" hidden>
+            <p>No cheatsheet matches “<span id="no-results-term"></span>”.</p>
+            <button id="clear-search" class="clear-search" type="button">Clear search</button>
+        </div>
     </div>
 
-    <!-- Stagger each card's fade-in based on its position -->
-    <script>
-        document.querySelectorAll('.list-block').forEach((card, i) => {
-            card.style.setProperty('--i', i + 1);
-        });
-    </script>
+    <script src="assets/js/script.js?v=8"></script>
 </body>
 
 </html>

@@ -5,21 +5,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>CSS Cheatsheet</title>
+        <script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('cheatsheet-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'))}catch(e){}</script>
 
         <!-- Bootstrap CDN -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
         <!-- CSS -->
-        <link rel="stylesheet" href="../assets/css/style.css">
+        <link rel="stylesheet" href="../assets/css/style.css?v=11">
     </head>
 
-    <body data-theme="dark">
+    <body>
         <div class="container">
                         <!-- Top Bar -->
             <div class="top-bar">
-                <a href="/Cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
-                <div class="button"><i class="bi bi-circle-half"></i></div>
+                <a href="/cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
+                <button class="theme-toggle" type="button" aria-label="Toggle theme"><i class="bi bi-sun" aria-hidden="true"></i></button>
             </div>
 
             <h3 class="title">CSS 3</h3>
@@ -59,7 +60,7 @@
 
             <div class="sections" id="using-css">
                 <h4 class="heading">Using CSS</h4>
-                <h6>Inserting CSS into a page -</h6>
+                <h6>Inserting CSS into a page</h6>
                 <ul>
                     <li>
                         <strong>Inline CSS :</strong>
@@ -97,7 +98,7 @@
                     <li>
                         <strong>External CSS :</strong>
                         <p>Each HTML page must include a reference to an external style sheet inside the <code>&lt;link&gt;</code> element inside the head section.</p>
-                        <h6>HTML File -</h6>
+                        <h6>HTML File</h6>
                         <pre class="code-box code-box-color"><code>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
     &lt;head&gt;
@@ -108,7 +109,7 @@
         &lt;p&gt;This is a paragraph.&lt;/p&gt;
     &lt;/body&gt;
 &lt;/html&gt;</code></pre>
-                        <h6>CSS File -</h6>
+                        <h6>CSS File</h6>
                         <pre class="code-box code-box-color"><code>body {
     background-color: lightblue;
 }
@@ -196,7 +197,7 @@ h1 {
             <div class="sections" id="css-selectors">
                 <h4 class="heading">CSS Selectors</h4>
                 <div>
-                    <h5>&bull; Selectors</h5>
+                    <h5>Selectors</h5>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -223,7 +224,7 @@ h1 {
                 </div>
 
                 <div>
-                    <h5>&bull; Combinators :</h5>
+                    <h5>Combinators</h5>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -250,7 +251,7 @@ h1 {
                 </div>
 
                 <div>
-                    <h5>&bull; Attributes :</h5>
+                    <h5>Attributes</h5>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
@@ -302,12 +303,12 @@ h1 {
                     <strong>Pseudo Class :</strong>
                     <code>first-child|last-child|hover|active|link|visited|focus|checked|disabled|enabled|empty|required|target|invalid|not(element)</code>
                 </div>
-                <h6>Syntax :</h6>
+                <h6>Syntax</h6>
                 <pre class="code-box"><code>selector : pseudo-class {
     property: value;
 }
 </code></pre>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <pre class="code-box code-box-color"><code>div:hover {
     color: red;
 }
@@ -321,12 +322,12 @@ h1 {
                     <strong>Pseudo Element :</strong>
                     <code>after|before|first-letter|first-line|selection</code>
                 </div>
-                <h6>Syntax :</h6>
+                <h6>Syntax</h6>
                 <pre class="code-box"><code>selector :: pseudo-element {
     property: value;
 }
 </code></pre>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <pre class="code-box code-box-color"><code>p :: before {
     content: &quot;before p&quot;;
     color: red;
@@ -370,8 +371,8 @@ h1 {
                 </div>
                 <div class="block-quote">font: style variant weight color-name font-name</div>
                 <div>
-                    <h5>&bull; Font-Face Rules :</h5>
-                    <h6>Syntax :</h6>
+                    <h5>Font-Face Rules</h5>
+                    <h6>Syntax</h6>
                     <pre class="code-box"><code>@font-face { 
     font-family: font-name;
     src: url(&#39;font-name.otf&#39;);
@@ -383,7 +384,7 @@ tag|selector {
    font-family: font-name;
 }
 </code></pre>
-                    <h6>Ex :</h6>
+                    <h6>Example</h6>
                     <pre class="code-box code-box-color"><code>@font-face {
     font-family: UbuntuCondensed;
     src: url(ubuntucondensed.ttf);
@@ -895,12 +896,12 @@ div {
                     <strong>Media-Features :</strong>
                     <code> width|resolution|overflow-inline|overflow-block|orientation|aspect-ratio|height|min-width|min-resolution|min-height|min-aspect-ratio|max-width|max-resolution|max-height|max-aspect-ratio</code>
                 </div>
-                <h6>Syntax :</h6>
+                <h6>Syntax</h6>
                 <pre class="code-box"><code>@media media-types and ( media-features ) {
     property: value;
 }
 </code></pre>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <pre class="code-box code-box-color"><code>@media screen and (min-width: 480px){
     body{
         background-color: lightgreen;
@@ -1148,7 +1149,7 @@ div {
                     </table>
                 </div>
                 <div class="block-quote">filter: blur hue-rotate()</div>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <pre class="code-box code-box-color"><code>filter: blur(5px) hue-rotate(180deg)</code></pre>
             </div>
 
@@ -1179,8 +1180,8 @@ div {
                 </div>
                 <div class="block-quote">transition: transition-property transition-duration transition-timing-function transition-delay</div>
                 <p>(comma seperates multiple)</p>
-                <h6>Ex :</h6>
-                <h6 class="justify">Triggers when div elements width changes -</h6>
+                <h6>Example</h6>
+                <h6 class="justify">Triggers when div elements width changes</h6>
                 <pre class="code-box code-box-color"><code>div {
     width: 100px;
     height: 100px;
@@ -1191,7 +1192,7 @@ div:hover {
     width: 300px;
 }
 </code></pre>
-                <h6 class="justify">Transition with transform -</h6>
+                <h6 class="justify">Transition with transform</h6>
                 <pre class="code-box code-box-color"><code>div {
     width: 100px;
     height: 100px;
@@ -1253,7 +1254,7 @@ div:hover {
                 </div>
                 <div class="block-quote">transform: rotate(45deg) translate(100px)</div>
                 <p>(comma seperates muliple)</p>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <pre class="code-box code-box-color"><code>div {
     width: 200px;
     height: 100px;
@@ -1323,7 +1324,7 @@ div:hover {
                         </tbody>
                     </table>
                 </div>
-                <h6>Ex :</h6>
+                <h6>Example</h6>
                 <pre class="code-box code-box-color"><code>div {
     height: 150px;
     width: 150px;
@@ -1337,7 +1338,7 @@ div:hover {
 
             <div class="sections" id="animation">
                 <h4 class="heading">Animation</h4>
-                <h6>Syntax :</h6>
+                <h6>Syntax</h6>
                 <pre class="code-box"><code>@keyframes animation-name {
     from { property-from-change; }
     to { property-to-change; }
@@ -1379,8 +1380,8 @@ div:hover {
                     </table>
                 </div>
                 <div class="block-quote">animation: anim-name animation-duration animation-timing-function animation-delay animation-iteration-count animation-direction</div>
-                <h6>Ex :</h6>
-                <h6 class="justify">Change bg-color when animation is 25% complete, 50% complete &amp; 100% complete -</h6>
+                <h6>Example</h6>
+                <h6 class="justify">Change bg-color when animation is 25% complete, 50% complete &amp; 100% complete</h6>
                 <pre class="code-box code-box-color"><code>@keyframe anim-1 {
     0%  { background-color: red; }
     50%  { background-color: yellow; }
@@ -1395,7 +1396,7 @@ div {
     animation-duration: 4s;
 }
 </code></pre>
-                <h6 class="justify">Change bg-color from red to green -</h6>
+                <h6 class="justify">Change bg-color from red to green</h6>
                 <pre class="code-box code-box-color"><code>@keyframes anim-2 {
     from { background-color: red; }
     to { background-color: green; }
@@ -1416,12 +1417,12 @@ div {
 
             <!-- Navigation Buttons -->
             <nav>
-                <a href="/Cheatsheets"><i class="bi bi-arrow-left-square-fill"></i></a>
-                <a href="#" ><i class="bi bi-arrow-up-square-fill"></i></a>
+                <a href="/cheatsheets" aria-label="All cheatsheets"><i class="bi bi-grid-3x3-gap-fill" aria-hidden="true"></i></a>
+                <a href="#" aria-label="Back to top"><i class="bi bi-arrow-up" aria-hidden="true"></i></a>
             </nav>
         </div>
 
         <!-- JavaScript -->
-        <script src="../assets/js/script.js"></script>
+        <script src="../assets/js/script.js?v=8"></script>
     </body>
 </html>

@@ -5,21 +5,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>React.js Cheatsheet</title>
+        <script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('cheatsheet-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'))}catch(e){}</script>
 
         <!-- Bootstrap CDN -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
         <!-- CSS -->
-        <link rel="stylesheet" href="../assets/css/style.css">
+        <link rel="stylesheet" href="../assets/css/style.css?v=11">
     </head>
 
-    <body data-theme="dark">
+    <body>
         <div class="container">
             <!-- Top Bar -->
             <div class="top-bar">
-                <a href="/Cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
-                <div class="button"><i class="bi bi-circle-half"></i></div>
+                <a href="/cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
+                <button class="theme-toggle" type="button" aria-label="Toggle theme"><i class="bi bi-sun" aria-hidden="true"></i></button>
             </div>
 
             <h3 class="title">React.js</h3>
@@ -46,7 +47,7 @@
                 <h4 class="heading">React.js</h4>
                 <div class="content">
                     <p>React is a JavaScript library for building user interfaces, created by Meta (Facebook) in 2013. Instead of manually updating the page when data changes, you describe what the UI should look like for a given state, and React efficiently updates the actual page to match. It is component-based: you build small, reusable pieces and compose them into complex interfaces.</p>
-                    <h6>Key Features -</h6>
+                    <h6>Key Features</h6>
                     <ul class="justify">
                         <li><b>Component-Based :</b> UIs are built from independent, reusable components, each managing its own logic and appearance.</li>
                         <li><b>Declarative :</b> You describe the desired result for the current state; React figures out the DOM changes. This is easier to reason about than manual, step-by-step DOM updates.</li>
@@ -63,14 +64,14 @@
                 <h4 class="heading">How React Works</h4>
                 <div class="content">
                     <p>React keeps the UI in sync with your data through a render cycle driven by state. You never touch the real DOM directly; you change state, and React updates the page for you.</p>
-                    <h6>The Render Cycle -</h6>
-                    <ul class="justify">
-                        <li><b>1. Render :</b> A component is a function that returns JSX describing the UI for the current props and state.</li>
-                        <li><b>2. Virtual DOM :</b> React builds a virtual DOM tree from that JSX, an in-memory representation of the UI.</li>
-                        <li><b>3. State Change :</b> When state or props change (for example, a button click updates a counter), React re-runs the component function to get a new virtual DOM.</li>
-                        <li><b>4. Diffing (Reconciliation) :</b> React compares the new virtual DOM with the previous one to find exactly what changed.</li>
-                        <li><b>5. Commit :</b> React updates only the changed parts of the real DOM, leaving the rest untouched, which is what makes it efficient.</li>
-                    </ul>
+                    <h6>The Render Cycle</h6>
+                    <ol class="justify">
+                        <li><b>Render :</b> A component is a function that returns JSX describing the UI for the current props and state.</li>
+                        <li><b>Virtual DOM :</b> React builds a virtual DOM tree from that JSX, an in-memory representation of the UI.</li>
+                        <li><b>State Change :</b> When state or props change (for example, a button click updates a counter), React re-runs the component function to get a new virtual DOM.</li>
+                        <li><b>Diffing (Reconciliation) :</b> React compares the new virtual DOM with the previous one to find exactly what changed.</li>
+                        <li><b>Commit :</b> React updates only the changed parts of the real DOM, leaving the rest untouched, which is what makes it efficient.</li>
+                    </ol>
                     <div class="code-box code-box-color"><code>State change
    -> Re-render component (run the function)
       -> New Virtual DOM
@@ -156,7 +157,7 @@ const element = (
                 <h4 class="heading">Components &amp; Props</h4>
                 <div class="content">
                     <p>A component is a reusable piece of UI written as a JavaScript function that returns JSX. Component names must start with a capital letter. Modern React uses function components; older code used class components.</p>
-                    <h6>Props -</h6>
+                    <h6>Props</h6>
                     <p>Props (properties) pass data from a parent component to a child, like function arguments. They are read-only: a child can never change its own props. This one-way flow keeps data predictable.</p>
                     <div class="code-box code-box-color"><code>// child component
 function Greeting({ name, age }) {
@@ -203,11 +204,11 @@ function Counter() {
             <div class="sections" id="rendering">
                 <h4 class="heading">Conditional &amp; List Rendering</h4>
                 <div class="content">
-                    <h6>Conditional Rendering -</h6>
+                    <h6>Conditional Rendering</h6>
                     <p>Show different UI based on a condition using normal JavaScript inside JSX.</p>
                     <div class="code-box code-box-color"><code>{isLoggedIn ? &lt;Dashboard /&gt; : &lt;Login /&gt;}   // ternary
 {hasError &amp;&amp; &lt;p&gt;Something went wrong&lt;/p&gt;}   // render if true</code></div>
-                    <h6>List Rendering -</h6>
+                    <h6>List Rendering</h6>
                     <p>Render an array of items with <code>.map()</code>, returning a component for each. Each item needs a unique <code>key</code> prop so React can track which items changed, were added, or removed. Use a stable id, not the array index, when the list can reorder.</p>
                     <div class="code-box code-box-color"><code>const users = [{ id: 1, name: "Ada" }, { id: 2, name: "Alan" }];
 
@@ -290,7 +291,7 @@ function Timer() {
                 <h4 class="heading">Routing &amp; Data</h4>
                 <div class="content">
                     <p>React itself has no built-in routing or data fetching; these come from separate libraries, since React is only the view layer.</p>
-                    <h6>Routing -</h6>
+                    <h6>Routing</h6>
                     <p>React Router is the standard for navigation. It maps URLs to components without reloading the page, keeping the single-page-app experience.</p>
                     <div class="code-box code-box-color"><code>import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
@@ -301,7 +302,7 @@ function Timer() {
         &lt;Route path="/about" element={&lt;About /&gt;} /&gt;
     &lt;/Routes&gt;
 &lt;/BrowserRouter&gt;</code></div>
-                    <h6>Data Fetching -</h6>
+                    <h6>Data Fetching</h6>
                     <ul class="justify">
                         <li><b>fetch / axios :</b> Call APIs inside <code>useEffect</code> and store the result in state.</li>
                         <li><b>TanStack Query (React Query) :</b> Handles fetching, caching, loading and error states, and refetching automatically. The standard for server data.</li>
@@ -342,7 +343,7 @@ const theme = useContext(ThemeContext);</code></div>
                 <h4 class="heading">Ecosystem &amp; Uses</h4>
                 <div class="content">
                     <p>Because React is only the view layer, real apps combine it with tools from its large ecosystem.</p>
-                    <h6>Common Ecosystem -</h6>
+                    <h6>Common Ecosystem</h6>
                     <ul class="justify">
                         <li><b>Meta-Frameworks :</b> Next.js and Remix add routing, server-side rendering, and a backend around React for full production websites.</li>
                         <li><b>Styling :</b> Tailwind CSS, CSS Modules, styled-components, and component libraries like Material UI and shadcn/ui.</li>
@@ -350,26 +351,26 @@ const theme = useContext(ThemeContext);</code></div>
                         <li><b>Testing :</b> Vitest or Jest with React Testing Library.</li>
                         <li><b>Build Tools :</b> Vite (default) or the older Create React App.</li>
                     </ul>
-                    <h6>What React Is Used For -</h6>
+                    <h6>What React Is Used For</h6>
                     <ul class="justify">
                         <li><b>Single Page Applications :</b> Dashboards, admin panels, and web apps that update without full page reloads.</li>
                         <li><b>Interactive UIs :</b> Anything with lots of dynamic, changing content driven by user actions.</li>
                         <li><b>Full Websites :</b> With Next.js, marketing sites and e-commerce that also need SEO and server rendering.</li>
                         <li><b>Cross-Platform :</b> Mobile apps via React Native, sharing skills and logic with the web.</li>
                     </ul>
-                    <h6>React vs Others -</h6>
+                    <h6>React vs Others</h6>
                     <p>React is a flexible library you assemble with other tools. Angular is a complete, opinionated framework with routing and more built in. Vue sits in between, approachable with a gentle learning curve. React has the largest ecosystem and job market of the three.</p>
                 </div>
             </div>
 
             <!-- Navigation Buttons -->
             <nav>
-                <a href="/Cheatsheets"><i class="bi bi-arrow-left-square-fill"></i></a>
-                <a href="#" ><i class="bi bi-arrow-up-square-fill"></i></a>
+                <a href="/cheatsheets" aria-label="All cheatsheets"><i class="bi bi-grid-3x3-gap-fill" aria-hidden="true"></i></a>
+                <a href="#" aria-label="Back to top"><i class="bi bi-arrow-up" aria-hidden="true"></i></a>
             </nav>
         </div>
 
         <!-- JavaScript -->
-        <script src="../assets/js/script.js"></script>
+        <script src="../assets/js/script.js?v=8"></script>
     </body>
 </html>

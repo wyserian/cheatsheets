@@ -5,21 +5,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>DevOps Cheatsheet</title>
+        <script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('cheatsheet-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'))}catch(e){}</script>
 
         <!-- Bootstrap CDN -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
         <!-- CSS -->
-        <link rel="stylesheet" href="../assets/css/style.css">
+        <link rel="stylesheet" href="../assets/css/style.css?v=11">
     </head>
 
-    <body data-theme="dark">
+    <body>
         <div class="container">
             <!-- Top Bar -->
             <div class="top-bar">
-                <a href="/Cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
-                <div class="button"><i class="bi bi-circle-half"></i></div>
+                <a href="/cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
+                <button class="theme-toggle" type="button" aria-label="Toggle theme"><i class="bi bi-sun" aria-hidden="true"></i></button>
             </div>
 
             <h3 class="title">DevOps</h3>
@@ -42,7 +43,7 @@
                 <h4 class="heading">DevOps</h4>
                 <div class="content">
                     <p>DevOps is a culture and set of practices that combines software development (Dev) and IT operations (Ops) so that teams can build, test, and release software faster and more reliably. Instead of developers writing code and "throwing it over the wall" to an operations team, one team owns the whole cycle: writing, shipping, and running the software. The core ideas are automation of everything repeatable, small frequent releases instead of big risky ones, and fast feedback from production back to development.</p>
-                    <h6>The DevOps Lifecycle -</h6>
+                    <h6>The DevOps Lifecycle</h6>
                     <p>DevOps is usually drawn as an infinite loop: <code>Plan → Code → Build → Test → Release → Deploy → Operate → Monitor</code>, and back to Plan. Each stage feeds the next, and monitoring feeds what to plan next.</p>
                     <ul class="justify">
                         <li><b>Building :</b> Turning source code into a runnable artifact (a bundle, binary, or container image).</li>
@@ -66,7 +67,7 @@
                         <li><b>Hosting Platforms :</b> GitHub, GitLab, and Bitbucket host repositories and add pull/merge requests, code review, issue tracking, and built-in CI/CD.</li>
                         <li><b>Pull Request (PR) :</b> A proposal to merge a branch, where teammates review the changes and automated checks run before the merge is allowed.</li>
                     </ul>
-                    <h6>Common Workflows -</h6>
+                    <h6>Common Workflows</h6>
                     <ul class="justify">
                         <li><b>Feature Branch Workflow :</b> Every feature or fix gets its own branch off the main branch and is merged back through a pull request. The most common workflow.</li>
                         <li><b>Trunk-Based Development :</b> Everyone merges small changes into the main branch frequently, often daily, with unfinished work hidden behind feature flags. Pairs best with CI/CD.</li>
@@ -85,7 +86,7 @@
                         <li><b>Compilers / Transpilers :</b> Convert code from one form to another, such as TypeScript to JavaScript (tsc), modern JS to older JS (Babel), or source to binary (Go, Rust).</li>
                         <li><b>Task Runners / Build Tools :</b> Orchestrate build steps: Make, Gradle, and the <code>scripts</code> section of <code>package.json</code>.</li>
                     </ul>
-                    <h6>Webpack vs Vite -</h6>
+                    <h6>Webpack vs Vite</h6>
                     <ul class="justify">
                         <li><b>Webpack :</b> The long-standing standard bundler. Extremely configurable through loaders and plugins, but configuration is complex and dev rebuilds get slow on large projects.</li>
                         <li><b>Vite :</b> The modern default. Serves source files natively over ES modules in development (near-instant startup and hot reload) and bundles with Rollup for production. Minimal configuration.</li>
@@ -98,7 +99,7 @@
                 <h4 class="heading">Automated Testing</h4>
                 <div class="content">
                     <p>Automated testing means code that verifies other code, running the same checks on every change without human effort. In DevOps, tests are the safety net that makes frequent releases possible: if the tests pass, the change is considered safe to ship.</p>
-                    <h6>The Test Pyramid -</h6>
+                    <h6>The Test Pyramid</h6>
                     <ul class="justify">
                         <li><b>Unit Tests :</b> Test one function or class in isolation. Fast and cheap, so you write many. Tools: Jest, Vitest (JavaScript), pytest (Python), JUnit (Java).</li>
                         <li><b>Integration Tests :</b> Test that components work together, such as an API endpoint talking to a real database. Slower, so fewer.</li>
@@ -121,7 +122,7 @@
                         <li><b>Continuous Delivery (CD) :</b> Every change that passes CI is automatically prepared for release; deploying to production is one manual approval away.</li>
                         <li><b>Continuous Deployment :</b> Goes one step further; every passing change deploys to production automatically with no human step.</li>
                     </ul>
-                    <h6>Pipeline Stages -</h6>
+                    <h6>Pipeline Stages</h6>
                     <p>A typical pipeline: <code>Push → Lint → Build → Test → Package → Deploy to staging → Deploy to production</code>. If any stage fails, the pipeline stops and the team is notified. Pipelines are defined in code (usually YAML) and versioned with the project.</p>
                     <div class="code-box code-box-color"><code># .github/workflows/ci.yml
 name: CI
@@ -134,7 +135,7 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run build</code></div>
-                    <h6>CI/CD Tools -</h6>
+                    <h6>CI/CD Tools</h6>
                     <ul class="justify">
                         <li><b>GitHub Actions :</b> CI/CD built into GitHub. Workflows are YAML files in <code>.github/workflows/</code> triggered by events like push, pull request, or a schedule. A marketplace of reusable actions covers most tasks.</li>
                         <li><b>Jenkins :</b> The veteran self-hosted automation server. Highly flexible with a huge plugin ecosystem and pipelines defined in a <code>Jenkinsfile</code>, but you maintain the server yourself. Common in enterprises.</li>
@@ -147,7 +148,7 @@ jobs:
                 <h4 class="heading">Containerization</h4>
                 <div class="content">
                     <p>Containerization packages an application together with its dependencies into a container: a lightweight, isolated unit that runs the same on any machine with a container runtime. Containers share the host OS kernel instead of carrying a full guest OS, so they start in seconds and use far fewer resources than virtual machines. They solve the classic "works on my machine" problem.</p>
-                    <h5>Docker :</h5>
+                    <h5>Docker</h5>
                     <p>Docker is the standard tool for building and running containers.</p>
                     <ul class="justify">
                         <li><b>Dockerfile :</b> A text file of instructions that describes how to build an image: base image, files to copy, commands to run, and what to execute on start.</li>
@@ -171,7 +172,7 @@ CMD ["node", "server.js"]</code></div>
                 <h4 class="heading">Orchestration</h4>
                 <div class="content">
                     <p>One container is easy; hundreds across many servers are not. An orchestrator manages containers at scale: it decides which machine runs each container, restarts crashed ones, scales the count up and down, rolls out new versions gradually, and routes traffic to healthy instances.</p>
-                    <h5>Kubernetes (K8s) :</h5>
+                    <h5>Kubernetes (K8s)</h5>
                     <p>Kubernetes is the industry-standard orchestrator, originally created by Google. You declare the desired state in YAML ("run 3 replicas of this image") and Kubernetes continuously works to make reality match it, which is what enables self-healing.</p>
                     <ul class="justify">
                         <li><b>Cluster :</b> The whole system: a control plane that makes decisions plus worker nodes (machines) that run the workloads.</li>
@@ -219,12 +220,12 @@ CMD ["node", "server.js"]</code></div>
 
             <!-- Navigation Buttons -->
             <nav>
-                <a href="/Cheatsheets"><i class="bi bi-arrow-left-square-fill"></i></a>
-                <a href="#" ><i class="bi bi-arrow-up-square-fill"></i></a>
+                <a href="/cheatsheets" aria-label="All cheatsheets"><i class="bi bi-grid-3x3-gap-fill" aria-hidden="true"></i></a>
+                <a href="#" aria-label="Back to top"><i class="bi bi-arrow-up" aria-hidden="true"></i></a>
             </nav>
         </div>
 
         <!-- JavaScript -->
-        <script src="../assets/js/script.js"></script>
+        <script src="../assets/js/script.js?v=8"></script>
     </body>
 </html>

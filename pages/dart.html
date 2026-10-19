@@ -5,21 +5,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>Dart Cheatsheet</title>
+        <script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('cheatsheet-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'))}catch(e){}</script>
 
         <!-- Bootstrap CDN -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
         <!-- CSS -->
-        <link rel="stylesheet" href="../assets/css/style.css">
+        <link rel="stylesheet" href="../assets/css/style.css?v=11">
     </head>
 
-    <body data-theme="dark">
+    <body>
         <div class="container">
             <!-- Top Bar -->
             <div class="top-bar">
-                <a href="/Cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
-                <div class="button"><i class="bi bi-circle-half"></i></div>
+                <a href="/cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
+                <button class="theme-toggle" type="button" aria-label="Toggle theme"><i class="bi bi-sun" aria-hidden="true"></i></button>
             </div>
 
             <h3 class="title">Dart</h3>
@@ -44,7 +45,7 @@
                 <h4 class="heading">Dart</h4>
                 <div class="content">
                     <p>Dart is an open-source, general-purpose programming language created by Google in 2011. It is object-oriented, class-based, and type-safe, with a C-style syntax that is easy to pick up. Dart is best known as the language behind Flutter, but it also runs on servers, the command line, and the web.</p>
-                    <h6>Key Features -</h6>
+                    <h6>Key Features</h6>
                     <ul class="justify">
                         <li><b>Type-Safe :</b> Statically typed with sound null safety, catching many errors before the program runs, while still allowing type inference with <code>var</code>.</li>
                         <li><b>Object-Oriented :</b> Everything is an object, even numbers and functions; every object is an instance of a class.</li>
@@ -71,7 +72,7 @@ dart compile exe main.dart   # compile to native executable
 dart analyze             # check code for errors and warnings
 dart format .            # auto-format all files
 dart test                # run tests</code></div>
-                    <h6>Packages (pub) -</h6>
+                    <h6>Packages (pub)</h6>
                     <p>Dart uses <code>pub</code> as its package manager, with dependencies listed in <code>pubspec.yaml</code> and packages hosted on pub.dev.</p>
                     <div class="code-box code-box-color"><code>dart pub get             # install dependencies from pubspec.yaml
 dart pub add http        # add a package
@@ -88,7 +89,7 @@ String city = 'London';    // explicit type
 final age = 36;            // set once at runtime, cannot reassign
 const pi = 3.14;           // compile-time constant
 dynamic anything = 5;      // type can change (avoid when possible)</code></div>
-                    <h6>Built-in Types -</h6>
+                    <h6>Built-in Types</h6>
                     <ul class="justify">
                         <li><b>int :</b> Whole numbers, e.g. <code>42</code>.</li>
                         <li><b>double :</b> Floating-point numbers, e.g. <code>3.14</code>. Both int and double are subtypes of <code>num</code>.</li>
@@ -98,7 +99,7 @@ dynamic anything = 5;      // type can change (avoid when possible)</code></div>
                         <li><b>Map :</b> Key-value pairs.</li>
                         <li><b>Set :</b> An unordered collection of unique values.</li>
                     </ul>
-                    <h6>String Interpolation -</h6>
+                    <h6>String Interpolation</h6>
                     <div class="code-box code-box-color"><code>var name = 'Ada';
 print('Hello, $name');              // simple variable
 print('Name has ${name.length} letters');   // expression in ${}</code></div>
@@ -117,7 +118,7 @@ print('Name has ${name.length} letters');   // expression in ${}</code></div>
                         <li><b>Logical :</b> <code>&amp;&amp;</code> (and), <code>||</code> (or), <code>!</code> (not).</li>
                         <li><b>Assignment :</b> <code>=</code>, <code>+=</code>, <code>-=</code>, and <code>??=</code> (assign only if currently null).</li>
                     </ul>
-                    <h6>Null-Aware Operators -</h6>
+                    <h6>Null-Aware Operators</h6>
                     <ul class="justify">
                         <li><b>?. :</b> Call a member only if the object is not null: <code>user?.name</code>.</li>
                         <li><b>?? :</b> Provide a fallback when a value is null: <code>name ?? 'Guest'</code>.</li>
@@ -195,14 +196,14 @@ var tags = {'a', 'b', 'a'};   // {a, b}
 // Map (key-value)
 var user = {'name': 'Ada', 'age': 36};
 print(user['name']);       // Ada</code></div>
-                    <h6>Useful Methods -</h6>
+                    <h6>Useful Methods</h6>
                     <ul class="justify">
                         <li><b>map :</b> Transform each element: <code>nums.map((n) =&gt; n * 2)</code>.</li>
                         <li><b>where :</b> Filter elements: <code>nums.where((n) =&gt; n.isEven)</code>.</li>
                         <li><b>forEach :</b> Run code for each element.</li>
                         <li><b>reduce / fold :</b> Combine elements into one value.</li>
                     </ul>
-                    <h6>Spread &amp; Collection-If -</h6>
+                    <h6>Spread &amp; Collection-If</h6>
                     <div class="code-box code-box-color"><code>var a = [1, 2];
 var b = [0, ...a, 3];          // [0, 1, 2, 3]  spread
 var list = [
@@ -223,7 +224,7 @@ int add(int a, int b) {
 
 // arrow function (single expression)
 int square(int x) =&gt; x * x;</code></div>
-                    <h6>Parameters -</h6>
+                    <h6>Parameters</h6>
                     <ul class="justify">
                         <li><b>Positional :</b> Passed in order, like <code>add(2, 3)</code>.</li>
                         <li><b>Named :</b> Wrapped in <code>{ }</code>, passed by name for clarity. Mark required ones with <code>required</code>.</li>
@@ -262,7 +263,7 @@ greet(name: 'Ada', greeting: 'Hello');</code></div>
 
 var p = Person('Ada', 36);
 p.greet();</code></div>
-                    <h6>OOP Concepts -</h6>
+                    <h6>OOP Concepts</h6>
                     <ul class="justify">
                         <li><b>Inheritance :</b> <code>extends</code> a parent class; use <code>super</code> to call its constructor and <code>@override</code> to replace a method.</li>
                         <li><b>Abstract Class :</b> A base class that cannot be instantiated and may declare methods without bodies.</li>
@@ -307,13 +308,13 @@ void main() async {
             <div class="sections" id="extras">
                 <h4 class="heading">Generics &amp; Exceptions</h4>
                 <div class="content">
-                    <h6>Generics -</h6>
+                    <h6>Generics</h6>
                     <p>Generics let a class or function work with any type while staying type-safe, using a type parameter like <code>&lt;T&gt;</code>. Built-in collections use them: <code>List&lt;int&gt;</code>, <code>Map&lt;String, int&gt;</code>.</p>
                     <div class="code-box code-box-color"><code>T first&lt;T&gt;(List&lt;T&gt; items) =&gt; items[0];
 
 first&lt;int&gt;([1, 2, 3]);        // 1
 first(['a', 'b']);            // 'a', type inferred</code></div>
-                    <h6>Exceptions -</h6>
+                    <h6>Exceptions</h6>
                     <p>Handle errors with <code>try / catch</code>, optionally <code>finally</code> for cleanup that always runs. Throw errors with <code>throw</code>.</p>
                     <div class="code-box code-box-color"><code>try {
     var result = 10 ~/ 0;         // throws
@@ -331,12 +332,12 @@ throw Exception('Something went wrong');</code></div>
 
             <!-- Navigation Buttons -->
             <nav>
-                <a href="/Cheatsheets"><i class="bi bi-arrow-left-square-fill"></i></a>
-                <a href="#" ><i class="bi bi-arrow-up-square-fill"></i></a>
+                <a href="/cheatsheets" aria-label="All cheatsheets"><i class="bi bi-grid-3x3-gap-fill" aria-hidden="true"></i></a>
+                <a href="#" aria-label="Back to top"><i class="bi bi-arrow-up" aria-hidden="true"></i></a>
             </nav>
         </div>
 
         <!-- JavaScript -->
-        <script src="../assets/js/script.js"></script>
+        <script src="../assets/js/script.js?v=8"></script>
     </body>
 </html>
