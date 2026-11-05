@@ -28,10 +28,20 @@
             <div class="section-list">
                 <ul>
                     <li><a href="#android-overview">Android Overview</a></li>
+                    <li><a href="#versions">Android Versions &amp; API Levels</a></li>
                     <li><a href="#app-dev">App Development &amp; APK</a></li>
+                    <li><a href="#build-config">Build Configuration</a></li>
                     <li><a href="#android-architecture">System Architecture</a></li>
                     <li><a href="#application-components">Application Components</a></li>
+                    <li><a href="#manifest-permissions">Manifest &amp; Permissions</a></li>
+                    <li><a href="#deep-links">Deep Links &amp; App Links</a></li>
+                    <li><a href="#app-lifecycle">Processes, Lifecycle &amp; Background Work</a></li>
+                    <li><a href="#notifications">Notifications &amp; Push</a></li>
+                    <li><a href="#app-architecture">App Architecture &amp; Jetpack</a></li>
+                    <li><a href="#networking">Networking &amp; Network Security</a></li>
                     <li><a href="#data-storage">Data Storage &amp; Keystore</a></li>
+                    <li><a href="#debugging">Debugging &amp; Testing</a></li>
+                    <li><a href="#app-security">App Security Checklist</a></li>
                     <li><a href="#file-system-structure">File System Structure</a></li>
                     <li><a href="#boot-process-low-level-components">Boot Process &amp; Low-Level</a></li>
                     <li><a href="#android-security-core">Android Security Core</a></li>
@@ -49,6 +59,91 @@
                         <li>Designed for mobile devices (smartphones, tablets, TVs, wearables, IoT)</li>
                         <li>Provides middleware framework, runtime environment, application support</li>
                         <li>Development languages: Java, Kotlin, C/C++</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="versions">
+                <h4 class="heading">Android Versions &amp; API Levels</h4>
+                <div class="content">
+                    <p>Every Android release has an <b>API level</b>, an integer that apps use to target behavior and check features at runtime (<code>Build.VERSION.SDK_INT</code>). Each release tightens privacy and security rules, which apply once an app raises its <code>targetSdk</code>.</p>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Version</th>
+                                    <th>API</th>
+                                    <th>Year</th>
+                                    <th>Key Changes for Developers</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>7.0 Nougat</td>
+                                    <td>24</td>
+                                    <td>2016</td>
+                                    <td>multi-window, APK signature scheme v2, Network Security Config; user-installed CAs no longer trusted by default</td>
+                                </tr>
+                                <tr>
+                                    <td>8.0 Oreo</td>
+                                    <td>26</td>
+                                    <td>2017</td>
+                                    <td>background execution limits, notification channels, Project Treble</td>
+                                </tr>
+                                <tr>
+                                    <td>9 Pie</td>
+                                    <td>28</td>
+                                    <td>2018</td>
+                                    <td>cleartext HTTP blocked by default, APK signature v3, BiometricPrompt</td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td>29</td>
+                                    <td>2019</td>
+                                    <td>scoped storage introduced, separate background location permission, system dark theme, gesture navigation</td>
+                                </tr>
+                                <tr>
+                                    <td>11</td>
+                                    <td>30</td>
+                                    <td>2020</td>
+                                    <td>scoped storage enforced, one-time permissions, package visibility (<code>&lt;queries&gt;</code>), auto-reset of unused permissions</td>
+                                </tr>
+                                <tr>
+                                    <td>12 / 12L</td>
+                                    <td>31 / 32</td>
+                                    <td>2021</td>
+                                    <td>Material You, explicit <code>android:exported</code> required, approximate location, PendingIntent mutability required</td>
+                                </tr>
+                                <tr>
+                                    <td>13</td>
+                                    <td>33</td>
+                                    <td>2022</td>
+                                    <td>notification runtime permission (<code>POST_NOTIFICATIONS</code>), photo picker, per-app languages, granular media permissions</td>
+                                </tr>
+                                <tr>
+                                    <td>14</td>
+                                    <td>34</td>
+                                    <td>2023</td>
+                                    <td>foreground service types required, Credential Manager (passkeys), implicit intents only reach exported components, apps targeting API below 23 cannot be installed</td>
+                                </tr>
+                                <tr>
+                                    <td>15</td>
+                                    <td>35</td>
+                                    <td>2024</td>
+                                    <td>edge-to-edge enforced, Private Space, 16 KB memory page size support</td>
+                                </tr>
+                                <tr>
+                                    <td>16</td>
+                                    <td>36</td>
+                                    <td>2025</td>
+                                    <td>adaptive layouts enforced on large screens, progress-centric Live Update notifications, Advanced Protection mode</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <ul class="justify">
+                        <li><b>Google Play Requirement :</b> new apps and updates must target a recent API level, roughly within a year of the latest release, so apps keep moving to the newest rules.</li>
+                        <li><b>Version Checks :</b> guard newer APIs with <code>if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.TIRAMISU) { ... }</code> or use AndroidX libraries that handle it for you.</li>
                     </ul>
                 </div>
             </div>
@@ -123,6 +218,62 @@ adb shell dumpsys battery           # query a system service</code></div>
                         <li><b>apksigner / keytool :</b> sign and verify APKs and certificates.</li>
                         <li><b>Frida / objection :</b> dynamic instrumentation for runtime analysis.</li>
                     </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="build-config">
+                <h4 class="heading">Build Configuration</h4>
+                <div class="content">
+                    <p>An app's build is defined in Gradle files (<code>build.gradle.kts</code> in Kotlin DSL). They set the SDK levels, the app's identity, build types, and dependencies.</p>
+                    <h6>SDK Levels</h6>
+                    <ul class="justify">
+                        <li><b>compileSdk :</b> the API level the code is compiled against; decides which APIs are available at compile time.</li>
+                        <li><b>minSdk :</b> the oldest Android version the app installs on.</li>
+                        <li><b>targetSdk :</b> the version the app is tested against; Android applies that version's behavior changes to the app.</li>
+                        <li><b>applicationId :</b> the unique package name on the device and in Google Play; it can never change after publishing.</li>
+                        <li><b>versionCode / versionName :</b> an integer that must increase with every release, and the version string shown to users.</li>
+                    </ul>
+                    <div class="code-box code-box-color"><code>android {
+    namespace = "com.example.app"
+    compileSdk = 36
+
+    defaultConfig {
+        applicationId = "com.example.app"
+        minSdk = 24
+        targetSdk = 36
+        versionCode = 12
+        versionName = "1.4.0"
+    }
+
+    buildTypes {
+        release {
+            isMinifyEnabled = true            // R8: shrink, optimize, obfuscate code
+            isShrinkResources = true          // remove unused resources
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            signingConfig = signingConfigs.getByName("release")   // defined in signingConfigs { }
+        }
+        debug {
+            applicationIdSuffix = ".debug"    // install debug and release side by side
+        }
+    }
+
+    flavorDimensions += "tier"
+    productFlavors {
+        create("free") { dimension = "tier" }
+        create("pro")  { dimension = "tier"; applicationIdSuffix = ".pro" }
+    }
+}</code></div>
+                    <ul class="justify">
+                        <li><b>Build Variants :</b> every build type combined with every flavor, e.g. <code>freeDebug</code>, <code>proRelease</code>; each can have its own source set (<code>src/pro/</code>).</li>
+                        <li><b>R8 :</b> removes unused code, renames classes and methods (obfuscation), and optimizes. Classes used through reflection need <code>-keep</code> rules in <code>proguard-rules.pro</code>, and the generated <code>mapping.txt</code> is needed to read obfuscated crash stack traces.</li>
+                        <li><b>Version Catalog :</b> <code>gradle/libs.versions.toml</code> keeps dependency versions in one place, referenced as <code>libs.retrofit</code>.</li>
+                    </ul>
+                    <div class="code-box code-box-color"><code>./gradlew assembleDebug        # build a debug APK
+./gradlew assembleRelease      # build a signed release APK
+./gradlew bundleRelease        # build an AAB for Google Play
+./gradlew test                 # local unit tests
+./gradlew lint                 # static checks, including security rules
+./gradlew :app:dependencies    # dependency tree</code></div>
                 </div>
             </div>
 
@@ -266,6 +417,448 @@ startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://example.com")))</cod
                 </div>
             </div>
 
+            <div class="sections" id="manifest-permissions">
+                <h4 class="heading">Manifest &amp; Permissions</h4>
+                <div class="content">
+                    <p><code>AndroidManifest.xml</code> describes the app to the system: its package, components, the intents each component accepts, the permissions it needs, and app-wide security settings.</p>
+                    <div class="code-box code-box-color"><code>&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"&gt;
+    &lt;uses-permission android:name="android.permission.INTERNET" /&gt;
+    &lt;uses-permission android:name="android.permission.CAMERA" /&gt;
+
+    &lt;application
+        android:label="@string/app_name"
+        android:allowBackup="false"
+        android:networkSecurityConfig="@xml/network_security_config"&gt;
+
+        &lt;activity android:name=".MainActivity" android:exported="true"&gt;
+            &lt;intent-filter&gt;
+                &lt;action android:name="android.intent.action.MAIN" /&gt;
+                &lt;category android:name="android.intent.category.LAUNCHER" /&gt;
+            &lt;/intent-filter&gt;
+        &lt;/activity&gt;
+
+        &lt;!-- Verified App Link: https://example.com/product/... opens this screen --&gt;
+        &lt;activity android:name=".ProductActivity" android:exported="true"&gt;
+            &lt;intent-filter android:autoVerify="true"&gt;
+                &lt;action android:name="android.intent.action.VIEW" /&gt;
+                &lt;category android:name="android.intent.category.DEFAULT" /&gt;
+                &lt;category android:name="android.intent.category.BROWSABLE" /&gt;
+                &lt;data android:scheme="https" android:host="example.com" android:pathPrefix="/product" /&gt;
+            &lt;/intent-filter&gt;
+        &lt;/activity&gt;
+
+        &lt;service android:name=".SyncService" android:exported="false" /&gt;
+    &lt;/application&gt;
+&lt;/manifest&gt;</code></div>
+                    <h5>Permission Protection Levels</h5>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Level</th>
+                                    <th>Granted</th>
+                                    <th>Examples</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Normal</td>
+                                    <td>automatically at install</td>
+                                    <td><code>INTERNET</code>, <code>VIBRATE</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Dangerous (runtime)</td>
+                                    <td>by the user, through a prompt at runtime</td>
+                                    <td><code>CAMERA</code>, <code>ACCESS_FINE_LOCATION</code>, <code>READ_CONTACTS</code>, <code>POST_NOTIFICATIONS</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Signature</td>
+                                    <td>only to apps signed with the same key as the app that defines it</td>
+                                    <td>custom permissions between your own apps</td>
+                                </tr>
+                                <tr>
+                                    <td>Special (app ops)</td>
+                                    <td>by the user on a Settings page</td>
+                                    <td><code>SYSTEM_ALERT_WINDOW</code>, <code>MANAGE_EXTERNAL_STORAGE</code>, <code>SCHEDULE_EXACT_ALARM</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h6>Requesting a Runtime Permission</h6>
+                    <div class="code-box code-box-color"><code>val requestCamera = registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted -&gt;
+    if (granted) openCamera() else showRationale()
+}
+
+if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+    openCamera()
+} else {
+    requestCamera.launch(Manifest.permission.CAMERA)
+}</code></div>
+                    <ul class="justify">
+                        <li><b>Ask in Context :</b> request a permission when the user starts the feature that needs it, and explain why first if <code>shouldShowRequestPermissionRationale()</code> returns true.</li>
+                        <li><b>Denials :</b> after the user denies twice, the system stops showing the prompt; the app must degrade gracefully or send the user to Settings.</li>
+                        <li><b>Avoid Permissions :</b> system pickers (photo picker, file picker, contact picker) give access to chosen items without any permission.</li>
+                    </ul>
+                    <h5>Exported Components</h5>
+                    <ul class="justify">
+                        <li><b><code>android:exported</code> :</b> whether other apps can start a component. Required explicitly for components with intent filters since Android 12. Keep everything not meant for other apps set to <code>false</code>, or protect it with <code>android:permission</code> using a signature-level permission.</li>
+                        <li><b>Validate Input :</b> treat every intent extra as untrusted user input, since any app can send an intent to an exported component.</li>
+                        <li><b>Package Visibility :</b> since Android 11, apps see only some other installed apps by default; declare the ones you interact with in a <code>&lt;queries&gt;</code> element.</li>
+                        <li><b>Deep Links :</b> URLs that open a screen of the app are declared with intent filters too; see <a href="#deep-links">Deep Links &amp; App Links</a>.</li>
+                    </ul>
+                    <h6>Sharing Files (FileProvider)</h6>
+                    <ul class="justify">
+                        <li>Share files with other apps as <code>content://</code> URIs from a <code>FileProvider</code>, never as <code>file://</code> paths (blocked with <code>FileUriExposedException</code> since Android 7).</li>
+                        <li>Grant access per intent with <code>FLAG_GRANT_READ_URI_PERMISSION</code>; the receiving app can read only that one file, and only temporarily.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="deep-links">
+                <h4 class="heading">Deep Links &amp; App Links</h4>
+                <div class="content">
+                    <p>A <b>deep link</b> is a URL that opens a specific screen inside an app instead of its home screen, e.g. a product page from an email or a QR code. Android matches the URL against the <code>&lt;intent-filter&gt;</code>s in the manifest (action <code>VIEW</code>, category <code>BROWSABLE</code>, and the <code>&lt;data&gt;</code> scheme, host, and path).</p>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Example</th>
+                                    <th>Behavior</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Custom-scheme deep link</td>
+                                    <td><code>myapp://product/42</code></td>
+                                    <td>not verified: any app can register the same scheme, and the user may see an app chooser</td>
+                                </tr>
+                                <tr>
+                                    <td>Web link</td>
+                                    <td><code>https://example.com/product/42</code> without verification</td>
+                                    <td>since Android 12, unverified web links open in the browser by default</td>
+                                </tr>
+                                <tr>
+                                    <td>Android App Link</td>
+                                    <td><code>https://example.com/product/42</code> with <code>autoVerify</code></td>
+                                    <td>ownership verified through the website, so it opens the app directly with no chooser</td>
+                                </tr>
+                                <tr>
+                                    <td>Deferred deep link</td>
+                                    <td>a link opened before the app is installed</td>
+                                    <td>the user installs from Google Play, then lands on the linked content (via the Play Install Referrer or a linking service)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h6>Declaring a Link</h6>
+                    <div class="code-box code-box-color"><code>&lt;activity android:name=".ProductActivity" android:exported="true"&gt;
+    &lt;intent-filter android:autoVerify="true"&gt;
+        &lt;action android:name="android.intent.action.VIEW" /&gt;
+        &lt;category android:name="android.intent.category.DEFAULT" /&gt;
+        &lt;category android:name="android.intent.category.BROWSABLE" /&gt;
+        &lt;data android:scheme="https" android:host="example.com" android:pathPrefix="/product" /&gt;
+    &lt;/intent-filter&gt;
+&lt;/activity&gt;</code></div>
+                    <h6>Verifying an App Link (assetlinks.json)</h6>
+                    <p>The website proves it trusts the app by serving <code>https://example.com/.well-known/assetlinks.json</code> over HTTPS, with no redirects, listing the SHA-256 fingerprint of the app's signing certificate. With Play App Signing, use the fingerprint shown in the Play Console, not your local upload key.</p>
+                    <div class="code-box code-box-color"><code>[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.example.app",
+    "sha256_cert_fingerprints": [
+      "14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5"
+    ]
+  }
+}]</code></div>
+                    <h6>Handling the Link</h6>
+                    <div class="code-box code-box-color"><code>override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    handleLink(intent)
+}
+
+override fun onNewIntent(intent: Intent) {          // link opened while the activity already exists
+    super.onNewIntent(intent)
+    handleLink(intent)
+}
+
+private fun handleLink(intent: Intent) {
+    val uri = intent.data ?: return                  // https://example.com/product/42
+    val id = uri.lastPathSegment?.toIntOrNull() ?: return   // validate before using it
+    showProduct(id)
+}</code></div>
+                    <ul class="justify">
+                        <li><b>Navigation Component :</b> declare links on destinations (<code>&lt;deepLink app:uri="https://example.com/product/{id}" /&gt;</code> in a nav graph, or <code>navDeepLink</code> in Compose) and the library parses arguments and builds the back stack.</li>
+                        <li><b>Back Stack :</b> a link opened from outside should leave a sensible back stack, so pressing Back goes to the app's parent screen, not straight out of the app.</li>
+                    </ul>
+                    <h6>Testing</h6>
+                    <div class="code-box code-box-color"><code>adb shell am start -W -a android.intent.action.VIEW -d "https://example.com/product/42" com.example.app
+adb shell am start -W -a android.intent.action.VIEW -d "myapp://product/42"
+adb shell pm get-app-links com.example.app               # verification state per domain (Android 12+)
+adb shell pm verify-app-links --re-verify com.example.app</code></div>
+                    <h6>Security</h6>
+                    <ul class="justify">
+                        <li><b>Link Hijacking :</b> a malicious app can register the same custom scheme and receive the link, so never put tokens or secrets in custom-scheme links. Use verified App Links for anything sensitive.</li>
+                        <li><b>Untrusted Input :</b> every path segment and query parameter comes from whoever created the link; validate types and ranges before using them.</li>
+                        <li><b>No Silent Actions :</b> a link should only navigate. Require confirmation and authentication before payments, account changes, or password resets.</li>
+                        <li><b>OAuth Redirects :</b> native apps should receive OAuth redirects through App Links and always use PKCE (RFC 8252), since a hijacked redirect could otherwise leak the authorization code.</li>
+                        <li><b>Intent Redirection :</b> never launch an intent taken from link or extra data without checking where it points, or other apps can reach your unexported components through you.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="app-lifecycle">
+                <h4 class="heading">Processes, Lifecycle &amp; Background Work</h4>
+                <div class="content">
+                    <h6>Process Priority</h6>
+                    <p>When memory runs low, the low memory killer daemon (<code>lmkd</code>) ends processes from least to most important:</p>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Priority</th>
+                                    <th>Process State</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Highest</td>
+                                    <td><b>foreground</b>: the activity the user is using, or a running foreground service</td>
+                                </tr>
+                                <tr>
+                                    <td>High</td>
+                                    <td><b>visible</b>: visible but not in focus (e.g. behind a dialog)</td>
+                                </tr>
+                                <tr>
+                                    <td>Medium</td>
+                                    <td><b>service</b>: running a started service</td>
+                                </tr>
+                                <tr>
+                                    <td>Lowest</td>
+                                    <td><b>cached</b>: in the background with nothing running; killed first</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <ul class="justify">
+                        <li><b>Process Death :</b> a backgrounded app can be killed at any time. Keep UI state in a <code>ViewModel</code> (survives rotation) and <code>SavedStateHandle</code> / <code>onSaveInstanceState</code> (survives process death).</li>
+                        <li><b>Configuration Changes :</b> rotation, language, or dark-mode changes recreate the activity by default.</li>
+                        <li><b>Main (UI) Thread :</b> draws the UI and handles input. Blocking it causes an <b>ANR</b> (Application Not Responding) after about 5 seconds without responding to input; network calls on it throw <code>NetworkOnMainThreadException</code>.</li>
+                    </ul>
+                    <h6>Battery &amp; Background Limits</h6>
+                    <ul class="justify">
+                        <li><b>Doze (Android 6) :</b> when the device is idle and unplugged, network access and jobs are deferred into periodic maintenance windows.</li>
+                        <li><b>App Standby Buckets (Android 9) :</b> apps are ranked active, working set, frequent, rare, or restricted by how often they are used, which limits their jobs and alarms.</li>
+                        <li><b>Background Execution Limits (Android 8) :</b> background apps cannot start services freely or receive most implicit broadcasts.</li>
+                    </ul>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Need</th>
+                                    <th>Use</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>deferrable work that must eventually run (sync, upload)</td>
+                                    <td><b>WorkManager</b> (survives reboots; supports constraints like Wi-Fi or charging)</td>
+                                </tr>
+                                <tr>
+                                    <td>long-running work the user is aware of (music, navigation, calls)</td>
+                                    <td><b>foreground service</b> with a notification and a declared type (required on Android 14+)</td>
+                                </tr>
+                                <tr>
+                                    <td>work at an exact time (alarm clock, calendar)</td>
+                                    <td><b>AlarmManager</b> exact alarms (needs <code>SCHEDULE_EXACT_ALARM</code> or <code>USE_EXACT_ALARM</code>)</td>
+                                </tr>
+                                <tr>
+                                    <td>work while the app is open</td>
+                                    <td><b>Kotlin coroutines</b> tied to a lifecycle scope</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h6>Coroutines</h6>
+                    <ul class="justify">
+                        <li><b>Dispatchers :</b> <code>Main</code> (UI updates), <code>IO</code> (network, disk, database), <code>Default</code> (CPU-heavy work).</li>
+                        <li><b>Scopes :</b> <code>viewModelScope</code> and <code>lifecycleScope</code> cancel their coroutines automatically when the ViewModel or screen is destroyed (structured concurrency).</li>
+                        <li><b>Flow :</b> a cold stream of values; <code>StateFlow</code> holds the current UI state.</li>
+                    </ul>
+                    <div class="code-box code-box-color"><code>class ProfileViewModel(private val repo: UserRepository) : ViewModel() {
+    private val _user = MutableStateFlow&lt;User?&gt;(null)
+    val user: StateFlow&lt;User?&gt; = _user                       // observed by the UI
+
+    fun load(id: Int) = viewModelScope.launch {
+        _user.value = withContext(Dispatchers.IO) { repo.getUser(id) }   // off the main thread
+    }
+}</code></div>
+                </div>
+            </div>
+
+            <div class="sections" id="notifications">
+                <h4 class="heading">Notifications &amp; Push</h4>
+                <div class="content">
+                    <ul class="justify">
+                        <li><b>Notification Channels (Android 8+) :</b> every notification belongs to a channel with an importance level; users can mute or change each channel in Settings, and the app cannot override their choice.</li>
+                        <li><b>Runtime Permission (Android 13+) :</b> apps must request <code>POST_NOTIFICATIONS</code> before posting notifications.</li>
+                        <li><b>Tap Actions :</b> a notification opens the app through a <code>PendingIntent</code>, which must be created with <code>FLAG_IMMUTABLE</code> (or explicitly mutable) on Android 12+.</li>
+                        <li><b>Styles :</b> heads-up, ongoing (required for foreground services), progress, messaging, expandable big-text and big-picture, and action buttons; Android 16 adds progress-centric Live Updates.</li>
+                    </ul>
+                    <div class="code-box code-box-color"><code>val channel = NotificationChannel("orders", "Order updates", NotificationManager.IMPORTANCE_DEFAULT)
+getSystemService(NotificationManager::class.java).createNotificationChannel(channel)
+
+val tap = PendingIntent.getActivity(
+    this, 0, Intent(this, OrderActivity::class.java),
+    PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+)
+
+val notification = NotificationCompat.Builder(this, "orders")
+    .setSmallIcon(R.drawable.ic_notification)
+    .setContentTitle("Order shipped")
+    .setContentText("Your order #1042 is on the way")
+    .setContentIntent(tap)
+    .setAutoCancel(true)                                  // dismiss when tapped
+    .build()
+
+NotificationManagerCompat.from(this).notify(1042, notification)   // after POST_NOTIFICATIONS is granted</code></div>
+                    <h6>Push Notifications (FCM)</h6>
+                    <ul class="justify">
+                        <li><b>Token :</b> each app install gets a registration token, which the app sends to your server so it can target that device.</li>
+                        <li><b>Notification vs Data Messages :</b> notification messages are displayed by the system automatically when the app is in the background; data messages are delivered to <code>FirebaseMessagingService.onMessageReceived()</code> for the app to handle.</li>
+                        <li><b>Priority :</b> high-priority messages can wake a dozing device; use them only for time-sensitive, user-visible content, or the system may deprioritize the app.</li>
+                        <li><b>Security :</b> treat push payloads as untrusted and fetch sensitive data from your server after the message arrives, rather than putting it in the payload.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="app-architecture">
+                <h4 class="heading">App Architecture &amp; Jetpack</h4>
+                <div class="content">
+                    <p>Google's recommended architecture separates an app into layers, with data flowing in one direction: <b>state flows down</b> to the UI and <b>events flow up</b> from it.</p>
+                    <div class="code-box code-box-color"><code>UI layer       Activity / Fragment / Composable  &lt;-&gt;  ViewModel (holds UI state)
+                                                         |
+Domain layer   use cases (optional business logic)       |
+                                                         v
+Data layer     Repository  -&gt;  Room (local database)  +  Retrofit (network API)</code></div>
+                    <ul class="justify">
+                        <li><b>MVVM :</b> the View observes the ViewModel's state and sends user events to it; the ViewModel never references views, so it is testable and survives rotation.</li>
+                        <li><b>Repository :</b> the single source of truth for a type of data, deciding between cache, database, and network.</li>
+                        <li><b>Dependency Injection :</b> Hilt (built on Dagger) or Koin create and supply dependencies, so classes do not construct their own.</li>
+                    </ul>
+                    <h6>UI Toolkits</h6>
+                    <ul class="justify">
+                        <li><b>Views (XML) :</b> the classic toolkit: XML layouts, <code>ConstraintLayout</code>, <code>RecyclerView</code> for lists, Fragments for reusable screen parts.</li>
+                        <li><b>Jetpack Compose :</b> the modern declarative toolkit: UI is written as <code>@Composable</code> Kotlin functions that re-run (recompose) when their state changes. Recommended for new apps.</li>
+                    </ul>
+                    <div class="code-box code-box-color"><code>@Composable
+fun Counter(name: String) {
+    var count by remember { mutableStateOf(0) }       // state that survives recomposition
+    Column(Modifier.padding(16.dp)) {
+        Text("Hello, $name")
+        Button(onClick = { count++ }) { Text("Clicked $count times") }
+    }
+}</code></div>
+                    <h6>Key Jetpack Libraries</h6>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Library</th>
+                                    <th>Purpose</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Lifecycle / ViewModel</td>
+                                    <td>lifecycle-aware components and UI state holders</td>
+                                </tr>
+                                <tr>
+                                    <td>Navigation</td>
+                                    <td>moving between screens, back stack, deep links</td>
+                                </tr>
+                                <tr>
+                                    <td>Room</td>
+                                    <td>type-safe SQLite database with compile-time checked queries</td>
+                                </tr>
+                                <tr>
+                                    <td>DataStore</td>
+                                    <td>key-value or typed storage, replacing SharedPreferences</td>
+                                </tr>
+                                <tr>
+                                    <td>WorkManager</td>
+                                    <td>guaranteed background work</td>
+                                </tr>
+                                <tr>
+                                    <td>Paging</td>
+                                    <td>loading large lists page by page</td>
+                                </tr>
+                                <tr>
+                                    <td>CameraX</td>
+                                    <td>camera access that works consistently across devices</td>
+                                </tr>
+                                <tr>
+                                    <td>Hilt</td>
+                                    <td>dependency injection</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sections" id="networking">
+                <h4 class="heading">Networking &amp; Network Security</h4>
+                <div class="content">
+                    <ul class="justify">
+                        <li><b>Permission :</b> network access needs <code>INTERNET</code> (a normal permission, granted at install).</li>
+                        <li><b>OkHttp :</b> the standard HTTP client (connection pooling, HTTP/2, interceptors for logging and auth headers).</li>
+                        <li><b>Retrofit :</b> builds a type-safe REST client from an interface, on top of OkHttp; Ktor client is a Kotlin-first alternative.</li>
+                    </ul>
+                    <div class="code-box code-box-color"><code>interface ApiService {
+    @GET("users/{id}")
+    suspend fun getUser(@Path("id") id: Int): User
+}
+
+val api: ApiService = Retrofit.Builder()
+    .baseUrl("https://api.example.com/")
+    .addConverterFactory(GsonConverterFactory.create())     // or Moshi / kotlinx.serialization
+    .build()
+    .create(ApiService::class.java)</code></div>
+                    <h5>Network Security Configuration</h5>
+                    <p>An XML file (<code>res/xml/network_security_config.xml</code>, referenced from the manifest) controls which connections and certificates an app trusts, without code changes.</p>
+                    <ul class="justify">
+                        <li><b>Cleartext :</b> plain HTTP is blocked by default for apps targeting Android 9 (API 28) or higher.</li>
+                        <li><b>Trusted CAs :</b> apps targeting Android 7 (API 24) or higher trust only system CAs by default, not certificates the user installs. This is why HTTPS-inspecting proxies need a debug-only override.</li>
+                        <li><b>Certificate Pinning :</b> restricts a domain to specific public keys. Always include a backup pin and an expiration date, or a key rotation can lock every user out of the app.</li>
+                    </ul>
+                    <div class="code-box code-box-color"><code>&lt;network-security-config&gt;
+    &lt;base-config cleartextTrafficPermitted="false"&gt;
+        &lt;trust-anchors&gt;
+            &lt;certificates src="system" /&gt;
+        &lt;/trust-anchors&gt;
+    &lt;/base-config&gt;
+
+    &lt;domain-config&gt;
+        &lt;domain includeSubdomains="true"&gt;api.example.com&lt;/domain&gt;
+        &lt;pin-set expiration="2027-01-01"&gt;
+            &lt;pin digest="SHA-256"&gt;7HIpactkIAq2Y49orFOOQKurWxmmSFZhBCoQYcRhJ3Y=&lt;/pin&gt;
+            &lt;pin digest="SHA-256"&gt;fwza0LRMXouZHRC8Ei+4PyuldPDcf3UKgO/04cDM1oE=&lt;/pin&gt;  &lt;!-- backup key --&gt;
+        &lt;/pin-set&gt;
+    &lt;/domain-config&gt;
+
+    &lt;!-- Applies only to debuggable builds, e.g. to inspect traffic with a debugging proxy --&gt;
+    &lt;debug-overrides&gt;
+        &lt;trust-anchors&gt;
+            &lt;certificates src="user" /&gt;
+        &lt;/trust-anchors&gt;
+    &lt;/debug-overrides&gt;
+&lt;/network-security-config&gt;</code></div>
+                    <p>The pin values above are the placeholder examples from Android's documentation; real pins are the Base64 SHA-256 hash of your server's public key.</p>
+                </div>
+            </div>
+
             <div class="sections" id="data-storage">
                 <h4 class="heading">Data Storage &amp; Keystore</h4>
                 <div class="content">
@@ -327,6 +920,142 @@ adb shell "run-as com.example.app sqlite3 databases/app.db '.tables'"</code></di
                         <li><b>EncryptedSharedPreferences :</b> SharedPreferences with keys and values encrypted using a Keystore-backed key (Jetpack Security).</li>
                         <li><b>EncryptedFile :</b> the same idea for files.</li>
                         <li><b>Rule of thumb :</b> keep secrets out of plain SharedPreferences, logs, and external storage. Hard-coded keys in the APK can be extracted by decompiling (see <a href="#app-dev">App Development &amp; APK</a>).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="debugging">
+                <h4 class="heading">Debugging &amp; Testing</h4>
+                <div class="content">
+                    <h6>Logcat</h6>
+                    <ul class="justify">
+                        <li><b>Levels :</b> <code>V</code> verbose, <code>D</code> debug, <code>I</code> info, <code>W</code> warning, <code>E</code> error, <code>A</code> assert, written with <code>Log.d(TAG, "message")</code>.</li>
+                        <li><b>Never Log Secrets :</b> logs can be read over ADB and by bug reports; strip debug logs from release builds.</li>
+                    </ul>
+                    <div class="code-box code-box-color"><code>adb logcat -s MyTag:D                                    # only one tag, debug and above
+adb logcat *:E                                           # errors from everything
+adb logcat --pid=$(adb shell pidof com.example.app)      # one app's process
+adb logcat -c                                            # clear the buffer</code></div>
+                    <h6>More ADB Commands</h6>
+                    <div class="code-box code-box-color"><code>adb install -r app.apk                                   # reinstall, keeping data
+adb shell am force-stop com.example.app                  # stop the app
+adb shell pm clear com.example.app                       # wipe the app's data (cannot be undone)
+adb shell pm grant com.example.app android.permission.CAMERA   # grant a runtime permission
+adb shell dumpsys activity activities                    # activity back stacks
+adb exec-out screencap -p &gt; screen.png                   # screenshot to the computer
+adb shell screenrecord /sdcard/demo.mp4                  # record the screen
+adb bugreport bugreport.zip                              # full diagnostic report
+adb pair 192.168.1.20:37099                              # wireless debugging pairing (Android 11+)</code></div>
+                    <h6>Android Studio Tools</h6>
+                    <ul class="justify">
+                        <li><b>Debugger :</b> breakpoints, stepping, and expression evaluation on a device or emulator.</li>
+                        <li><b>Layout Inspector :</b> examine the live view or Compose hierarchy.</li>
+                        <li><b>Profilers :</b> CPU, memory, network, and energy usage.</li>
+                        <li><b>App Inspection :</b> browse and query the app's Room / SQLite databases, and view background work, on a running device.</li>
+                        <li><b>LeakCanary :</b> a library that detects memory leaks in debug builds.</li>
+                        <li><b>StrictMode :</b> flags disk and network access on the main thread during development.</li>
+                    </ul>
+                    <h6>Testing</h6>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Location</th>
+                                    <th>Tools</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Local unit tests</td>
+                                    <td><code>src/test/</code>, run on the JVM</td>
+                                    <td>JUnit, MockK / Mockito, Robolectric</td>
+                                </tr>
+                                <tr>
+                                    <td>Instrumented tests</td>
+                                    <td><code>src/androidTest/</code>, run on a device</td>
+                                    <td>AndroidX Test, Espresso (Views), Compose UI testing</td>
+                                </tr>
+                                <tr>
+                                    <td>Cross-app UI tests</td>
+                                    <td>device</td>
+                                    <td>UI Automator (system dialogs, notifications, other apps)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="code-box code-box-color"><code>./gradlew test                     # local unit tests
+./gradlew connectedAndroidTest     # instrumented tests on a connected device</code></div>
+                </div>
+            </div>
+
+            <div class="sections" id="app-security">
+                <h4 class="heading">App Security Checklist</h4>
+                <div class="content">
+                    <p>The <b>OWASP MASVS</b> (Mobile Application Security Verification Standard) defines what a secure mobile app must do; the <b>MASTG</b> (testing guide) explains how to verify each requirement.</p>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>MASVS Category</th>
+                                    <th>Covers</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>MASVS-STORAGE</td>
+                                    <td>sensitive data stored on the device</td>
+                                </tr>
+                                <tr>
+                                    <td>MASVS-CRYPTO</td>
+                                    <td>correct use of cryptography and keys</td>
+                                </tr>
+                                <tr>
+                                    <td>MASVS-AUTH</td>
+                                    <td>authentication and session handling</td>
+                                </tr>
+                                <tr>
+                                    <td>MASVS-NETWORK</td>
+                                    <td>secure network communication</td>
+                                </tr>
+                                <tr>
+                                    <td>MASVS-PLATFORM</td>
+                                    <td>safe use of platform features (IPC, WebViews, permissions)</td>
+                                </tr>
+                                <tr>
+                                    <td>MASVS-CODE</td>
+                                    <td>code quality, dependencies, and updates</td>
+                                </tr>
+                                <tr>
+                                    <td>MASVS-RESILIENCE</td>
+                                    <td>resistance to tampering and reverse engineering</td>
+                                </tr>
+                                <tr>
+                                    <td>MASVS-PRIVACY</td>
+                                    <td>user privacy and data minimization</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h5>Hardening Checklist</h5>
+                    <ul class="justify">
+                        <li><b>No Secrets in the APK :</b> API keys and passwords in code or <code>strings.xml</code> can be extracted by decompiling. Keep them on a backend, and protect on-device keys with the Android Keystore.</li>
+                        <li><b>Release Builds :</b> never ship a debuggable build; make sure <code>android:debuggable</code> is not set to <code>true</code>.</li>
+                        <li><b>Backups :</b> set <code>android:allowBackup="false"</code>, or exclude sensitive files with <code>dataExtractionRules</code> (Android 12+).</li>
+                        <li><b>Components :</b> set <code>android:exported</code> explicitly, protect exported components with signature permissions, and validate every intent extra and deep-link parameter.</li>
+                        <li><b>PendingIntents :</b> use <code>FLAG_IMMUTABLE</code> unless the receiver truly needs to modify the intent.</li>
+                        <li><b>WebViews :</b> keep JavaScript off unless needed, load only HTTPS content you control, never expose <code>addJavascriptInterface</code> to untrusted pages, and keep file access disabled.</li>
+                        <li><b>Content Providers :</b> keep them unexported or permission-protected, and pass user input through <code>selectionArgs</code> instead of building SQL strings.</li>
+                        <li><b>Network :</b> HTTPS only, no cleartext exceptions in release, and certificate pinning for high-risk apps.</li>
+                        <li><b>Logging :</b> no tokens or personal data in logs; strip debug logging from release builds.</li>
+                        <li><b>Sensitive Screens :</b> <code>FLAG_SECURE</code> blocks screenshots, screen recording, and the preview in the recent-apps screen.</li>
+                        <li><b>Integrity :</b> check Play Integrity API verdicts on your server, never only on the device, since on-device checks can be bypassed.</li>
+                    </ul>
+                    <h6>Review Tools (for your own apps)</h6>
+                    <ul class="justify">
+                        <li><b>Android Lint :</b> built-in security checks (<code>./gradlew lint</code>).</li>
+                        <li><b>MobSF :</b> automated static and dynamic analysis of an APK.</li>
+                        <li><b>jadx / apktool :</b> inspect what your release build actually exposes (see <a href="#app-dev">App Development &amp; APK</a>).</li>
                     </ul>
                 </div>
             </div>
@@ -468,6 +1197,13 @@ adb shell "run-as com.example.app sqlite3 databases/app.db '.tables'"</code></di
                         <li>Proprietary Google apps & APIs on top of Android</li>
                         <li><b>Includes:</b> Play Store, Play Services, Firebase, FCM, Play Integrity API, Maps, Gmail, YouTube</li>
                     </ul>
+                    <h6>Services for Developers</h6>
+                    <ul class="justify">
+                        <li><b>Play Integrity API :</b> returns signed verdicts about whether the request comes from your genuine app, installed from Google Play, on a genuine certified device. It replaced the SafetyNet Attestation API. Verify the verdict on your server.</li>
+                        <li><b>Firebase Cloud Messaging (FCM) :</b> push messages to devices, delivered through Google Play services' single persistent connection to save battery.</li>
+                        <li><b>Play Console :</b> internal, closed, and open testing tracks, staged rollouts to a percentage of users, crash and ANR reports (Android vitals), and pre-launch testing.</li>
+                        <li><b>Devices without GMS :</b> AOSP-based devices without Google services (e.g. Huawei devices use HMS) need alternatives for push, maps, and integrity checks.</li>
+                    </ul>
                 </div>
             </div>
 
@@ -479,6 +1215,15 @@ adb shell "run-as com.example.app sqlite3 databases/app.db '.tables'"</code></di
                         <li>Pure AOSP implementation for Project Treble devices (Android 8.0+)</li>
                         <li>A system image with unmodified AOSP code (no OEM customizations)</li>
                         <li><b>Used for:</b> testing, pentesting, device validation</li>
+                    </ul>
+                    <h5>System Updates &amp; Modularity</h5>
+                    <ul class="justify">
+                        <li><b>Project Treble (Android 8) :</b> a stable vendor interface separates the Android framework from device-specific vendor code (HALs), so the OS can be updated without the chip vendor rebuilding everything. It is also what makes GSIs possible.</li>
+                        <li><b>Project Mainline (Android 10) :</b> core system components (media codecs, DNS resolver, permission controller, and more) ship as APEX and APK modules updated through Google Play, between full OS updates.</li>
+                        <li><b>A/B (Seamless) Updates :</b> partitions come in two slots (<code>_a</code> and <code>_b</code>); the update installs to the inactive slot while the phone is in use, and a failed update rolls back automatically. Virtual A/B (Android 11) uses snapshots to save space.</li>
+                        <li><b>Dynamic Partitions (Android 10) :</b> <code>system</code>, <code>vendor</code>, and <code>product</code> live as resizable logical partitions inside one <code>super</code> partition.</li>
+                        <li><b>Generic Kernel Image (GKI) :</b> since Android 12, devices use a common Google-maintained kernel, with vendor-specific code moved into loadable modules.</li>
+                        <li><b>Security Patch Level :</b> Google publishes a monthly Android Security Bulletin, and devices report the patch level they include (Settings &gt; About phone).</li>
                     </ul>
                 </div>
             </div>

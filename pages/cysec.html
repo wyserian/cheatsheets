@@ -57,7 +57,7 @@
                         </li>
                         <li>
                             <h6>Standards</h6>
-                            <p>Standards are often used by government teams to provide a framework to introduce policies and procedures in support of regulations. For example, the International Organization for Standardization (ISO) develops and publishes international standards on a variety of technical subjects, including information systems and information security. And another is the National Institute of Standards and Technology (NIST), a United States government agency.</p>
+                            <p>Standards are published by standards bodies and give organizations a measurable baseline of controls for meeting regulations and building policies. For example, the International Organization for Standardization (ISO) develops and publishes international standards on a variety of technical subjects, including information systems and information security. And another is the National Institute of Standards and Technology (NIST), a United States government agency.</p>
                         </li>
                         <li>
                             <h6>Policies</h6>
@@ -69,6 +69,72 @@
                         </li>
                     </ul>
                     <p>When leaders and management implement the systems and structure that the organization will use to achieve its goals, they are guided by laws and regulations created by the government to enact public policy. Laws and regulations guide the development of standards that cultivate policies that result in procedures.</p>
+                    <h6>Governance Hierarchy</h6>
+                    <div class="code-box code-box-color"><code>Laws &amp; Regulations   mandatory, set by governments (GDPR, HIPAA)
+   -&gt; Standards       measurable requirements (ISO 27001, PCI DSS)
+      -&gt; Policies      what the organization requires (approved by management)
+         -&gt; Procedures  step-by-step how to do it
+            + Guidelines  recommended practice (optional)
+            + Baselines   minimum secure configuration for each system</code></div>
+                    <h5>Common Frameworks, Standards &amp; Regulations</h5>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Type</th>
+                                    <th>Focus</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>GDPR (EU)</td>
+                                    <td>regulation</td>
+                                    <td>personal data of people in the EU; fines up to &euro;20 million or 4% of global annual turnover</td>
+                                </tr>
+                                <tr>
+                                    <td>DPDP Act 2023 (India)</td>
+                                    <td>regulation</td>
+                                    <td>processing of digital personal data, consent, and data-principal rights</td>
+                                </tr>
+                                <tr>
+                                    <td>HIPAA (US)</td>
+                                    <td>regulation</td>
+                                    <td>protected health information</td>
+                                </tr>
+                                <tr>
+                                    <td>PCI DSS 4.x</td>
+                                    <td>industry standard</td>
+                                    <td>systems that store, process, or transmit payment card data</td>
+                                </tr>
+                                <tr>
+                                    <td>ISO/IEC 27001</td>
+                                    <td>international standard</td>
+                                    <td>certifiable Information Security Management System (ISMS); ISO/IEC 27002:2022 lists 93 controls in 4 themes (organizational, people, physical, technological)</td>
+                                </tr>
+                                <tr>
+                                    <td>NIST CSF 2.0</td>
+                                    <td>framework</td>
+                                    <td>six functions: Govern, Identify, Protect, Detect, Respond, Recover</td>
+                                </tr>
+                                <tr>
+                                    <td>NIST SP 800-53</td>
+                                    <td>control catalogue</td>
+                                    <td>security and privacy controls, mandatory for US federal systems</td>
+                                </tr>
+                                <tr>
+                                    <td>CIS Controls v8.1</td>
+                                    <td>framework</td>
+                                    <td>18 prioritized control groups, split into implementation groups IG1 to IG3</td>
+                                </tr>
+                                <tr>
+                                    <td>SOC 2</td>
+                                    <td>audit report</td>
+                                    <td>Trust Services Criteria: security, availability, processing integrity, confidentiality, privacy</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
@@ -93,6 +159,81 @@
                     </ul>
                     <h6>Redundancy</h6>
                     <p>Redundancy refers to the practice of implementing backup systems, processes, or components to ensure that critical functions continue to operate smoothly in the event of failures, attacks, or disasters. By incorporating redundant systems, data storage, and network paths, organizations can reduce the risk of downtime, data loss, and service interruptions caused by system failures, cyberattacks, or other disruptions.</p>
+                    <h5>Risk Assessment</h5>
+                    <ul class="justify">
+                        <li><b>Risk :</b> <code>Risk = Likelihood &times; Impact</code>, usually plotted on a 5 &times; 5 risk matrix.</li>
+                        <li><b>Qualitative :</b> ratings such as low, medium, high; fast and common.</li>
+                        <li><b>Quantitative :</b> puts a monetary value on risk, using the formulas below.</li>
+                        <li><b>Risk Register :</b> the record of each risk, its owner, rating, treatment, and residual risk.</li>
+                        <li><b>Risk Appetite / Tolerance :</b> how much risk the organization is willing to accept overall / per area.</li>
+                    </ul>
+                    <div class="code-box code-box-color"><code>SLE = Asset Value (AV) x Exposure Factor (EF)        single loss expectancy
+ALE = SLE x Annual Rate of Occurrence (ARO)          annualized loss expectancy
+
+Example: server worth $100,000, a fire would destroy 40% of it, expected once every 2 years
+SLE = 100,000 x 0.40 = $40,000
+ALE = 40,000 x 0.5   = $20,000 per year  -&gt; a control costing less than this is worth it</code></div>
+                    <h6>Risk Treatment</h6>
+                    <ul class="justify">
+                        <li><b>Mitigate (Reduce) :</b> apply controls such as patching, MFA, or encryption.</li>
+                        <li><b>Transfer (Share) :</b> move the financial impact to a third party, e.g. cyber insurance or outsourcing.</li>
+                        <li><b>Avoid :</b> stop the risky activity altogether.</li>
+                        <li><b>Accept :</b> formally accept the risk when treatment costs more than the expected loss. What remains after treatment is the <b>residual risk</b>.</li>
+                    </ul>
+                    <h6>Vulnerability Severity (CVSS)</h6>
+                    <p>The Common Vulnerability Scoring System rates vulnerabilities from 0.0 to 10.0 (current version 4.0, with 3.1 still widely used). A vector string records each metric, e.g. <code>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H</code> = 9.8: network attack vector, low complexity, no privileges, no user interaction, high impact on confidentiality, integrity, and availability.</p>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Score</th>
+                                    <th>Severity</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center">
+                                <tr>
+                                    <td>0.0</td>
+                                    <td>None</td>
+                                </tr>
+                                <tr>
+                                    <td>0.1 - 3.9</td>
+                                    <td>Low</td>
+                                </tr>
+                                <tr>
+                                    <td>4.0 - 6.9</td>
+                                    <td>Medium</td>
+                                </tr>
+                                <tr>
+                                    <td>7.0 - 8.9</td>
+                                    <td>High</td>
+                                </tr>
+                                <tr>
+                                    <td>9.0 - 10.0</td>
+                                    <td>Critical</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h5>Incident Response Lifecycle (NIST SP 800-61)</h5>
+                    <ol class="justify">
+                        <li><b>Preparation :</b> IR plan, roles, contact lists, tools, logging, and practice exercises.</li>
+                        <li><b>Detection &amp; Analysis :</b> identify the incident from alerts and logs, determine its scope, and prioritize it.</li>
+                        <li><b>Containment, Eradication &amp; Recovery :</b> isolate affected systems (short-term, then long-term containment), remove the cause, then restore and monitor.</li>
+                        <li><b>Post-Incident Activity :</b> lessons learned, root-cause analysis, and improvements to controls and the plan.</li>
+                    </ol>
+                    <p>Revision 3 of SP 800-61 (2025) maps these activities onto the NIST CSF 2.0 functions. The SANS model splits the same work into six steps: Preparation, Identification, Containment, Eradication, Recovery, Lessons Learned.</p>
+                    <ul class="justify">
+                        <li><b>Evidence Handling :</b> preserve evidence with a documented <b>chain of custody</b> and hashes of collected images.</li>
+                        <li><b>Order of Volatility (RFC 3227) :</b> collect the most short-lived data first: CPU registers and cache, then memory, network connections and running processes, disk, and finally backups and archives.</li>
+                    </ul>
+                    <h6>Continuity Metrics</h6>
+                    <ul class="justify">
+                        <li><b>RTO (Recovery Time Objective) :</b> the maximum acceptable downtime before service must be restored.</li>
+                        <li><b>RPO (Recovery Point Objective) :</b> the maximum acceptable data loss, measured in time since the last good backup.</li>
+                        <li><b>MTD (Maximum Tolerable Downtime) :</b> the point after which the outage threatens the business itself.</li>
+                        <li><b>BCP vs DRP :</b> the Business Continuity Plan keeps the business running; the Disaster Recovery Plan restores IT systems.</li>
+                        <li><b>3-2-1 Backup Rule :</b> 3 copies of data, on 2 different media, with 1 off-site. Against ransomware, extend it to 3-2-1-1-0: 1 offline or immutable copy and 0 errors in restore tests.</li>
+                    </ul>
                 </div>
             </div>
 
@@ -122,6 +263,46 @@
                             <p>Non-repudiation ensures that a party cannot deny the authenticity of their actions, such as sending a message or signing a document. It provides proof of origin and delivery, ensuring accountability. It is achieved using digital signatures, audit logs, message receipts, and secure time stamping.</p>
                         </li>
                     </ul>
+                    <h6>Threats &amp; Controls per Principle</h6>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Principle</th>
+                                    <th>Threats</th>
+                                    <th>Technical Controls</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Confidentiality</td>
+                                    <td>eavesdropping, data leaks, stolen credentials</td>
+                                    <td>encryption (AES, TLS), access control, MFA, DLP</td>
+                                </tr>
+                                <tr>
+                                    <td>Integrity</td>
+                                    <td>tampering, MitM, unauthorized changes</td>
+                                    <td>hashing, HMAC, digital signatures, file integrity monitoring</td>
+                                </tr>
+                                <tr>
+                                    <td>Availability</td>
+                                    <td>DDoS, hardware failure, ransomware</td>
+                                    <td>redundancy, load balancing, backups, DDoS protection</td>
+                                </tr>
+                                <tr>
+                                    <td>Authenticity</td>
+                                    <td>spoofing, impersonation</td>
+                                    <td>certificates, digital signatures, strong authentication</td>
+                                </tr>
+                                <tr>
+                                    <td>Non-Repudiation</td>
+                                    <td>denying an action took place</td>
+                                    <td>digital signatures, tamper-evident audit logs, trusted timestamps</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p><b>DAD Triad :</b> the attacker's opposite of CIA: <b>D</b>isclosure (breaks confidentiality), <b>A</b>lteration (breaks integrity), and <b>D</b>estruction or denial (breaks availability).</p>
                 </div>
             </div>
 
@@ -426,6 +607,21 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
                         <li><b>Continuous Monitoring and Validation :</b> Security controls are constantly evaluated, and access rights are continuously reassessed to ensure they are still appropriate based on the context (e.g., location, device, role, behavior). This helps in identifying and mitigating anomalies.</li>
                         <li><b>Multi-Factor Authentication (MFA) :</b> Strong authentication mechanisms are implemented to ensure that only authorized users and devices can access critical resources. MFA requires multiple forms of identity verification, such as passwords and biometrics or tokens.</li>
                     </ul>
+                    <h5>Formal Security Models</h5>
+                    <ul class="justify">
+                        <li><b>Bell-LaPadula (Confidentiality) :</b> "no read up, no write down": a subject cannot read data above its clearance or write data to a lower level, which prevents leaks. Used in military MAC systems.</li>
+                        <li><b>Biba (Integrity) :</b> "no read down, no write up": a subject cannot read less trustworthy data or write to more trustworthy data, which prevents corruption.</li>
+                        <li><b>Clark-Wilson (Integrity) :</b> data is changed only through well-formed, audited transactions, with separation of duties between users.</li>
+                    </ul>
+                    <h6>Access Control Principles</h6>
+                    <ul class="justify">
+                        <li><b>Least Privilege :</b> the minimum access needed for the task.</li>
+                        <li><b>Need to Know :</b> access to specific data only when the job requires it, even with the right clearance.</li>
+                        <li><b>Separation of Duties :</b> no single person can complete a sensitive process alone (e.g. one creates a payment, another approves it).</li>
+                        <li><b>Job Rotation &amp; Mandatory Vacation :</b> help uncover fraud that depends on one person staying in a role.</li>
+                        <li><b>Privileged Access Management (PAM) :</b> admin credentials kept in a vault, granted just-in-time and just-enough, with sessions recorded.</li>
+                        <li><b>ACL vs Capability :</b> an Access Control List is attached to the object (who may access this file); a capability is held by the subject (a token proving it may access something).</li>
+                    </ul>
                 </div>
             </div>
 
@@ -455,6 +651,91 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
                             <p>Public Key Infrastructure (PKI) is a framework that manages digital keys and certificates, enabling secure communication and data exchange over untrusted networks (like the internet). PKI ensures that public keys are properly distributed, authenticated, and managed so that secure transactions and communications can occur between parties.</p>
                         </li>
                     </ul>
+                    <h5>Cryptographic Principles</h5>
+                    <ul class="justify">
+                        <li><b>Kerckhoffs's Principle :</b> a system must stay secure even if everything except the key is public. Never rely on a secret algorithm.</li>
+                        <li><b>Randomness :</b> keys, IVs, and nonces must come from a cryptographically secure random generator (<code>/dev/urandom</code>, <code>getrandom()</code>, <code>crypto.getRandomValues()</code>), never <code>Math.random()</code>.</li>
+                        <li><b>Don't Roll Your Own :</b> use vetted libraries (libsodium, OpenSSL, the platform crypto APIs) rather than implementing algorithms yourself.</li>
+                    </ul>
+                    <h6>Equivalent Key Strengths (NIST SP 800-57)</h6>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Security Level</th>
+                                    <th>Symmetric</th>
+                                    <th>RSA / DH</th>
+                                    <th>Elliptic Curve</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center">
+                                <tr>
+                                    <td>128-bit</td>
+                                    <td>AES-128</td>
+                                    <td>3072-bit</td>
+                                    <td>256-bit (P-256, X25519)</td>
+                                </tr>
+                                <tr>
+                                    <td>192-bit</td>
+                                    <td>AES-192</td>
+                                    <td>7680-bit</td>
+                                    <td>384-bit (P-384)</td>
+                                </tr>
+                                <tr>
+                                    <td>256-bit</td>
+                                    <td>AES-256</td>
+                                    <td>15360-bit</td>
+                                    <td>512-bit (P-521)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h6>Recommended vs Deprecated</h6>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Purpose</th>
+                                    <th>Use</th>
+                                    <th>Avoid</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Symmetric encryption</td>
+                                    <td>AES-GCM, ChaCha20-Poly1305</td>
+                                    <td>DES, 3DES, RC4, any cipher in ECB mode</td>
+                                </tr>
+                                <tr>
+                                    <td>Key exchange</td>
+                                    <td>ECDHE (X25519), hybrid X25519 + ML-KEM</td>
+                                    <td>static RSA key exchange, small DH groups</td>
+                                </tr>
+                                <tr>
+                                    <td>Signatures</td>
+                                    <td>Ed25519, ECDSA P-256, RSA-PSS (3072+)</td>
+                                    <td>RSA-1024, DSA</td>
+                                </tr>
+                                <tr>
+                                    <td>Hashing</td>
+                                    <td>SHA-256, SHA-384, SHA-3, BLAKE2</td>
+                                    <td>MD5, SHA-1</td>
+                                </tr>
+                                <tr>
+                                    <td>Password storage</td>
+                                    <td>Argon2id, scrypt, bcrypt</td>
+                                    <td>plain or fast hashes (MD5, SHA-256 alone)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h6>Post-Quantum Cryptography</h6>
+                    <ul class="justify">
+                        <li><b>The Threat :</b> a large quantum computer running Shor's algorithm would break RSA, DH, and elliptic-curve cryptography. Grover's algorithm only halves symmetric strength, so AES-256 stays safe.</li>
+                        <li><b>Harvest Now, Decrypt Later :</b> encrypted traffic recorded today could be decrypted in the future, which is why migration has already started.</li>
+                        <li><b>NIST Standards (2024) :</b> FIPS 203 <b>ML-KEM</b> (from Kyber) for key exchange, FIPS 204 <b>ML-DSA</b> (from Dilithium) and FIPS 205 <b>SLH-DSA</b> (from SPHINCS+) for signatures.</li>
+                        <li><b>Hybrid Deployment :</b> TLS already combines a classical and a post-quantum algorithm (e.g. <code>X25519MLKEM768</code>), so the connection stays secure if either one holds.</li>
+                    </ul>
                 </div>
             </div>
 
@@ -469,9 +750,67 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
                     </ul>
                     <h6>Types of Encryption</h6>
                     <ul class="justify">
-                        <li><b>Symmetric Encryption :</b> In symmetric encryption, the same key is used for both encryption and decryption processes. Example: AES (Advanced Encryption Standard) and DES (Data Encryption Standard)</li>
+                        <li><b>Symmetric Encryption :</b> In symmetric encryption, the same key is used for both encryption and decryption processes. Example: AES (Advanced Encryption Standard) and ChaCha20. DES and 3DES are obsolete and must not be used.</li>
                         <li><b>Asymmetric Encryption :</b> In asymmetric encryption, different keys are used for encryption and decryption: a public key for encryption and a private key for decryption. Asymmetric encryption is also known as public key cryptography (PKC). Example: RSA (Rivest-Shamir-Adleman)</li>
                     </ul>
+                    <h5>Symmetric Encryption in Detail</h5>
+                    <ul class="justify">
+                        <li><b>Block vs Stream Ciphers :</b> a block cipher encrypts fixed-size blocks (AES: 128-bit blocks, 128/192/256-bit keys, 10/12/14 rounds); a stream cipher (ChaCha20) combines the data with a keystream.</li>
+                        <li><b>AEAD (Authenticated Encryption) :</b> modes like AES-GCM and ChaCha20-Poly1305 provide confidentiality <i>and</i> integrity in one step, adding an authentication tag that detects any tampering.</li>
+                        <li><b>Nonce / IV :</b> must be unique for every message under the same key. Reusing a nonce with AES-GCM breaks both confidentiality and authentication.</li>
+                    </ul>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Mode</th>
+                                    <th>How It Works</th>
+                                    <th>Verdict</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ECB</td>
+                                    <td>each block encrypted independently, so identical blocks give identical ciphertext and patterns leak</td>
+                                    <td>never use</td>
+                                </tr>
+                                <tr>
+                                    <td>CBC</td>
+                                    <td>each block is XORed with the previous ciphertext block; needs a random IV and padding</td>
+                                    <td>legacy; needs a separate MAC (padding-oracle risk)</td>
+                                </tr>
+                                <tr>
+                                    <td>CTR</td>
+                                    <td>encrypts a counter to make a keystream; parallel, no padding</td>
+                                    <td>OK, but no integrity on its own</td>
+                                </tr>
+                                <tr>
+                                    <td>GCM</td>
+                                    <td>CTR mode plus a GHASH authentication tag (AEAD)</td>
+                                    <td>recommended (TLS standard)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h5>Asymmetric Encryption in Detail</h5>
+                    <ul class="justify">
+                        <li><b>Hybrid Encryption :</b> asymmetric cryptography is slow, so it is used only to exchange or wrap a random symmetric key; the data itself is encrypted with that key (TLS, PGP, age).</li>
+                        <li><b>Key Exchange (Diffie-Hellman / ECDHE) :</b> both sides combine their private key with the other's public key to derive the same shared secret, which is never sent. Using fresh (ephemeral) keys per session gives forward secrecy.</li>
+                        <li><b>RSA :</b> security rests on the difficulty of factoring large numbers; use 3072-bit or larger keys with OAEP padding for encryption.</li>
+                        <li><b>Elliptic Curves :</b> much smaller keys for the same strength (X25519 for key exchange, Ed25519 / P-256 for signatures).</li>
+                    </ul>
+                    <h6>Data States</h6>
+                    <ul class="justify">
+                        <li><b>At Rest :</b> disk and database encryption (BitLocker, LUKS, Transparent Data Encryption).</li>
+                        <li><b>In Transit :</b> TLS, SSH, VPNs.</li>
+                        <li><b>In Use :</b> data being processed, protected by Trusted Execution Environments (confidential computing).</li>
+                        <li><b>Envelope Encryption :</b> data is encrypted with a data key (DEK), and the DEK is encrypted with a master key (KEK) kept in a KMS or HSM, so the master key never touches the data.</li>
+                    </ul>
+                    <div class="code-box code-box-color"><code>openssl rand -hex 32                                           # 256-bit random key
+openssl enc -aes-256-cbc -pbkdf2 -salt -in file.txt -out file.enc
+openssl enc -d -aes-256-cbc -pbkdf2 -in file.enc -out file.txt
+openssl genpkey -algorithm ed25519 -out key.pem                 # asymmetric key pair
+# openssl enc has no AEAD modes; for files prefer a tool like age or GPG</code></div>
                 </div>
             </div>
 
@@ -483,14 +822,101 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
                         <li>The key property of a hash function is that it produces a fixed-size output for any size of input.</li>
                         <li>The same input will always produce the same hash value, and even a tiny change in input will generate drastically different hash values.</li>
                         <li>The hash is irreversible, that is, a one-way operation; one cannot reverse the process to retrieve the original input data from the hash value.</li>
-                        <li>Example: MD5 (Message Digest Algorithm) and SHA (Secure Hash Algorithm).</li>
+                        <li>Example: SHA-256 and SHA-3 (Secure Hash Algorithms). MD5 and SHA-1 are broken for security use.</li>
                     </ul>
                     <h5>Checksum</h5>
                     <p>A checksum is a small-sized piece of data generated from a larger set of data, used for error detection in data transmission and storage. When the data is transmitted or stored, the checksum is sent or saved alongside it. A checksum is computed by applying a mathematical algorithm (e.g., CRC32, MD5, SHA-1) to the data. Checksum is used in error detection in file transfers, storage, and network protocols (e.g., CRC checks in network protocols like Ethernet or ZIP file integrity).</p>
                     <ul class="justify">
                         <li>Checksums are fast and efficient for detecting accidental data corruption but are not designed for security purposes; they don't provide a high level of protection against malicious tampering.</li>
-                        <li>For data integrity and colision resistance, more robust and secure hashes are used.</li>
+                        <li>For data integrity and collision resistance, more robust and secure hashes are used.</li>
                     </ul>
+                    <h5>Hash Function Properties</h5>
+                    <ul class="justify">
+                        <li><b>Preimage Resistance :</b> given a hash, it is infeasible to find any input that produces it.</li>
+                        <li><b>Second-Preimage Resistance :</b> given an input, it is infeasible to find a different input with the same hash.</li>
+                        <li><b>Collision Resistance :</b> it is infeasible to find any two inputs with the same hash. Because of the birthday paradox, an n-bit hash offers only about n/2 bits of collision resistance.</li>
+                        <li><b>Avalanche Effect :</b> changing one input bit changes about half of the output bits.</li>
+                    </ul>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Algorithm</th>
+                                    <th>Output</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>MD5</td>
+                                    <td>128-bit</td>
+                                    <td>broken: collisions can be generated in seconds; checksums only</td>
+                                </tr>
+                                <tr>
+                                    <td>SHA-1</td>
+                                    <td>160-bit</td>
+                                    <td>broken: practical collision shown in 2017 (SHAttered)</td>
+                                </tr>
+                                <tr>
+                                    <td>SHA-256 / SHA-512 (SHA-2)</td>
+                                    <td>256 / 512-bit</td>
+                                    <td>secure; the most widely used</td>
+                                </tr>
+                                <tr>
+                                    <td>SHA-3 (Keccak)</td>
+                                    <td>224 to 512-bit</td>
+                                    <td>secure; a different internal design (sponge) from SHA-2</td>
+                                </tr>
+                                <tr>
+                                    <td>BLAKE2 / BLAKE3</td>
+                                    <td>variable</td>
+                                    <td>secure and very fast</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h5>Password Hashing</h5>
+                    <p>Fast hashes like SHA-256 let attackers test billions of guesses per second on GPUs. Passwords need deliberately slow, salted functions.</p>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Algorithm</th>
+                                    <th>Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Argon2id</td>
+                                    <td>recommended first choice; memory-hard, which resists GPU and ASIC cracking</td>
+                                </tr>
+                                <tr>
+                                    <td>scrypt</td>
+                                    <td>memory-hard; good alternative</td>
+                                </tr>
+                                <tr>
+                                    <td>bcrypt</td>
+                                    <td>widely supported; input is limited to 72 bytes</td>
+                                </tr>
+                                <tr>
+                                    <td>PBKDF2</td>
+                                    <td>FIPS-approved; needs a very high iteration count (OWASP: 600,000 with HMAC-SHA256)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <ul class="justify">
+                        <li><b>Salt :</b> a unique random value stored with each hash, so identical passwords get different hashes and precomputed rainbow tables are useless.</li>
+                        <li><b>Pepper :</b> an extra secret kept outside the database (e.g. in an HSM or config), so a stolen database alone is not enough.</li>
+                        <li><b>HMAC :</b> a keyed hash (e.g. HMAC-SHA256) proving integrity <i>and</i> that the sender knows the key. Never build a MAC as <code>hash(secret + message)</code>: MD5, SHA-1, and SHA-2 are vulnerable to length-extension attacks.</li>
+                    </ul>
+                    <div class="code-box code-box-color"><code>echo -n "hello" | sha256sum
+# 2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824  -
+
+sha256sum ubuntu.iso                  # hash a file
+sha256sum -c SHA256SUMS               # verify files against a published list
+openssl dgst -sha256 file.txt         # same with OpenSSL
+Get-FileHash file.txt -Algorithm SHA256   # PowerShell</code></div>
                 </div>
             </div>
 
@@ -511,19 +937,93 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
                             <h6>Signing Process</h6>
                             <ul class="justify">
                                 <li>The signer creates a hash (a unique digital fingerprint) of the document or message.</li>
-                                <li>This hash is encrypted using the signer's private key, forming the digital signature.</li>
+                                <li>The hash is signed with the signer's private key using a signature algorithm (RSA-PSS, ECDSA, or Ed25519), producing the digital signature. For RSA this resembles encrypting the hash, but ECDSA and Ed25519 work differently.</li>
                                 <li>The signed message (the original message along with the digital signature) is then sent to the recipient.</li>
                             </ul>
                         </li>
                         <li>
                             <h6>Verification Process</h6>
                             <ul class="justify">
-                                <li>The recipient uses the public key of the signer to decrypt the digital signature.</li>
+                                <li>The recipient runs the algorithm's <b>verify</b> operation using the signer's public key, the signature, and the message.</li>
                                 <li>The recipient also generates a hash of the original document.</li>
-                                <li>If the decrypted hash from the digital signature matches the newly generated hash, it confirms that the document has not been altered and that the signature is indeed from the rightful signer.</li>
+                                <li>If verification succeeds, the document has not been altered and was signed by the holder of the matching private key.</li>
                             </ul>
                         </li>
                     </ul>
+                    <h5>Signature Algorithms</h5>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Algorithm</th>
+                                    <th>Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>RSA-PSS</td>
+                                    <td>RSA with probabilistic padding; use 3072-bit or larger keys</td>
+                                </tr>
+                                <tr>
+                                    <td>ECDSA (P-256)</td>
+                                    <td>small and fast, but needs a unique random nonce per signature; reusing one reveals the private key</td>
+                                </tr>
+                                <tr>
+                                    <td>Ed25519</td>
+                                    <td>deterministic (no nonce to get wrong), fast, and recommended for new systems</td>
+                                </tr>
+                                <tr>
+                                    <td>ML-DSA</td>
+                                    <td>post-quantum standard (FIPS 204)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h6>Signature vs MAC vs Hash</h6>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Hash</th>
+                                    <th>MAC (HMAC)</th>
+                                    <th>Digital Signature</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center">
+                                <tr>
+                                    <td>Key</td>
+                                    <td>none</td>
+                                    <td>shared secret key</td>
+                                    <td>private key signs, public key verifies</td>
+                                </tr>
+                                <tr>
+                                    <td>Integrity</td>
+                                    <td>yes (accidental changes)</td>
+                                    <td>yes</td>
+                                    <td>yes</td>
+                                </tr>
+                                <tr>
+                                    <td>Authenticity</td>
+                                    <td>no</td>
+                                    <td>yes, among key holders</td>
+                                    <td>yes</td>
+                                </tr>
+                                <tr>
+                                    <td>Non-repudiation</td>
+                                    <td>no</td>
+                                    <td>no (both sides hold the key)</td>
+                                    <td>yes</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p><b>Where signatures are used :</b> TLS certificates, code signing (Authenticode, Android APKs), software updates, JWTs (RS256 / ES256), Git commits, DNSSEC, and email (S/MIME, DKIM).</p>
+                    <div class="code-box code-box-color"><code>openssl genpkey -algorithm ed25519 -out private.pem
+openssl pkey -in private.pem -pubout -out public.pem
+openssl pkeyutl -sign   -inkey private.pem -rawin -in doc.pdf -out doc.sig
+openssl pkeyutl -verify -pubin -inkey public.pem -rawin -in doc.pdf -sigfile doc.sig
+# Signature Verified Successfully</code></div>
                 </div>
             </div>
 
@@ -556,6 +1056,60 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
                         <li><b>Certificate Validation :</b> The client’s browser checks if the certificate is valid (signed by a trusted CA, not expired, and not revoked). If valid, a secure communication channel is established by encrypting data using the server’s public key.</li>
                         <li><b>Secure Communication :</b> The data exchanged between the client and the server is encrypted using a symmetric session key, and the public/private key pair is used for the initial secure key exchange.</li>
                     </ul>
+                    <h5>Chain of Trust</h5>
+                    <div class="code-box code-box-color"><code>Root CA            self-signed, kept offline, pre-installed in OS / browser trust stores
+  -&gt; Intermediate CA   signed by the root; signs end-entity certificates
+     -&gt; Leaf certificate  example.com, presented by the server</code></div>
+                    <ul class="justify">
+                        <li><b>Validation :</b> the client checks each signature up to a trusted root, the validity dates, that the hostname matches the <b>Subject Alternative Name</b> (the old Common Name is no longer used for matching), the key usage, and revocation status.</li>
+                        <li><b>Missing Intermediates :</b> servers must send their intermediate certificates; a missing one causes errors in clients that cannot fetch it.</li>
+                    </ul>
+                    <h6>Important X.509 v3 Extensions</h6>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Extension</th>
+                                    <th>Purpose</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Subject Alternative Name (SAN)</td>
+                                    <td>hostnames and IPs the certificate is valid for, e.g. <code>example.com</code>, <code>*.example.com</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Key Usage / Extended Key Usage</td>
+                                    <td>what the key may do: <code>digitalSignature</code>; <code>serverAuth</code>, <code>clientAuth</code>, <code>codeSigning</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Basic Constraints</td>
+                                    <td><code>CA:TRUE</code> for certificate authorities, <code>CA:FALSE</code> for leaf certificates</td>
+                                </tr>
+                                <tr>
+                                    <td>Authority / Subject Key Identifier</td>
+                                    <td>link a certificate to the key of its issuer</td>
+                                </tr>
+                                <tr>
+                                    <td>CRL Distribution Points / Authority Information Access</td>
+                                    <td>where to check revocation and download the issuer certificate</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h6>Certificate Types &amp; Lifecycle</h6>
+                    <ul class="justify">
+                        <li><b>Validation Levels :</b> DV (domain control only, automated), OV (organization verified), EV (extended verification; browsers no longer show special indicators for it).</li>
+                        <li><b>Revocation :</b> CRLs (published lists), OCSP (an online status query), and OCSP stapling (the server attaches a signed status). Let's Encrypt ended OCSP in 2025 in favor of CRLs and short-lived certificates.</li>
+                        <li><b>Lifetimes :</b> the CA/Browser Forum is shortening maximum lifetimes: 200 days since March 2026, 100 days from March 2027, and 47 days from March 2029, so renewal must be automated.</li>
+                        <li><b>ACME (RFC 8555) :</b> the protocol behind Let's Encrypt and certbot for automatic issuance and renewal, proving control of a domain with HTTP-01, DNS-01, or TLS-ALPN-01 challenges.</li>
+                        <li><b>Certificate Transparency (RFC 6962) :</b> public append-only logs of every issued certificate; browsers require proof of logging (SCTs).</li>
+                        <li><b>File Formats :</b> PEM (Base64 between <code>-----BEGIN CERTIFICATE-----</code> lines), DER (binary), PKCS#12 (<code>.p12</code> / <code>.pfx</code>, certificate plus private key), and CSR (PKCS#10 certificate signing request).</li>
+                    </ul>
+                    <div class="code-box code-box-color"><code>openssl req -new -newkey rsa:3072 -nodes -keyout example.key -out example.csr -subj "/CN=example.com"
+openssl x509 -in cert.pem -noout -subject -issuer -dates -ext subjectAltName
+openssl verify -CAfile chain.pem cert.pem
+openssl s_client -connect example.com:443 -servername example.com -showcerts</code></div>
                 </div>
             </div>
 
@@ -608,6 +1162,64 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
 
                     <h5>Honeypots</h5>
                     <p>A honeypot is a security resource or system set up to attract and deceive attackers, making it appear as though it's a vulnerable or valuable target. The purpose of a honeypot is not to serve a legitimate function but to lure cybercriminals into interacting with it so that their actions can be monitored and analyzed. This helps cybersecurity professionals gather intelligence on attackers' tactics, techniques, and procedures (TTPs), as well as distract attackers from real, critical systems.</p>
+                    <h5>Detection &amp; Response Tooling</h5>
+                    <ul class="justify">
+                        <li><b>EDR (Endpoint Detection &amp; Response) :</b> agents on endpoints record process, file, registry, and network activity, detect malicious behavior, and can isolate a host.</li>
+                        <li><b>XDR / MDR :</b> XDR correlates EDR with network, email, identity, and cloud telemetry; MDR is the same capability delivered as a managed service.</li>
+                        <li><b>SOAR :</b> automates response with playbooks, e.g. enrich an alert, block an IP, disable an account, open a ticket.</li>
+                        <li><b>Detection Approaches :</b> signature-based (known patterns, few false positives), anomaly-based (deviation from a baseline, finds new attacks but noisier), and behavior or heuristic rules.</li>
+                        <li><b>Sensor Placement :</b> an IDS listens passively on a SPAN port or network TAP; an IPS must sit inline so it can drop traffic.</li>
+                    </ul>
+                    <h6>Detection Rule Formats</h6>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Format</th>
+                                    <th>Matches</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Sigma</td>
+                                    <td>generic SIEM log rules in YAML, converted to Splunk, Sentinel, Elastic queries</td>
+                                </tr>
+                                <tr>
+                                    <td>YARA</td>
+                                    <td>patterns in files and memory, used to classify malware</td>
+                                </tr>
+                                <tr>
+                                    <td>Snort / Suricata</td>
+                                    <td>network traffic rules for IDS/IPS</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="code-box code-box-color"><code># Sigma: alert when a Windows security log is cleared
+title: Windows Security Log Cleared
+logsource:
+    product: windows
+    service: security
+detection:
+    selection:
+        EventID: 1102
+    condition: selection
+level: high</code></div>
+                    <div class="code-box code-box-color"><code># Suricata: flag HTTP requests from a known scanning tool
+alert http any any -&gt; $HOME_NET any (msg:"Scanner User-Agent"; http.user_agent; content:"sqlmap"; nocase; sid:1000001; rev:1;)</code></div>
+                    <h6>Threat Intelligence</h6>
+                    <ul class="justify">
+                        <li><b>IOC (Indicator of Compromise) :</b> evidence of a known attack: file hashes, IP addresses, domains, URLs.</li>
+                        <li><b>IOA (Indicator of Attack) :</b> behavior showing an attack in progress, regardless of the tools used (e.g. Office spawning PowerShell).</li>
+                        <li><b>Pyramid of Pain :</b> hashes and IPs are trivial for attackers to change; domains and tools are harder; detecting their TTPs (tactics, techniques, procedures) hurts them most.</li>
+                        <li><b>STIX / TAXII :</b> STIX is the standard format for sharing threat intelligence; TAXII is the protocol for exchanging it.</li>
+                    </ul>
+                    <h6>SOC Operations</h6>
+                    <ul class="justify">
+                        <li><b>Tiers :</b> L1 triages alerts, L2 investigates and responds, L3 hunts threats and handles major incidents.</li>
+                        <li><b>Metrics :</b> MTTD (mean time to detect) and MTTR (mean time to respond); alert fatigue from false positives is a key risk.</li>
+                        <li><b>Log Essentials :</b> centralize logs (syslog on UDP 514, or TCP 6514 with TLS), synchronize clocks with NTP, keep logs tamper-evident and retained per policy, and collect key sources: authentication, firewall, DNS, proxy, EDR, and cloud audit logs.</li>
+                    </ul>
                 </div>
             </div>
 
@@ -956,6 +1568,88 @@ Exfiltration         -> T1041      Exfiltration Over C2 Channel</code></div>
                     </ul>
                     <h5>Advanced Persistent Threat (APT)</h5>
                     <p>An Advanced Persistent Threat (APT) is a type of cyberattack where an unauthorized user gains prolonged and covert access to a network to steal data or surveil activity. These attacks are typically orchestrated by well-funded and highly skilled threat actors, often linked to nation-states or organized crime groups.</p>
+                    <h5>Denial-of-Service Categories</h5>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Category</th>
+                                    <th>Targets</th>
+                                    <th>Measured In</th>
+                                    <th>Mitigation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Volumetric</td>
+                                    <td>bandwidth (UDP floods, reflection/amplification via open DNS, NTP, or memcached servers)</td>
+                                    <td>bits per second (Gbps to Tbps)</td>
+                                    <td>upstream scrubbing, CDN, anycast</td>
+                                </tr>
+                                <tr>
+                                    <td>Protocol</td>
+                                    <td>connection state tables (SYN floods, fragmented packets)</td>
+                                    <td>packets per second</td>
+                                    <td>SYN cookies, firewall state limits</td>
+                                </tr>
+                                <tr>
+                                    <td>Application Layer</td>
+                                    <td>the application itself (HTTP floods, slow-request attacks)</td>
+                                    <td>requests per second</td>
+                                    <td>rate limiting, WAF, caching, autoscaling</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h5>Detection &amp; Mitigation Summary</h5>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Attack</th>
+                                    <th>Indicators</th>
+                                    <th>Mitigations</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Phishing</td>
+                                    <td>look-alike domains, urgent requests, mismatched link targets</td>
+                                    <td>email filtering with SPF/DKIM/DMARC, phishing-resistant MFA (FIDO2), user training, a report button</td>
+                                </tr>
+                                <tr>
+                                    <td>Malware / Ransomware</td>
+                                    <td>unknown processes, mass file renames, high-entropy file writes</td>
+                                    <td>EDR, application allowlisting, patching, offline or immutable backups</td>
+                                </tr>
+                                <tr>
+                                    <td>Password attacks</td>
+                                    <td>many failed logins; one IP trying many accounts (spraying)</td>
+                                    <td>MFA, rate limiting and lockout, breached-password checks, Argon2id hashing</td>
+                                </tr>
+                                <tr>
+                                    <td>MitM</td>
+                                    <td>certificate warnings, duplicate ARP replies, unexpected gateway MAC</td>
+                                    <td>TLS everywhere with HSTS, Dynamic ARP Inspection, 802.1X, VPN on public Wi-Fi</td>
+                                </tr>
+                                <tr>
+                                    <td>DNS spoofing</td>
+                                    <td>unexpected IPs for well-known domains</td>
+                                    <td>DNSSEC validation, DoH/DoT to trusted resolvers</td>
+                                </tr>
+                                <tr>
+                                    <td>Privilege escalation</td>
+                                    <td>new admin accounts, special-privilege logons (Windows event 4672)</td>
+                                    <td>least privilege, prompt patching, PAM, monitoring of privileged groups</td>
+                                </tr>
+                                <tr>
+                                    <td>APT</td>
+                                    <td>regular beaconing to rare domains, unusual lateral movement, data staging</td>
+                                    <td>segmentation, egress filtering, EDR, threat hunting mapped to MITRE ATT&amp;CK</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
@@ -1014,6 +1708,157 @@ Exfiltration         -> T1041      Exfiltration Over C2 Channel</code></div>
                             </ul>
                         </li>
                         <li><b>Out-of-Band SQLi:</b> When direct or blind injection isn’t possible, attacker uses external channels like DNS or HTTP requests to receive data (e.g., database triggers a DNS lookup to attacker’s server, leaking data externally).</li>
+                    </ul>
+                    <h5>Vulnerability Identifiers</h5>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Term</th>
+                                    <th>Meaning</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>CVE</td>
+                                    <td>a unique ID for one specific vulnerability, e.g. <code>CVE-2021-44228</code> (Log4Shell)</td>
+                                </tr>
+                                <tr>
+                                    <td>CWE</td>
+                                    <td>the type of weakness, e.g. <code>CWE-79</code> (XSS), <code>CWE-89</code> (SQL injection)</td>
+                                </tr>
+                                <tr>
+                                    <td>CVSS</td>
+                                    <td>severity score from 0.0 to 10.0 (see <a href="#risk">Risk Management</a>)</td>
+                                </tr>
+                                <tr>
+                                    <td>NVD</td>
+                                    <td>the US National Vulnerability Database, which enriches CVEs with scores and affected products</td>
+                                </tr>
+                                <tr>
+                                    <td>CISA KEV</td>
+                                    <td>catalogue of vulnerabilities known to be exploited in the wild; patch these first</td>
+                                </tr>
+                                <tr>
+                                    <td>EPSS</td>
+                                    <td>the estimated probability that a vulnerability will be exploited in the next 30 days</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h5>OWASP Top 10 (2021)</h5>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Category</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>A01</td>
+                                    <td>Broken Access Control</td>
+                                </tr>
+                                <tr>
+                                    <td>A02</td>
+                                    <td>Cryptographic Failures</td>
+                                </tr>
+                                <tr>
+                                    <td>A03</td>
+                                    <td>Injection (including XSS)</td>
+                                </tr>
+                                <tr>
+                                    <td>A04</td>
+                                    <td>Insecure Design</td>
+                                </tr>
+                                <tr>
+                                    <td>A05</td>
+                                    <td>Security Misconfiguration</td>
+                                </tr>
+                                <tr>
+                                    <td>A06</td>
+                                    <td>Vulnerable and Outdated Components</td>
+                                </tr>
+                                <tr>
+                                    <td>A07</td>
+                                    <td>Identification and Authentication Failures</td>
+                                </tr>
+                                <tr>
+                                    <td>A08</td>
+                                    <td>Software and Data Integrity Failures</td>
+                                </tr>
+                                <tr>
+                                    <td>A09</td>
+                                    <td>Security Logging and Monitoring Failures</td>
+                                </tr>
+                                <tr>
+                                    <td>A10</td>
+                                    <td>Server-Side Request Forgery (SSRF)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>Check owasp.org for the latest edition of the list.</p>
+                    <h5>Secure Coding Examples</h5>
+                    <h6>Parameterized Queries (prevent SQL injection)</h6>
+                    <div class="code-box code-box-color"><code># Vulnerable: user input becomes part of the SQL statement
+cursor.execute("SELECT * FROM users WHERE name = '" + name + "'")
+
+# Safe: the driver sends the value separately, so it is always treated as data
+cursor.execute("SELECT * FROM users WHERE name = %s", (name,))   # "?" placeholder in sqlite3</code></div>
+                    <h6>Security Headers</h6>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Header</th>
+                                    <th>Protects Against</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>Content-Security-Policy</code></td>
+                                    <td>XSS and data injection, by allowing scripts only from trusted sources</td>
+                                </tr>
+                                <tr>
+                                    <td><code>Strict-Transport-Security</code></td>
+                                    <td>SSL stripping and accidental plain-HTTP connections</td>
+                                </tr>
+                                <tr>
+                                    <td><code>X-Content-Type-Options: nosniff</code></td>
+                                    <td>browsers treating uploaded files as executable content</td>
+                                </tr>
+                                <tr>
+                                    <td><code>X-Frame-Options: DENY</code> / CSP <code>frame-ancestors</code></td>
+                                    <td>clickjacking through hidden frames</td>
+                                </tr>
+                                <tr>
+                                    <td><code>Referrer-Policy: strict-origin-when-cross-origin</code></td>
+                                    <td>leaking full URLs to other sites</td>
+                                </tr>
+                                <tr>
+                                    <td><code>Permissions-Policy</code></td>
+                                    <td>unwanted access to camera, microphone, geolocation</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="code-box code-box-color"><code>Content-Security-Policy: default-src 'self'; script-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'</code></div>
+                    <h6>SSRF Hardening</h6>
+                    <ul class="justify">
+                        <li>Allowlist the hosts the server may fetch, instead of blocking known-bad ones.</li>
+                        <li>Block private and link-local ranges, including the cloud metadata endpoint <code>169.254.169.254</code>, and check the resolved IP after DNS resolution to defeat DNS rebinding.</li>
+                        <li>On AWS, require IMDSv2, which needs a session token that a simple forged request cannot obtain.</li>
+                    </ul>
+                    <h5>Secure Development Lifecycle</h5>
+                    <ul class="justify">
+                        <li><b>Threat Modeling (STRIDE) :</b> review a design for <b>S</b>poofing, <b>T</b>ampering, <b>R</b>epudiation, <b>I</b>nformation disclosure, <b>D</b>enial of service, and <b>E</b>levation of privilege.</li>
+                        <li><b>SAST :</b> static analysis of source code for flaws (Semgrep, CodeQL).</li>
+                        <li><b>DAST :</b> testing the running application from the outside (OWASP ZAP, Burp Suite).</li>
+                        <li><b>SCA :</b> scanning third-party dependencies for known CVEs (Dependabot, Trivy).</li>
+                        <li><b>Secrets Scanning :</b> catching API keys and passwords committed to repositories (gitleaks).</li>
+                        <li><b>SBOM :</b> a Software Bill of Materials listing every component (CycloneDX, SPDX), so affected systems can be found quickly when a new CVE appears.</li>
                     </ul>
                 </div>
             </div>
