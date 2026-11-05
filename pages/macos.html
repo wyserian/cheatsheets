@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>macOS Cheatsheet</title>
+        <script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('cheatsheet-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'))}catch(e){}</script>
+
+        <!-- Bootstrap CDN -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="../assets/css/style.css?v=12">
+    </head>
+
+    <body>
+        <div class="container">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <a href="/cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
+                <button class="theme-toggle" type="button" aria-label="Toggle theme"><i class="bi bi-sun" aria-hidden="true"></i></button>
+            </div>
+
+            <h3 class="title">macOS</h3>
+
+            <div class="section-list">
+                <ul>
+                    <li><a href="#macos">macOS</a></li>
+                    <li><a href="#architecture">Architecture</a></li>
+                    <li><a href="#boot">Boot Process &amp; Startup Modes</a></li>
+                    <li><a href="#file-system">File System &amp; Paths</a></li>
+                    <li><a href="#launchd">launchd, Daemons &amp; Agents</a></li>
+                    <li><a href="#security">Security Architecture</a></li>
+                    <li><a href="#users-auth">Users, Keychain &amp; Authentication</a></li>
+                    <li><a href="#logging">Logging &amp; Diagnostics</a></li>
+                    <li><a href="#commands">Terminal Commands</a></li>
+                    <li><a href="#shortcuts">Keyboard Shortcuts</a></li>
+                    <li><a href="#management">Device Management</a></li>
+                </ul>
+            </div>
+
+            <div class="sections" id="macos">
+                <h4 class="heading">macOS</h4>
+                <div class="content">
+                    <p>macOS is Apple's desktop operating system, descended from NeXTSTEP and first released as Mac OS X in 2001. It is a certified <b>UNIX 03</b> system built on <b>Darwin</b>, the open-source core it shares with iOS (see the <a href="ios.html">iOS</a> sheet).</p>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Version</th>
+                                    <th>Year</th>
+                                    <th>Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>10.15 Catalina</td>
+                                    <td>2019</td>
+                                    <td>read-only system volume, 64-bit apps only, zsh as default shell</td>
+                                </tr>
+                                <tr>
+                                    <td>11 Big Sur</td>
+                                    <td>2020</td>
+                                    <td>Apple silicon (M1), signed system volume, version number moved past 10</td>
+                                </tr>
+                                <tr>
+                                    <td>12 Monterey / 13 Ventura</td>
+                                    <td>2021 / 2022</td>
+                                    <td>Universal Control, Shortcuts; Stage Manager, passkeys, Rapid Security Responses</td>
+                                </tr>
+                                <tr>
+                                    <td>14 Sonoma / 15 Sequoia</td>
+                                    <td>2023 / 2024</td>
+                                    <td>desktop widgets; iPhone Mirroring, Passwords app, Apple Intelligence</td>
+                                </tr>
+                                <tr>
+                                    <td>26 Tahoe</td>
+                                    <td>2025</td>
+                                    <td>Liquid Glass design, year-based numbering; last release for Intel Macs</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <ul class="justify">
+                        <li><b>Apple Silicon :</b> since 2020, Macs use Apple's ARM-based M-series chips with unified memory and a Secure Enclave. <b>Rosetta 2</b> translates Intel (x86-64) apps; <b>universal binaries</b> contain both architectures.</li>
+                        <li><b>Check Your System :</b> <code>sw_vers</code>, <code>uname -m</code> (<code>arm64</code> or <code>x86_64</code>), <code>system_profiler SPHardwareDataType</code>.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="architecture">
+                <h4 class="heading">Architecture</h4>
+                <div class="content">
+                    <div class="code-box code-box-color"><code>Apps                     Finder, Safari, third-party apps
+Application Frameworks   AppKit, SwiftUI, Mac Catalyst
+Core Frameworks          Foundation, Core Data, Core Animation, Metal, Security
+Darwin                   XNU kernel (Mach + BSD + IOKit), launchd, libSystem, dyld
+Hardware                 Apple silicon / Intel + T2, Secure Enclave</code></div>
+                    <ul class="justify">
+                        <li><b>XNU :</b> a hybrid kernel: Mach (tasks, threads, virtual memory, IPC ports), BSD (processes, users, POSIX, networking, VFS), and IOKit (object-oriented drivers).</li>
+                        <li><b>launchd :</b> PID 1; starts and supervises daemons and agents, replacing init, cron, and inetd.</li>
+                        <li><b>WindowServer :</b> composites all windows on screen. <b>Finder</b> and <b>Dock</b> are ordinary processes.</li>
+                        <li><b>Mach-O :</b> the executable format; <b>dyld</b> loads libraries, and system libraries live in the dyld shared cache instead of individual files.</li>
+                        <li><b>XPC :</b> IPC used to split apps and system services into separate, privilege-separated processes.</li>
+                        <li><b>System Extensions :</b> DriverKit and system extensions run in user space, replacing most deprecated kernel extensions (kexts).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="boot">
+                <h4 class="heading">Boot Process &amp; Startup Modes</h4>
+                <div class="content">
+                    <div class="code-box code-box-color"><code>Apple silicon:  Boot ROM -&gt; LLB / iBoot -&gt; kernelcache (XNU) -&gt; launchd -&gt; loginwindow
+Intel + T2:     T2 Boot ROM -&gt; T2 bridgeOS -&gt; UEFI firmware -&gt; boot.efi -&gt; XNU -&gt; launchd</code></div>
+                    <ul class="justify">
+                        <li><b>Secure Boot :</b> every stage verifies the next stage's signature. On Apple silicon, the security policy is set per installed OS: <b>Full Security</b> (only current, signed macOS), <b>Reduced Security</b> (older signed versions, third-party kexts), and <b>Permissive Security</b> (custom kernels, SIP disabled).</li>
+                        <li><b>Signed System Volume (SSV) :</b> the system volume is sealed with a hash tree verified at boot, and macOS boots from a read-only snapshot of it.</li>
+                    </ul>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Mode</th>
+                                    <th>Apple Silicon</th>
+                                    <th>Intel</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Startup options / recovery</td>
+                                    <td>hold the power button</td>
+                                    <td><kbd>Cmd</kbd> + <kbd>R</kbd></td>
+                                </tr>
+                                <tr>
+                                    <td>Safe mode</td>
+                                    <td>startup options, hold <kbd>Shift</kbd></td>
+                                    <td>hold <kbd>Shift</kbd></td>
+                                </tr>
+                                <tr>
+                                    <td>Startup disk picker</td>
+                                    <td>hold the power button</td>
+                                    <td>hold <kbd>Option</kbd></td>
+                                </tr>
+                                <tr>
+                                    <td>Verbose boot</td>
+                                    <td><code>nvram boot-args="-v"</code> (needs lowered security)</td>
+                                    <td><kbd>Cmd</kbd> + <kbd>V</kbd></td>
+                                </tr>
+                                <tr>
+                                    <td>Target Disk / Share Disk</td>
+                                    <td>Share Disk in Recovery</td>
+                                    <td>hold <kbd>T</kbd></td>
+                                </tr>
+                                <tr>
+                                    <td>Reset NVRAM</td>
+                                    <td>automatic when needed</td>
+                                    <td><kbd>Option</kbd> + <kbd>Cmd</kbd> + <kbd>P</kbd> + <kbd>R</kbd></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p><b>Recovery</b> provides Disk Utility, Terminal, reinstalling macOS, Startup Security Utility, and restoring from Time Machine. <b>DFU</b> restores of Apple silicon Macs are done from another Mac with Apple Configurator.</p>
+                </div>
+            </div>
+
+            <div class="sections" id="file-system">
+                <h4 class="heading">File System &amp; Paths</h4>
+                <div class="content">
+                    <ul class="justify">
+                        <li><b>APFS :</b> the default since macOS 10.13, with copy-on-write, snapshots, clones, space sharing between volumes, and native encryption. Case-insensitive but case-preserving by default.</li>
+                        <li><b>Volume Group :</b> the startup disk is split into a read-only <b>System</b> volume and a writable <b>Data</b> volume, joined by firmlinks so they appear as one tree.</li>
+                        <li><b>Extended Attributes :</b> metadata such as <code>com.apple.quarantine</code> on downloaded files; view with <code>xattr -l file</code>.</li>
+                    </ul>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Path</th>
+                                    <th>Contents</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>/System</code></td>
+                                    <td>the operating system (sealed, read-only)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>/Applications</code></td>
+                                    <td>apps for all users</td>
+                                </tr>
+                                <tr>
+                                    <td><code>/Library</code></td>
+                                    <td>system-wide app support, preferences, LaunchDaemons and LaunchAgents</td>
+                                </tr>
+                                <tr>
+                                    <td><code>~/Library</code></td>
+                                    <td>per-user preferences (<code>Preferences/*.plist</code>), caches, Application Support, containers</td>
+                                </tr>
+                                <tr>
+                                    <td><code>/Users/&lt;name&gt;</code></td>
+                                    <td>home directories</td>
+                                </tr>
+                                <tr>
+                                    <td><code>/Volumes</code></td>
+                                    <td>mounted disks and disk images</td>
+                                </tr>
+                                <tr>
+                                    <td><code>/usr/local</code>, <code>/opt/homebrew</code></td>
+                                    <td>Homebrew on Intel / Apple silicon</td>
+                                </tr>
+                                <tr>
+                                    <td><code>/private/etc</code>, <code>/private/var</code>, <code>/private/tmp</code></td>
+                                    <td>Unix configuration and variable data (<code>/etc</code>, <code>/var</code>, <code>/tmp</code> are symbolic links)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <ul class="justify">
+                        <li><b>Bundles :</b> apps (<code>.app</code>) are directories shown as one file: <code>Contents/MacOS</code> (binary), <code>Contents/Info.plist</code>, <code>Contents/Resources</code>, <code>Contents/_CodeSignature</code>.</li>
+                        <li><b>Property Lists :</b> configuration is stored in <code>.plist</code> files (XML or binary); convert with <code>plutil -convert xml1 file.plist</code>.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="launchd">
+                <h4 class="heading">launchd, Daemons &amp; Agents</h4>
+                <div class="content">
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Location</th>
+                                    <th>Runs As</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>System daemons</td>
+                                    <td><code>/System/Library/LaunchDaemons</code></td>
+                                    <td>root, at boot (Apple's)</td>
+                                </tr>
+                                <tr>
+                                    <td>Third-party daemons</td>
+                                    <td><code>/Library/LaunchDaemons</code></td>
+                                    <td>root or a specified user, at boot</td>
+                                </tr>
+                                <tr>
+                                    <td>Global agents</td>
+                                    <td><code>/Library/LaunchAgents</code></td>
+                                    <td>each logged-in user</td>
+                                </tr>
+                                <tr>
+                                    <td>User agents</td>
+                                    <td><code>~/Library/LaunchAgents</code></td>
+                                    <td>that user, at login</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="code-box code-box-color"><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
+&lt;plist version="1.0"&gt;
+&lt;dict&gt;
+    &lt;key&gt;Label&lt;/key&gt;              &lt;string&gt;com.example.backup&lt;/string&gt;
+    &lt;key&gt;ProgramArguments&lt;/key&gt;   &lt;array&gt;&lt;string&gt;/usr/local/bin/backup.sh&lt;/string&gt;&lt;/array&gt;
+    &lt;key&gt;StartCalendarInterval&lt;/key&gt; &lt;dict&gt;&lt;key&gt;Hour&lt;/key&gt;&lt;integer&gt;2&lt;/integer&gt;&lt;/dict&gt;
+    &lt;key&gt;RunAtLoad&lt;/key&gt;          &lt;false/&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;</code></div>
+                    <div class="code-box code-box-color"><code>launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.example.backup.plist   # load
+launchctl bootout gui/$(id -u)/com.example.backup                                  # unload
+launchctl kickstart -k gui/$(id -u)/com.example.backup                             # restart now
+launchctl print gui/$(id -u)/com.example.backup                                    # status
+launchctl list | grep example</code></div>
+                    <p>Other keys: <code>KeepAlive</code> (restart if it exits), <code>StartInterval</code> (every N seconds), <code>WatchPaths</code>, <code>StandardOutPath</code>. Launch agents and daemons are a common persistence mechanism for malware, so <b>System Settings &gt; General &gt; Login Items</b> lists them and macOS notifies the user when one is added.</p>
+                </div>
+            </div>
+
+            <div class="sections" id="security">
+                <h4 class="heading">Security Architecture</h4>
+                <div class="content">
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Layer</th>
+                                    <th>What It Does</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Gatekeeper</td>
+                                    <td>on first launch, checks that downloaded apps are signed with a Developer ID and notarized by Apple</td>
+                                </tr>
+                                <tr>
+                                    <td>Notarization</td>
+                                    <td>Apple's automated malware scan of developer-submitted software; a ticket is stapled to the app</td>
+                                </tr>
+                                <tr>
+                                    <td>Quarantine</td>
+                                    <td><code>com.apple.quarantine</code> attribute added by browsers and apps to downloads, which triggers Gatekeeper</td>
+                                </tr>
+                                <tr>
+                                    <td>XProtect</td>
+                                    <td>built-in signature-based malware detection, updated silently; XProtect Remediator removes known malware</td>
+                                </tr>
+                                <tr>
+                                    <td>System Integrity Protection (SIP)</td>
+                                    <td>stops even root from modifying protected system files, processes, and kernel extensions</td>
+                                </tr>
+                                <tr>
+                                    <td>Signed System Volume</td>
+                                    <td>cryptographically sealed system volume</td>
+                                </tr>
+                                <tr>
+                                    <td>TCC</td>
+                                    <td>user consent for camera, microphone, screen recording, Full Disk Access, Accessibility, automation</td>
+                                </tr>
+                                <tr>
+                                    <td>App Sandbox</td>
+                                    <td>required for Mac App Store apps; restricts files and resources to declared entitlements</td>
+                                </tr>
+                                <tr>
+                                    <td>Hardened Runtime</td>
+                                    <td>required for notarization; blocks code injection, unsigned libraries, and debugging unless entitled</td>
+                                </tr>
+                                <tr>
+                                    <td>FileVault</td>
+                                    <td>full-disk encryption (XTS-AES-128), keys protected by the Secure Enclave</td>
+                                </tr>
+                                <tr>
+                                    <td>Secure Enclave</td>
+                                    <td>Touch ID, FileVault and Keychain keys, Apple Pay</td>
+                                </tr>
+                                <tr>
+                                    <td>Lockdown Mode</td>
+                                    <td>optional hardening for people at risk of targeted attacks</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="code-box code-box-color"><code>csrutil status                         # SIP state (change only from Recovery)
+spctl --status                         # Gatekeeper state
+spctl -a -vvv -t exec /Applications/App.app    # would Gatekeeper allow this app?
+codesign -dv --verbose=4 /Applications/App.app # signature, team ID, flags
+codesign --verify --deep --strict App.app
+xattr -l file.dmg                      # see the quarantine attribute
+fdesetup status                        # FileVault state
+tccutil reset Camera com.example.app   # reset an app's camera permission</code></div>
+                    <p>Since macOS 15, users can no longer bypass Gatekeeper with Control-click &gt; Open; they must approve the app in <b>System Settings &gt; Privacy &amp; Security</b>.</p>
+                </div>
+            </div>
+
+            <div class="sections" id="users-auth">
+                <h4 class="heading">Users, Keychain &amp; Authentication</h4>
+                <div class="content">
+                    <ul class="justify">
+                        <li><b>Accounts :</b> standard and administrator users; root is disabled by default, and admins use <code>sudo</code>. Admins belong to the <code>admin</code> group.</li>
+                        <li><b>Directory Services :</b> user records are stored by <code>opendirectoryd</code> under <code>/var/db/dslocal</code>; query them with <code>dscl</code>.</li>
+                        <li><b>Keychain :</b> stores passwords, certificates, and keys. The login keychain is in <code>~/Library/Keychains/</code>; the <b>Passwords</b> app (macOS 15) and iCloud Keychain sync credentials across devices.</li>
+                        <li><b>Secure Token &amp; Bootstrap Token :</b> users need a Secure Token to unlock FileVault; MDM uses a bootstrap token to grant it to new accounts.</li>
+                        <li><b>Authorization :</b> the <code>authd</code> service and <code>/etc/sudoers</code> control privilege elevation; Touch ID can be enabled for sudo in <code>/etc/pam.d/sudo_local</code>.</li>
+                    </ul>
+                    <div class="code-box code-box-color"><code>id; whoami; groups
+dscl . -list /Users                    # local users
+dscl . -read /Users/ada                # user record
+sudo dseditgroup -o edit -a ada -t user admin   # add to admin group
+security find-generic-password -s "service" -a "account" -w   # read a keychain item
+security list-keychains
+sysadminctl -secureTokenStatus ada</code></div>
+                </div>
+            </div>
+
+            <div class="sections" id="logging">
+                <h4 class="heading">Logging &amp; Diagnostics</h4>
+                <div class="content">
+                    <div class="code-box code-box-color"><code>log show --last 1h --predicate 'process == "sshd"'          # unified logging
+log stream --level debug --predicate 'subsystem == "com.example.app"'
+log show --predicate 'eventMessage CONTAINS "error"' --info --last 30m
+
+sysdiagnose                            # collect a full diagnostic archive
+top -o cpu; ps aux; lsof -i :8080       # processes, open ports
+sudo fs_usage -f filesys App           # live file system activity
+sudo dtruss -p PID                     # system calls (needs SIP changes)
+vm_stat; memory_pressure; sysctl -a | grep hw
+sudo powermetrics --samplers cpu_power      # CPU and GPU power use</code></div>
+                    <ul class="justify">
+                        <li><b>Unified Logging :</b> replaces syslog; entries are compressed binary data in <code>/var/db/diagnostics</code>, with private values redacted by default.</li>
+                        <li><b>Console App :</b> graphical viewer for logs and crash reports (<code>~/Library/Logs/DiagnosticReports</code>).</li>
+                        <li><b>Activity Monitor :</b> CPU, memory, energy, disk, and network per process.</li>
+                        <li><b>Endpoint Security :</b> the framework security tools use to monitor process, file, and authentication events (replacing kernel extensions); also see <code>eslogger</code>.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="commands">
+                <h4 class="heading">Terminal Commands</h4>
+                <div class="content">
+                    <p>The default shell is <b>zsh</b> (since macOS 10.15). macOS ships BSD versions of tools such as <code>sed</code>, <code>grep</code>, and <code>date</code>, whose options differ from the GNU versions on Linux (e.g. <code>sed -i '' 's/a/b/' file</code>). See the <a href="bash.html">Bash</a> and <a href="linux.html">Linux</a> sheets for common Unix commands.</p>
+                    <h6>macOS-Specific</h6>
+                    <div class="code-box code-box-color"><code>open .                                 # open the current folder in Finder
+open -a "Visual Studio Code" file.txt  # open with a specific app
+open https://example.com
+pbcopy &lt; file.txt; pbpaste &gt; out.txt   # clipboard
+say "build finished"                   # text to speech
+caffeinate -d                          # prevent sleep while running
+screencapture -i shot.png              # interactive screenshot
+mdfind "kind:pdf invoice"              # Spotlight search;  mdls file  shows metadata
+defaults read com.apple.finder         # read app preferences
+defaults write com.apple.finder AppleShowAllFiles -bool true &amp;&amp; killall Finder
+softwareupdate --list; softwareupdate --install --all
+networksetup -listallhardwareports; ipconfig getifaddr en0
+scutil --dns; dscacheutil -flushcache; sudo killall -HUP mDNSResponder
+pmset -g; pmset -g batt                # power settings and battery
+diskutil list; diskutil info disk3s1; diskutil apfs list
+hdiutil create -srcfolder dir out.dmg; hdiutil attach file.dmg
+tmutil listbackups; tmutil startbackup
+xcode-select --install                 # Command Line Tools (git, clang, make)</code></div>
+                    <h6>Homebrew</h6>
+                    <div class="code-box code-box-color"><code>brew install wget; brew install --cask firefox   # command-line tools / GUI apps
+brew search node; brew info node; brew list
+brew update &amp;&amp; brew upgrade; brew cleanup
+brew services start postgresql                    # run as a launchd service
+brew doctor</code></div>
+                </div>
+            </div>
+
+            <div class="sections" id="shortcuts">
+                <h4 class="heading">Keyboard Shortcuts</h4>
+                <div class="content">
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Shortcut</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><kbd>Cmd</kbd> + <kbd>Space</kbd></td>
+                                    <td>Spotlight search</td>
+                                </tr>
+                                <tr>
+                                    <td><kbd>Cmd</kbd> + <kbd>Tab</kbd></td>
+                                    <td>switch apps</td>
+                                </tr>
+                                <tr>
+                                    <td><kbd>Cmd</kbd> + <kbd>`</kbd></td>
+                                    <td>switch windows of the same app</td>
+                                </tr>
+                                <tr>
+                                    <td><kbd>Cmd</kbd> + <kbd>Q</kbd> / <kbd>W</kbd> / <kbd>H</kbd></td>
+                                    <td>quit app / close window / hide app</td>
+                                </tr>
+                                <tr>
+                                    <td><kbd>Option</kbd> + <kbd>Cmd</kbd> + <kbd>Esc</kbd></td>
+                                    <td>Force Quit</td>
+                                </tr>
+                                <tr>
+                                    <td><kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>3</kbd> / <kbd>4</kbd> / <kbd>5</kbd></td>
+                                    <td>screenshot: screen / selection / options and recording</td>
+                                </tr>
+                                <tr>
+                                    <td><kbd>Ctrl</kbd> + <kbd>Cmd</kbd> + <kbd>Q</kbd></td>
+                                    <td>lock screen</td>
+                                </tr>
+                                <tr>
+                                    <td><kbd>Ctrl</kbd> + <kbd>Cmd</kbd> + <kbd>F</kbd></td>
+                                    <td>full screen</td>
+                                </tr>
+                                <tr>
+                                    <td><kbd>Ctrl</kbd> + <kbd>Up</kbd></td>
+                                    <td>Mission Control</td>
+                                </tr>
+                                <tr>
+                                    <td><kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>.</kbd></td>
+                                    <td>show hidden files in Finder</td>
+                                </tr>
+                                <tr>
+                                    <td><kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>G</kbd></td>
+                                    <td>Go to Folder (type a path)</td>
+                                </tr>
+                                <tr>
+                                    <td><kbd>Option</kbd> + <kbd>Cmd</kbd> + <kbd>C</kbd></td>
+                                    <td>copy a file's path in Finder</td>
+                                </tr>
+                                <tr>
+                                    <td><kbd>Cmd</kbd> + <kbd>Delete</kbd></td>
+                                    <td>move to Trash</td>
+                                </tr>
+                                <tr>
+                                    <td><kbd>Space</kbd></td>
+                                    <td>Quick Look preview in Finder</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sections" id="management">
+                <h4 class="heading">Device Management</h4>
+                <div class="content">
+                    <ul class="justify">
+                        <li><b>MDM :</b> Mobile Device Management servers push configuration profiles, apps, updates, and commands (lock, erase) to Macs using the APNs-based MDM protocol. Declarative Device Management lets the device apply and report state itself.</li>
+                        <li><b>Automated Device Enrollment :</b> Macs bought through Apple Business Manager or Apple School Manager enroll in MDM automatically during setup.</li>
+                        <li><b>Configuration Profiles :</b> <code>.mobileconfig</code> files with settings such as Wi-Fi, VPN, certificates, restrictions, and privacy (PPPC) permissions; listed with <code>sudo profiles show</code>.</li>
+                        <li><b>Platform SSO :</b> lets users log in to the Mac with their identity provider account (e.g. Microsoft Entra ID, Okta).</li>
+                        <li><b>Common Tools :</b> Jamf Pro, Kandji, Mosyle, Microsoft Intune, and open-source tools such as osquery and Munki.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <nav>
+                <a href="/cheatsheets" aria-label="All cheatsheets"><i class="bi bi-grid-3x3-gap-fill" aria-hidden="true"></i></a>
+                <a href="#" aria-label="Back to top"><i class="bi bi-arrow-up" aria-hidden="true"></i></a>
+            </nav>
+        </div>
+
+        <!-- JavaScript -->
+        <script src="../assets/js/script.js?v=9"></script>
+    </body>
+</html>

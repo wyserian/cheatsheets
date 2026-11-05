@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Python Cheatsheet</title>
+        <script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('cheatsheet-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'))}catch(e){}</script>
+
+        <!-- Bootstrap CDN -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="../assets/css/style.css?v=12">
+    </head>
+
+    <body>
+        <div class="container">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <a href="/cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
+                <button class="theme-toggle" type="button" aria-label="Toggle theme"><i class="bi bi-sun" aria-hidden="true"></i></button>
+            </div>
+
+            <h3 class="title">Python</h3>
+
+            <div class="section-list">
+                <ul>
+                    <li><a href="#python">Python</a></li>
+                    <li><a href="#setup">Setup &amp; Environments</a></li>
+                    <li><a href="#variables-types">Variables &amp; Data Types</a></li>
+                    <li><a href="#operators">Operators</a></li>
+                    <li><a href="#control-flow">Control Flow</a></li>
+                    <li><a href="#strings">Strings</a></li>
+                    <li><a href="#collections">Collections</a></li>
+                    <li><a href="#functions">Functions</a></li>
+                    <li><a href="#oop">Classes &amp; OOP</a></li>
+                    <li><a href="#type-hints">Type Hints</a></li>
+                    <li><a href="#modules">Modules &amp; Packages</a></li>
+                    <li><a href="#errors">Exceptions</a></li>
+                    <li><a href="#files">Files &amp; Context Managers</a></li>
+                    <li><a href="#concurrency">Concurrency &amp; Async</a></li>
+                    <li><a href="#best-practices">Best Practices &amp; Security</a></li>
+                </ul>
+            </div>
+
+            <div class="sections" id="python">
+                <h4 class="heading">Python</h4>
+                <div class="content">
+                    <p>Python is a dynamically and strongly typed, interpreted, multi-paradigm language created by Guido van Rossum (first released 1991). Its design favors readability: blocks are defined by indentation. It is widely used for scripting, automation, web back ends, data science, machine learning, and security tooling.</p>
+                    <ul class="justify">
+                        <li><b>CPython :</b> the reference implementation. Source is compiled to <b>bytecode</b> (cached in <code>__pycache__/*.pyc</code>) and executed by a stack-based virtual machine. Other implementations: PyPy (JIT), MicroPython.</li>
+                        <li><b>Memory :</b> reference counting plus a cyclic garbage collector.</li>
+                        <li><b>GIL :</b> the Global Interpreter Lock lets only one thread run Python bytecode at a time, so threads help with I/O but not CPU-bound work. Python 3.13 added an optional free-threaded build (officially supported from 3.14).</li>
+                        <li><b>Versions :</b> Python 2 reached end of life in 2020. A new 3.x release ships every October with five years of support.</li>
+                        <li><b>PEPs :</b> Python Enhancement Proposals define the language; PEP 8 is the style guide.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="setup">
+                <h4 class="heading">Setup &amp; Environments</h4>
+                <div class="content">
+                    <div class="code-box code-box-color"><code>python3 --version
+python3 script.py                 # run a file
+python3 -m http.server 8000       # run a module as a script
+python3 -i script.py              # run, then open the interactive REPL
+
+python3 -m venv .venv             # create a virtual environment
+source .venv/bin/activate         # Linux / macOS
+.venv\Scripts\activate            # Windows
+pip install requests              # install into the active environment
+pip install -r requirements.txt
+pip freeze &gt; requirements.txt
+deactivate</code></div>
+                    <ul class="justify">
+                        <li><b>Virtual Environments :</b> isolate each project's packages from the system Python; never <code>sudo pip install</code>.</li>
+                        <li><b>pyproject.toml :</b> the standard project file for metadata, dependencies, and tool settings.</li>
+                        <li><b>Tools :</b> <b>uv</b> (fast installer and project manager), Poetry, pipx (global CLI tools), Ruff (linter and formatter), mypy / Pyright (type checkers), pytest (tests).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="variables-types">
+                <h4 class="heading">Variables &amp; Data Types</h4>
+                <div class="content">
+                    <p>Variables are names bound to objects; every value is an object with a type, an identity (<code>id()</code>), and a value. Assignment never copies.</p>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Example</th>
+                                    <th>Mutable</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>int</code></td>
+                                    <td><code>42</code>, <code>0xff</code>, <code>1_000_000</code> (arbitrary precision)</td>
+                                    <td>no</td>
+                                </tr>
+                                <tr>
+                                    <td><code>float</code></td>
+                                    <td><code>3.14</code>, <code>1e-3</code> (64-bit IEEE 754)</td>
+                                    <td>no</td>
+                                </tr>
+                                <tr>
+                                    <td><code>complex</code></td>
+                                    <td><code>2 + 3j</code></td>
+                                    <td>no</td>
+                                </tr>
+                                <tr>
+                                    <td><code>bool</code></td>
+                                    <td><code>True</code>, <code>False</code> (subclass of <code>int</code>)</td>
+                                    <td>no</td>
+                                </tr>
+                                <tr>
+                                    <td><code>str</code></td>
+                                    <td><code>'hi'</code>, <code>"hi"</code>, <code>'''multi'''</code> (Unicode)</td>
+                                    <td>no</td>
+                                </tr>
+                                <tr>
+                                    <td><code>bytes</code> / <code>bytearray</code></td>
+                                    <td><code>b'\x00\xff'</code></td>
+                                    <td>no / yes</td>
+                                </tr>
+                                <tr>
+                                    <td><code>NoneType</code></td>
+                                    <td><code>None</code></td>
+                                    <td>no</td>
+                                </tr>
+                                <tr>
+                                    <td><code>list</code></td>
+                                    <td><code>[1, 2, 3]</code></td>
+                                    <td>yes</td>
+                                </tr>
+                                <tr>
+                                    <td><code>tuple</code></td>
+                                    <td><code>(1, 2)</code>, <code>(1,)</code></td>
+                                    <td>no</td>
+                                </tr>
+                                <tr>
+                                    <td><code>dict</code></td>
+                                    <td><code>{'a': 1}</code> (insertion-ordered)</td>
+                                    <td>yes</td>
+                                </tr>
+                                <tr>
+                                    <td><code>set</code> / <code>frozenset</code></td>
+                                    <td><code>{1, 2}</code></td>
+                                    <td>yes / no</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="code-box code-box-color"><code>x = 10
+a, b = 1, 2
+a, b = b, a                      # swap
+first, *rest = [1, 2, 3]         # unpacking
+type(x); isinstance(x, int)
+int("42"); float("3.5"); str(10); list("abc"); bool([])  # False</code></div>
+                    <ul class="justify">
+                        <li><b>Falsy Values :</b> <code>None</code>, <code>False</code>, <code>0</code>, <code>0.0</code>, <code>''</code>, and empty collections.</li>
+                        <li><b><code>is</code> vs <code>==</code> :</b> <code>is</code> compares identity (use it for <code>None</code>), <code>==</code> compares values.</li>
+                        <li><b>Mutable Defaults :</b> <code>def f(items=[])</code> shares one list across calls; use <code>items=None</code> and create the list inside.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="operators">
+                <h4 class="heading">Operators</h4>
+                <div class="content">
+                    <div class="code-box code-box-color"><code>7 / 2      # 3.5   true division
+7 // 2     # 3     floor division
+-7 // 2    # -4    floors toward negative infinity
+7 % 3      # 1
+2 ** 10    # 1024
+
+and, or, not                      # return one of the operands: "" or "default" -&gt; "default"
+1 &lt; x &lt; 10                        # chained comparison
+x in [1, 2], key not in d         # membership
+a is None, a is not None          # identity
+&amp;, |, ^, ~, &lt;&lt;, &gt;&gt;                # bitwise; also set union | intersection &amp; difference -
+
+if (n := len(data)) &gt; 10:         # walrus: assign inside an expression (3.8+)
+    print(n)
+result = "even" if n % 2 == 0 else "odd"   # conditional expression</code></div>
+                </div>
+            </div>
+
+            <div class="sections" id="control-flow">
+                <h4 class="heading">Control Flow</h4>
+                <div class="content">
+                    <div class="code-box code-box-color"><code>if score &gt;= 90:
+    grade = "A"
+elif score &gt;= 75:
+    grade = "B"
+else:
+    grade = "C"
+
+for i in range(0, 10, 2): ...           # 0, 2, 4, 6, 8
+for i, item in enumerate(items, start=1): ...
+for name, age in zip(names, ages): ...
+for key, value in d.items(): ...
+
+while retries &gt; 0:
+    retries -= 1
+else:
+    print("ran out")                    # loop else: runs if the loop did not break
+
+match command.split():                  # structural pattern matching (3.10+)
+    case ["go", direction]:
+        move(direction)
+    case ["quit" | "exit"]:
+        quit()
+    case {"type": "click", "x": x, "y": y}:
+        click(x, y)
+    case _:
+        print("unknown")</code></div>
+                    <p><code>break</code>, <code>continue</code>, and <code>pass</code> (an empty placeholder) work as in other languages.</p>
+                </div>
+            </div>
+
+            <div class="sections" id="strings">
+                <h4 class="heading">Strings</h4>
+                <div class="content">
+                    <div class="code-box code-box-color"><code>name = "Ada"
+f"Hello, {name}!  {3.14159:.2f}  {42:05d}  {name!r}  {x=}"   # f-strings ({x=} prints "x=...")
+"a,b,c".split(",")          # ['a', 'b', 'c']
+"-".join(["a", "b"])        # 'a-b'
+s.strip(); s.lower(); s.upper(); s.title(); s.replace("a", "b")
+s.startswith("A"); s.endswith("z"); s.find("d"); "d" in s
+s.removeprefix("Mr. "); s.zfill(5); s.center(10, "*")
+s[0]; s[-1]; s[1:4]; s[::-1]  # indexing, slicing [start:stop:step], reverse
+"é".encode("utf-8")           # str -&gt; bytes;  b.decode("utf-8") -&gt; str
+r"C:\new\folder"              # raw string: backslashes are literal (regex, paths)</code></div>
+                    <p>Strings are immutable sequences of Unicode code points. Build large strings with <code>''.join(parts)</code> rather than repeated <code>+=</code>.</p>
+                </div>
+            </div>
+
+            <div class="sections" id="collections">
+                <h4 class="heading">Collections</h4>
+                <div class="content">
+                    <div class="code-box code-box-color"><code>nums = [3, 1, 4]
+nums.append(1); nums.extend([5, 9]); nums.insert(0, 2)
+nums.pop(); nums.remove(4); nums.index(1); nums.count(1)
+nums.sort(key=abs, reverse=True)     # in place
+sorted(nums); reversed(nums); len(nums); sum(nums); min(nums); max(nums)
+copy = nums[:]                       # shallow copy; copy.deepcopy() for nested data
+
+point = (3, 4); x, y = point         # tuples: immutable, hashable
+
+d = {"name": "Ada", "age": 36}
+d["email"] = "a@x.io"
+d.get("phone", "n/a")                # default instead of KeyError
+d.setdefault("tags", []).append("x")
+d.pop("age"); d.keys(); d.values(); d.items()
+merged = d | {"age": 37}             # merge (3.9+)
+
+s = {1, 2, 3}
+s.add(4); s.discard(9); s &amp; {2, 3}; s | {5}; s - {1}</code></div>
+                    <h6>Comprehensions</h6>
+                    <div class="code-box code-box-color"><code>squares = [x * x for x in range(10) if x % 2 == 0]
+lookup  = {user.id: user for user in users}
+unique  = {word.lower() for word in words}
+total   = sum(x * x for x in range(10))    # generator expression: lazy, no list built</code></div>
+                    <h6>collections Module</h6>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Use</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>defaultdict(list)</code></td>
+                                    <td>dictionary that creates missing values automatically</td>
+                                </tr>
+                                <tr>
+                                    <td><code>Counter</code></td>
+                                    <td>counts items; <code>most_common(3)</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>deque</code></td>
+                                    <td>fast appends and pops at both ends (queues)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>namedtuple</code></td>
+                                    <td>tuple with named fields</td>
+                                </tr>
+                                <tr>
+                                    <td><code>OrderedDict</code></td>
+                                    <td>dictionary with order-aware equality and <code>move_to_end</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sections" id="functions">
+                <h4 class="heading">Functions</h4>
+                <div class="content">
+                    <div class="code-box code-box-color"><code>def greet(name: str, greeting: str = "Hello") -&gt; str:
+    """Return a greeting."""          # docstring, shown by help()
+    return f"{greeting}, {name}"
+
+greet("Ada"); greet(greeting="Hi", name="Ada")
+
+def log(*args, **kwargs): ...        # extra positional args (tuple) and keyword args (dict)
+def f(a, b, /, c, *, d): ...         # a, b positional-only; d keyword-only
+log(*items, **options)               # unpack into arguments
+
+square = lambda x: x * x             # small anonymous function
+sorted(users, key=lambda u: u.age)</code></div>
+                    <ul class="justify">
+                        <li><b>Scope (LEGB) :</b> names are looked up in Local, Enclosing, Global, then Built-in scope. Use <code>global</code> or <code>nonlocal</code> to assign to an outer name.</li>
+                        <li><b>Closures :</b> nested functions keep access to the enclosing function's variables.</li>
+                        <li><b>Arguments :</b> objects are passed by reference to the object ("pass by assignment"): mutating a list argument changes the caller's list, but rebinding the name does not.</li>
+                    </ul>
+                    <h5>Decorators</h5>
+                    <p>A decorator is a function that takes a function and returns a replacement, applied with <code>@</code>.</p>
+                    <div class="code-box code-box-color"><code>import functools, time
+
+def timed(func):
+    @functools.wraps(func)                   # keep the original name and docstring
+    def wrapper(*args, **kwargs):
+        start = time.perf_counter()
+        try:
+            return func(*args, **kwargs)
+        finally:
+            print(f"{func.__name__} took {time.perf_counter() - start:.3f}s")
+    return wrapper
+
+@timed
+def slow(): time.sleep(1)
+
+@functools.cache                             # memoize results
+def fib(n): return n if n &lt; 2 else fib(n - 1) + fib(n - 2)</code></div>
+                    <h5>Iterators &amp; Generators</h5>
+                    <div class="code-box code-box-color"><code>def read_lines(path):
+    with open(path) as f:
+        for line in f:
+            yield line.rstrip()          # produces values lazily, one at a time
+
+for line in read_lines("big.log"): ...
+it = iter([1, 2]); next(it)              # the iterator protocol: __iter__ and __next__</code></div>
+                    <p><code>itertools</code> provides building blocks such as <code>chain</code>, <code>islice</code>, <code>groupby</code>, <code>product</code>, <code>permutations</code>, and <code>batched</code> (3.12).</p>
+                </div>
+            </div>
+
+            <div class="sections" id="oop">
+                <h4 class="heading">Classes &amp; OOP</h4>
+                <div class="content">
+                    <div class="code-box code-box-color"><code>class Account:
+    bank = "PyBank"                          # class attribute, shared
+
+    def __init__(self, owner: str, balance: float = 0):
+        self.owner = owner                   # instance attribute
+        self._balance = balance              # "_" = internal by convention
+
+    @property
+    def balance(self):                       # read like an attribute: acct.balance
+        return self._balance
+
+    def deposit(self, amount):
+        if amount &lt;= 0:
+            raise ValueError("amount must be positive")
+        self._balance += amount
+
+    @classmethod
+    def empty(cls, owner): return cls(owner)
+
+    @staticmethod
+    def fee(amount): return amount * 0.01
+
+    def __repr__(self): return f"Account({self.owner!r}, {self._balance})"
+    def __eq__(self, other): return isinstance(other, Account) and self.owner == other.owner
+
+
+class Savings(Account):
+    def __init__(self, owner, rate):
+        super().__init__(owner)
+        self.rate = rate</code></div>
+                    <ul class="justify">
+                        <li><b>No Private Members :</b> <code>_name</code> means internal by convention; <code>__name</code> is name-mangled to <code>_Class__name</code> to avoid clashes, not for security.</li>
+                        <li><b>Dunder Methods :</b> special methods hook into the language: <code>__len__</code>, <code>__getitem__</code>, <code>__iter__</code>, <code>__contains__</code>, <code>__add__</code>, <code>__enter__</code>/<code>__exit__</code>, <code>__hash__</code>, <code>__call__</code>.</li>
+                        <li><b>MRO :</b> with multiple inheritance, methods are resolved in the C3 method resolution order (<code>Class.__mro__</code>); <code>super()</code> follows it.</li>
+                        <li><b>Abstract Classes :</b> <code>abc.ABC</code> with <code>@abstractmethod</code>. <b>Protocols</b> (<code>typing.Protocol</code>) describe interfaces structurally (duck typing).</li>
+                    </ul>
+                    <h6>Dataclasses</h6>
+                    <div class="code-box code-box-color"><code>from dataclasses import dataclass, field
+
+@dataclass(frozen=True, slots=True)          # generates __init__, __repr__, __eq__; immutable
+class Point:
+    x: float
+    y: float = 0.0
+    tags: list[str] = field(default_factory=list)</code></div>
+                </div>
+            </div>
+
+            <div class="sections" id="type-hints">
+                <h4 class="heading">Type Hints</h4>
+                <div class="content">
+                    <p>Type hints are not enforced at runtime; checkers such as mypy and Pyright, and editors, use them to catch errors.</p>
+                    <div class="code-box code-box-color"><code>def find(users: list[User], user_id: int) -&gt; User | None: ...
+scores: dict[str, float] = {}
+Callback = Callable[[int, str], bool]
+
+from typing import TypedDict, Literal, Any, TypeVar
+class Movie(TypedDict):
+    title: str
+    year: int
+
+Mode = Literal["r", "w"]
+
+def first[T](items: list[T]) -&gt; T:           # generic function (3.12 syntax)
+    return items[0]</code></div>
+                </div>
+            </div>
+
+            <div class="sections" id="modules">
+                <h4 class="heading">Modules &amp; Packages</h4>
+                <div class="content">
+                    <div class="code-box code-box-color"><code>import math
+from pathlib import Path
+from collections import Counter as C
+from .models import User          # relative import inside a package
+
+if __name__ == "__main__":        # true only when the file is run directly, not imported
+    main()</code></div>
+                    <ul class="justify">
+                        <li><b>Module :</b> any <code>.py</code> file. <b>Package :</b> a directory of modules, usually with an <code>__init__.py</code>.</li>
+                        <li><b>Search Path :</b> imports are resolved through <code>sys.path</code>: the script's directory, <code>PYTHONPATH</code>, then installed packages (<code>site-packages</code>).</li>
+                        <li><b>Caching :</b> a module runs once per process and is cached in <code>sys.modules</code>.</li>
+                        <li><b>Shadowing :</b> a local file named like a standard module (e.g. <code>random.py</code>) is imported instead of it.</li>
+                    </ul>
+                    <h6>Useful Standard Library Modules</h6>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Module</th>
+                                    <th>Purpose</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>os</code>, <code>sys</code>, <code>shutil</code>, <code>pathlib</code></td>
+                                    <td>operating system, interpreter, file operations, paths</td>
+                                </tr>
+                                <tr>
+                                    <td><code>subprocess</code></td>
+                                    <td>run external commands</td>
+                                </tr>
+                                <tr>
+                                    <td><code>json</code>, <code>csv</code>, <code>tomllib</code>, <code>sqlite3</code></td>
+                                    <td>data formats and an embedded database</td>
+                                </tr>
+                                <tr>
+                                    <td><code>datetime</code>, <code>zoneinfo</code>, <code>time</code></td>
+                                    <td>dates, time zones, timing</td>
+                                </tr>
+                                <tr>
+                                    <td><code>re</code></td>
+                                    <td>regular expressions</td>
+                                </tr>
+                                <tr>
+                                    <td><code>logging</code>, <code>argparse</code></td>
+                                    <td>logging and command-line parsing</td>
+                                </tr>
+                                <tr>
+                                    <td><code>asyncio</code>, <code>threading</code>, <code>multiprocessing</code>, <code>concurrent.futures</code></td>
+                                    <td>concurrency</td>
+                                </tr>
+                                <tr>
+                                    <td><code>urllib</code>, <code>http</code>, <code>socket</code>, <code>ssl</code></td>
+                                    <td>networking</td>
+                                </tr>
+                                <tr>
+                                    <td><code>hashlib</code>, <code>hmac</code>, <code>secrets</code></td>
+                                    <td>hashing, message authentication, secure random values</td>
+                                </tr>
+                                <tr>
+                                    <td><code>unittest</code>, <code>doctest</code></td>
+                                    <td>testing</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sections" id="errors">
+                <h4 class="heading">Exceptions</h4>
+                <div class="content">
+                    <div class="code-box code-box-color"><code>class InsufficientFunds(Exception):
+    pass
+
+try:
+    value = int(text)
+except ValueError as e:
+    print("not a number:", e)
+except (KeyError, IndexError):
+    pass
+else:
+    print("ran only if no exception")
+finally:
+    print("always runs")
+
+raise InsufficientFunds("balance too low") from original_error   # chain exceptions
+
+try: ...
+except* ValueError as group: ...      # handle exception groups (3.11+, e.g. from TaskGroup)</code></div>
+                    <ul class="justify">
+                        <li><b>Hierarchy :</b> all errors derive from <code>Exception</code> (under <code>BaseException</code>, which also covers <code>KeyboardInterrupt</code> and <code>SystemExit</code>); catch specific exceptions, never a bare <code>except:</code>.</li>
+                        <li><b>EAFP :</b> Pythonic code tries the operation and handles the exception ("easier to ask forgiveness than permission") rather than checking first.</li>
+                        <li><b>Common Errors :</b> <code>TypeError</code>, <code>ValueError</code>, <code>KeyError</code>, <code>IndexError</code>, <code>AttributeError</code>, <code>FileNotFoundError</code>, <code>ImportError</code>.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="files">
+                <h4 class="heading">Files &amp; Context Managers</h4>
+                <div class="content">
+                    <div class="code-box code-box-color"><code>from pathlib import Path
+
+with open("notes.txt", "w", encoding="utf-8") as f:   # closed automatically, even on errors
+    f.write("hello\n")
+
+with open("notes.txt", encoding="utf-8") as f:
+    for line in f: print(line.strip())
+
+path = Path("data") / "users.json"
+path.parent.mkdir(parents=True, exist_ok=True)
+path.write_text(json.dumps(users, indent=2), encoding="utf-8")
+users = json.loads(path.read_text(encoding="utf-8"))
+list(Path(".").glob("**/*.py"))</code></div>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Mode</th>
+                                    <th>Meaning</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center">
+                                <tr>
+                                    <td><code>r</code> / <code>w</code> / <code>a</code></td>
+                                    <td>read (default) / write, truncating / append</td>
+                                </tr>
+                                <tr>
+                                    <td><code>x</code></td>
+                                    <td>create, fail if the file exists</td>
+                                </tr>
+                                <tr>
+                                    <td><code>b</code> / <code>t</code></td>
+                                    <td>binary / text (default)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>+</code></td>
+                                    <td>read and write</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>Custom context managers use <code>__enter__</code>/<code>__exit__</code> or <code>contextlib.contextmanager</code>.</p>
+                </div>
+            </div>
+
+            <div class="sections" id="concurrency">
+                <h4 class="heading">Concurrency &amp; Async</h4>
+                <div class="content">
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Approach</th>
+                                    <th>Best For</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>asyncio</code></td>
+                                    <td>many concurrent I/O operations in one thread (network clients, servers)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>threading</code> / <code>ThreadPoolExecutor</code></td>
+                                    <td>blocking I/O with libraries that are not async</td>
+                                </tr>
+                                <tr>
+                                    <td><code>multiprocessing</code> / <code>ProcessPoolExecutor</code></td>
+                                    <td>CPU-bound work, bypassing the GIL with separate processes</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="code-box code-box-color"><code>import asyncio
+
+async def fetch(session, url):
+    async with session.get(url) as resp:     # e.g. aiohttp or httpx.AsyncClient
+        return await resp.text()
+
+async def main(urls):
+    async with asyncio.TaskGroup() as tg:    # 3.11+: cancels the rest if one fails
+        tasks = [tg.create_task(fetch(session, u)) for u in urls]
+    return [t.result() for t in tasks]
+
+asyncio.run(main(urls))</code></div>
+                    <p>Never call blocking functions such as <code>time.sleep</code> or <code>requests.get</code> inside a coroutine; use <code>await asyncio.sleep()</code>, an async library, or <code>asyncio.to_thread()</code>.</p>
+                </div>
+            </div>
+
+            <div class="sections" id="best-practices">
+                <h4 class="heading">Best Practices &amp; Security</h4>
+                <div class="content">
+                    <ul class="justify">
+                        <li><b>Style :</b> follow PEP 8 (4-space indentation, <code>snake_case</code> functions, <code>PascalCase</code> classes, <code>UPPER_CASE</code> constants) and format with Ruff or Black.</li>
+                        <li><b>Environments :</b> one virtual environment per project, with pinned dependencies (lock files).</li>
+                        <li><b>Code Injection :</b> never pass untrusted input to <code>eval</code>, <code>exec</code>, or <code>pickle.loads</code> (unpickling can run arbitrary code); use JSON for untrusted data and <code>yaml.safe_load</code> for YAML.</li>
+                        <li><b>Commands :</b> call <code>subprocess.run(["ls", path])</code> with a list and without <code>shell=True</code> to avoid shell injection.</li>
+                        <li><b>SQL :</b> use parameterized queries: <code>cur.execute("SELECT * FROM users WHERE id = ?", (uid,))</code>.</li>
+                        <li><b>Secrets :</b> use the <code>secrets</code> module for tokens, not <code>random</code>; load credentials from environment variables, not source code.</li>
+                        <li><b>Dependencies :</b> scan with <code>pip-audit</code> and watch for typosquatted package names.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <nav>
+                <a href="/cheatsheets" aria-label="All cheatsheets"><i class="bi bi-grid-3x3-gap-fill" aria-hidden="true"></i></a>
+                <a href="#" aria-label="Back to top"><i class="bi bi-arrow-up" aria-hidden="true"></i></a>
+            </nav>
+        </div>
+
+        <!-- JavaScript -->
+        <script src="../assets/js/script.js?v=9"></script>
+    </body>
+</html>

@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>JavaScript Cheatsheet</title>
+        <script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('cheatsheet-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'))}catch(e){}</script>
+
+        <!-- Bootstrap CDN -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="../assets/css/style.css?v=12">
+    </head>
+
+    <body>
+        <div class="container">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <a href="/cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
+                <button class="theme-toggle" type="button" aria-label="Toggle theme"><i class="bi bi-sun" aria-hidden="true"></i></button>
+            </div>
+
+            <h3 class="title">JavaScript</h3>
+
+            <div class="section-list">
+                <ul>
+                    <li><a href="#javascript">JavaScript</a></li>
+                    <li><a href="#setup">Setup &amp; Running</a></li>
+                    <li><a href="#variables-types">Variables &amp; Data Types</a></li>
+                    <li><a href="#operators">Operators</a></li>
+                    <li><a href="#control-flow">Control Flow</a></li>
+                    <li><a href="#strings">Strings</a></li>
+                    <li><a href="#collections">Arrays, Objects &amp; Collections</a></li>
+                    <li><a href="#functions">Functions</a></li>
+                    <li><a href="#objects-classes">Prototypes &amp; Classes</a></li>
+                    <li><a href="#async">Event Loop &amp; Async</a></li>
+                    <li><a href="#modules">Modules</a></li>
+                    <li><a href="#errors">Error Handling</a></li>
+                    <li><a href="#dom">DOM &amp; Browser APIs</a></li>
+                    <li><a href="#json-dates">JSON, Dates &amp; Utilities</a></li>
+                    <li><a href="#best-practices">Best Practices</a></li>
+                </ul>
+            </div>
+
+            <div class="sections" id="javascript">
+                <h4 class="heading">JavaScript</h4>
+                <div class="content">
+                    <p>JavaScript is a dynamically typed, multi-paradigm language standardized as <b>ECMAScript</b> (ECMA-262). It runs in every browser and on servers through runtimes such as Node.js, Deno, and Bun. A new edition is published every June (ES2015 / ES6 was the major modern update).</p>
+                    <ul class="justify">
+                        <li><b>Engines :</b> V8 (Chrome, Node.js, Deno), SpiderMonkey (Firefox), JavaScriptCore (Safari, Bun). Engines parse code, run it in an interpreter, and JIT-compile hot functions to machine code.</li>
+                        <li><b>Single-Threaded :</b> one call stack per realm; concurrency comes from the event loop and asynchronous APIs, and parallelism from Web Workers / worker threads.</li>
+                        <li><b>Host APIs :</b> the language itself has no I/O. Browsers add the DOM, <code>fetch</code>, and timers; Node.js adds the file system, networking, and processes.</li>
+                        <li><b>Strict Mode :</b> <code>"use strict"</code> turns silent mistakes into errors (e.g. assigning to undeclared variables). ES modules and classes are always strict.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="setup">
+                <h4 class="heading">Setup &amp; Running</h4>
+                <div class="content">
+                    <div class="code-box code-box-color"><code>&lt;script src="app.js" defer&gt;&lt;/script&gt;            &lt;!-- classic script, runs after HTML is parsed --&gt;
+&lt;script type="module" src="main.js"&gt;&lt;/script&gt;   &lt;!-- ES module: strict, deferred, own scope --&gt;
+
+node app.js                                      # run with Node.js
+node --watch app.js                              # restart on file changes
+deno run app.ts / bun app.js                     # other runtimes</code></div>
+                    <ul class="justify">
+                        <li><b>Browser Console :</b> DevTools (F12) has a REPL, debugger, network panel, and performance profiler.</li>
+                        <li><b>Tooling :</b> npm / pnpm / yarn (packages), Vite / esbuild / webpack (bundlers), ESLint (linting), Prettier (formatting), TypeScript (static types).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="variables-types">
+                <h4 class="heading">Variables &amp; Data Types</h4>
+                <div class="content">
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Keyword</th>
+                                    <th>Scope</th>
+                                    <th>Reassign</th>
+                                    <th>Hoisting</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>const</code></td>
+                                    <td>block</td>
+                                    <td>no (object contents can still change)</td>
+                                    <td>hoisted, but in the temporal dead zone until declared</td>
+                                </tr>
+                                <tr>
+                                    <td><code>let</code></td>
+                                    <td>block</td>
+                                    <td>yes</td>
+                                    <td>hoisted, temporal dead zone</td>
+                                </tr>
+                                <tr>
+                                    <td><code>var</code></td>
+                                    <td>function</td>
+                                    <td>yes</td>
+                                    <td>hoisted and initialized to <code>undefined</code> (avoid)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h6>Types</h6>
+                    <p>Seven <b>primitive</b> types are immutable and compared by value; everything else is an <b>object</b>, compared by reference.</p>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Example</th>
+                                    <th><code>typeof</code></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Number (64-bit IEEE 754 float)</td>
+                                    <td><code>42</code>, <code>3.14</code>, <code>NaN</code>, <code>Infinity</code></td>
+                                    <td><code>"number"</code></td>
+                                </tr>
+                                <tr>
+                                    <td>BigInt (arbitrary precision)</td>
+                                    <td><code>9007199254740993n</code></td>
+                                    <td><code>"bigint"</code></td>
+                                </tr>
+                                <tr>
+                                    <td>String (UTF-16)</td>
+                                    <td><code>'hi'</code>, <code>`hi ${name}`</code></td>
+                                    <td><code>"string"</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Boolean</td>
+                                    <td><code>true</code>, <code>false</code></td>
+                                    <td><code>"boolean"</code></td>
+                                </tr>
+                                <tr>
+                                    <td>undefined</td>
+                                    <td>declared but not assigned</td>
+                                    <td><code>"undefined"</code></td>
+                                </tr>
+                                <tr>
+                                    <td>null</td>
+                                    <td>intentional absence of a value</td>
+                                    <td><code>"object"</code> (historical bug)</td>
+                                </tr>
+                                <tr>
+                                    <td>Symbol</td>
+                                    <td><code>Symbol('id')</code>, unique keys</td>
+                                    <td><code>"symbol"</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Object</td>
+                                    <td><code>{}</code>, <code>[]</code>, functions, <code>Date</code>, <code>Map</code></td>
+                                    <td><code>"object"</code> / <code>"function"</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <ul class="justify">
+                        <li><b>Safe Integers :</b> numbers are exact only up to <code>Number.MAX_SAFE_INTEGER</code> (2<sup>53</sup> − 1); use BigInt beyond that. <code>0.1 + 0.2 !== 0.3</code> because of binary floating point.</li>
+                        <li><b>Falsy Values :</b> <code>false, 0, -0, 0n, "", null, undefined, NaN</code>; everything else (including <code>[]</code> and <code>{}</code>) is truthy.</li>
+                        <li><b>Type Checks :</b> <code>Array.isArray(x)</code>, <code>Number.isNaN(x)</code>, <code>x instanceof Date</code>, <code>Object.prototype.toString.call(x)</code>.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="operators">
+                <h4 class="heading">Operators</h4>
+                <div class="content">
+                    <div class="code-box code-box-color"><code>5 == "5"          // true  - loose equality converts types (avoid)
+5 === "5"         // false - strict equality, no conversion
+NaN === NaN       // false; use Number.isNaN() or Object.is(NaN, NaN)
+
+user?.address?.city        // optional chaining: undefined instead of a TypeError
+count ?? 10                // nullish coalescing: 10 only if count is null/undefined
+count || 10                // 10 if count is any falsy value, including 0 and ""
+a ||= b; a &amp;&amp;= b; a ??= b  // logical assignment
+
+2 ** 10            // 1024, exponent
+7 % 3              // 1, remainder
+"3" + 1            // "31"  (+ concatenates if either side is a string)
+"3" - 1            // 2     (other arithmetic converts to number)
+typeof x; x instanceof Class; "key" in obj; delete obj.key</code></div>
+                    <p><b>Spread / rest :</b> <code>...</code> expands an iterable or object (<code>[...a, ...b]</code>, <code>{...obj, x: 1}</code>) or collects remaining values (<code>function f(...args)</code>).</p>
+                </div>
+            </div>
+
+            <div class="sections" id="control-flow">
+                <h4 class="heading">Control Flow</h4>
+                <div class="content">
+                    <div class="code-box code-box-color"><code>if (score &gt;= 90) grade = "A";
+else if (score &gt;= 75) grade = "B";
+else grade = "C";
+
+const label = isAdmin ? "Admin" : "User";
+
+switch (status) {                 // compares with ===
+  case 200: ok(); break;
+  case 404: notFound(); break;
+  default:  fail();
+}
+
+for (let i = 0; i &lt; 5; i++) { }
+for (const item of array) { }     // values of any iterable (arrays, strings, Maps, Sets)
+for (const key in object) { }     // enumerable property names, including inherited ones
+while (cond) { }
+do { } while (cond);
+
+outer: for (const row of grid) {  // labels let break/continue target an outer loop
+  for (const cell of row) if (cell === 0) break outer;
+}</code></div>
+                </div>
+            </div>
+
+            <div class="sections" id="strings">
+                <h4 class="heading">Strings</h4>
+                <div class="content">
+                    <div class="code-box code-box-color"><code>const name = "Ada";
+`Hello, ${name}! 2 + 2 = ${2 + 2}`      // template literal, can span lines
+
+s.length;  s[0];  s.at(-1)               // last character
+s.slice(0, 3);  s.substring(1, 4)
+s.includes("a");  s.startsWith("A");  s.endsWith("z");  s.indexOf("d")
+s.toUpperCase();  s.trim();  s.padStart(5, "0");  s.repeat(3)
+s.split(",");  ["a", "b"].join("-")
+s.replace(/a/g, "b");  s.replaceAll("a", "b")
+s.match(/\d+/g);  [...s.matchAll(/(\w)=(\d)/g)]
+"ß".localeCompare("ss", "de")            // locale-aware comparison</code></div>
+                    <ul class="justify">
+                        <li><b>Immutable :</b> string methods return new strings.</li>
+                        <li><b>UTF-16 :</b> <code>length</code> counts code units, so an emoji can have length 2; <code>[...str].length</code> counts code points.</li>
+                        <li><b>Tagged Templates :</b> <code>tag`text ${value}`</code> passes the parts to a function (used for escaping, SQL builders, styled components).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="collections">
+                <h4 class="heading">Arrays, Objects &amp; Collections</h4>
+                <div class="content">
+                    <h6>Arrays</h6>
+                    <div class="code-box code-box-color"><code>const nums = [3, 1, 4, 1, 5];
+nums.push(9); nums.pop(); nums.unshift(0); nums.shift()   // mutate the end / start
+nums.map(n =&gt; n * 2)                // new array of results
+nums.filter(n =&gt; n &gt; 2)             // items that pass the test
+nums.reduce((sum, n) =&gt; sum + n, 0) // fold into one value
+nums.find(n =&gt; n &gt; 3); nums.findIndex(n =&gt; n &gt; 3); nums.findLast(n =&gt; n &lt; 4)
+nums.some(n =&gt; n &gt; 4); nums.every(n =&gt; n &gt; 0); nums.includes(4)
+nums.slice(1, 3)                    // copy a part; splice(start, count) mutates
+nums.flat(); nums.flatMap(n =&gt; [n, n])
+nums.toSorted((a, b) =&gt; a - b)      // ES2023 non-mutating; sort() mutates and compares as strings by default
+nums.toReversed(); nums.with(0, 99) // non-mutating copies
+const [first, , third, ...rest] = nums       // destructuring
+Array.from({ length: 3 }, (_, i) =&gt; i)       // [0, 1, 2]</code></div>
+                    <h6>Objects</h6>
+                    <div class="code-box code-box-color"><code>const user = { name: "Ada", age: 36, greet() { return `Hi, ${this.name}`; } };
+user.name; user["age"]; user.email = "a@x.io"
+const { name, age: years = 0, ...others } = user     // destructure with rename and default
+Object.keys(user); Object.values(user); Object.entries(user)
+Object.fromEntries([["a", 1]])
+const copy = { ...user }                  // shallow copy
+const deep = structuredClone(user)        // deep copy (no functions)
+Object.freeze(user)                       // shallow, prevents changes</code></div>
+                    <h6>Built-in Collections</h6>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Use</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>Map</code></td>
+                                    <td>key-value pairs with keys of any type, insertion-ordered, has <code>size</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>Set</code></td>
+                                    <td>unique values; ES2025 adds <code>union</code>, <code>intersection</code>, <code>difference</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>WeakMap</code> / <code>WeakSet</code></td>
+                                    <td>object keys that do not prevent garbage collection (private data, caches)</td>
+                                </tr>
+                                <tr>
+                                    <td>Typed arrays (<code>Uint8Array</code>, <code>Float64Array</code>)</td>
+                                    <td>fixed-type binary data over an <code>ArrayBuffer</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sections" id="functions">
+                <h4 class="heading">Functions</h4>
+                <div class="content">
+                    <div class="code-box code-box-color"><code>function add(a, b = 0) { return a + b; }          // declaration: hoisted
+const mul = function (a, b) { return a * b; };    // expression
+const square = x =&gt; x * x;                        // arrow function
+const sum = (...nums) =&gt; nums.reduce((a, b) =&gt; a + b, 0);
+const point = ({ x, y }) =&gt; `(${x}, ${y})`;       // destructured parameter</code></div>
+                    <ul class="justify">
+                        <li><b>First-Class :</b> functions are objects; they can be stored, passed as arguments (callbacks), and returned (higher-order functions).</li>
+                        <li><b>Arrow Functions :</b> have no own <code>this</code>, <code>arguments</code>, or <code>prototype</code>; they use <code>this</code> from the enclosing scope and cannot be used with <code>new</code>.</li>
+                        <li><b><code>this</code> :</b> decided by how a function is called: the object before the dot, <code>undefined</code> in strict mode for a plain call, or set explicitly with <code>call</code>, <code>apply</code>, and <code>bind</code>.</li>
+                        <li><b>IIFE :</b> <code>(() =&gt; { /* private scope */ })();</code> runs immediately.</li>
+                    </ul>
+                    <h5>Scope &amp; Closures</h5>
+                    <p>JavaScript uses <b>lexical scope</b>: a function can access variables from where it was defined. A <b>closure</b> is a function together with those captured variables, which stay alive as long as the function does.</p>
+                    <div class="code-box code-box-color"><code>function counter() {
+  let count = 0;                       // private: only the returned functions can reach it
+  return { inc: () =&gt; ++count, get: () =&gt; count };
+}
+const c = counter();
+c.inc(); c.inc(); c.get();             // 2</code></div>
+                    <h6>Generators</h6>
+                    <div class="code-box code-box-color"><code>function* ids() { let id = 1; while (true) yield id++; }   // lazy, pausable sequence
+const gen = ids();
+gen.next().value;    // 1
+gen.next().value;    // 2</code></div>
+                </div>
+            </div>
+
+            <div class="sections" id="objects-classes">
+                <h4 class="heading">Prototypes &amp; Classes</h4>
+                <div class="content">
+                    <p>Objects inherit through a <b>prototype chain</b>: when a property is missing, the engine looks it up on <code>Object.getPrototypeOf(obj)</code>, then that object's prototype, up to <code>Object.prototype</code>. Classes are syntax over this mechanism.</p>
+                    <div class="code-box code-box-color"><code>class Animal {
+  #sound;                              // private field (enforced by the language)
+  static count = 0;                    // static field, on the class itself
+
+  constructor(name, sound) {
+    this.name = name;
+    this.#sound = sound;
+    Animal.count++;
+  }
+  speak() { return `${this.name} says ${this.#sound}`; }
+  get label() { return this.name.toUpperCase(); }      // getter
+  static create(name) { return new this(name, "..."); }
+}
+
+class Dog extends Animal {
+  constructor(name) { super(name, "woof"); }           // super() before using this
+  speak() { return super.speak() + "!"; }              // override
+}
+
+const d = new Dog("Rex");
+d.speak();                     // "Rex says woof!"
+d instanceof Animal;           // true
+Object.getPrototypeOf(Dog.prototype) === Animal.prototype;  // true</code></div>
+                    <ul class="justify">
+                        <li><b><code>new</code> :</b> creates an object whose prototype is <code>Class.prototype</code>, runs the constructor with <code>this</code> bound to it, and returns it.</li>
+                        <li><b>Methods :</b> live once on the prototype and are shared by all instances.</li>
+                        <li><b>Prototype Pollution :</b> merging untrusted JSON into objects can set <code>__proto__</code> and change every object; validate keys or use <code>Object.create(null)</code> / <code>Map</code>.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="async">
+                <h4 class="heading">Event Loop &amp; Async</h4>
+                <div class="content">
+                    <p>The <b>event loop</b> runs one task to completion, then runs <b>all</b> queued microtasks, then (in browsers) may render, then takes the next task.</p>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Queue</th>
+                                    <th>Sources</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Call stack</td>
+                                    <td>synchronous code currently running</td>
+                                </tr>
+                                <tr>
+                                    <td>Microtasks</td>
+                                    <td>promise callbacks (<code>then</code>, <code>await</code> continuations), <code>queueMicrotask</code>, <code>MutationObserver</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Tasks (macrotasks)</td>
+                                    <td><code>setTimeout</code>, <code>setInterval</code>, I/O, UI events, <code>MessageChannel</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="code-box code-box-color"><code>console.log("1");
+setTimeout(() =&gt; console.log("4"), 0);
+Promise.resolve().then(() =&gt; console.log("3"));
+console.log("2");
+// prints 1, 2, 3, 4: microtasks run before the next task</code></div>
+                    <h5>Promises &amp; async/await</h5>
+                    <p>A <b>Promise</b> represents a future value and is <code>pending</code>, then <code>fulfilled</code> or <code>rejected</code>. An <code>async</code> function always returns a promise, and <code>await</code> pauses it without blocking the thread.</p>
+                    <div class="code-box code-box-color"><code>async function loadUser(id, signal) {
+  const res = await fetch(`/api/users/${id}`, { signal });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);   // fetch rejects only on network errors
+  return res.json();
+}
+
+try {
+  const controller = new AbortController();
+  setTimeout(() =&gt; controller.abort(), 5000);            // cancel after 5 s
+  const user = await loadUser(42, controller.signal);
+} catch (err) {
+  console.error(err);
+}
+
+await Promise.all([a(), b()]);        // run in parallel; rejects on the first failure
+await Promise.allSettled([a(), b()]); // wait for all, report each result
+await Promise.race([a(), timeout()]); // first to settle
+await Promise.any([a(), b()]);        // first to fulfill</code></div>
+                    <ul class="justify">
+                        <li><b>Sequential vs Parallel :</b> awaiting inside a loop runs one request at a time; start them together and use <code>Promise.all</code> when they are independent.</li>
+                        <li><b>Unhandled Rejections :</b> always <code>catch</code>; Node.js terminates the process on an unhandled rejection by default.</li>
+                        <li><b>CPU Work :</b> async does not make CPU-heavy code non-blocking; move it to a Web Worker or worker thread.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="modules">
+                <h4 class="heading">Modules</h4>
+                <div class="content">
+                    <div class="code-box code-box-color"><code>// math.js - ES modules (standard)
+export const PI = 3.14159;
+export function area(r) { return PI * r * r; }
+export default class Circle { }
+
+// main.js
+import Circle, { area, PI as pi } from "./math.js";
+import * as math from "./math.js";
+const { heavy } = await import("./heavy.js");      // dynamic import, loads on demand
+
+// CommonJS (older Node.js)
+const fs = require("fs");
+module.exports = { area };</code></div>
+                    <ul class="justify">
+                        <li><b>ES Modules :</b> static imports are resolved before the code runs (enabling tree shaking), are always strict, and support top-level <code>await</code>.</li>
+                        <li><b>Node.js :</b> files are ESM when <code>package.json</code> has <code>"type": "module"</code> or the extension is <code>.mjs</code>; otherwise CommonJS (<code>.cjs</code>).</li>
+                        <li><b>Import Maps :</b> <code>&lt;script type="importmap"&gt;</code> maps bare names such as <code>"lodash"</code> to URLs in browsers.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="errors">
+                <h4 class="heading">Error Handling</h4>
+                <div class="content">
+                    <div class="code-box code-box-color"><code>class ValidationError extends Error {
+  constructor(field, options) {
+    super(`Invalid ${field}`, options);   // options.cause keeps the original error
+    this.name = "ValidationError";
+    this.field = field;
+  }
+}
+
+try {
+  JSON.parse(input);
+} catch (err) {
+  throw new ValidationError("body", { cause: err });
+} finally {
+  cleanup();                              // always runs
+}</code></div>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Built-in Error</th>
+                                    <th>Thrown When</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>TypeError</code></td>
+                                    <td>a value is the wrong type, e.g. calling <code>undefined</code> or reading a property of <code>null</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>ReferenceError</code></td>
+                                    <td>an undeclared variable is used, or a <code>let</code>/<code>const</code> before its declaration</td>
+                                </tr>
+                                <tr>
+                                    <td><code>SyntaxError</code></td>
+                                    <td>invalid code or invalid JSON in <code>JSON.parse</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>RangeError</code></td>
+                                    <td>a value is out of range, e.g. invalid array length or too much recursion</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sections" id="dom">
+                <h4 class="heading">DOM &amp; Browser APIs</h4>
+                <div class="content">
+                    <div class="code-box code-box-color"><code>const btn = document.querySelector("#save");          // first match (CSS selector)
+const items = document.querySelectorAll(".item");     // static NodeList
+
+btn.addEventListener("click", (e) =&gt; { e.preventDefault(); save(); }, { once: true });
+
+// event delegation: one listener on the parent handles all children
+list.addEventListener("click", (e) =&gt; {
+  const li = e.target.closest("li");
+  if (li) select(li.dataset.id);                      // reads data-id="..."
+});
+
+const el = document.createElement("li");
+el.textContent = userInput;                           // safe: treated as text
+el.classList.add("active"); el.setAttribute("aria-selected", "true");
+list.append(el);</code></div>
+                    <ul class="justify">
+                        <li><b>Event Flow :</b> events go through the capture phase (top down), the target, then the bubble phase (bottom up); <code>stopPropagation()</code> stops it.</li>
+                        <li><b>XSS :</b> never assign untrusted strings to <code>innerHTML</code>, <code>outerHTML</code>, <code>document.write</code>, or <code>eval</code>; use <code>textContent</code>, sanitize with DOMPurify, and add a Content Security Policy.</li>
+                        <li><b>Storage :</b> <code>localStorage</code> / <code>sessionStorage</code> (synchronous strings), IndexedDB (large structured data), cookies; see the <a href="network.html">Networking</a> sheet.</li>
+                        <li><b>Other APIs :</b> <code>fetch</code>, <code>URL</code> / <code>URLSearchParams</code>, <code>IntersectionObserver</code>, <code>requestAnimationFrame</code>, Web Workers, Service Workers, <code>WebSocket</code>, <code>crypto.subtle</code>.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="json-dates">
+                <h4 class="heading">JSON, Dates &amp; Utilities</h4>
+                <div class="content">
+                    <div class="code-box code-box-color"><code>JSON.stringify({ a: 1, b: [2] }, null, 2)    // pretty-print; drops undefined and functions
+JSON.parse('{"a":1}', (k, v) =&gt; v)           // optional reviver function
+
+new Date().toISOString()                     // "2026-01-15T09:30:00.000Z" (UTC)
+Date.now()                                   // milliseconds since 1970-01-01 UTC
+new Intl.DateTimeFormat("en-GB", { dateStyle: "medium" }).format(new Date())
+new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(1234.5)
+
+Math.max(...nums); Math.round(2.5); Math.trunc(-4.7); Math.random()
+Number("42"); parseInt("08", 10); parseFloat("3.5"); (3.14159).toFixed(2)
+crypto.randomUUID()                          // secure random ID</code></div>
+                    <p><code>Date</code> months are 0-based (January is 0). <code>Math.random()</code> is not cryptographically secure; use <code>crypto.getRandomValues()</code> for tokens.</p>
+                </div>
+            </div>
+
+            <div class="sections" id="best-practices">
+                <h4 class="heading">Best Practices</h4>
+                <div class="content">
+                    <ul class="justify">
+                        <li><b>Declarations :</b> prefer <code>const</code>, then <code>let</code>; never <code>var</code>.</li>
+                        <li><b>Equality :</b> always use <code>===</code> and <code>!==</code>.</li>
+                        <li><b>Immutability :</b> prefer non-mutating methods (<code>map</code>, <code>toSorted</code>, spread) for shared data.</li>
+                        <li><b>Async :</b> use <code>async</code>/<code>await</code> with <code>try</code>/<code>catch</code>, and cancel requests with <code>AbortController</code>.</li>
+                        <li><b>Security :</b> no <code>eval</code> or <code>new Function</code> on input, validate data from the network, avoid <code>innerHTML</code>, and audit dependencies with <code>npm audit</code>.</li>
+                        <li><b>Memory :</b> remove event listeners and timers you no longer need, and avoid closures that keep large objects alive.</li>
+                        <li><b>Types :</b> use TypeScript or JSDoc types with a linter for larger projects.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <nav>
+                <a href="/cheatsheets" aria-label="All cheatsheets"><i class="bi bi-grid-3x3-gap-fill" aria-hidden="true"></i></a>
+                <a href="#" aria-label="Back to top"><i class="bi bi-arrow-up" aria-hidden="true"></i></a>
+            </nav>
+        </div>
+
+        <!-- JavaScript -->
+        <script src="../assets/js/script.js?v=9"></script>
+    </body>
+</html>

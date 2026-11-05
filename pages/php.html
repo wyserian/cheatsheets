@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>PHP Cheatsheet</title>
+        <script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('cheatsheet-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'))}catch(e){}</script>
+
+        <!-- Bootstrap CDN -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="../assets/css/style.css?v=12">
+    </head>
+
+    <body>
+        <div class="container">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <a href="/cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
+                <button class="theme-toggle" type="button" aria-label="Toggle theme"><i class="bi bi-sun" aria-hidden="true"></i></button>
+            </div>
+
+            <h3 class="title">PHP</h3>
+
+            <div class="section-list">
+                <ul>
+                    <li><a href="#php">PHP</a></li>
+                    <li><a href="#setup">Setup &amp; Running</a></li>
+                    <li><a href="#variables-types">Variables &amp; Data Types</a></li>
+                    <li><a href="#operators">Operators</a></li>
+                    <li><a href="#control-flow">Control Flow</a></li>
+                    <li><a href="#strings">Strings</a></li>
+                    <li><a href="#arrays">Arrays</a></li>
+                    <li><a href="#functions">Functions</a></li>
+                    <li><a href="#oop">Classes &amp; OOP</a></li>
+                    <li><a href="#namespaces-composer">Namespaces, Autoloading &amp; Composer</a></li>
+                    <li><a href="#errors">Errors &amp; Exceptions</a></li>
+                    <li><a href="#web">Web Requests, Sessions &amp; Files</a></li>
+                    <li><a href="#database">Database (PDO)</a></li>
+                    <li><a href="#security">Security Checklist</a></li>
+                </ul>
+            </div>
+
+            <div class="sections" id="php">
+                <h4 class="heading">PHP</h4>
+                <div class="content">
+                    <p>PHP (PHP: Hypertext Preprocessor) is a dynamically typed, server-side scripting language created by Rasmus Lerdorf in 1994. It powers a large share of the web, including WordPress, and frameworks such as <a href="laravel.html">Laravel</a> and Symfony.</p>
+                    <ul class="justify">
+                        <li><b>Zend Engine :</b> the interpreter compiles scripts to <b>opcodes</b> and executes them. <b>OPcache</b> keeps compiled opcodes in shared memory, and PHP 8 adds an optional <b>JIT</b> compiler.</li>
+                        <li><b>Request Model :</b> traditionally share-nothing: each HTTP request starts with fresh state, and memory is freed when the request ends.</li>
+                        <li><b>Runtimes :</b> PHP-FPM (FastCGI process manager behind Nginx or Apache), <code>mod_php</code> (Apache module), the CLI, and long-running servers such as FrankenPHP, RoadRunner, and Swoole.</li>
+                        <li><b>Versions :</b> PHP 7 (2015) roughly doubled performance; PHP 8 (2020) added JIT, union types, attributes, and <code>match</code>. A new 8.x ships every November with two years of active support and two of security fixes.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="setup">
+                <h4 class="heading">Setup &amp; Running</h4>
+                <div class="content">
+                    <div class="code-box code-box-color"><code>php -v                          # version
+php script.php                  # run a script from the command line
+php -a                          # interactive shell
+php -S localhost:8000 -t public # built-in development server (never in production)
+php -m                          # loaded extensions
+php --ini                       # which php.ini files are loaded
+php -l file.php                 # syntax check</code></div>
+                    <div class="code-box code-box-color"><code>&lt;?php
+declare(strict_types=1);        // per file: no silent scalar type conversion
+
+echo "Hello, World!", PHP_EOL;</code></div>
+                    <ul class="justify">
+                        <li><b>Tags :</b> code runs between <code>&lt;?php</code> and <code>?&gt;</code>; omit the closing tag in pure PHP files so trailing whitespace is not sent as output. <code>&lt;?= $x ?&gt;</code> is short for <code>echo</code>.</li>
+                        <li><b>php.ini :</b> runtime settings such as <code>memory_limit</code>, <code>max_execution_time</code>, <code>upload_max_filesize</code>, <code>display_errors</code>, and <code>error_reporting</code>.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="variables-types">
+                <h4 class="heading">Variables &amp; Data Types</h4>
+                <div class="content">
+                    <div class="code-box code-box-color"><code>$name = "Ada";                  // variables start with $ and are case-sensitive
+$age = 36;
+const MAX_USERS = 100;          // constant (also define('MAX_USERS', 100))
+$$varName = "dynamic";          // variable variables (avoid)
+
+var_dump($age);                 // int(36) - type and value
+gettype($age); get_debug_type($age);
+is_int($x); is_string($x); is_array($x); is_null($x); isset($x); empty($x)
+(int) "42abc";                  // 42 - explicit cast</code></div>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Example</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>int</code></td>
+                                    <td><code>42</code>, <code>0x1A</code>, <code>1_000_000</code> (64-bit on most systems)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>float</code></td>
+                                    <td><code>3.14</code>, <code>1.5e3</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>string</code></td>
+                                    <td><code>'single'</code>, <code>"double $var"</code> (byte strings)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>bool</code></td>
+                                    <td><code>true</code>, <code>false</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>array</code></td>
+                                    <td><code>[1, 2]</code>, <code>['key' =&gt; 'value']</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>object</code></td>
+                                    <td>instances of classes</td>
+                                </tr>
+                                <tr>
+                                    <td><code>null</code></td>
+                                    <td><code>null</code> (unset or no value)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>callable</code>, <code>iterable</code>, <code>resource</code></td>
+                                    <td>functions, traversable values, external handles</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <ul class="justify">
+                        <li><b>isset vs empty :</b> <code>isset($x)</code> is true if <code>$x</code> exists and is not <code>null</code>; <code>empty($x)</code> is true for <code>""</code>, <code>"0"</code>, <code>0</code>, <code>[]</code>, <code>null</code>, and <code>false</code>.</li>
+                        <li><b>Superglobals :</b> <code>$_GET</code>, <code>$_POST</code>, <code>$_REQUEST</code>, <code>$_COOKIE</code>, <code>$_FILES</code>, <code>$_SERVER</code>, <code>$_SESSION</code>, <code>$_ENV</code>, <code>$GLOBALS</code>; all request values are untrusted strings.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="operators">
+                <h4 class="heading">Operators</h4>
+                <div class="content">
+                    <div class="code-box code-box-color"><code>0 == "a"        // false in PHP 8 (true in PHP 7): loose comparison converts types
+"1" == "01"     // true  - numeric strings are compared as numbers
+"abc" === "abc" // true  - strict: same type and value (prefer === and !==)
+
+$a &lt;=&gt; $b       // spaceship: -1, 0, or 1 (useful for sorting)
+$x ?? "default" // null coalescing: no warning if $x is undefined
+$x ??= [];      // assign if null
+$user?-&gt;profile?-&gt;city  // nullsafe operator (8.0)
+"Hello " . $name        // string concatenation with .
+$s .= "!";
+10 % 3; 2 ** 10; intdiv(7, 2);
+$cond ? "yes" : "no";  $value ?: "fallback"   // short ternary: if $value is falsy</code></div>
+                </div>
+            </div>
+
+            <div class="sections" id="control-flow">
+                <h4 class="heading">Control Flow</h4>
+                <div class="content">
+                    <div class="code-box code-box-color"><code>if ($score &gt;= 90) {
+    $grade = "A";
+} elseif ($score &gt;= 75) {
+    $grade = "B";
+} else {
+    $grade = "C";
+}
+
+$label = match (true) {                 // match (8.0): strict comparison, returns a value,
+    $score &gt;= 90 =&gt; "excellent",        // no fall-through, throws UnhandledMatchError
+    $score &gt;= 50 =&gt; "pass",             // if nothing matches
+    default      =&gt; "fail",
+};
+
+switch ($status) {                      // loose comparison, falls through without break
+    case 200: ok(); break;
+    default:  fail();
+}
+
+for ($i = 0; $i &lt; 5; $i++) { }
+foreach ($items as $item) { }
+foreach ($users as $id =&gt; $user) { }
+foreach ($items as &amp;$item) { $item *= 2; } unset($item);  // by reference; unset afterwards
+while ($row = $stmt-&gt;fetch()) { }
+do { } while (false);</code></div>
+                </div>
+            </div>
+
+            <div class="sections" id="strings">
+                <h4 class="heading">Strings</h4>
+                <div class="content">
+                    <div class="code-box code-box-color"><code>$name = "Ada";
+'No $interpolation here\n'          // single quotes: literal (only \' and \\ escape)
+"Hello, $name! {$user-&gt;name} {$arr['key']}\n"   // double quotes: variables and escapes
+
+$html = &lt;&lt;&lt;HTML
+    &lt;p&gt;Hello, {$name}&lt;/p&gt;
+    HTML;                            // heredoc (interpolates); nowdoc uses &lt;&lt;&lt;'HTML'
+
+strlen($s); mb_strlen($s);           // bytes vs characters (use mb_* for UTF-8)
+strtoupper($s); ucfirst($s); trim($s); str_pad($s, 5, "0", STR_PAD_LEFT)
+str_contains($s, "a"); str_starts_with($s, "A"); str_ends_with($s, "z")  // 8.0
+strpos($s, "d");                     // int position or false: compare with === false
+substr($s, 0, 3); str_replace("a", "b", $s); str_repeat("-", 10)
+explode(",", "a,b,c"); implode("-", ["a", "b"])
+sprintf("%05.2f | %s | %d", 3.14159, "x", 42)
+preg_match('/(\d+)/', $s, $m); preg_replace('/\s+/', ' ', $s)</code></div>
+                </div>
+            </div>
+
+            <div class="sections" id="arrays">
+                <h4 class="heading">Arrays</h4>
+                <div class="content">
+                    <p>PHP arrays are ordered hash maps: the same type serves as a list, a dictionary, a stack, and a queue. Keys are integers or strings.</p>
+                    <div class="code-box code-box-color"><code>$nums = [3, 1, 4];
+$user = ['name' =&gt; 'Ada', 'age' =&gt; 36];
+$nums[] = 1;                          // append
+$user['email'] = 'a@x.io';
+[$a, $b] = $nums;  ['name' =&gt; $n] = $user;   // destructuring
+$all = [...$nums, ...$more];          // spread
+
+count($nums); in_array(4, $nums, true); array_key_exists('age', $user)
+array_keys($user); array_values($user); array_search(4, $nums, true)
+array_push($nums, 5); array_pop($nums); array_shift($nums); array_unshift($nums, 0)
+array_slice($nums, 1, 2); array_splice($nums, 1, 1)
+array_merge($a, $b); $a + $b          // + keeps keys from the left array
+array_map(fn($n) =&gt; $n * 2, $nums)
+array_filter($nums, fn($n) =&gt; $n &gt; 2) // keeps original keys; wrap in array_values()
+array_reduce($nums, fn($c, $n) =&gt; $c + $n, 0)
+array_column($users, 'email', 'id')   // pluck a column, keyed by id
+array_unique($nums); array_flip($user); array_combine($keys, $values)
+sort($nums); rsort($nums); asort($user); ksort($user)   // sort in place
+usort($users, fn($a, $b) =&gt; $a['age'] &lt;=&gt; $b['age'])
+array_is_list($nums)                  // 8.1</code></div>
+                </div>
+            </div>
+
+            <div class="sections" id="functions">
+                <h4 class="heading">Functions</h4>
+                <div class="content">
+                    <div class="code-box code-box-color"><code>function greet(string $name, string $greeting = "Hello"): string {
+    return "$greeting, $name";
+}
+greet(greeting: "Hi", name: "Ada");      // named arguments (8.0)
+
+function sum(int ...$nums): int { return array_sum($nums); }   // variadic
+function addItem(array &amp;$list, $item): void { $list[] = $item; } // by reference
+
+$double = fn($x) =&gt; $x * 2;              // arrow function: captures outer variables by value
+$tax = 0.2;
+$withTax = function ($p) use ($tax) { return $p * (1 + $tax); };  // closure: explicit use
+$strlen = strlen(...);                   // first-class callable syntax (8.1)
+
+function find(int $id): ?User { }        // nullable return
+function parse(int|string $v): never { throw new Exception(); }   // union, never types</code></div>
+                    <ul class="justify">
+                        <li><b>Arguments :</b> scalars and arrays are passed by value (arrays are copied on write); objects are passed as handles, so methods can change the same object.</li>
+                        <li><b>Scope :</b> functions do not see global variables unless passed in (or declared with <code>global</code>, which is best avoided).</li>
+                        <li><b>Static Variables :</b> <code>static $count = 0;</code> keeps its value between calls.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="oop">
+                <h4 class="heading">Classes &amp; OOP</h4>
+                <div class="content">
+                    <div class="code-box code-box-color"><code>&lt;?php
+declare(strict_types=1);
+
+namespace App\Models;
+
+interface HasLabel { public function label(): string; }
+
+abstract class Model {
+    abstract public function table(): string;
+}
+
+trait Timestamps {                                   // reusable methods mixed into classes
+    public ?\DateTimeImmutable $createdAt = null;
+    public function touch(): void { $this-&gt;createdAt = new \DateTimeImmutable(); }
+}
+
+final class User extends Model implements HasLabel {
+    use Timestamps;
+
+    public const ROLE_ADMIN = 'admin';
+    private static int $count = 0;
+
+    public function __construct(                     // constructor property promotion (8.0)
+        public readonly int $id,                     // readonly (8.1): set once
+        private string $name,
+        protected array $roles = [],
+    ) {
+        self::$count++;
+    }
+
+    public function table(): string { return 'users'; }
+    public function label(): string { return ucfirst($this-&gt;name); }
+    public static function count(): int { return static::$count; }
+    public function __toString(): string { return $this-&gt;label(); }
+}
+
+$user = new User(1, 'ada');
+echo $user-&gt;label(), User::ROLE_ADMIN, User::count();
+$user instanceof HasLabel;      // true</code></div>
+                    <ul class="justify">
+                        <li><b>Visibility :</b> <code>public</code>, <code>protected</code> (class and subclasses), <code>private</code> (this class only).</li>
+                        <li><b><code>self</code> vs <code>static</code> :</b> <code>self::</code> refers to the class where the code is written; <code>static::</code> uses late static binding (the class actually called).</li>
+                        <li><b>Magic Methods :</b> <code>__construct</code>, <code>__destruct</code>, <code>__get</code>, <code>__set</code>, <code>__call</code>, <code>__toString</code>, <code>__invoke</code>, <code>__serialize</code>.</li>
+                        <li><b>Single Inheritance :</b> a class extends one parent, implements many interfaces, and uses many traits.</li>
+                    </ul>
+                    <h6>Enums (8.1)</h6>
+                    <div class="code-box code-box-color"><code>enum Status: string {
+    case Active = 'active';
+    case Banned = 'banned';
+
+    public function label(): string {
+        return match ($this) { Status::Active =&gt; 'Active', Status::Banned =&gt; 'Banned' };
+    }
+}
+
+Status::from('active');      // Status::Active, throws ValueError if invalid
+Status::tryFrom('x');        // null
+Status::Active-&gt;value;       // 'active'</code></div>
+                </div>
+            </div>
+
+            <div class="sections" id="namespaces-composer">
+                <h4 class="heading">Namespaces, Autoloading &amp; Composer</h4>
+                <div class="content">
+                    <ul class="justify">
+                        <li><b>Namespaces :</b> group classes and avoid name clashes: <code>namespace App\Http;</code>, then <code>use App\Models\User;</code> or <code>use Foo\Bar as Baz;</code>.</li>
+                        <li><b>PSR-4 Autoloading :</b> maps a namespace prefix to a directory, so <code>App\Models\User</code> loads <code>src/Models/User.php</code> on first use without <code>require</code>.</li>
+                        <li><b>Composer :</b> the dependency manager; packages come from Packagist. <code>composer.lock</code> pins exact versions and should be committed.</li>
+                        <li><b>PSR Standards :</b> PHP-FIG recommendations such as PSR-1/PSR-12 (coding style), PSR-3 (logger), PSR-4 (autoloading), PSR-7 (HTTP messages), PSR-11 (container), and PSR-15 (middleware).</li>
+                    </ul>
+                    <div class="code-box code-box-color"><code>composer init                          # create composer.json
+composer require guzzlehttp/guzzle     # add a dependency
+composer require --dev phpunit/phpunit
+composer install                       # install exactly what composer.lock says
+composer install --no-dev --optimize-autoloader   # production
+composer update vendor/package         # upgrade within version constraints
+composer dump-autoload
+composer audit                         # check for known vulnerabilities</code></div>
+                    <div class="code-box code-box-color"><code>{
+  "require": { "php": "^8.3", "guzzlehttp/guzzle": "^7.8" },
+  "autoload": { "psr-4": { "App\\": "src/" } }
+}</code></div>
+                    <p>Load dependencies with <code>require __DIR__ . '/vendor/autoload.php';</code>. See the <a href="laravel.html">Laravel</a> sheet for framework usage.</p>
+                </div>
+            </div>
+
+            <div class="sections" id="errors">
+                <h4 class="heading">Errors &amp; Exceptions</h4>
+                <div class="content">
+                    <div class="code-box code-box-color"><code>class PaymentException extends RuntimeException {}
+
+try {
+    $result = charge($order);
+} catch (PaymentException | InvalidArgumentException $e) {
+    error_log($e-&gt;getMessage());
+    throw new RuntimeException('Checkout failed', previous: $e);
+} catch (Throwable $e) {           // catches both Exception and Error
+    report($e);
+} finally {
+    $lock-&gt;release();
+}</code></div>
+                    <ul class="justify">
+                        <li><b>Hierarchy :</b> <code>Throwable</code> has two branches: <code>Exception</code> (application errors, e.g. <code>RuntimeException</code>, <code>InvalidArgumentException</code>) and <code>Error</code> (engine errors, e.g. <code>TypeError</code>, <code>ValueError</code>, <code>DivisionByZeroError</code>).</li>
+                        <li><b>Warnings &amp; Notices :</b> older functions emit warnings instead of throwing; convert them with <code>set_error_handler</code> or check return values (many return <code>false</code> on failure).</li>
+                        <li><b>Production :</b> set <code>display_errors=Off</code> and <code>log_errors=On</code> so stack traces are never shown to users.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="web">
+                <h4 class="heading">Web Requests, Sessions &amp; Files</h4>
+                <div class="content">
+                    <div class="code-box code-box-color"><code>$id    = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);   // validate input
+$email = filter_var($_POST['email'] ?? '', FILTER_VALIDATE_EMAIL);
+$method = $_SERVER['REQUEST_METHOD'];
+
+header('Content-Type: application/json');
+http_response_code(201);
+echo json_encode(['id' =&gt; $id], JSON_THROW_ON_ERROR);
+$data = json_decode(file_get_contents('php://input'), true, flags: JSON_THROW_ON_ERROR);
+
+session_start([
+    'cookie_httponly' =&gt; true,
+    'cookie_secure'   =&gt; true,
+    'cookie_samesite' =&gt; 'Lax',
+]);
+session_regenerate_id(true);           // after login: prevents session fixation
+$_SESSION['user_id'] = $user-&gt;id;
+
+setcookie('theme', 'dark', ['expires' =&gt; time() + 86400, 'path' =&gt; '/', 'secure' =&gt; true, 'httponly' =&gt; true, 'samesite' =&gt; 'Lax']);</code></div>
+                    <h6>Files</h6>
+                    <div class="code-box code-box-color"><code>$text = file_get_contents('data.txt');
+file_put_contents('log.txt', "line\n", FILE_APPEND | LOCK_EX);
+foreach (new SplFileObject('big.csv') as $row) { }        // read line by line
+$fh = fopen('data.csv', 'r'); while (($row = fgetcsv($fh)) !== false) { } fclose($fh);
+
+// uploads: check the error code, size, and real type; store outside the web root
+if ($_FILES['avatar']['error'] === UPLOAD_ERR_OK) {
+    $mime = (new finfo(FILEINFO_MIME_TYPE))-&gt;file($_FILES['avatar']['tmp_name']);
+    move_uploaded_file($_FILES['avatar']['tmp_name'], $storage . '/' . bin2hex(random_bytes(16)));
+}</code></div>
+                    <p>Sessions and cookies are covered in depth in the <a href="network.html">Networking</a> sheet.</p>
+                </div>
+            </div>
+
+            <div class="sections" id="database">
+                <h4 class="heading">Database (PDO)</h4>
+                <div class="content">
+                    <div class="code-box code-box-color"><code>$pdo = new PDO('mysql:host=localhost;dbname=app;charset=utf8mb4', $user, $pass, [
+    PDO::ATTR_ERRMODE            =&gt; PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE =&gt; PDO::FETCH_ASSOC,
+    PDO::ATTR_EMULATE_PREPARES   =&gt; false,          // use real prepared statements
+]);
+
+$stmt = $pdo-&gt;prepare('SELECT id, name FROM users WHERE email = :email');
+$stmt-&gt;execute(['email' =&gt; $email]);               // values are sent separately from SQL
+$user = $stmt-&gt;fetch();
+
+$pdo-&gt;beginTransaction();
+try {
+    $pdo-&gt;prepare('UPDATE accounts SET balance = balance - ? WHERE id = ?')-&gt;execute([$amt, $from]);
+    $pdo-&gt;prepare('UPDATE accounts SET balance = balance + ? WHERE id = ?')-&gt;execute([$amt, $to]);
+    $pdo-&gt;commit();
+} catch (Throwable $e) {
+    $pdo-&gt;rollBack();
+    throw $e;
+}</code></div>
+                    <p>PDO supports MySQL, PostgreSQL, SQLite, SQL Server, and others with one API. Table and column names cannot be bound as parameters, so check them against an allow-list.</p>
+                </div>
+            </div>
+
+            <div class="sections" id="security">
+                <h4 class="heading">Security Checklist</h4>
+                <div class="content">
+                    <ul class="justify">
+                        <li><b>SQL Injection :</b> always use prepared statements; never concatenate request values into SQL.</li>
+                        <li><b>XSS :</b> escape output for its context: <code>htmlspecialchars($s, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8')</code> for HTML, or use a template engine that escapes automatically (Blade, Twig).</li>
+                        <li><b>Passwords :</b> <code>password_hash($pw, PASSWORD_DEFAULT)</code> (bcrypt, or Argon2id with <code>PASSWORD_ARGON2ID</code>) and <code>password_verify()</code>; never <code>md5</code> or <code>sha1</code>.</li>
+                        <li><b>CSRF :</b> add a random per-session token (<code>bin2hex(random_bytes(32))</code>) to forms and compare with <code>hash_equals()</code>; set <code>SameSite</code> cookies.</li>
+                        <li><b>File Inclusion :</b> never pass user input to <code>include</code> or <code>require</code>; keep <code>allow_url_include=Off</code>.</li>
+                        <li><b>Command Injection :</b> avoid <code>exec</code>, <code>system</code>, <code>shell_exec</code>, and backticks; if needed, wrap each argument in <code>escapeshellarg()</code>.</li>
+                        <li><b>Deserialization :</b> never call <code>unserialize()</code> on untrusted data (it can trigger magic methods, "object injection"); use <code>json_decode</code>.</li>
+                        <li><b>Type Juggling :</b> use <code>===</code>, <code>hash_equals()</code> for secrets, and <code>in_array(..., true)</code>; loose comparison has enabled authentication bypasses.</li>
+                        <li><b>Randomness :</b> use <code>random_bytes()</code> and <code>random_int()</code>, not <code>rand()</code> or <code>mt_rand()</code>, for tokens.</li>
+                        <li><b>Configuration :</b> serve only the <code>public/</code> directory, hide errors and <code>expose_php</code> in production, and keep PHP on a supported version.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <nav>
+                <a href="/cheatsheets" aria-label="All cheatsheets"><i class="bi bi-grid-3x3-gap-fill" aria-hidden="true"></i></a>
+                <a href="#" aria-label="Back to top"><i class="bi bi-arrow-up" aria-hidden="true"></i></a>
+            </nav>
+        </div>
+
+        <!-- JavaScript -->
+        <script src="../assets/js/script.js?v=9"></script>
+    </body>
+</html>

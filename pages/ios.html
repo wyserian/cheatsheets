@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>iOS Cheatsheet</title>
+        <script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('cheatsheet-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'))}catch(e){}</script>
+
+        <!-- Bootstrap CDN -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="../assets/css/style.css?v=12">
+    </head>
+
+    <body>
+        <div class="container">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <a href="/cheatsheets" class="back-link"><i class="bi bi-grid-3x3-gap-fill"></i> All Cheatsheets</a>
+                <button class="theme-toggle" type="button" aria-label="Toggle theme"><i class="bi bi-sun" aria-hidden="true"></i></button>
+            </div>
+
+            <h3 class="title">iOS</h3>
+
+            <div class="section-list">
+                <ul>
+                    <li><a href="#ios-overview">iOS Overview</a></li>
+                    <li><a href="#versions">iOS Versions</a></li>
+                    <li><a href="#app-dev">App Development &amp; IPA</a></li>
+                    <li><a href="#architecture">System Architecture</a></li>
+                    <li><a href="#app-lifecycle">App Lifecycle &amp; Components</a></li>
+                    <li><a href="#info-plist">Info.plist &amp; Permissions</a></li>
+                    <li><a href="#deep-links">URL Schemes &amp; Universal Links</a></li>
+                    <li><a href="#notifications">Notifications &amp; Push</a></li>
+                    <li><a href="#app-architecture">App Architecture &amp; Frameworks</a></li>
+                    <li><a href="#networking">Networking &amp; App Transport Security</a></li>
+                    <li><a href="#data-storage">Data Storage &amp; Keychain</a></li>
+                    <li><a href="#debugging">Debugging &amp; Testing</a></li>
+                    <li><a href="#app-security">App Security Checklist</a></li>
+                    <li><a href="#file-system">File System</a></li>
+                    <li><a href="#boot">Boot Process</a></li>
+                    <li><a href="#security-core">iOS Security Core</a></li>
+                    <li><a href="#apple-ecosystem">Apple Ecosystem</a></li>
+                    <li><a href="#jailbreak">Jailbreak</a></li>
+                </ul>
+            </div>
+
+            <div class="sections" id="ios-overview">
+                <h4 class="heading">iOS Overview</h4>
+                <div class="content">
+                    <p>iOS is Apple's mobile operating system for the iPhone, first released in 2007 as iPhone OS. It is built on <b>Darwin</b>, the same Unix-based core as macOS, with the <b>XNU</b> kernel. Unlike Android, iOS is closed source (only parts of Darwin are open), runs only on Apple hardware, and Apple controls both the OS and the main app distribution channel.</p>
+                    <ul class="justify">
+                        <li><b>Related Platforms :</b> iPadOS (split from iOS in 2019), watchOS, tvOS, and visionOS share most frameworks and tooling.</li>
+                        <li><b>Languages :</b> <b>Swift</b> (since 2014, the primary language) and <b>Objective-C</b> (legacy, still used in older code and system frameworks); C and C++ for low-level code.</li>
+                        <li><b>Distribution :</b> mainly through the App Store, after Apple's App Review. In the EU, the Digital Markets Act also allows alternative app marketplaces (iOS 17.4) and direct web distribution (iOS 17.5), with Apple notarization.</li>
+                        <li><b>Updates :</b> Apple ships OS updates directly to all supported devices at once, so most users run a recent version.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="versions">
+                <h4 class="heading">iOS Versions</h4>
+                <div class="content">
+                    <p>Apps declare a <b>deployment target</b> (the oldest iOS version they support) and are built with the latest SDK. Since 2025, iOS versions are numbered by year (iOS 26 follows iOS 18).</p>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Version</th>
+                                    <th>Year</th>
+                                    <th>Key Changes for Developers</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>iOS 13</td>
+                                    <td>2019</td>
+                                    <td>SwiftUI, Combine, dark mode, Sign in with Apple, multiple scenes (windows) on iPad</td>
+                                </tr>
+                                <tr>
+                                    <td>iOS 14</td>
+                                    <td>2020</td>
+                                    <td>Home Screen widgets, App Clips, approximate location, limited photo access, App Tracking Transparency (enforced from 14.5)</td>
+                                </tr>
+                                <tr>
+                                    <td>iOS 15</td>
+                                    <td>2021</td>
+                                    <td>Swift concurrency (async/await), Focus modes, App Privacy Report</td>
+                                </tr>
+                                <tr>
+                                    <td>iOS 16</td>
+                                    <td>2022</td>
+                                    <td>Lock Screen widgets, passkeys, Lockdown Mode, Live Activities (16.1)</td>
+                                </tr>
+                                <tr>
+                                    <td>iOS 17</td>
+                                    <td>2023</td>
+                                    <td>Observation (<code>@Observable</code>), SwiftData, interactive widgets, privacy manifests, alternative distribution in the EU (17.4)</td>
+                                </tr>
+                                <tr>
+                                    <td>iOS 18</td>
+                                    <td>2024</td>
+                                    <td>Apple Intelligence, locked and hidden apps, limited contacts access, Control Center controls</td>
+                                </tr>
+                                <tr>
+                                    <td>iOS 26</td>
+                                    <td>2025</td>
+                                    <td>Liquid Glass design, the Foundation Models framework (on-device language model for apps), new year-based numbering</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <ul class="justify">
+                        <li><b>App Store Requirement :</b> new submissions must be built with a recent Xcode and iOS SDK, which Apple updates each spring.</li>
+                        <li><b>Availability Checks :</b> guard newer APIs with <code>if #available(iOS 17, *) { ... }</code> or mark code with <code>@available(iOS 17, *)</code>.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="app-dev">
+                <h4 class="heading">App Development &amp; IPA</h4>
+                <div class="content">
+                    <h5>Languages &amp; Tooling</h5>
+                    <ul class="justify">
+                        <li><b>Xcode :</b> the official IDE, available only on macOS; includes the compiler, Interface Builder, Simulator, Instruments, and signing tools.</li>
+                        <li><b>Swift Package Manager :</b> the built-in dependency manager. CocoaPods (now in maintenance mode) and Carthage are older alternatives.</li>
+                        <li><b>SwiftUI vs UIKit :</b> SwiftUI is the modern declarative UI framework; UIKit is the mature imperative one. They can be mixed in one app (see <a href="#app-architecture">App Architecture</a>).</li>
+                        <li><b>Simulator :</b> runs iOS apps natively on the Mac (it is not an emulator), so some hardware features and performance differ from a real device.</li>
+                    </ul>
+                    <h5>Project Structure</h5>
+                    <ul class="justify">
+                        <li><b><code>.xcodeproj</code> / <code>.xcworkspace</code> :</b> project settings, targets, and build configurations.</li>
+                        <li><b><code>Info.plist</code> :</b> app metadata and configuration (bundle ID, version, permissions text); see <a href="#info-plist">Info.plist &amp; Permissions</a>.</li>
+                        <li><b><code>.entitlements</code> :</b> capabilities the app is allowed to use (push, iCloud, App Groups, Associated Domains).</li>
+                        <li><b><code>Assets.xcassets</code> :</b> images, app icons, and colors in light and dark variants.</li>
+                        <li><b><code>Localizable.xcstrings</code> :</b> String Catalog with translated user-facing text (Xcode 15+), replacing <code>.strings</code> files.</li>
+                        <li><b>Targets :</b> the app plus extensions (widgets, share, notification service), unit tests, and UI tests.</li>
+                    </ul>
+                    <h5>Build Process</h5>
+                    <div class="code-box code-box-color"><code>Swift / Objective-C  --(swiftc / clang, LLVM)--&gt;  Mach-O executable (arm64)
+Assets.xcassets      --(actool)--&gt;                Assets.car
+Storyboards / XIBs   --(ibtool)--&gt;                compiled .storyboardc / .nib
+   --&gt; MyApp.app bundle  --(codesign)--&gt;  signed .app  --(zip Payload/)--&gt;  .ipa</code></div>
+                    <h5>IPA Structure</h5>
+                    <p>An IPA is a ZIP archive containing the app bundle:</p>
+                    <ul class="justify">
+                        <li><b><code>Payload/MyApp.app/MyApp</code> :</b> the compiled Mach-O executable.</li>
+                        <li><b><code>Info.plist</code> :</b> compiled app metadata.</li>
+                        <li><b><code>_CodeSignature/CodeResources</code> :</b> hashes of every file, covered by the code signature.</li>
+                        <li><b><code>embedded.mobileprovision</code> :</b> the provisioning profile (development and ad hoc builds).</li>
+                        <li><b><code>Frameworks/</code> :</b> embedded dynamic frameworks. <b><code>PlugIns/</code> :</b> app extensions.</li>
+                        <li><b><code>Assets.car</code>, <code>*.lproj/</code> :</b> compiled assets and localizations. <b><code>PrivacyInfo.xcprivacy</code> :</b> the privacy manifest.</li>
+                    </ul>
+                    <h5>Code Signing &amp; Provisioning</h5>
+                    <ul class="justify">
+                        <li><b>Apple Developer Program :</b> required to distribute apps (US $99 per year).</li>
+                        <li><b>Certificates :</b> a development certificate signs builds for testing; a distribution certificate signs App Store and ad hoc builds.</li>
+                        <li><b>App ID / Bundle ID :</b> the unique identifier, e.g. <code>com.example.app</code>, prefixed by the team ID.</li>
+                        <li><b>Provisioning Profile :</b> ties together the App ID, certificate, entitlements, and (for development and ad hoc) the allowed device list. iOS refuses to run an app whose signature or profile does not match.</li>
+                        <li><b>Automatic Signing :</b> Xcode can create and renew certificates and profiles for you.</li>
+                    </ul>
+                    <h6>Distribution Methods</h6>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Method</th>
+                                    <th>Audience</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>App Store</td>
+                                    <td>everyone, after App Review</td>
+                                </tr>
+                                <tr>
+                                    <td>TestFlight</td>
+                                    <td>beta testers: up to 100 internal and 10,000 external testers; builds expire after 90 days</td>
+                                </tr>
+                                <tr>
+                                    <td>Ad Hoc</td>
+                                    <td>up to 100 registered devices of each type per year</td>
+                                </tr>
+                                <tr>
+                                    <td>Enterprise (In-House)</td>
+                                    <td>employees of an organization in the Enterprise Program, not the public</td>
+                                </tr>
+                                <tr>
+                                    <td>Custom Apps</td>
+                                    <td>specific businesses through Apple Business Manager</td>
+                                </tr>
+                                <tr>
+                                    <td>Alternative marketplaces (EU)</td>
+                                    <td>users in the EU, with Apple notarization</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h5>Command-Line Tools</h5>
+                    <div class="code-box code-box-color"><code>xcodebuild -scheme MyApp -destination 'platform=iOS Simulator,name=iPhone 16' build
+xcodebuild -scheme MyApp -configuration Release archive -archivePath build/MyApp.xcarchive
+xcodebuild -exportArchive -archivePath build/MyApp.xcarchive -exportOptionsPlist ExportOptions.plist -exportPath build/
+xcrun simctl list devices                     # available simulators
+xcrun simctl boot "iPhone 16"                 # start a simulator
+xcrun simctl install booted MyApp.app         # install a build
+xcrun devicectl list devices                  # connected physical devices (Xcode 15+)
+codesign -dvvv MyApp.app                      # inspect a signature
+security cms -D -i embedded.mobileprovision   # decode a provisioning profile</code></div>
+                    <h6>Reverse-Engineering Tools</h6>
+                    <p>Used for debugging, security review, and malware analysis, only on apps you are authorized to inspect. App Store binaries are encrypted with FairPlay DRM.</p>
+                    <ul class="justify">
+                        <li><b>otool / nm :</b> inspect Mach-O headers, linked libraries, and symbols.</li>
+                        <li><b>class-dump :</b> list Objective-C classes and methods.</li>
+                        <li><b>Ghidra / Hopper :</b> disassemble and decompile binaries.</li>
+                        <li><b>Frida / objection :</b> dynamic instrumentation for runtime analysis.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="architecture">
+                <h4 class="heading">System Architecture</h4>
+                <div class="content">
+                    <p>iOS is organized in layers. Apps mostly use the top layers, which are built on the lower ones.</p>
+                    <div class="code-box code-box-color"><code>Cocoa Touch / App Frameworks   UIKit, SwiftUI, UserNotifications, MapKit, WidgetKit
+Media                          Core Graphics, Core Animation, Metal, AVFoundation, Core Audio
+Core Services                  Foundation, Core Data, CloudKit, Core Location, networking
+Core OS                        XNU kernel (Mach + BSD), IOKit drivers, Security, Keychain
+Hardware                       Apple silicon, Secure Enclave</code></div>
+                    <h5>Core Components</h5>
+                    <ul class="justify">
+                        <li><b>XNU Kernel :</b> a hybrid kernel combining the <b>Mach</b> microkernel (tasks, threads, virtual memory, IPC), <b>BSD</b> (processes, users, file systems, networking, POSIX APIs), and <b>IOKit</b> (an object-oriented driver framework).</li>
+                        <li><b>launchd :</b> the first user-space process (PID 1); starts and supervises all system daemons and apps.</li>
+                        <li><b>SpringBoard :</b> the Home Screen and app launcher.</li>
+                        <li><b>dyld :</b> the dynamic linker. System frameworks are pre-linked into one large <b>dyld shared cache</b> for faster launches.</li>
+                        <li><b>Mach-O :</b> the executable file format (the equivalent of ELF on Linux).</li>
+                        <li><b>XPC :</b> lightweight IPC used to split system services and app extensions into separate, sandboxed processes.</li>
+                        <li><b>Runtimes :</b> the Objective-C runtime (dynamic message dispatch) and the Swift runtime; there is no virtual machine, since apps compile ahead of time to native ARM code.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="app-lifecycle">
+                <h4 class="heading">App Lifecycle &amp; Components</h4>
+                <div class="content">
+                    <p>iOS has no direct equivalent of Android's four app components. Apps are built from scenes, view controllers or SwiftUI views, and separate <b>app extensions</b>, and the system tightly limits what runs in the background.</p>
+                    <h6>Android vs iOS Concepts</h6>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Android</th>
+                                    <th>iOS Equivalent</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Activity</td>
+                                    <td><code>UIViewController</code> / SwiftUI <code>View</code>, inside a scene</td>
+                                </tr>
+                                <tr>
+                                    <td>Fragment</td>
+                                    <td>child view controllers / composed SwiftUI views</td>
+                                </tr>
+                                <tr>
+                                    <td>Intent (between apps)</td>
+                                    <td>URL schemes, Universal Links, share sheet, <code>NSUserActivity</code>; there is no general app-to-app IPC</td>
+                                </tr>
+                                <tr>
+                                    <td>Service</td>
+                                    <td>background modes and <code>BGTaskScheduler</code>; no long-running general background services</td>
+                                </tr>
+                                <tr>
+                                    <td>Broadcast Receiver</td>
+                                    <td><code>NotificationCenter</code> (in-app events) and system notifications</td>
+                                </tr>
+                                <tr>
+                                    <td>Content Provider</td>
+                                    <td>App Groups shared containers, share extensions, File Provider extensions</td>
+                                </tr>
+                                <tr>
+                                    <td>AndroidManifest.xml</td>
+                                    <td><code>Info.plist</code> + entitlements</td>
+                                </tr>
+                                <tr>
+                                    <td>Runtime permissions</td>
+                                    <td>privacy usage strings + system consent prompts (TCC)</td>
+                                </tr>
+                                <tr>
+                                    <td>Keystore</td>
+                                    <td>Keychain + Secure Enclave</td>
+                                </tr>
+                                <tr>
+                                    <td>APK / AAB</td>
+                                    <td>IPA</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h5>App States</h5>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>State</th>
+                                    <th>Meaning</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Not running</td>
+                                    <td>not launched, or terminated by the system</td>
+                                </tr>
+                                <tr>
+                                    <td>Inactive</td>
+                                    <td>in the foreground but not receiving events (e.g. during an incoming call)</td>
+                                </tr>
+                                <tr>
+                                    <td>Active</td>
+                                    <td>in the foreground and receiving events</td>
+                                </tr>
+                                <tr>
+                                    <td>Background</td>
+                                    <td>running code briefly after leaving the screen</td>
+                                </tr>
+                                <tr>
+                                    <td>Suspended</td>
+                                    <td>in memory but not running code; may be terminated without notice to free memory</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="code-box code-box-color"><code>@main
+struct MyApp: App {
+    @Environment(\.scenePhase) private var scenePhase
+
+    var body: some Scene {
+        WindowGroup { ContentView() }
+            .onChange(of: scenePhase) { _, phase in
+                switch phase {
+                case .active:     resumeWork()
+                case .inactive:   pauseUI()
+                case .background: saveState()          // the app may be suspended next
+                @unknown default: break
+                }
+            }
+    }
+}</code></div>
+                    <ul class="justify">
+                        <li><b>UIKit Lifecycle :</b> <code>UIApplicationDelegate</code> handles app launch (<code>application(_:didFinishLaunchingWithOptions:)</code>); <code>UISceneDelegate</code> handles each window (<code>sceneDidBecomeActive</code>, <code>sceneWillResignActive</code>, <code>sceneDidEnterBackground</code>).</li>
+                        <li><b>App Extensions :</b> widgets, share, action, notification service and content, keyboard, Safari, and intents extensions each run as a separate process with their own limits.</li>
+                        <li><b>App Clips :</b> small parts of an app (under a size limit) that launch instantly from a link, NFC tag, or QR code without a full install.</li>
+                    </ul>
+                    <h5>Background Execution</h5>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Need</th>
+                                    <th>Use</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>finish a task after leaving the screen</td>
+                                    <td><code>beginBackgroundTask</code> (a short, system-decided amount of time)</td>
+                                </tr>
+                                <tr>
+                                    <td>periodic content refresh</td>
+                                    <td><code>BGAppRefreshTask</code> via <code>BGTaskScheduler</code> (the system decides when)</td>
+                                </tr>
+                                <tr>
+                                    <td>long maintenance work (sync, ML)</td>
+                                    <td><code>BGProcessingTask</code>, often only while charging</td>
+                                </tr>
+                                <tr>
+                                    <td>audio, navigation, VoIP, Bluetooth accessories</td>
+                                    <td>declared <code>UIBackgroundModes</code></td>
+                                </tr>
+                                <tr>
+                                    <td>server-triggered update</td>
+                                    <td>silent push notification (throttled by the system)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <ul class="justify">
+                        <li><b>Jetsam :</b> the system terminates background apps under memory pressure, so save state when entering the background.</li>
+                        <li><b>Watchdog :</b> an app that takes too long to launch or blocks the main thread is terminated (crash reports show the exception code <code>0x8badf00d</code>).</li>
+                        <li><b>Main Thread :</b> all UI work must run on the main thread; Swift concurrency marks it with <code>@MainActor</code>.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="info-plist">
+                <h4 class="heading">Info.plist &amp; Permissions</h4>
+                <div class="content">
+                    <p><code>Info.plist</code> describes the app to the system, while the <b>entitlements</b> file, signed into the app, grants access to protected capabilities. Together they play the role of Android's manifest.</p>
+                    <h6>Common Info.plist Keys</h6>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Key</th>
+                                    <th>Purpose</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>CFBundleIdentifier</code></td>
+                                    <td>bundle ID, e.g. <code>com.example.app</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>CFBundleShortVersionString</code> / <code>CFBundleVersion</code></td>
+                                    <td>user-facing version (1.4.0) / build number (must increase)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>NS…UsageDescription</code></td>
+                                    <td>text shown in permission prompts (required; the app crashes if missing)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>CFBundleURLTypes</code></td>
+                                    <td>custom URL schemes the app handles</td>
+                                </tr>
+                                <tr>
+                                    <td><code>LSApplicationQueriesSchemes</code></td>
+                                    <td>other apps' schemes the app may check with <code>canOpenURL</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>UIBackgroundModes</code></td>
+                                    <td>allowed background work (audio, location, remote notifications)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>NSAppTransportSecurity</code></td>
+                                    <td>network security exceptions and certificate pinning</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="code-box code-box-color"><code>&lt;key&gt;NSCameraUsageDescription&lt;/key&gt;
+&lt;string&gt;Scan receipts to add expenses automatically.&lt;/string&gt;
+&lt;key&gt;NSLocationWhenInUseUsageDescription&lt;/key&gt;
+&lt;string&gt;Show stores near you.&lt;/string&gt;
+&lt;key&gt;NSUserTrackingUsageDescription&lt;/key&gt;
+&lt;string&gt;Allow personalized ads across other apps and websites.&lt;/string&gt;</code></div>
+                    <h5>Permissions</h5>
+                    <ul class="justify">
+                        <li><b>TCC (Transparency, Consent, and Control) :</b> the system service that shows permission prompts and stores the user's decisions.</li>
+                        <li><b>One Prompt :</b> the system asks only once. After a denial, only the user can change it in Settings, so request permissions in context and explain the benefit first.</li>
+                        <li><b>Authorization States :</b> <code>notDetermined</code>, <code>authorized</code>, <code>denied</code>, <code>restricted</code> (blocked by parental controls or MDM), and <code>limited</code> (selected photos or contacts only).</li>
+                        <li><b>Location :</b> when-in-use or always, and precise or approximate.</li>
+                        <li><b>App Tracking Transparency (ATT) :</b> apps must ask before tracking users across other companies' apps and websites; if the user declines, the advertising identifier (IDFA) returns all zeros.</li>
+                        <li><b>Avoid Permissions :</b> <code>PHPickerViewController</code> / SwiftUI <code>PhotosPicker</code> give access to chosen photos without any permission.</li>
+                    </ul>
+                    <div class="code-box code-box-color"><code>switch AVCaptureDevice.authorizationStatus(for: .video) {
+case .authorized:
+    openCamera()
+case .notDetermined:
+    AVCaptureDevice.requestAccess(for: .video) { granted in
+        DispatchQueue.main.async { granted ? openCamera() : showSettingsHint() }
+    }
+default:
+    showSettingsHint()      // denied or restricted: only the user can change it in Settings
+}</code></div>
+                    <h5>Entitlements &amp; Capabilities</h5>
+                    <ul class="justify">
+                        <li><b>Examples :</b> Push Notifications (<code>aps-environment</code>), App Groups, Keychain Sharing, Associated Domains, iCloud, HealthKit, Sign in with Apple.</li>
+                        <li><b>Enforcement :</b> entitlements are enabled in Xcode, approved for the App ID, embedded in the provisioning profile, and covered by the code signature, so an app cannot grant itself new capabilities.</li>
+                    </ul>
+                    <h5>Privacy Manifest</h5>
+                    <ul class="justify">
+                        <li><b><code>PrivacyInfo.xcprivacy</code> :</b> declares the data the app and its SDKs collect, whether it is used for tracking, and the tracking domains.</li>
+                        <li><b>Required-Reason APIs :</b> APIs that could be used for fingerprinting (e.g. <code>UserDefaults</code>, file timestamps, system boot time, disk space) need a declared, approved reason. Required for App Store submissions since May 2024.</li>
+                        <li><b>Third-Party SDKs :</b> commonly used SDKs must include their own privacy manifest and signature.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="deep-links">
+                <h4 class="heading">URL Schemes &amp; Universal Links</h4>
+                <div class="content">
+                    <p>Deep links open a specific screen inside an app. iOS supports two mechanisms:</p>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Example</th>
+                                    <th>Behavior</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Custom URL scheme</td>
+                                    <td><code>myapp://product/42</code></td>
+                                    <td>declared in <code>CFBundleURLTypes</code>; not unique, so any app can claim the same scheme</td>
+                                </tr>
+                                <tr>
+                                    <td>Universal Link</td>
+                                    <td><code>https://example.com/product/42</code></td>
+                                    <td>verified through the website, opens the app directly, and falls back to the website if the app is not installed</td>
+                                </tr>
+                                <tr>
+                                    <td>Deferred deep link</td>
+                                    <td>a link opened before the app is installed</td>
+                                    <td>no built-in support; done through App Store attribution or a third-party service</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h6>Setting Up Universal Links</h6>
+                    <ul class="justify">
+                        <li><b>Associated Domains Entitlement :</b> add <code>applinks:example.com</code> in Xcode (Signing &amp; Capabilities).</li>
+                        <li><b>AASA File :</b> the website serves <code>https://example.com/.well-known/apple-app-site-association</code> as JSON over HTTPS, with no redirects and no <code>.json</code> extension. Since iOS 14, devices fetch it through Apple's CDN, not directly from your server.</li>
+                        <li><b>Development Mode :</b> <code>applinks:example.com?mode=developer</code> fetches the file directly from your server, bypassing the CDN cache, on devices with developer mode enabled.</li>
+                    </ul>
+                    <div class="code-box code-box-color"><code>{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["ABCDE12345.com.example.app"],
+        "components": [
+          { "/": "/product/*", "comment": "open product pages in the app" },
+          { "/": "/account/*", "exclude": true }
+        ]
+      }
+    ]
+  },
+  "webcredentials": { "apps": ["ABCDE12345.com.example.app"] }
+}</code></div>
+                    <h6>Handling Links</h6>
+                    <div class="code-box code-box-color"><code>// SwiftUI: receives both custom-scheme URLs and Universal Links
+ContentView()
+    .onOpenURL { url in
+        guard url.pathComponents.count &gt;= 3, url.pathComponents[1] == "product",
+              let id = Int(url.pathComponents[2]) else { return }   // validate before use
+        router.showProduct(id)
+    }
+
+// UIKit (scene delegate)
+func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {            // Universal Links
+    guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+          let url = userActivity.webpageURL else { return }
+    handle(url)
+}
+func scene(_ scene: UIScene, openURLContexts contexts: Set&lt;UIOpenURLContext&gt;) {  // custom schemes
+    contexts.first.map { handle($0.url) }
+}</code></div>
+                    <ul class="justify">
+                        <li><b>Cold Launch :</b> if the app was not running, UIKit delivers the link in <code>scene(_:willConnectTo:options:)</code> through <code>connectionOptions.userActivities</code> / <code>connectionOptions.urlContexts</code>, not the methods above; SwiftUI's <code>.onOpenURL</code> handles both cases.</li>
+                        <li><b>When Universal Links Do Not Open the App :</b> when the URL is typed into Safari, when navigating within the same domain, or after the user long-presses and chooses to open in Safari.</li>
+                        <li><b>Testing :</b> <code>xcrun simctl openurl booted "https://example.com/product/42"</code>, or tap the link in Notes or Messages on a device.</li>
+                    </ul>
+                    <h6>Security</h6>
+                    <ul class="justify">
+                        <li><b>Scheme Hijacking :</b> another app can register the same custom scheme, so never put tokens or secrets in custom-scheme links; use Universal Links for anything sensitive.</li>
+                        <li><b>Untrusted Input :</b> validate every path component and query parameter.</li>
+                        <li><b>No Silent Actions :</b> a link should only navigate; require confirmation and authentication for payments or account changes.</li>
+                        <li><b>OAuth :</b> use <code>ASWebAuthenticationSession</code> (the system browser sheet) with PKCE, rather than an embedded web view.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="notifications">
+                <h4 class="heading">Notifications &amp; Push</h4>
+                <div class="content">
+                    <ul class="justify">
+                        <li><b>Authorization :</b> request permission with <code>UNUserNotificationCenter</code>. <b>Provisional</b> authorization delivers notifications quietly to Notification Center without a prompt, so users can decide later.</li>
+                        <li><b>APNs (Apple Push Notification service) :</b> the app registers and receives a <b>device token</b>; your server sends notifications to APNs over HTTP/2, authenticated with a token-based key (<code>.p8</code>, signed JWT) or a certificate.</li>
+                        <li><b>Payload Limit :</b> 4 KB (5 KB for VoIP pushes).</li>
+                        <li><b>Interruption Levels :</b> passive, active (default), time-sensitive (breaks through Focus), and critical (bypasses mute; needs a special entitlement).</li>
+                        <li><b>Silent Pushes :</b> <code>"content-available": 1</code> wakes the app in the background to fetch data; the system throttles them and may not deliver every one.</li>
+                        <li><b>Notification Service Extension :</b> modifies a notification before it is shown, e.g. to decrypt an end-to-end encrypted message or attach an image.</li>
+                        <li><b>Live Activities :</b> live-updating content on the Lock Screen and Dynamic Island (ActivityKit), updated locally or through APNs.</li>
+                    </ul>
+                    <div class="code-box code-box-color"><code>let center = UNUserNotificationCenter.current()
+let granted = try await center.requestAuthorization(options: [.alert, .sound, .badge])
+if granted {
+    await MainActor.run { UIApplication.shared.registerForRemoteNotifications() }
+}
+// The device token arrives in application(_:didRegisterForRemoteNotificationsWithDeviceToken:)</code></div>
+                    <div class="code-box code-box-color"><code>{
+  "aps": {
+    "alert": { "title": "Order shipped", "body": "Your order #1042 is on the way" },
+    "sound": "default",
+    "badge": 1,
+    "thread-id": "orders"
+  },
+  "orderId": "1042"
+}</code></div>
+                    <p><b>Security :</b> treat push payloads as untrusted and fetch sensitive data from your server after the notification arrives, rather than including it in the payload.</p>
+                </div>
+            </div>
+
+            <div class="sections" id="app-architecture">
+                <h4 class="heading">App Architecture &amp; Frameworks</h4>
+                <div class="content">
+                    <h5>UI Frameworks</h5>
+                    <ul class="justify">
+                        <li><b>SwiftUI :</b> declarative; views are structs whose <code>body</code> is recomputed when state changes. Property wrappers manage state: <code>@State</code> (owned by the view), <code>@Binding</code> (a reference to a parent's state), <code>@Environment</code> (shared values), and <code>@Observable</code> classes (iOS 17) for models.</li>
+                        <li><b>UIKit :</b> imperative; <code>UIViewController</code>s manage views laid out with Auto Layout, in storyboards, XIBs, or code. <code>UITableView</code> / <code>UICollectionView</code> display lists and grids.</li>
+                        <li><b>Interoperability :</b> <code>UIHostingController</code> embeds SwiftUI in UIKit; <code>UIViewRepresentable</code> embeds UIKit views in SwiftUI.</li>
+                    </ul>
+                    <div class="code-box code-box-color"><code>import SwiftUI
+
+@Observable
+final class CounterModel {
+    var count = 0
+}
+
+struct CounterView: View {
+    @State private var model = CounterModel()
+    let name: String
+
+    var body: some View {
+        VStack(spacing: 12) {
+            Text("Hello, \(name)")
+            Button("Clicked \(model.count) times") { model.count += 1 }
+        }
+        .padding()
+    }
+}</code></div>
+                    <h5>Architecture Patterns</h5>
+                    <ul class="justify">
+                        <li><b>MVC :</b> Apple's traditional pattern for UIKit; prone to "massive view controllers" when logic piles up.</li>
+                        <li><b>MVVM :</b> views observe a view model that holds state and logic; a natural fit for SwiftUI.</li>
+                        <li><b>The Composable Architecture (TCA) :</b> unidirectional state, actions, and reducers, popular in larger SwiftUI apps.</li>
+                        <li><b>VIPER / Clean Architecture :</b> stricter layering for large teams.</li>
+                    </ul>
+                    <h5>Swift Concurrency</h5>
+                    <ul class="justify">
+                        <li><b>async / await :</b> asynchronous code that reads like synchronous code.</li>
+                        <li><b>Task :</b> starts asynchronous work; tasks form a tree, so cancelling a parent cancels its children (structured concurrency).</li>
+                        <li><b>Actors :</b> protect mutable state from data races by allowing one task at a time; <code>@MainActor</code> runs code on the main thread.</li>
+                        <li><b>Sendable :</b> marks types that are safe to share between concurrent tasks; Swift 6 checks data-race safety at compile time.</li>
+                    </ul>
+                    <div class="code-box code-box-color"><code>@MainActor @Observable
+final class ProfileViewModel {
+    var user: User?
+    private let api: APIClient
+
+    init(api: APIClient) { self.api = api }
+
+    func load(id: Int) async {
+        do { user = try await api.user(id: id) }      // awaiting does not block the main thread
+        catch { user = nil }
+    }
+}</code></div>
+                    <h6>Key Frameworks</h6>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Framework</th>
+                                    <th>Purpose</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Foundation</td>
+                                    <td>core types, dates, networking, file system</td>
+                                </tr>
+                                <tr>
+                                    <td>SwiftData / Core Data</td>
+                                    <td>persistence (SwiftData is the modern Swift layer, iOS 17)</td>
+                                </tr>
+                                <tr>
+                                    <td>Combine / Observation</td>
+                                    <td>reactive streams / observable models</td>
+                                </tr>
+                                <tr>
+                                    <td>WidgetKit / ActivityKit</td>
+                                    <td>widgets / Live Activities</td>
+                                </tr>
+                                <tr>
+                                    <td>StoreKit 2</td>
+                                    <td>in-app purchases and subscriptions</td>
+                                </tr>
+                                <tr>
+                                    <td>Core ML / Foundation Models</td>
+                                    <td>on-device machine learning / Apple's on-device language model (iOS 26)</td>
+                                </tr>
+                                <tr>
+                                    <td>MapKit, Core Location</td>
+                                    <td>maps and location</td>
+                                </tr>
+                                <tr>
+                                    <td>AVFoundation</td>
+                                    <td>camera, audio, and video</td>
+                                </tr>
+                                <tr>
+                                    <td>HealthKit</td>
+                                    <td>health and fitness data</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sections" id="networking">
+                <h4 class="heading">Networking &amp; App Transport Security</h4>
+                <div class="content">
+                    <ul class="justify">
+                        <li><b>URLSession :</b> the built-in HTTP client, with async/await support, background transfers that continue after the app is suspended, and HTTP/2 and HTTP/3.</li>
+                        <li><b>Codable :</b> converts JSON to and from Swift types with <code>JSONDecoder</code> / <code>JSONEncoder</code>.</li>
+                        <li><b>Network Framework :</b> low-level TCP, UDP, and QUIC connections (<code>NWConnection</code>), and <code>NWPathMonitor</code> to detect connectivity changes.</li>
+                        <li><b>Alamofire :</b> a popular third-party wrapper around URLSession.</li>
+                    </ul>
+                    <div class="code-box code-box-color"><code>struct User: Decodable {
+    let id: Int
+    let name: String
+}
+
+func fetchUser(id: Int) async throws -&gt; User {
+    let url = URL(string: "https://api.example.com/users/\(id)")!
+    let (data, response) = try await URLSession.shared.data(from: url)
+    guard (response as? HTTPURLResponse)?.statusCode == 200 else {
+        throw URLError(.badServerResponse)
+    }
+    return try JSONDecoder().decode(User.self, from: data)
+}</code></div>
+                    <h5>App Transport Security (ATS)</h5>
+                    <ul class="justify">
+                        <li><b>Default :</b> since iOS 9, apps may only connect over HTTPS using TLS 1.2 or later with forward secrecy.</li>
+                        <li><b>Exceptions :</b> configured per domain under <code>NSAppTransportSecurity</code>; App Review asks for a justification, and <code>NSAllowsArbitraryLoads</code> (disabling ATS entirely) is a red flag in audits.</li>
+                        <li><b>Certificate Pinning :</b> <code>NSPinnedDomains</code> (iOS 14+) pins public keys declaratively, without code. Include a backup key so a key rotation does not lock users out.</li>
+                    </ul>
+                    <div class="code-box code-box-color"><code>&lt;key&gt;NSAppTransportSecurity&lt;/key&gt;
+&lt;dict&gt;
+    &lt;key&gt;NSPinnedDomains&lt;/key&gt;
+    &lt;dict&gt;
+        &lt;key&gt;api.example.com&lt;/key&gt;
+        &lt;dict&gt;
+            &lt;key&gt;NSIncludesSubdomains&lt;/key&gt;
+            &lt;true/&gt;
+            &lt;key&gt;NSPinnedLeafIdentities&lt;/key&gt;
+            &lt;array&gt;
+                &lt;dict&gt;
+                    &lt;key&gt;SPKI-SHA256-BASE64&lt;/key&gt;
+                    &lt;string&gt;r/mIkG3eEpVdm+u/ko/cwxzOMo1bk4TyHIlByibiA5E=&lt;/string&gt;
+                &lt;/dict&gt;
+                &lt;dict&gt;
+                    &lt;key&gt;SPKI-SHA256-BASE64&lt;/key&gt;
+                    &lt;string&gt;YLh1dUR9y6Kja30RrAn7JKnbQG/uEtLMkBgFF2Fuihg=&lt;/string&gt;  &lt;!-- backup key --&gt;
+                &lt;/dict&gt;
+            &lt;/array&gt;
+        &lt;/dict&gt;
+    &lt;/dict&gt;
+&lt;/dict&gt;</code></div>
+                    <p>The pin values above are placeholders; real pins are the Base64 SHA-256 hash of the server's public key (SPKI).</p>
+                </div>
+            </div>
+
+            <div class="sections" id="data-storage">
+                <h4 class="heading">Data Storage &amp; Keychain</h4>
+                <div class="content">
+                    <p>Each app runs in a sandbox with its own containers, identified by a random UUID that changes when the app is reinstalled.</p>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Location</th>
+                                    <th>Contents</th>
+                                    <th>Backed Up</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Bundle container (<code>MyApp.app</code>)</td>
+                                    <td>the signed app itself; read-only</td>
+                                    <td>no</td>
+                                </tr>
+                                <tr>
+                                    <td><code>Documents/</code></td>
+                                    <td>user-created data; can be shown in the Files app</td>
+                                    <td>yes</td>
+                                </tr>
+                                <tr>
+                                    <td><code>Library/Application Support/</code></td>
+                                    <td>app-managed files and databases</td>
+                                    <td>yes</td>
+                                </tr>
+                                <tr>
+                                    <td><code>Library/Caches/</code></td>
+                                    <td>re-creatable data; the system may delete it when space is low</td>
+                                    <td>no</td>
+                                </tr>
+                                <tr>
+                                    <td><code>Library/Preferences/</code></td>
+                                    <td><code>UserDefaults</code> property list files</td>
+                                    <td>yes</td>
+                                </tr>
+                                <tr>
+                                    <td><code>tmp/</code></td>
+                                    <td>temporary files, cleared by the system</td>
+                                    <td>no</td>
+                                </tr>
+                                <tr>
+                                    <td>App Group container</td>
+                                    <td>data shared between your app and its extensions</td>
+                                    <td>yes</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h5>Storage Options</h5>
+                    <ul class="justify">
+                        <li><b>UserDefaults :</b> small key-value preferences stored in a plist file; not for secrets.</li>
+                        <li><b>Files :</b> read and written with <code>FileManager</code> in the containers above.</li>
+                        <li><b>SwiftData / Core Data :</b> object persistence on top of SQLite; SwiftData (iOS 17) is the Swift-native API.</li>
+                        <li><b>SQLite :</b> directly or through libraries such as GRDB.</li>
+                        <li><b>CloudKit / iCloud :</b> sync data across a user's devices.</li>
+                    </ul>
+                    <h5>Keychain</h5>
+                    <p>The Keychain is the encrypted system store for passwords, tokens, and keys. Items are encrypted with keys protected by the Secure Enclave, and they <b>remain after the app is deleted</b>, so clear them on first launch if that matters.</p>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Accessibility</th>
+                                    <th>Available</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>kSecAttrAccessibleWhenUnlocked</code></td>
+                                    <td>only while the device is unlocked (default)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>kSecAttrAccessibleAfterFirstUnlock</code></td>
+                                    <td>after the first unlock since boot, also in the background</td>
+                                </tr>
+                                <tr>
+                                    <td><code>kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly</code></td>
+                                    <td>only if a passcode is set; deleted if the passcode is removed</td>
+                                </tr>
+                                <tr>
+                                    <td><code>…ThisDeviceOnly</code> variants</td>
+                                    <td>never migrated to another device through backups</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="code-box code-box-color"><code>import Security
+
+func saveToken(_ token: String) -&gt; Bool {
+    let base: [String: Any] = [
+        kSecClass as String: kSecClassGenericPassword,
+        kSecAttrService as String: "com.example.app",
+        kSecAttrAccount as String: "authToken"
+    ]
+    SecItemDelete(base as CFDictionary)                      // remove any old value
+
+    var item = base
+    item[kSecValueData as String] = Data(token.utf8)
+    item[kSecAttrAccessible as String] = kSecAttrAccessibleWhenUnlockedThisDeviceOnly
+    return SecItemAdd(item as CFDictionary, nil) == errSecSuccess
+}</code></div>
+                    <ul class="justify">
+                        <li><b>Biometric Protection :</b> an item can require Face ID or Touch ID on every read using <code>SecAccessControl</code> with <code>.biometryCurrentSet</code> (invalidated if biometrics change).</li>
+                        <li><b>Secure Enclave Keys :</b> P-256 private keys can be generated inside the Secure Enclave (<code>CryptoKit</code>'s <code>SecureEnclave.P256</code>); they can be used for signing but never exported.</li>
+                    </ul>
+                    <h6>Data Protection Classes</h6>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Class</th>
+                                    <th>File Accessible</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>.complete</code></td>
+                                    <td>only while the device is unlocked</td>
+                                </tr>
+                                <tr>
+                                    <td><code>.completeUnlessOpen</code></td>
+                                    <td>files already open stay accessible after locking</td>
+                                </tr>
+                                <tr>
+                                    <td><code>.completeUntilFirstUserAuthentication</code></td>
+                                    <td>after the first unlock since boot (default for apps)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>.none</code></td>
+                                    <td>always (protected only by the device UID key)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>Each file has its own key, wrapped by a class key derived from the user's passcode and the device's hardware UID key, so data cannot be decrypted off the device.</p>
+                </div>
+            </div>
+
+            <div class="sections" id="debugging">
+                <h4 class="heading">Debugging &amp; Testing</h4>
+                <div class="content">
+                    <h6>Logging (OSLog)</h6>
+                    <div class="code-box code-box-color"><code>import OSLog
+
+let logger = Logger(subsystem: "com.example.app", category: "network")
+logger.info("Loaded \(items.count) items")
+logger.error("Login failed for \(email, privacy: .private)")   // redacted outside debugging</code></div>
+                    <p>The unified logging system redacts dynamic string values as <code>&lt;private&gt;</code> by default; read logs in Xcode's console or the Console app on a Mac.</p>
+                    <h6>Xcode Tools</h6>
+                    <ul class="justify">
+                        <li><b>LLDB Debugger :</b> breakpoints and commands like <code>po object</code> (print), <code>bt</code> (backtrace), <code>frame variable</code>.</li>
+                        <li><b>View Hierarchy &amp; Memory Graph Debuggers :</b> inspect the live UI and find retain cycles (leaks).</li>
+                        <li><b>Instruments :</b> Time Profiler, Allocations, Leaks, Network, Energy Log, and SwiftUI templates.</li>
+                        <li><b>Sanitizers &amp; Checkers :</b> Address Sanitizer (memory errors), Thread Sanitizer (data races), Main Thread Checker (UI work off the main thread).</li>
+                        <li><b>Crash Reports :</b> symbolicated with the build's <b>dSYM</b> files; collected in Xcode Organizer and App Store Connect.</li>
+                    </ul>
+                    <h6>Testing</h6>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Framework</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Unit tests</td>
+                                    <td>XCTest, or Swift Testing (<code>@Test</code>, <code>#expect</code>; Xcode 16+)</td>
+                                </tr>
+                                <tr>
+                                    <td>UI tests</td>
+                                    <td>XCUITest, driving the app through accessibility identifiers</td>
+                                </tr>
+                                <tr>
+                                    <td>Performance tests</td>
+                                    <td>XCTest <code>measure</code> blocks</td>
+                                </tr>
+                                <tr>
+                                    <td>Beta testing</td>
+                                    <td>TestFlight with in-app feedback and crash reports</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="code-box code-box-color"><code>xcodebuild test -scheme MyApp -destination 'platform=iOS Simulator,name=iPhone 16'
+xcrun simctl openurl booted "myapp://product/42"            # test a deep link
+xcrun simctl push booted com.example.app payload.apns       # simulate a push notification
+xcrun simctl privacy booted grant photos com.example.app    # pre-grant a permission</code></div>
+                </div>
+            </div>
+
+            <div class="sections" id="app-security">
+                <h4 class="heading">App Security Checklist</h4>
+                <div class="content">
+                    <p>The <b>OWASP MASVS</b> applies to iOS as well: MASVS-STORAGE, CRYPTO, AUTH, NETWORK, PLATFORM, CODE, RESILIENCE, and PRIVACY, with iOS-specific tests in the <b>MASTG</b>.</p>
+                    <ul class="justify">
+                        <li><b>No Secrets in the Binary :</b> API keys in code or plist files can be extracted; keep them on a server, and store user tokens in the Keychain.</li>
+                        <li><b>Keychain Settings :</b> use the strictest accessibility class that works, prefer <code>ThisDeviceOnly</code> for tokens, and add biometric protection for high-value items.</li>
+                        <li><b>File Protection :</b> use <code>.complete</code> protection for sensitive files.</li>
+                        <li><b>Network :</b> keep ATS on, avoid <code>NSAllowsArbitraryLoads</code>, and pin keys for high-risk apps.</li>
+                        <li><b>Links :</b> validate every URL-scheme and Universal Link parameter.</li>
+                        <li><b>Web Views :</b> use <code>WKWebView</code> (apps using the deprecated <code>UIWebView</code> are rejected), keep JavaScript bridges (<code>WKScriptMessageHandler</code>) away from untrusted content, and load only HTTPS pages you control.</li>
+                        <li><b>Logging :</b> never log tokens or personal data, and keep the default private redaction.</li>
+                        <li><b>App Switcher Snapshot :</b> iOS saves a screenshot of the app when it goes to the background; hide sensitive screens before that happens.</li>
+                        <li><b>Pasteboard :</b> sensitive data copied to the general pasteboard is visible to other apps; use local, expiring pasteboard items.</li>
+                        <li><b>Secure Text Fields :</b> <code>isSecureTextEntry</code> fields disable third-party keyboards and hide their content from screen recordings and AirPlay.</li>
+                        <li><b>Integrity :</b> verify App Attest assertions on your server; client-side jailbreak detection is only a signal and can be bypassed.</li>
+                        <li><b>Privacy :</b> keep the privacy manifest accurate and request ATT only when the app really tracks.</li>
+                    </ul>
+                    <h6>Review Tools (for your own apps)</h6>
+                    <ul class="justify">
+                        <li><b>Xcode Static Analyzer :</b> <b>Product &gt; Analyze</b>.</li>
+                        <li><b>MobSF :</b> automated static and dynamic analysis of IPA files.</li>
+                        <li><b>otool / class-dump :</b> check what a release build exposes (see <a href="#app-dev">App Development &amp; IPA</a>).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="file-system">
+                <h4 class="heading">File System</h4>
+                <div class="content">
+                    <ul class="justify">
+                        <li><b>APFS :</b> the Apple File System, used since iOS 10.3, with copy-on-write, snapshots, and native per-file encryption.</li>
+                        <li><b>Read-Only System :</b> the system volume is mounted read-only and verified, so the OS cannot be modified at runtime.</li>
+                        <li><b>No Shared File System :</b> apps cannot browse each other's files; sharing happens through the share sheet, the Files app, File Provider extensions, or App Groups.</li>
+                    </ul>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Path</th>
+                                    <th>Contents</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>/System</code></td>
+                                    <td>the operating system, frameworks, and system apps (read-only)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>/private/var/containers/Bundle/Application/&lt;UUID&gt;/</code></td>
+                                    <td>installed app bundles</td>
+                                </tr>
+                                <tr>
+                                    <td><code>/private/var/mobile/Containers/Data/Application/&lt;UUID&gt;/</code></td>
+                                    <td>each app's data container (Documents, Library, tmp)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>/private/var/mobile/Containers/Shared/AppGroup/&lt;UUID&gt;/</code></td>
+                                    <td>App Group shared containers</td>
+                                </tr>
+                                <tr>
+                                    <td><code>/private/var/mobile/Media/</code></td>
+                                    <td>photos (<code>DCIM</code>) and media</td>
+                                </tr>
+                                <tr>
+                                    <td><code>/var</code></td>
+                                    <td>a symbolic link to <code>/private/var</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>Apps should never hard-code these paths; use <code>FileManager</code> APIs such as <code>urls(for: .documentDirectory, in: .userDomainMask)</code>.</p>
+                </div>
+            </div>
+
+            <div class="sections" id="boot">
+                <h4 class="heading">Boot Process</h4>
+                <div class="content">
+                    <div class="code-box code-box-color"><code>Boot ROM (immutable, contains Apple's root public key)
+   -&gt; iBoot (bootloader, verified by the Boot ROM)
+      -&gt; XNU kernelcache (kernel + drivers, verified by iBoot)
+         -&gt; launchd (PID 1) -&gt; system daemons -&gt; SpringBoard</code></div>
+                    <ul class="justify">
+                        <li><b>Secure Boot Chain :</b> each stage verifies the cryptographic signature of the next before running it, so only Apple-signed software boots.</li>
+                        <li><b>Personalized Signing :</b> Apple's signing server signs each OS installation for a specific device (identified by its ECID). Older iOS versions stop being signed, which prevents downgrading to versions with known vulnerabilities.</li>
+                        <li><b>Secure Enclave Boot :</b> the Secure Enclave runs its own separately verified OS (sepOS).</li>
+                        <li><b>Recovery Mode :</b> iBoot-level mode for restoring or updating through a computer.</li>
+                        <li><b>DFU (Device Firmware Update) Mode :</b> the lowest-level restore mode, handled directly by the Boot ROM; used when the bootloader itself is damaged.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="security-core">
+                <h4 class="heading">iOS Security Core</h4>
+                <div class="content">
+                    <ul class="justify">
+                        <li><b>Secure Enclave :</b> a separate coprocessor with its own memory and boot process. It holds the keys for Data Protection, Keychain, and Apple Pay, and processes Face ID and Touch ID data, which never leaves it.</li>
+                        <li><b>Code Signing Enforcement :</b> every executable page must be signed by Apple or an Apple-issued developer certificate; apps cannot download and run new native code, and JIT compilation is restricted to approved cases.</li>
+                        <li><b>App Sandbox :</b> every app runs in its own container with a sandbox profile (Seatbelt) limiting files, system services, and hardware access to what its entitlements allow.</li>
+                        <li><b>Data Protection :</b> per-file encryption tied to the passcode and the hardware UID key (see <a href="#data-storage">Data Storage</a>).</li>
+                        <li><b>Exploit Mitigations :</b> ASLR, non-executable memory, Pointer Authentication Codes (PAC, from A12 chips) that sign pointers to block code-reuse attacks, kernel integrity protection, and Memory Integrity Enforcement (hardware memory tagging, from A19 chips).</li>
+                        <li><b>BlastDoor :</b> parses untrusted iMessage content in a tightly sandboxed process.</li>
+                        <li><b>Lockdown Mode :</b> an optional extreme-protection mode for people at risk of targeted attacks, disabling complex features such as many message attachments and web technologies.</li>
+                        <li><b>Stolen Device Protection :</b> requires Face ID or Touch ID, and a time delay away from familiar locations, for sensitive changes like the Apple Account password.</li>
+                        <li><b>Inactivity Reboot :</b> a device left locked for several days restarts, returning to the stronger "before first unlock" state where most data keys are unavailable.</li>
+                        <li><b>USB Restricted Mode :</b> USB accessories cannot exchange data with a device that has been locked for over an hour until it is unlocked.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="apple-ecosystem">
+                <h4 class="heading">Apple Ecosystem</h4>
+                <div class="content">
+                    <ul class="justify">
+                        <li><b>App Store Connect :</b> app listings, builds, App Review submission, TestFlight, phased releases, analytics, and crash reports.</li>
+                        <li><b>App Attest (DeviceCheck) :</b> generates a key in the Secure Enclave and an attestation from Apple, letting your server verify requests come from a genuine instance of your app on a real Apple device. Verify it on the server.</li>
+                        <li><b>Sign in with Apple :</b> privacy-focused login with an optional private relay email. Apps that offer third-party social logins must also offer an equivalent privacy-focused option, which Sign in with Apple satisfies.</li>
+                        <li><b>iCloud / CloudKit :</b> per-user storage and database sync across devices.</li>
+                        <li><b>StoreKit &amp; App Store Server API :</b> in-app purchases and subscriptions, with server-side verification of signed transactions.</li>
+                        <li><b>Apple Pay (PassKit) :</b> tokenized card payments and Wallet passes.</li>
+                        <li><b>MDM &amp; Apple Business Manager :</b> manage company devices, distribute custom apps, and enforce policies.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="jailbreak">
+                <h4 class="heading">Jailbreak</h4>
+                <div class="content">
+                    <p>Jailbreaking removes iOS's software restrictions to gain root access, run unsigned code, and modify the system. It is the iOS counterpart of Android rooting, but much harder: it requires chaining exploits for unpatched vulnerabilities, because the bootloader cannot be unlocked.</p>
+                    <h6>Types of Jailbreaks</h6>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>After a Reboot</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center">
+                                <tr>
+                                    <td>Untethered</td>
+                                    <td>stays jailbroken on its own</td>
+                                </tr>
+                                <tr>
+                                    <td>Tethered</td>
+                                    <td>needs a computer to boot at all</td>
+                                </tr>
+                                <tr>
+                                    <td>Semi-tethered</td>
+                                    <td>boots normally but unjailbroken; a computer re-applies the jailbreak</td>
+                                </tr>
+                                <tr>
+                                    <td>Semi-untethered</td>
+                                    <td>boots normally; an app on the device re-applies the jailbreak</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <ul class="justify">
+                        <li><b>Bootrom Exploits :</b> flaws in the read-only Boot ROM cannot be patched by software updates, so they affect a hardware generation permanently (e.g. checkm8 in 2019, affecting A5 to A11 chips).</li>
+                        <li><b>Rootless Jailbreaks :</b> since the system volume became sealed and verified, modern jailbreaks install their files under <code>/var/jb</code> instead of modifying the system volume.</li>
+                        <li><b>Tweaks &amp; Package Managers :</b> code-injection frameworks load modifications (tweaks) into apps and system processes; package managers such as Sileo distribute them.</li>
+                        <li><b>Risks :</b> the sandbox, code signing, and Data Protection guarantees no longer hold, malicious tweaks get full access, updates are blocked, and many banking and enterprise apps refuse to run.</li>
+                        <li><b>For App Developers :</b> treat jailbreak detection as one risk signal, not a security boundary; enforce sensitive checks on the server with App Attest.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <nav>
+                <a href="/cheatsheets" aria-label="All cheatsheets"><i class="bi bi-grid-3x3-gap-fill" aria-hidden="true"></i></a>
+                <a href="#" aria-label="Back to top"><i class="bi bi-arrow-up" aria-hidden="true"></i></a>
+            </nav>
+        </div>
+
+        <!-- JavaScript -->
+        <script src="../assets/js/script.js?v=9"></script>
+    </body>
+</html>
